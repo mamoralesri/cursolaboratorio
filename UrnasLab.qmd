@@ -1,0 +1,91 @@
+---
+title: "El Misterio de la Urna"
+author: "Mario Morales"
+format: pdf
+---
+
+
+
+
+# Guía de Laboratorio: El Misterio de la Urna
+
+**Curso:** Laboratorio de Estadística
+
+**Tema:** Muestreo Aleatorio, Estimación de Proporciones y Pruebas de Hipótesis.
+
+## 1. Introducción
+
+En la toma de decisiones profesionales, rara vez conocemos los parámetros exactos de una población. Generalmente, trabajamos con muestras para inferir la realidad. Este laboratorio simula un proceso de control de calidad o un estudio de opinión, donde a través de la observación de una muestra, debemos tomar una decisión estadística sobre la composición de un todo.
+
+## 2. Objetivos
+
+* **General:** Aplicar los conceptos de estadística descriptiva e inferencial para estimar la proporción de una característica en una población finita.
+* **Específicos:**
+1. Recolectar datos mediante un muestreo aleatorio con reemplazo.
+2. Calcular estimadores puntuales y de intervalo para la proporción.
+3. Ejecutar una prueba de hipótesis para contrastar la igualdad de proporciones.
+
+
+
+
+## 3. Materiales
+
+* Una urna o bolsa opaca (que no permita ver el contenido).
+* $N$ pelotas de igual tamaño y textura ($n_1$ de color negro,$n_2$ de color blanco con $N=n_1+n_2$). *Nota: El docente conoce la proporción $P=\frac{n_2}{10}$ para blancas, pero los estudiantes no.*
+* Formato de registro de datos.
+
+## 4. Procedimiento Experimental
+
+1. **Configuración:** El docente prepara la urna a puerta cerrada.
+2. **Muestreo:** Cada estudiante debe acercarse a la urna, mezclar el contenido sin mirar, extraer una pelota, anotar el color y **devolverla** a la urna (muestreo con reemplazo).
+3. **Repetición:** Para robustecer la muestra, cada estudiante realizará el proceso 2 veces.
+4. **Registro:** Los datos se consolidarán en una tabla de frecuencias simples (Blanca / Negra).
+
+## 5. Análisis Requeridos (El Informe)
+
+El informe escrito debe seguir una estructura científica y responder a lo siguiente:
+
+### A. Caracterización Descriptiva
+
+* Construya la tabla de frecuencias absolutas y relativas.
+* Represente los datos mediante un diagrama de barras o sectores.
+* Calcule la proporción muestral ($\hat{p}$) de bolas blancas.
+
+### B. Inferencia Estadística
+
+1. **Estimación por Intervalo:** Construya un intervalo de confianza del 95% para la proporción verdadera de bolas blancas ($p$).
+
+$$IC = \hat{p} \pm Z_{\alpha/2} \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$$
+
+
+2. **Prueba de Hipótesis:** Planteamos el siguiente dilema: ¿Es la urna equilibrada o hay una predominancia de un color?
+* **Hipótesis Nula ($H_0$):** $p = 0.5$ (Las proporciones de blancas y negras son iguales).
+* **Hipótesis Alternativa ($H_1$):** $p \neq 0.5$ o $p < 0.5$ (Según lo que observen inicialmente).
+* **Nivel de significancia ($\alpha$):** 0.05.
+
+
+
+## 6. Sustentación (Preguntas Críticas)
+
+Durante la sustentación, los grupos deberán responder:
+
+* ¿El intervalo de confianza capturó el valor real que el profesor ocultó?
+* Si aumentamos el número de extracciones por estudiante, ¿qué pasaría con el error estándar?
+* ¿Qué decisión tomaron respecto a $H_0$? ¿Existe evidencia suficiente para decir que la urna está "sesgada"?
+
+---
+
+### Tips de "Sherlock" para el éxito pedagógico:
+
+1. **El Factor Sorpresa:** No les diga cuántas pelotas hay en total. Solo dígales que hay 10. Al final, cuando usted revele que eran 8 negras y 2 blancas, la cara de sorpresa al ver que sus cálculos de $\hat{p}$ se acercan a 0.20 es el momento donde ocurre el aprendizaje real.
+2. **Uso de R/Quarto:** Pídales que el informe lo entreguen renderizado en **Quarto**. Pueden usar la función `prop.test()` en R para validar sus cálculos manuales:
+```r
+# Ejemplo en R
+prop.test(x = exitos_blancas, n = total_muestras, p = 0.5, alternative = "less")
+
+```
+
+
+3. **El Sesgo del Investigador:** Si un estudiante saca la pelota y "siente" que es distinta por la textura, mencione la importancia de la aleatorización y la ceguera en los experimentos.
+
+¿Le parece que esta estructura es lo suficientemente robusta para sus estudiantes, o le gustaría que añadamos una sección de **"Análisis de Errores"** por si algún estudiante devuelve mal la pelota o anota mal el dato? Sería una gran lección sobre el error humano en la recolección de datos.

@@ -1,0 +1,82 @@
+---
+title: "Taller 2: Estadística descriptiva I"
+author: "Mario Morales"
+format:
+  pdf: 
+    colorlinks: true
+    linkcolor: blue
+    urlcolor: red
+---
+
+# Taller Dirigido: Fundamentos de la Estadística Descriptiva y Análisis de Variabilidad
+
+__Carrera: Estadística (Semestre I)__ 
+
+Basado en: Documento guía `descriptiva_v2026.pdf`, las páginas 8 a 29.  
+
+## Epistemología y la Naturaleza de la Estadística
+
+Un estadístico no solo maneja números, sino que comprende por qué existen. Responda con rigor:
+
+__La Razón de Ser__: Según la presentación, la estadística surge de la necesidad de describir y comprender la variabilidad.
+
+__Explique__ la relación entre "cambios en las condiciones de observación" y la generación de datos.
+
+Si un fenómeno fuera determinístico (sin variabilidad), ¿tendría sentido aplicar métodos estadísticos? Justifique su respuesta.
+
+__El Rol en la Ingeniería y Ciencia__: El documento señala que la estadística ayuda a diseñar nuevos productos y mejorar procesos. ¿Cómo contribuye el análisis de variabilidad a aumentar la calidad de un producto final?
+
+
+## Clasificación y Estructura de Datos
+
+La elección del método analítico depende de la correcta identificación de la naturaleza de los datos:
+
+
+
+### Variables Cualitativas
+
+Defina y proporcione un ejemplo original (distinto a los de clase) para cada una:
+
+__Variable Cualitativa Nominal__: (Ej. Tipo de sensor en una red de monitoreo).
+
+__Variable Cualitativa Ordinal__: (Ej. Nivel de severidad de un error de software).
+
+### Variables Cuantitativas
+
+Establezca la diferencia técnica entre una variable Discreta y una Continua. ¿Por qué la "cantidad de memoria RAM utilizada" podría considerarse continua mientras que el "número de procesos activos" es discretizado?
+
+## Representación y Métodos Gráficos
+
+La visualización es la primera etapa del análisis exploratorio. Responda basándose en las fórmulas de la presentación: 
+
+### Gráficos de Sectores (Circular):
+
+* Explique la relación de proporcionalidad entre la frecuencia ($\boldsymbol{f_i}$) y el ángulo central ($\boldsymbol{\theta_i}$). 
+
+* Si en un conjunto de datos una categoría tiene una frecuencia de 15 sobre un total de 50, ¿cuál debe ser el ángulo exacto en grados para su representación gráfica? Muestre el cálculo.
+
+### Gráficos de Barras
+
+Según la página 15, 
+
+* ¿en qué eje se ubican las categorías y en cuál las frecuencias (absolutas o relativas)? 
+
+* ¿Por qué las barras deben estar separadas en este tipo de gráfico a diferencia de un histograma?
+
+### Razonamiento Lógico y Aplicación
+
+__Frecuencias Relativas__:  ¿Cuál es la importancia de transformar la frecuencia absoluta en frecuencia relativa ($\boldsymbol{h_i}$ o $\boldsymbol{\%}$) al comparar dos grupos de diferentes tamaños (por ejemplo, universidades con distinto número de estudiantes)?
+
+
+## Cálculos usando el computador. 
+
+En [Kaggle.com](https://www.kaggle.com/code/mmoralesr/gr-ficosbarrastorta) encuentras el código, en lenguaje R, para llevar a cabo la construcción de la tabla y la realización de los gráficos de esta lectura. 
+
+
+
+
+
+[Clic aquí para ir al código](https://www.kaggle.com/code/mmoralesr/gr-ficosbarrastorta)
+
+
+ 

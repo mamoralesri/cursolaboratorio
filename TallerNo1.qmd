@@ -1,0 +1,69 @@
+---
+title: "Taller 1, Laboratorio de Estadística.-"
+author: "Mario Morales"
+format: pdf
+---
+
+# Fundamentos y Producción de Datos en Estadística
+
+__Objetivo__: Verificar la comprensión de los conceptos de población, muestra, tipos de variables y métodos de obtención de datos planteados en la lectura. 
+
+## Comprensión de Conceptos Fundamentales
+A partir de las definiciones presentadas en las diapositivas, responde:
+
+### Diferenciación Crítica: 
+
+Explica con tus propias palabras la diferencia entre un Parámetro y un Estadístico. ¿Por qué en la práctica profesional casi siempre trabajamos con estadísticos?
+
+### Análisis de Individuo: 
+
+En el contexto de un estudio sobre la calidad del agua en el Río Sinú, ¿quién sería el "individuo" o "unidad estadística"? ¿Sería lo mismo si estudiamos la opinión de los habitantes de Montería sobre el servicio de agua? Justifica.
+
+### El Censo vs. El Muestreo: 
+
+Según el documento, el censo es un listado de todos los elementos de la población. Menciona dos razones prácticas por las cuales un estadístico preferiría realizar un muestreo en lugar de un censo para una investigación industrial.
+
+## Clasificación de Variables (Escalas de Medición)
+
+Clasifica las siguientes variables según su naturaleza (Cualitativa nominal/ordinal o Cuantitativa discreta/continua):
+
+1. Nivel de satisfacción de un cliente con un software estadístico (Muy satisfecho, Satisfecho, Insatisfecho).
+
+2. Concentración de material particulado (PM10) en el aire medida en $\mu g/m^3$. 
+
+3. Número de hijos por familia en un censo de bienestar social.
+
+4. Código de barras de un producto en un supermercado.
+
+## Producción de Datos: ¿Cómo obtenemos la información?
+
+El documento distingue entre estudios observacionales y experimentos. Analiza las siguientes situaciones:
+
+__Caso A__: Un investigador registra el tiempo que tardan los estudiantes en llegar a la universidad durante una semana sin intervenir en sus rutas.
+
+__Caso B__: Un profesor divide a su clase en dos grupos; al Grupo 1 le entrega el material en PDF y al Grupo 2 le entrega el mismo material mediante una aplicación interactiva, para luego comparar sus calificaciones.
+
+__Pregunta__: Identifica cuál es el estudio observacional y cuál es el experimento. ¿En cuál de los dos casos se puede afirmar con mayor seguridad una relación de "causa y efecto"? ¿Por qué?
+
+## Aplicación Práctica y Pensamiento Estadístico
+
+Basándote en el esquema resumen de la página 35 del documento:
+
+Diseño de Investigación: Imagina que quieres estudiar la "Inclusión digital" en la Universidad de Córdoba.
+
+Define una posible Población.
+
+Propón una Muestra representativa.
+
+Menciona una Variable Categórica Ordinal y una Variable Cuantitativa Continua que medirías en ese estudio.
+
+## Reflexión sobre el Dato
+
+
+Según la presentación, un dato es un valor de la variable asociado a un elemento de la población o muestra. Si tuviéramos una base de datos con 1,000 registros pero no supiéramos qué representan las columnas ni cómo se midieron, ¿podríamos considerarlos "información estadística" útil? Argumenta tu respuesta basándote en la importancia del contexto.
+
+## Nota para el estudiante: 
+
+Este taller debe ser entregado en formato PDF generado a partir de un archivo Quarto (.qmd) o de R-Markdowun, cuidando la ortografía técnica y la correcta notación de las variables.
+
+Se debe subir a Cintia, solo se recibe por ese medio con fecha límite el 25 de Febrero de 2026.   

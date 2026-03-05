@@ -1,0 +1,78 @@
+---
+title: "Descubriendo Patrones"
+author: "Mario Morales"
+date: today
+date-format: "DD/MM/YYYY"
+format: pdf 
+--- 
+
+# Tablas de frecuencias simples 
+
+
+
+##  Introducción 
+
+estudiaremos como resumir datos categóricos o cualitativos, mediante tablas de frecuencias simples y visualizaremos mediante gráficos de barras y circulares.  
+
+## Exploración 
+
+Cargar el data y recuerar la columna `carb` 
+
+```{r}
+#| echo: true
+#| eval: true
+data("mtcars") # <1> 
+#head(mtcars)
+datos_carb=mtcars$carb # <2>
+# datos_carb=mtcars[["carb"]] 
+datos_carb # <3>
+```
+1. Cargamos el data 
+2. Recuperamos la columna `carb` 
+3. Imprimimos 
+
+## Sintetizar los datos 
+
+```{r}
+ni=table(datos_carb)
+Ni=cumsum(ni)
+fi=prop.table(ni) 
+Fi=cumsum(fi)
+```
+
+
+## Contruir la tabla 
+
+```{r}
+tabla_frecuencias <- data.frame(
+  Carburadores = names(ni),
+  ni = as.vector(ni),
+  Ni = as.vector(Ni),
+  fi = round(as.vector(fi), 4),
+  Fi = round(as.vector(Fi), 4),
+  Porcentaje = paste0(round(as.vector(fi) * 100, 2), "%") )
+print(tabla_frecuencias)
+```
+
+### Tabla elegante 
+
+```{r}
+library(knitr)
+kable(tabla_frecuencias) 
+```
+
+
+## Visualización
+
+```{r}
+par(mfrow=c(1,2)) #Para ver dos gráficos lado a lado
+# Gráfico de Barras
+barplot(ni, col=terrain.colors(6), 
+        main="Distribución de Carburadores",
+        xlab="Número de Carburadores", 
+        ylab="Frecuencia (n_i)")
+# Gráfico circular 
+pie(ni, labels = paste0(names(ni), " carb: ", tabla_frecuencias$Porcentaje),
+    col=rainbow(6), main="Proporción de Carburadores") 
+```
+

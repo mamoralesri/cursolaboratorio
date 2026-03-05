@@ -1,0 +1,291 @@
+---
+title: "Descubriendo Patrones con Frecuencias Simples"
+subtitle: "Con datos de ejemplos de R"   
+date: "`r Sys.Date()`"
+author: 
+  - name: Mario Morales
+    orcid: 0000-0001-8814-0179
+    email: mamorales@correo.unicordoba.edu.co
+    url: https://mariomorales.xyz/
+    affiliations:
+      - name: Universidad de Córdoba, Montería
+format: 
+  revealjs:
+    theme: "moon"
+    highlight: "tango"
+    center: true
+    transition: fade
+    lang: es
+    code-fold: true
+    slide-level: 2
+    scrollable: true
+  beamer:
+    theme: "CambridgeUS"
+    slide-level: 2
+    keep-tex: true
+    fonttheme: "professionalfonts"
+toc: true
+
+editor: source 
+---
+
+
+
+```{r}
+#| echo: false
+setwd("~/Documents/Cursos/Laboratorio")
+
+```
+
+# Fecha de la clase: Lunes 2 de marzo de 2026. 
+
+
+## ¿Qué haremos en clase?
+
+Trabajaremos el tema [Distribuciones de Frecuencia Simples]{style="color: #B22222;"} para variables discretas o con pocos valores, usaremos un conjunto de datos clásico de `R` que resultará muy intuitivo y fácil de trabajar a los estudiantes.
+
+# Ejemplo desarrolado por el profesor en clase
+
+## El Problema: ¿Qué tan `familiares` son los autos de los 70?
+
+Utilizaremos el dataset `mtcars` ([Motor Trend Car Road Tests]{style="color: #B22222;"}. Este dataset contiene información sobre el diseño y rendimiento de 32 automóviles (modelos 1973-74).
+
+## Planteamiento
+
+::: callout-important 
+Imagina que eres un analista de mercado en 1974. Quieres entender la configuración de los motores de la época, específicamente el **número de carburadores (`carb`)** que tienen los vehículos, para identificar qué tan comunes eran los autos de alto rendimiento versus los de uso diario.
+:::
+
+## Plan de acción I
+
+
+- **Exploración:** Cargar los datos y aislar la variable de interés (`carb`).
+
+- **Sintetizar:** Crear la tabla de frecuencias que incluya:
+
+  -   Frecuencia Absoluta ($n_i$).
+  -   Frecuencia Absoluta Acumulada ($N_i$).
+  -   Frecuencia Relativa ($f_i$) y Porcentual.
+  -   Frecuencia Relativa Acumulada ($F_i$).
+
+## Plan de acción II 
+
+-  **Visualizar:** Generar un diagrama de barras y uno de sectores (circular)
+- **Interpretar:** Dar sentido a los números.
+
+
+##  Solución en R (RStudio / Kaggle) I 
+
+####  Cargar datos
+
+```{r }
+#| echo: true
+data(mtcars)
+datos_carb <- mtcars$carb
+```
+
+####  Visualizar los datos en bruto 
+
+```{r }
+#| echo: true
+datos_carb
+```
+
+## Solución en R (RStudio / Kaggle) II 
+
+#### Crear la Tabla de Frecuencias 
+
+```{r}
+#| echo: true
+ni <- table(datos_carb) # Frecuencia absoluta
+Ni <- cumsum(ni)    # Frecuencia absoluta acumulada
+fi <- prop.table(ni) # Frecuencia relativa
+Fi <- cumsum(fi) # Frecuencia relativa acumulada
+```
+
+## Solución en R (RStudio / Kaggle) III  
+
+####  Unir todo en un dataframe elegante
+
+```{r}
+#| echo: true
+tabla_frecuencias <- data.frame(
+  Carburadores = names(ni),
+  ni = as.vector(ni),
+  Ni = as.vector(Ni),
+  fi = round(as.vector(fi), 4),
+  Fi = round(as.vector(Fi), 4),
+  Porcentaje = paste0(round(as.vector(fi) * 100, 2), "%") )
+print(tabla_frecuencias)
+```
+
+
+## Solución en R (RStudio / Kaggle) IV  
+
+####  Visualización
+
+```{r}
+#| echo: true
+#| eval: false
+par(mfrow=c(1,2)) #Para ver dos gráficos lado a lado
+# Gráfico de Barras
+barplot(ni, col=rainbow(6), 
+        main="Distribución de Carburadores",
+        xlab="Número de Carburadores", 
+        ylab="Frecuencia (n_i)")
+# Gráfico circular 
+pie(ni, labels = paste0(names(ni), " carb: ", tabla_frecuencias$Porcentaje),
+    col=rainbow(6), main="Proporción de Carburadores") 
+```
+
+## Solución en R (RStudio / Kaggle) V  
+
+####  Visualización gráfico de barras y circular 
+
+```{r}
+#| echo: false
+par(mfrow=c(1,2)) #Para ver dos gráficos lado a lado
+# Gráfico de Barras
+barplot(ni, col=rainbow(6), 
+        main="Distribución de Carburadores",
+        xlab="Número de Carburadores", 
+        ylab="Frecuencia (n_i)")
+# Gráfico circular 
+pie(ni, labels = paste0(names(ni), " carb: ", tabla_frecuencias$Porcentaje),
+    col=rainbow(6), main="Proporción de Carburadores") 
+```
+
+## Conclusiones  I 
+
+-   **Dominio del mercado:** La mayoría de los autos (casi el 63%) tienen 2 o 4 carburadores  (sumar los dos valores en la columna `porcentaje`). 
+
+
+## Conclusiones  II 
+
+```{r}
+#| echo: false
+library(knitr)
+library(kableExtra)
+# Creamos la tabla con estilo
+tabla_frecuencias %>% kbl(caption = "Tabla de Frecuencias con Resaltado de Análisis", align = "c") %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% row_spec(c(2, 4), bold = TRUE, color = "white", background = "#F46D2A")
+``` 
+
+## Conclusiones  III 
+
+
+**Rareza:** Los autos con 6 u 8 carburadores son excepciones (frecuencia absoluta de 1), representando modelos de muy alto rendimiento para la época.
+
+
+# Ejercicio para desarrollar en clase con asistencia del profesor.  
+
+## Ejercicio 
+
+::: callout-important 
+**Contexto:** Utilizando el mismo dataset `mtcars`, analicen ahora la variable **`gear` (Número de marchas/cambios hacia adelante)**.
+::: 
+
+
+
+## Instrucciones 
+
+- Identifiquen el número total de observaciones ($n$).
+
+- Construyan la tabla de frecuencias completa (clonando la lógica del ejemplo anterior).
+
+- Respondan:
+
+  - ¿Qué porcentaje de los autos tienen 4 marchas? ($f_i$)
+
+  - ¿Cuántos autos tienen 4 marchas o menos? ($N_i$). 
+
+- Realicen un diagrama de barras y comenten cuál es la configuración de transmisión más común en esa muestra.
+
+## Para finalizar 
+
+**Comparar** el gráfico de barras con el de dona o circular.
+
+* ¿En qué caso es más fácil ver la diferencia entre el grupo de 3 y 4 marchas? 
+
+# Ejercicio para entregar
+
+::: callout-important 
+Se debe entregar formato pdf usando la plantilla proporcionada de Quarto markdown, subiéndolo a Cintia (y solo a Cintia), la próxima clase que es el miércoles 4 de marzo. 
+::: 
+
+
+
+## Trabajo Independiente: Análisis de Dietas Experimentales
+
+::: callout-important 
+**Contexto:** En un estudio biológico, se probaron 4 tipos de dietas diferentes para observar el crecimiento de sujetos experimentales. Como analista, debes informar sobre la distribución de estas dietas en la muestra total para asegurar que el experimento esté balanceado. 
+::: 
+
+
+
+## Preparación de los datos
+
+Carga el dataset y asigna la variable `Diet` a un objeto para trabajar.
+
+```{r}
+#| echo: true 
+#| eval: false
+#| label: carga-datos-independiente
+data("ChickWeight")
+datos_dieta <- ChickWeight$Diet
+```
+
+## Construcción de la Tabla de Frecuencias
+
+Completa el siguiente bloque para generar la tabla completa. Recuerda que los resultados deben ser precisos.
+
+```{r}
+#| echo: true 
+#| eval: false
+#| label: tabla-frecuencias-dieta
+# Calcula las frecuencias siguiendo la lógica de las diapositivas (pág. 7-10)
+ni_dieta <- table(datos_dieta) # Frecuencia Absoluta
+Ni_dieta <- cumsum(ni_dieta) # Frecuencia Absoluta Acumulada 
+fi_dieta <- prop.table(ni_dieta) # Frecuencia Relativa
+Fi_dieta <- cumsum(fi_dieta)  # Frecuencia Relativa Acumulada
+```
+
+## Organiza la tabla final
+
+```{r}
+#| echo: true 
+#| eval: false
+tabla_dieta <- data.frame(
+  Dieta = names(ni_dieta),
+  ni = as.vector(ni_dieta),
+  Ni = as.vector(Ni_dieta),
+  fi = round(as.vector(fi_dieta), 4),
+  Fi = round(as.vector(Fi_dieta), 4),
+  Porcentaje = paste0(round(as.vector(fi_dieta) * 100, 2), "%")
+)
+knitr::kable(tabla_dieta, caption = "Distribución de Frecuencias: Tipos de Dieta")
+```
+
+## Visualización Personalizada
+
+Genera el diagrama de barras aplicando la **Regla de Personalización Cromática** (según la letra con que inicia tu nombre).
+
+```{r}
+#| echo: true 
+#| eval: false
+#| label: grafico-barras-dieta
+
+# Escribe aquí el código para el barplot con tu color asignado
+# No olvides los títulos de los ejes y el título principal
+```
+
+## Interpretación y Conclusiones
+
+Responda de forma detallada (mínimo 3 párrafos):
+
+1. ¿Cuál es la dieta que más sujetos recibió? Indique su frecuencia absoluta ($n_i$).
+
+
+2. ¿Qué proporción del total representan las dietas 1 y 2 juntas? (Use las frecuencias relativas para el cálculo) .
+
+
+3. Si el investigador afirma que las dietas están repartidas de forma equitativa, ¿apoyan sus datos esta afirmación? Justifique su respuesta basándose en la tabla. 

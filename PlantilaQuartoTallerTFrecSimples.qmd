@@ -1,0 +1,134 @@
+---
+title: "Descubriendo Patrones con Frecuencias Simples"
+subtitle: "Con datos de ejemplos de R"   
+date: today
+date-format: "DD/MM/YYYY"
+author: 
+  - name: Mario Morales
+    orcid: 0000-0001-8814-0179
+    email: mamorales@correo.unicordoba.edu.co
+    url: https://mariomorales.xyz/
+    affiliations:
+      - name: Universidad de Córdoba, Montería
+format: 
+  revealjs:
+    theme: "moon"
+    highlight: "tango"
+    center: true
+    transition: fade
+    lang: es
+    code-fold: true
+    slide-level: 2
+    scrollable: true
+  beamer:
+    theme: "CambridgeUS"
+    colortheme: "rose"
+    slide-level: 2
+    keep-tex: true
+    fonttheme: "professionalfonts"
+toc: true
+
+editor: source 
+---
+
+# Fecha de entrega: Escriba aquí la fecha en formato DD/MM/YYYY
+
+## 1. Introducción
+
+En este taller aplicaremos los conceptos de **Distribuciones de Frecuencia Simples** vistos en clase . Utilizaremos el conjunto de datos `mtcars` para analizar variables discretas.
+
+(lúscase aquí con una buena introducción, hable de lo que va a hacer y como lo va a hacer)
+
+## 2. Carga de Datos y Preparación
+
+Primero, cargaremos los datos y seleccionaremos la variable `gear` (número de marchas).
+
+```{r}
+#| label: carga-datos
+data(mtcars)
+variable_estudio <- mtcars$gear
+```
+
+## 3. Continúe usted 
+
+
+
+
+```{r}
+#| echo: false
+colores=c("seagreen", "indianred" , "steelblue", "darkorange") 
+grupo1= letters[1:6]  
+grupo2= letters[7:13]
+grupo3= letters[14:20]
+grupo4= letters[21:26] 
+```
+
+
+
+::: callout-caution
+
+- Para los gráficos use un color específico basado en la última letra de su nombre, de la siguiente forma.
+
+  - Si su nombre inicia con la letra `r grupo1` entonces  use el color [`r colores[1]` ]{style="color:`r colores[1]`;"} 
+  - Si su nombre inicia con la letra `r grupo2` entonces use el color  [`r colores[2]` ]{style="color:`r colores[2]`;"}  
+  - Si su nombre inicia con la letra `r grupo3` entonces use el color [`r colores[3]` ]{style="color:`r colores[3]`;"}
+  - Si su nombre inicia con la letra `r grupo4` entonces use el color [`r colores[4]` ]{style="color:`r colores[4]`;"}
+  
+::: 
+ 
+
+## Mucho cuidado con estas reglas de juego. 
+ 
+::: callout-caution 
+
+-   Ojo con copias, con abuzar de la IA, quiero comentarios suyos sobre los resultados, no quiero solo código, lo importante es concluir a partir del resultado del código.
+
+-   Pasaré los trabajos por la IA para que descubra dos cosas
+
+    -   Trabajos hechos por una IA
+    -   Trabajos coincidentes, por ejemplo aquellos que piden el fuente y luego cambian el nombre y compilan, tendrán una fuerte penalización sin importar de quien es el original.
+:::
+
+
+## Visualización Gráfica
+
+### Ejemplo de cómo deben aplicar el color: 
+
+```{r}
+#| echo: false
+ni=c(3,5,8,1) 
+```
+
+
+```{r}
+#| echo: true  
+#| eval: false  
+#| label: ejemplo-grafico-barras-personalizado
+barplot(ni, 
+        main = "Distribución de Frecuencias",
+        xlab = "Variable de estudio",
+        ylab = "Frecuencia Absoluta",
+        col  = "AQUÍ_VA_SU_COLOR" )
+```
+
+## 
+
+
+```{r}
+#| echo: false  
+#| eval: true  
+#| label: grafico-barras-personalizado
+barplot(ni, 
+        main = "Distribución de Frecuencias",
+        xlab = "Variable de estudio",
+        ylab = "Frecuencia Absoluta",
+        col  = "darkorange") 
+```
+
+
+## Declaración de Autoría
+
+::: {.callout-note}
+Yo, [Nombre del Estudiante], declaro que el análisis y las interpretaciones presentadas en este informe son de mi autoría. Entiendo que el uso de herramientas de IA debe ser declarada y que la coincidencia exacta de texto con otros compañeros será penalizada con una considerable baja en la nota y, si hay méritas, según el reglamento docente.
+:::
+
