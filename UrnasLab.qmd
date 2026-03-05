@@ -86,6 +86,4 @@ prop.test(x = exitos_blancas, n = total_muestras, p = 0.5, alternative = "less")
 ```
 
 
-3. **El Sesgo del Investigador:** Si un estudiante saca la pelota y "siente" que es distinta por la textura, mencione la importancia de la aleatorización y la ceguera en los experimentos.
-
-¿Le parece que esta estructura es lo suficientemente robusta para sus estudiantes, o le gustaría que añadamos una sección de **"Análisis de Errores"** por si algún estudiante devuelve mal la pelota o anota mal el dato? Sería una gran lección sobre el error humano en la recolección de datos.
+3. **El Sesgo del Investigador:** Si un estudiante saca la pelota y "siente" que es distinta por la textura, mencione la importancia de la aleatorización y la ceguera en los experimentos. 
