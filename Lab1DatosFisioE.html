@@ -28,6 +28,72 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #f8f8f2;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #f07178; } /* Alert */
+    code span.an { color: #d4d0ab; } /* Annotation */
+    code span.at { color: #00e0e0; } /* Attribute */
+    code span.bn { color: #d4d0ab; } /* BaseN */
+    code span.bu { color: #abe338; } /* BuiltIn */
+    code span.cf { color: #ffa07a; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #abe338; } /* Char */
+    code span.cn { color: #ffd700; } /* Constant */
+    code span.co { color: #f8f8f2; font-style: italic; } /* Comment */
+    code span.cv { color: #ffd700; } /* CommentVar */
+    code span.do { color: #f8f8f2; } /* Documentation */
+    code span.dt { color: #ffa07a; } /* DataType */
+    code span.dv { color: #d4d0ab; } /* DecVal */
+    code span.er { color: #f07178; text-decoration: underline; } /* Error */
+    code span.ex { color: #00e0e0; font-weight: bold; } /* Extension */
+    code span.fl { color: #d4d0ab; } /* Float */
+    code span.fu { color: #ffa07a; } /* Function */
+    code span.im { color: #abe338; } /* Import */
+    code span.in { color: #d4d0ab; } /* Information */
+    code span.kw { color: #ffa07a; font-weight: bold; } /* Keyword */
+    code span.op { color: #ffa07a; } /* Operator */
+    code span.ot { color: #00e0e0; } /* Other */
+    code span.pp { color: #dcc6e0; } /* Preprocessor */
+    code span.re { color: #00e0e0; background-color: #f8f8f2; } /* RegionMarker */
+    code span.sc { color: #abe338; } /* SpecialChar */
+    code span.ss { color: #abe338; } /* SpecialString */
+    code span.st { color: #abe338; } /* String */
+    code span.va { color: #00e0e0; } /* Variable */
+    code span.vs { color: #abe338; } /* VerbatimString */
+    code span.wa { color: #dcc6e0; } /* Warning */
   </style>
   <link rel="stylesheet" href="Lab1DatosFisioE_files/libs/revealjs/dist/theme/quarto-0c8acc74dca0c2faaedea4940f202713.css">
   <link href="Lab1DatosFisioE_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -151,6 +217,7 @@
 <ul>
 <li><a href="#/lectura-y-preparación-de-los-datos" id="/toc-lectura-y-preparación-de-los-datos">Lectura y preparación de los datos</a></li>
 <li><a href="#/lectura-limpieza-e-imputación-en-r" id="/toc-lectura-limpieza-e-imputación-en-r">Lectura, Limpieza e Imputación en R</a></li>
+<li><a href="#/tratamiento-de-datos-faltantes" id="/toc-tratamiento-de-datos-faltantes">Tratamiento de Datos Faltantes</a></li>
 </ul>
 </nav>
 </section>
@@ -161,7 +228,10 @@
 </section>
 <section id="objetivo-general" class="slide level2 center">
 <h2>Objetivo general</h2>
-<p>Enfrentar al estudiante al “dato sucio” y real. ## Objetivo específico</p>
+<p>Enfrentar al estudiante al “dato sucio” y real.</p>
+</section>
+<section id="objetivo-específico" class="slide level2 center">
+<h2>Objetivo específico</h2>
 <p>Realizar la preparación de los datos tomados en el laboratorio para que queden listos para la realización del informe que deberán presentar los estudiantes. La preparación incluye:</p>
 <ul>
 <li>Lectura</li>
@@ -175,18 +245,41 @@
 <h1>Lectura, Limpieza e Imputación en R</h1>
 
 </section>
-<section id="lectura" class="slide level2 center scrollable">
+<section id="lectura" class="slide level2 center">
 <h2>Lectura</h2>
 <p>Para esta tarea usaremos el sistema R base.</p>
-<ol type="1">
-<li>Librería para leer archivos de Excel</li>
-<li>Lectura</li>
-<li>Convertimos a <code>data.frame</code> puro de R Base para evitar el formato tibble</li>
-</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();" href="">1</a><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1"></a><span class="fu">library</span>(readxl)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();" href="">2</a><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2"></a>df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"DatosLab1.xlsx"</span>)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3" onclick="event.preventDefault();" href="">3</a><span id="annotated-cell-1-3" class="code-annotation-target"><a href="#annotated-cell-1-3"></a>df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(df)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="1" data-code-annotation="1">Librería para leer archivos de Excel</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="2" data-code-annotation="2">Lectura</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="3" data-code-annotation="3">Convertimos a <code>data.frame</code> puro de R Base para evitar el formato tibble</span>
+</dd>
+</dl>
+</div>
+</div>
 </section>
 <section id="inspección-visual-de-los-datos" class="slide level2 center">
 <h2>Inspección visual de los datos</h2>
 <div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">head</span>(df)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>       Marca temporal             Dirección de correo electrónico
 1 2026-03-11 12:56:49 schavescontreras80@correo.unicordoba.edu.co
@@ -257,6 +350,10 @@
 <section id="inspección-visual-de-los-datos-columnas-6-hasta-el-final" class="slide level2 center">
 <h2>Inspección visual de los datos: Columnas 6 hasta el final</h2>
 <div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="fu">head</span>(df[,<span class="dv">6</span><span class="sc">:</span><span class="fu">ncol</span>(df)])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Edad      Sexo Teléfono / Contacto Consentimiento informado diligenciado
 1 24.0  Femenino       3.106945186E9                                    Si
@@ -313,8 +410,12 @@
 <section id="inspección-visual-de-los-datos-str" class="slide level2 center">
 <h2>Inspección visual de los datos <code>str</code></h2>
 <div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">str</span>(df[,<span class="dv">6</span><span class="sc">:</span><span class="fu">ncol</span>(df)]) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
-<pre><code>'data.frame':   20 obs. of  20 variables:
+<pre><code>'data.frame':   37 obs. of  20 variables:
  $ Edad                                                 : chr  "24.0" "18.0" "19.0" "19.0" ...
  $ Sexo                                                 : chr  "Femenino" "Masculino" "Masculino" "Masculino" ...
  $ Teléfono / Contacto                                  : chr  "3.106945186E9" "3.207847832E9" "3.206853212E9" "3.21358451E9" ...
@@ -350,6 +451,10 @@
 <section id="recuperar-los-nombres-actuales" class="slide level2 center">
 <h2>Recuperar los nombres actuales</h2>
 <div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="fu">colnames</span>(df)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "Marca temporal"                                       
  [2] "Dirección de correo electrónico"                      
@@ -382,13 +487,29 @@
 <section id="asignar-nuevos-nombres" class="slide level2 center">
 <h2>Asignar nuevos nombres</h2>
 <p>Creamos un vector con los nuevos nombres</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>nombres<span class="ot">=</span><span class="fu">c</span>(<span class="st">"marca_temp"</span>,<span class="st">"email"</span>,<span class="st">"nombre"</span>,<span class="st">"documento"</span>,<span class="st">"f_nac"</span>, <span class="st">"edad"</span>,<span class="st">"sexo"</span>,<span class="st">"tel"</span>, <span class="st">"consentimiento"</span>, <span class="st">"par_q"</span>,<span class="st">"apto"</span>,<span class="st">"restriccion"</span>,<span class="st">"fcr"</span>,<span class="st">"presion_sis"</span>,<span class="st">"presión_dia"</span>,<span class="st">"estatura"</span>,<span class="st">"masa_corporal"</span>,<span class="st">"cintura"</span>,<span class="st">"imc"</span>,<span class="st">"masa_grasa"</span>,<span class="st">"masa_muscular"</span>,<span class="st">"masa_osea"</span>,<span class="st">"grasa_vis"</span>, <span class="st">"fuerza_md"</span>,<span class="st">"fuerza_mi"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </section>
 <section id="asignar-nuevos-nombres-1" class="slide level2 center">
 <h2>Asignar nuevos nombres</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="fu">colnames</span>(df)<span class="ot">=</span>nombres</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </section>
 <section id="imprimir-los-nuevos-nombres" class="slide level2 center">
 <h2>Imprimir los nuevos nombres</h2>
 <div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="fu">colnames</span>(df)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "marca_temp"     "email"          "nombre"         "documento"     
  [5] "f_nac"          "edad"           "sexo"           "tel"           
@@ -404,7 +525,7 @@
 <h2>Tipos de datos en las columnas</h2>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>'data.frame':   20 obs. of  14 variables:
+<pre><code>'data.frame':   37 obs. of  14 variables:
  $ edad         : chr  "24.0" "18.0" "19.0" "19.0" ...
  $ fcr          : num  85 75 72 88 74 78 112 78 54 85 ...
  $ presion_sis  : num  122 125 113 108 110 105 137 118 124 135 ...
@@ -425,13 +546,25 @@
 <section id="limpieza-de-datos-contaminados-uso-de-expresiones-regulares" class="slide level2 center">
 <h2>Limpieza de “Datos Contaminados” (Uso de Expresiones Regulares)</h2>
 <p>Para limpiar el “60.3 kg” usaremos <code>gsub</code> para eliminar texto y <code>as.numeric</code> para transformar.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a><span class="co"># Limpieza de la columna Edad</span></span>
+<span id="cb14-2"><a href=""></a><span class="co"># gsub("[^0-9.]", "", x) elimina todo lo que NO sea número o punto</span></span>
+<span id="cb14-3"><a href=""></a>df<span class="sc">$</span>edad <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"[^0-9.]"</span>, <span class="st">""</span>, df<span class="sc">$</span>edad)</span>
+<span id="cb14-4"><a href=""></a>df<span class="sc">$</span>edad <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(df<span class="sc">$</span>edad)</span>
+<span id="cb14-5"><a href=""></a><span class="co"># Aplicamos lo mismo a estatura y masa corporal</span></span>
+<span id="cb14-6"><a href=""></a>df<span class="sc">$</span>estatura <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">"[^0-9.]"</span>, <span class="st">""</span>, df<span class="sc">$</span>estatura))</span>
+<span id="cb14-7"><a href=""></a>df<span class="sc">$</span>masa_corporal <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">"[^0-9.]"</span>, <span class="st">""</span>, df<span class="sc">$</span>masa_corporal))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </section>
 <section id="continue-usted" class="slide level2 center">
 <h2>Continue usted</h2>
 <p>Haga lo mismo con las columnas que faltan</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>'data.frame':   20 obs. of  14 variables:
+<pre><code>'data.frame':   37 obs. of  14 variables:
  $ edad         : num  24 18 19 19 18 18 18 20 18 19 ...
  $ fcr          : num  85 75 72 88 74 78 112 78 54 85 ...
  $ presion_sis  : num  122 125 113 108 110 105 137 118 124 135 ...
@@ -452,14 +585,40 @@
 <section id="anonimización-de-datos" class="slide level2 center">
 <h2>Anonimización de Datos</h2>
 <p>Manipularemos las columnas por índice o nombre y a generar identificadores únicos.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a><span class="co"># 1. Identificar columnas sensibles por nombre</span></span>
+<span id="cb16-2"><a href=""></a>columnas_sensibles <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"marca_temp"</span>, <span class="st">"email"</span>, <span class="st">"nombre"</span>,<span class="st">"documento"</span>,<span class="st">"f_nac"</span>, <span class="st">"sexo"</span>, <span class="st">"tel"</span>)   </span>
+<span id="cb16-3"><a href=""></a></span>
+<span id="cb16-4"><a href=""></a><span class="co"># 2. Crear un ID aleatorio único para cada fila</span></span>
+<span id="cb16-5"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb16-6"><a href=""></a>df<span class="sc">$</span>id_estudiante <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1000</span><span class="sc">:</span><span class="dv">9999</span>, <span class="fu">nrow</span>(df), <span class="at">replace =</span> <span class="cn">FALSE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </section>
 <section id="anonimización-de-datos-1" class="slide level2 center">
 <h2>Anonimización de Datos</h2>
 <p>Manipularemos las columnas por índice o nombre y a generar identificadores únicos.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="co"># 3. Crear el nuevo dataframe omitiendo las sensibles</span></span>
+<span id="cb17-2"><a href=""></a><span class="co"># Usamos la indexación negativa o selección por nombre</span></span>
+<span id="cb17-3"><a href=""></a>df_anonimo <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, <span class="at">select=</span> <span class="sc">!</span>(<span class="fu">names</span>(df) <span class="sc">%in%</span> columnas_sensibles)) </span>
+<span id="cb17-4"><a href=""></a></span>
+<span id="cb17-5"><a href=""></a><span class="co"># 4. Reordenar para que el ID sea la primera columna</span></span>
+<span id="cb17-6"><a href=""></a>df_anonimo <span class="ot">&lt;-</span> df_anonimo[, <span class="fu">c</span>(<span class="fu">ncol</span>(df_anonimo), <span class="dv">1</span><span class="sc">:</span>(<span class="fu">ncol</span>(df_anonimo)<span class="sc">-</span><span class="dv">1</span>))]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </section>
 <section id="columnas-del-df-anónimo" class="slide level2 center">
 <h2>Columnas del df anónimo</h2>
 <div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a><span class="fu">colnames</span>(df_anonimo)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "id_estudiante"  "edad"           "consentimiento" "par_q"         
  [5] "apto"           "restriccion"    "fcr"            "presion_sis"   
@@ -472,14 +631,37 @@
 <section id="volver-a-unir-las-columnas-sensibles" class="slide level2 center">
 <h2>Volver a unir las columnas sensibles</h2>
 <p>Para eso hay que dejar un <code>data frame</code> con las columnas sensibles y la columna <code>id_estudiante</code> que sirve como <code>llave</code></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="co"># Creamos un dataframe aparte que SOLO tenga la llave y los nombres</span></span>
+<span id="cb20-2"><a href=""></a>df_llave_maestra <span class="ot">&lt;-</span> df[, <span class="fu">c</span>(<span class="st">"id_estudiante"</span>,<span class="st">"marca_temp"</span>, <span class="st">"email"</span>, <span class="st">"nombre"</span>,<span class="st">"documento"</span>,<span class="st">"f_nac"</span>, <span class="st">"sexo"</span>, <span class="st">"tel"</span>)]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </section>
 <section id="datos-desordenados" class="slide level2 center">
 <h2>Datos desordenados</h2>
 <p>Simulemos que alguien desordena las filas del <code>data frame</code> anónimo por completo:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="co"># Desordenamos las filas aleatoriamente</span></span>
+<span id="cb21-2"><a href=""></a>df_anonimo_desordenado <span class="ot">&lt;-</span> df_anonimo[<span class="fu">sample</span>(<span class="fu">nrow</span>(df_anonimo)), ]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </section>
 <section id="juntemos" class="slide level2 center">
 <h2>Juntemos</h2>
 <p>Ahora juntamos la información sensible al data después de desordenado</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a><span class="co"># Unimos los nombres de vuelta al archivo desordenado usando la llave</span></span>
+<span id="cb22-2"><a href=""></a>df_recuperado <span class="ot">&lt;-</span> <span class="fu">merge</span>(<span class="at">x =</span> df_anonimo_desordenado, </span>
+<span id="cb22-3"><a href=""></a>                       <span class="at">y =</span> df_llave_maestra, </span>
+<span id="cb22-4"><a href=""></a>                       <span class="at">by =</span> <span class="st">"id_estudiante"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </section>
 <section id="custodia-de-datos" class="slide level2 center">
 <h2>Custodia de datos</h2>
@@ -488,16 +670,34 @@
 <li><p>Si alguno quiere saber de quién es un dato (por ejemplo, quién tiene la mayor fuerza prensil), tendrá que pedírselo al “dueño de la llave”</p></li>
 <li><p>Este es el concepto de custodia de datos.</p></li>
 </ul>
+</section></section>
+<section>
+<section id="tratamiento-de-datos-faltantes" class="title-slide slide level1 center">
+<h1>Tratamiento de Datos Faltantes</h1>
+
 </section>
-<section id="tratamiento-de-datos-faltantes-imputación-por-mediana" class="slide level2 center">
-<h2>Tratamiento de Datos Faltantes (Imputación por Mediana)</h2>
-<p>Para los menores de 18 años, identificaremos las filas y aplicaremos la mediana de forma manual.</p>
+<section id="identificación-de-datos-faltantes" class="slide level2 center">
+<h2>Identificación de Datos Faltantes</h2>
+<ul>
+<li><p>Los estudiantes menores de 18 años, no tienen los datos arrojados por la balanza.</p></li>
+<li><p>Primero identificaremos las columnas que tienen datos faltantes, y contaremos cuántos hay</p></li>
+</ul>
 <div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="co"># Retorna TRUE si hay al menos un dato faltante en cualquier parte</span></span>
+<span id="cb23-2"><a href=""></a><span class="fu">any</span>(<span class="fu">is.na</span>(df_anonimo))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a><span class="co"># Cuenta el total de datos faltantes en toda la matriz</span></span>
+<span id="cb25-2"><a href=""></a><span class="fu">sum</span>(<span class="fu">is.na</span>(df_anonimo))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 6</code></pre>
+<pre><code>[1] 21</code></pre>
 </div>
 </div>
 </section>
@@ -506,25 +706,37 @@
 <p>Es más útil identificar los faltantes por columnas</p>
 <p>Podemos usar la función <code>colSums()</code> combinada con <code>is.na()</code>. Esto nos dará una lista clara de qué variables necesitan atención (como la grasa visceral o la masa ósea en los menores de 18 años).</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a><span class="co"># Retorna el número de NAs por cada columna</span></span>
+<span id="cb27-2"><a href=""></a>conteo_nas <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">is.na</span>(df_anonimo))</span>
+<span id="cb27-3"><a href=""></a><span class="fu">print</span>(conteo_nas)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code> id_estudiante           edad consentimiento          par_q           apto 
              0              0              0              0              0 
    restriccion            fcr    presion_sis    presión_dia       estatura 
              0              0              0              0              0 
  masa_corporal        cintura            imc     masa_grasa  masa_muscular 
-             0              0              1              2              1 
+             0              0              4              5              4 
      masa_osea      grasa_vis      fuerza_md      fuerza_mi 
-             1              1              0              0 </code></pre>
+             4              4              0              0 </code></pre>
 </div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a><span class="co"># Para verlo como porcentaje (útil para decidir si imputar o descartar)</span></span>
+<span id="cb29-2"><a href=""></a>porcentaje_nas <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">is.na</span>(df_anonimo)) <span class="sc">/</span> <span class="fu">nrow</span>(df_anonimo) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb29-3"><a href=""></a><span class="fu">print</span>(porcentaje_nas)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code> id_estudiante           edad consentimiento          par_q           apto 
-             0              0              0              0              0 
+       0.00000        0.00000        0.00000        0.00000        0.00000 
    restriccion            fcr    presion_sis    presión_dia       estatura 
-             0              0              0              0              0 
+       0.00000        0.00000        0.00000        0.00000        0.00000 
  masa_corporal        cintura            imc     masa_grasa  masa_muscular 
-             0              0              5             10              5 
+       0.00000        0.00000       10.81081       13.51351       10.81081 
      masa_osea      grasa_vis      fuerza_md      fuerza_mi 
-             5              5              0              0 </code></pre>
+      10.81081       10.81081        0.00000        0.00000 </code></pre>
 </div>
 </div>
 </section>
@@ -532,123 +744,57 @@
 <h2>Qué columnas tienen NA’s</h2>
 <p>La siguiente función nos dice qué columnas tienen datos faltantes</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a>cual_na<span class="ot">=</span><span class="cf">function</span>(df){</span>
+<span id="cb31-2"><a href=""></a>  cual<span class="ot">=</span><span class="fu">apply</span>(<span class="fu">apply</span>(df,<span class="dv">2</span>,is.na),<span class="dv">2</span>,any)</span>
+<span id="cb31-3"><a href=""></a>  <span class="fu">colnames</span>(df)[cual] </span>
+<span id="cb31-4"><a href=""></a>} </span>
+<span id="cb31-5"><a href=""></a>vars_na<span class="ot">=</span><span class="fu">cual_na</span>(df_anonimo)</span>
+<span id="cb31-6"><a href=""></a>vars_na</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "imc"           "masa_grasa"    "masa_muscular" "masa_osea"    
 [5] "grasa_vis"    </code></pre>
 </div>
 </div>
+</section>
+<section id="cuántos-nas-hay-por-columna" class="slide level2 center">
+<h2>Cuántos NA’s hay por columna</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a>cols<span class="ot">=</span><span class="fu">cual_na</span>(df_anonimo)</span>
+<span id="cb33-2"><a href=""></a><span class="fu">apply</span>(<span class="fu">apply</span>(df[,cols],<span class="dv">2</span>,is.na),<span class="dv">2</span>,sum)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>          imc    masa_grasa masa_muscular     masa_osea     grasa_vis 
+            4             5             4             4             4 </code></pre>
+</div>
+</div>
 <!--
+## 
 
-## Lectura y Limpieza de "Datos Contaminados"
 
-El primer reto es transformar columnas que R leerá como texto (`character`) debido a entradas como "20 años" o "170 cm".
+::: {.cell}
 
-```r
-library(readxl)
-library(tidyverse)
-
-# 1. Lectura del archivo de Excel
-df <- read_excel("datos_laboratorio.xlsx")
-
-# 2. Limpieza con parse_number()
-# Esta función es mágica: extrae el primer número que encuentra y descarta el texto.
-df_limpio <- df %>%
-  mutate(
-    edad = parse_number(edad),
-    estatura = parse_number(estatura),
-    masa_corporal = parse_number(masa_corporal),
-    presion_sistolica = parse_number(presion_sistolica)
-  )
-
+```{.r .cell-code}
+# Crea una imagen donde lo negro es dato presente y lo blanco es NA
+image(is.na(df_anonimo), main = "Mapa de Datos Faltantes", 
+      col = c("black", "white"), xaxt = "n", yaxt = "n") 
 ```
 
-#### B. Anonimización (Ética de Datos)
-
-Como docente, debe enseñarles que la privacidad es sagrada. Antes de que ellos procesen el archivo grupal, realizaremos una anonimización irreversible.
-
-```r
-# Eliminamos nombres y documentos, y creamos un ID aleatorio
-set.seed(123) # Para reproducibilidad
-df_final <- df_limpio %>%
-  select(-nombre_completo, -documento, -fecha_nacimiento) %>% 
-  mutate(id_estudiante = sample(100:999, n(), replace = FALSE)) %>%
-  select(id_estudiante, everything())
-
-```
-
-#### C. Tratamiento de Datos Faltantes (Imputación)
-
-Para los menores de 18 años donde la báscula de bioimpedancia no arrojó datos de grasa visceral o masa ósea, enseñaremos la técnica de imputación por la mediana o regresión.
-
-```r
-library(mice)
-
-# Imputación simple por la mediana para variables de composición corporal
-df_final <- df_final %>%
-  mutate(across(c(masa_grasa, masa_muscular, masa_osea, grasa_visceral), 
-                ~ifelse(is.na(.), median(., na.rm = TRUE), .)))
-
-```
-
----
-
-### 2. Guía para el Informe de Laboratorio: "Análisis Biométrico y Funcional"
-
-Este informe debe ser un documento técnico de alto nivel. Aquí tiene la estructura sugerida:
-
-#### I. Introducción y Justificación Fisiológica
-
-Los estudiantes deben investigar y profundizar en la naturaleza de las variables medidas:
-
-* **Frecuencia Cardíaca en Reposo (FCR):** Explicar que una FCR elevada puede estar asociada a un menor volumen sistólico o menor eficiencia cardiaca. ¿Qué implicaciones tiene esto en el riesgo cardiovascular?
-* **Bioimpedancia Eléctrica:** ¿Cómo mide la báscula la grasa visceral y el agua corporal?. Deben explicar el principio de resistencia de los tejidos al paso de una corriente eléctrica leve.
-* **Fuerza Prensil:** Investigar por qué la fuerza de agarre se considera hoy un "biomarcador de envejecimiento" y salud general.
-
-#### II. Metodología
-
-* Descripción de los instrumentos (Tensiómetro, Dinamómetro, Báscula de Bioimpedancia).
-* Descripción del proceso de limpieza de datos realizado en R.
-
-#### III. Resultados y Análisis Estadístico
-
-* **Análisis Descriptivo:** Tablas de frecuencia, medidas de tendencia central y dispersión para IMC, Masa Magra y Masa Grasa.
-* **Visualización de Datos:** * Histogramas de la distribución de la Presión Arterial.
-* Diagramas de dispersión (Scatter plots) para ver la relación entre Masa Muscular y Fuerza Prensil.
-
-
-* **Análisis por Grupo:** Comparar los promedios de Composición Corporal entre hombres y mujeres usando diagramas de caja (boxplots).
-
-#### IV. Discusión y Conclusiones
-
-* Comparar los resultados del grupo con los valores de referencia internacionales (OMS).
-* **Reflexión sobre el Dato Faltante:** Discutir por qué los menores de 18 años no tenían registros de grasa visceral y qué impacto tuvo la imputación en los promedios finales.
-
-### Un toque de "Sherlock" para su clase
-
-Dr. Morales, para que la clase sea inolvidable, plantéeles este dilema: *"Si tenemos un estudiante con mucha masa muscular, su IMC será alto y saldrá clasificado con 'Sobrepeso'. ¿Es el IMC un indicador perfecto? ¿Cómo nos ayudan las otras variables de la báscula a corregir esa interpretación?"*. Esto los obligará a pensar como estadísticos y no solo como digitadores de datos.
-
-¿Le gustaría que preparemos una rúbrica de evaluación específica para este informe de laboratorio?
-
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+::: {.cell-output-display}
+![](Lab1DatosFisioE_files/figure-revealjs/unnamed-chunk-25-1.png){width=960}
+:::
+:::
 
 
 -->
 </section>
-<section id="running-code" class="slide level2 center">
-<h2>Running Code</h2>
-<p>When you click the <strong>Render</strong> button a document will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-</div>
-<p>You can add options to executable code like this</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
-</div>
-</div>
-<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
+<section id="imputación-de-faltantes" class="slide level2 center">
+<h2>Imputación de faltantes</h2>
+<p>Luego de identificar las variables de composición con <code>NA's</code>, procedemos a imputar, estimando el dato faltante usando la mediana.</p>
 
 </section></section>
     </div>

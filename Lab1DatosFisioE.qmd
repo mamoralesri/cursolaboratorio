@@ -32,7 +32,7 @@ toc-title: "Contenido"
 
 ```{r}
 #| echo: false
-setwd("~/Documents/Cursos/Laboratorio")
+setwd("~/Documents/Cursos/Laboratorio") 
 ```
 
 
@@ -42,6 +42,8 @@ setwd("~/Documents/Cursos/Laboratorio")
 ## Objetivo general  
 
 Enfrentar al estudiante al "dato sucio" y real. 
+
+
 ## Objetivo específico  
 
 Realizar la preparación de los datos tomados en el laboratorio para que queden listos para la realización del informe que deberán presentar los estudiantes. La preparación incluye: 
@@ -120,7 +122,7 @@ Creamos un vector con los nuevos nombres
 
 ```{r} 
 #| echo: true
-nombres=c("marca_temp","email","nombre","documento","f_nac", "edad","sexo","tel", "consentimiento", "par_q","apto","restriccion","fcr","presion_sis","presión_dia","estatura","masa_corporal","cintura","imc","masa_grasa","masa_muscular","masa_osea","grasa_vis", "fuerza_md","fuerza_mi")
+nombres=c("marca_temp","email","nombre","documento","f_nac", "edad","sexo","tel", "consentimiento", "par_q","apto","restriccion","fcr","presion_sis","presion_dia","estatura","masa_corporal","cintura","imc","masa_grasa","masa_muscular","masa_osea","grasa_vis", "fuerza_md","fuerza_mi")
 ```
 
 
