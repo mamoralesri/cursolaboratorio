@@ -218,6 +218,7 @@
 <li><a href="#/lectura-y-preparación-de-los-datos" id="/toc-lectura-y-preparación-de-los-datos">Lectura y preparación de los datos</a></li>
 <li><a href="#/lectura-limpieza-e-imputación-en-r" id="/toc-lectura-limpieza-e-imputación-en-r">Lectura, Limpieza e Imputación en R</a></li>
 <li><a href="#/tratamiento-de-datos-faltantes" id="/toc-tratamiento-de-datos-faltantes">Tratamiento de Datos Faltantes</a></li>
+<li><a href="#/uso-de-tydiverse" id="/toc-uso-de-tydiverse">Uso de <code>tydiverse</code></a></li>
 </ul>
 </nav>
 </section>
@@ -490,7 +491,7 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>nombres<span class="ot">=</span><span class="fu">c</span>(<span class="st">"marca_temp"</span>,<span class="st">"email"</span>,<span class="st">"nombre"</span>,<span class="st">"documento"</span>,<span class="st">"f_nac"</span>, <span class="st">"edad"</span>,<span class="st">"sexo"</span>,<span class="st">"tel"</span>, <span class="st">"consentimiento"</span>, <span class="st">"par_q"</span>,<span class="st">"apto"</span>,<span class="st">"restriccion"</span>,<span class="st">"fcr"</span>,<span class="st">"presion_sis"</span>,<span class="st">"presión_dia"</span>,<span class="st">"estatura"</span>,<span class="st">"masa_corporal"</span>,<span class="st">"cintura"</span>,<span class="st">"imc"</span>,<span class="st">"masa_grasa"</span>,<span class="st">"masa_muscular"</span>,<span class="st">"masa_osea"</span>,<span class="st">"grasa_vis"</span>, <span class="st">"fuerza_md"</span>,<span class="st">"fuerza_mi"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>nombres<span class="ot">=</span><span class="fu">c</span>(<span class="st">"marca_temp"</span>,<span class="st">"email"</span>,<span class="st">"nombre"</span>,<span class="st">"documento"</span>,<span class="st">"f_nac"</span>, <span class="st">"edad"</span>,<span class="st">"sexo"</span>,<span class="st">"tel"</span>, <span class="st">"consentimiento"</span>, <span class="st">"par_q"</span>,<span class="st">"apto"</span>,<span class="st">"restriccion"</span>,<span class="st">"fcr"</span>,<span class="st">"presion_sis"</span>,<span class="st">"presion_dia"</span>,<span class="st">"estatura"</span>,<span class="st">"masa_corporal"</span>,<span class="st">"cintura"</span>,<span class="st">"imc"</span>,<span class="st">"masa_grasa"</span>,<span class="st">"masa_muscular"</span>,<span class="st">"masa_osea"</span>,<span class="st">"grasa_vis"</span>, <span class="st">"fuerza_md"</span>,<span class="st">"fuerza_mi"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -514,7 +515,7 @@
 <pre><code> [1] "marca_temp"     "email"          "nombre"         "documento"     
  [5] "f_nac"          "edad"           "sexo"           "tel"           
  [9] "consentimiento" "par_q"          "apto"           "restriccion"   
-[13] "fcr"            "presion_sis"    "presión_dia"    "estatura"      
+[13] "fcr"            "presion_sis"    "presion_dia"    "estatura"      
 [17] "masa_corporal"  "cintura"        "imc"            "masa_grasa"    
 [21] "masa_muscular"  "masa_osea"      "grasa_vis"      "fuerza_md"     
 [25] "fuerza_mi"     </code></pre>
@@ -523,23 +524,18 @@
 </section>
 <section id="tipos-de-datos-en-las-columnas" class="slide level2 center">
 <h2>Tipos de datos en las columnas</h2>
+</section>
+<section id="un-vistazo-a-estatura" class="slide level2 center">
+<h2>Un vistazo a estatura</h2>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>'data.frame':   37 obs. of  14 variables:
- $ edad         : chr  "24.0" "18.0" "19.0" "19.0" ...
- $ fcr          : num  85 75 72 88 74 78 112 78 54 85 ...
- $ presion_sis  : num  122 125 113 108 110 105 137 118 124 135 ...
- $ presión_dia  : num  90 82 69 71 70 67 33 46 82 64 ...
- $ estatura     : chr  "156.4 cm" "182.0" "166.0" "180.5" ...
- $ masa_corporal: chr  "60.3 kg" "90.7" "54.3" "69.0" ...
- $ cintura      : chr  "73.4 cm" "89.4" "70.5" "73.0" ...
- $ imc          : chr  "24.7 kg/m^2" "27.4" "19.8" "21.2" ...
- $ masa_grasa   : chr  "32.8 %" "25.2" "15.9" "17.8" ...
- $ masa_muscular: chr  "38.4 Kg" "22.9" "43.3" "53.9" ...
- $ masa_osea    : chr  "2.1 kg" "3.4" "2.3" "2.9" ...
- $ grasa_vis    : chr  "3.0" "6.0" "1.0" "2.0" ...
- $ fuerza_md    : chr  "28.0" "32.0" "30.0" "38.0" ...
- $ fuerza_mi    : chr  "26.0" "34.0" "28.0" "40.0" ...</code></pre>
+<pre><code> [1] "156.4 cm" "182.0"    "166.0"    "180.5"    "157.5"    "156.6"   
+ [7] "172.3"    "164.5"    "181.0"    "168.6"    "177.0"    "163,2"   
+[13] "175,5 cm" "1.7"      "163.4"    "175.5"    "182.5"    "155.2"   
+[19] "174.2"    "1.7"      "156.5"    "165 cm"   "157.2 cm" "181.0"   
+[25] "189.5"    "1.57"     "167.5"    "158.4"    "165.5"    "171.5"   
+[31] "172.5"    "164.7"    "160.8"    "160.0"    "178.4"    "1.72"    
+[37] "163.9"   </code></pre>
 </div>
 </div>
 </section>
@@ -568,11 +564,11 @@
  $ edad         : num  24 18 19 19 18 18 18 20 18 19 ...
  $ fcr          : num  85 75 72 88 74 78 112 78 54 85 ...
  $ presion_sis  : num  122 125 113 108 110 105 137 118 124 135 ...
- $ presión_dia  : num  90 82 69 71 70 67 33 46 82 64 ...
+ $ presion_dia  : num  90 82 69 71 70 67 33 46 82 64 ...
  $ estatura     : num  156 182 166 180 158 ...
  $ masa_corporal: num  60.3 90.7 54.3 69 52 55.2 67.3 51.5 66 70 ...
  $ cintura      : num  73.4 89.4 70.5 73 67.8 70 79 68 73.9 82 ...
- $ imc          : num  24.7 27.4 19.8 21.2 21 ...
+ $ imc          : chr  "24.7 kg/m^2" "27.4" "19.8" "21.2" ...
  $ masa_grasa   : num  32.8 25.2 15.9 17.8 30.6 27.6 19.4 14.4 23.8 24.6 ...
  $ masa_muscular: num  38.4 22.9 43.3 53.9 34.2 38 51.5 41.8 47.7 50.2 ...
  $ masa_osea    : num  2.1 3.4 2.3 2.9 1.9 2 2.7 2.3 2.6 2.7 ...
@@ -582,18 +578,651 @@
 </div>
 </div>
 </section>
+<section id="estatura-luego-de-la-limpieza" class="slide level2 center">
+<h2>Estatura luego de la limpieza</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>   EstSucia EstLimpia
+1  156.4 cm    156.40
+2     182.0    182.00
+3     166.0    166.00
+4     180.5    180.50
+5     157.5    157.50
+6     156.6    156.60
+7     172.3    172.30
+8     164.5    164.50
+9     181.0    181.00
+10    168.6    168.60
+11    177.0    177.00
+12    163,2   1632.00
+13 175,5 cm   1755.00
+14      1.7      1.70
+15    163.4    163.40
+16    175.5    175.50
+17    182.5    182.50
+18    155.2    155.20
+19    174.2    174.20
+20      1.7      1.70
+21    156.5    156.50
+22   165 cm    165.00
+23 157.2 cm    157.20
+24    181.0    181.00
+25    189.5    189.50
+26     1.57      1.57
+27    167.5    167.50
+28    158.4    158.40
+29    165.5    165.50
+30    171.5    171.50
+31    172.5    172.50
+32    164.7    164.70
+33    160.8    160.80
+34    160.0    160.00
+35    178.4    178.40
+36     1.72      1.72
+37    163.9    163.90</code></pre>
+</div>
+</div>
+</section>
+<section id="comas-por-puntos" class="slide level2 center">
+<h2>Comas por puntos</h2>
+<ul>
+<li>Primero hay que reemplazar las comas por punto</li>
+</ul>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>estat_sucio2 <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">"."</span>, estat_sucio) </span>
+<span id="cb17-2"><a href=""></a><span class="fu">data.frame</span>(<span class="at">EstSucia1=</span>estat_sucio, <span class="at">EstSucia2=</span>estat_sucio2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell fragment">
+<div class="cell-output cell-output-stdout">
+<pre><code>   EstSucia1 EstSucia2
+1   156.4 cm  156.4 cm
+2      182.0     182.0
+3      166.0     166.0
+4      180.5     180.5
+5      157.5     157.5
+6      156.6     156.6
+7      172.3     172.3
+8      164.5     164.5
+9      181.0     181.0
+10     168.6     168.6
+11     177.0     177.0
+12     163,2     163.2
+13  175,5 cm  175.5 cm
+14       1.7       1.7
+15     163.4     163.4
+16     175.5     175.5
+17     182.5     182.5
+18     155.2     155.2
+19     174.2     174.2
+20       1.7       1.7
+21     156.5     156.5
+22    165 cm    165 cm
+23  157.2 cm  157.2 cm
+24     181.0     181.0
+25     189.5     189.5
+26      1.57      1.57
+27     167.5     167.5
+28     158.4     158.4
+29     165.5     165.5
+30     171.5     171.5
+31     172.5     172.5
+32     164.7     164.7
+33     160.8     160.8
+34     160.0     160.0
+35     178.4     178.4
+36      1.72      1.72
+37     163.9     163.9</code></pre>
+</div>
+</div>
+</section>
+<section id="ahora-si-usamos-la-expresion-regular" class="slide level2 center">
+<h2>Ahora si usamos la expresion regular</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>estat_fin <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">"[^0-9.]"</span>, <span class="st">""</span>, estat_sucio2)) </span>
+<span id="cb19-2"><a href=""></a><span class="fu">data.frame</span>(<span class="at">EstSucia1=</span>estat_sucio2, <span class="at">EstFinal=</span>estat_fin)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell fragment">
+<div class="cell-output cell-output-stdout">
+<pre><code>   EstSucia1 EstFinal
+1   156.4 cm   156.40
+2      182.0   182.00
+3      166.0   166.00
+4      180.5   180.50
+5      157.5   157.50
+6      156.6   156.60
+7      172.3   172.30
+8      164.5   164.50
+9      181.0   181.00
+10     168.6   168.60
+11     177.0   177.00
+12     163.2   163.20
+13  175.5 cm   175.50
+14       1.7     1.70
+15     163.4   163.40
+16     175.5   175.50
+17     182.5   182.50
+18     155.2   155.20
+19     174.2   174.20
+20       1.7     1.70
+21     156.5   156.50
+22    165 cm   165.00
+23  157.2 cm   157.20
+24     181.0   181.00
+25     189.5   189.50
+26      1.57     1.57
+27     167.5   167.50
+28     158.4   158.40
+29     165.5   165.50
+30     171.5   171.50
+31     172.5   172.50
+32     164.7   164.70
+33     160.8   160.80
+34     160.0   160.00
+35     178.4   178.40
+36      1.72     1.72
+37     163.9   163.90</code></pre>
+</div>
+</div>
+</section>
+<section id="agregamos-estatura-limpia-al-data" class="slide level2 center">
+<h2>Agregamos <code>estatura</code> limpia al data</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>df<span class="sc">$</span>estatura<span class="ot">=</span>estat_fin</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell fragment">
+
+</div>
+</section>
+<section id="un-vistazo-a-las-columnas" class="slide level2 center">
+<h2>Un vistazo a las columnas</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>      edad           fcr          presion_sis     presion_dia    
+ Min.   :17.0   Min.   : 54.00   Min.   : 93.0   Min.   : 33.00  
+ 1st Qu.:18.0   1st Qu.: 74.00   1st Qu.:110.0   1st Qu.: 66.00  
+ Median :18.0   Median : 79.00   Median :122.0   Median : 71.00  
+ Mean   :19.7   Mean   : 81.95   Mean   :120.8   Mean   : 71.49  
+ 3rd Qu.:19.0   3rd Qu.: 88.00   3rd Qu.:129.0   3rd Qu.: 78.00  
+ Max.   :60.0   Max.   :117.00   Max.   :162.0   Max.   :102.00  
+                                                                 
+    estatura      masa_corporal      cintura           imc           
+ Min.   :  1.57   Min.   : 1.80   Min.   : 56.40   Length:37         
+ 1st Qu.:157.50   1st Qu.:51.70   1st Qu.: 69.60   Class :character  
+ Median :165.00   Median :62.60   Median : 73.00   Mode  :character  
+ Mean   :150.57   Mean   :62.03   Mean   : 90.89                     
+ 3rd Qu.:175.50   3rd Qu.:70.00   3rd Qu.: 82.00                     
+ Max.   :189.50   Max.   :97.00   Max.   :686.00                     
+                                                                     
+   masa_grasa    masa_muscular     masa_osea       grasa_vis     
+ Min.   : 0.00   Min.   : 0.00   Min.   :0.000   Min.   : 0.000  
+ 1st Qu.:14.85   1st Qu.:38.00   1st Qu.:2.100   1st Qu.: 1.000  
+ Median :23.55   Median :43.30   Median :2.400   Median : 1.000  
+ Mean   :22.73   Mean   :44.16   Mean   :2.415   Mean   : 2.864  
+ 3rd Qu.:28.27   3rd Qu.:51.10   3rd Qu.:2.700   3rd Qu.: 3.500  
+ Max.   :53.80   Max.   :70.70   Max.   :3.700   Max.   :13.000  
+ NA's   :5       NA's   :4       NA's   :4       NA's   :4       
+   fuerza_md       fuerza_mi    
+ Min.   :18.00   Min.   :18.00  
+ 1st Qu.:26.00   1st Qu.:24.00  
+ Median :32.00   Median :34.00  
+ Mean   :33.35   Mean   :32.43  
+ 3rd Qu.:40.00   3rd Qu.:40.00  
+ Max.   :54.00   Max.   :52.00  
+                                </code></pre>
+</div>
+</div>
+</section>
+<section id="identificar-filas-con-datos-erróneos" class="slide level2 center">
+<h2>Identificar filas con datos erróneos</h2>
+<ul>
+<li>Quién escribió <code>estatura=1.57</code> ?</li>
+</ul>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>df[df<span class="sc">$</span>estatura<span class="sc">==</span><span class="fu">min</span>(df<span class="sc">$</span>estatura),<span class="fu">c</span>(<span class="st">"nombre"</span>,<span class="st">"estatura"</span>)] </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell fragment">
+<div class="cell-output cell-output-stdout">
+<pre><code>               nombre estatura
+26 Amalfi Nuñez Doria     1.57</code></pre>
+</div>
+</div>
+</section>
+<section id="corregir-datos-erróneos" class="slide level2 center">
+<h2>Corregir datos erróneos</h2>
+<ul>
+<li>La estatura</li>
+</ul>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>df<span class="sc">$</span>estatura[df<span class="sc">$</span>estatura<span class="sc">==</span><span class="fu">min</span>(df<span class="sc">$</span>estatura)]<span class="ot">=</span><span class="dv">157</span> </span>
+<span id="cb25-2"><a href=""></a><span class="fu">summary</span>(df<span class="sc">$</span>estatura) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell fragment">
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    1.7   157.5   165.0   154.8   175.5   189.5 </code></pre>
+</div>
+</div>
+</section>
+<section id="visualizar-todas-las-estaturas" class="slide level2 center">
+<h2>Visualizar todas las estaturas</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a>df<span class="sc">$</span>estatura</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell fragment">
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 156.40 182.00 166.00 180.50 157.50 156.60 172.30 164.50 181.00 168.60
+[11] 177.00 163.20 175.50   1.70 163.40 175.50 182.50 155.20 174.20   1.70
+[21] 156.50 165.00 157.20 181.00 189.50 157.00 167.50 158.40 165.50 171.50
+[31] 172.50 164.70 160.80 160.00 178.40   1.72 163.90</code></pre>
+</div>
+</div>
+</section>
+<section id="una-forma-más-eficiente-para-estatura" class="slide level2 center">
+<h2>Una forma más eficiente para estatura</h2>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Importante</strong></p>
+</div>
+<div class="callout-content">
+<p>Al parecer lo que ocurre es que esas personas ingresaron la estatura en metro, entonces una forma de corregir este problema de manera rápida y automática es multiplicando esos valores por 100.</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>df<span class="sc">$</span>estatura[df<span class="sc">$</span>estatura<span class="sc">&lt;</span><span class="fl">2.2</span>]<span class="ot">=</span>df<span class="sc">$</span>estatura[df<span class="sc">$</span>estatura<span class="sc">&lt;</span><span class="fl">2.2</span>]<span class="sc">*</span><span class="dv">100</span>  </span>
+<span id="cb29-2"><a href=""></a><span class="fu">summary</span>(df<span class="sc">$</span>estatura) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell fragment">
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  155.2   160.8   167.5   168.5   175.5   189.5 </code></pre>
+</div>
+</div>
+</section>
+<section id="un-detalle-con-imc" class="slide level2 center">
+<h2>Un detalle con <code>imc</code></h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a><span class="fu">cbind</span>(df<span class="sc">$</span>imc,df<span class="sc">$</span>imcn) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell fragment">
+<div class="cell-output cell-output-stdout">
+<pre><code>      [,1]          [,2]   
+ [1,] "24.7 kg/m^2" "24.72"
+ [2,] "27.4"        "27.4" 
+ [3,] "19.8"        "19.8" 
+ [4,] "21.2"        "21.2" 
+ [5,] "21.0"        "21"   
+ [6,] "22.5"        "22.5" 
+ [7,] "22.7"        "22.7" 
+ [8,] "19.1"        "19.1" 
+ [9,] "20.1"        "20.1" 
+[10,] "24.6"        "24.6" 
+[11,] "20.1"        "20.1" 
+[12,] "17,9"        NA     
+[13,] "20,6 kg/m2"  NA     
+[14,] "NA"          NA     
+[15,] "0.0"         "0"    
+[16,] "22.3"        "22.3" 
+[17,] "21.8"        "21.8" 
+[18,] "31.1"        "31.1" 
+[19,] "29.0"        "29"   
+[20,] "17.8"        "17.8" 
+[21,] "16.8"        "16.8" 
+[22,] "No"          NA     
+[23,] "30.1"        "30.1" 
+[24,] "19.3"        "19.3" 
+[25,] "27.0"        "27"   
+[26,] "20.0"        "20"   
+[27,] "33.5"        "33.5" 
+[28,] "19.5"        "19.5" 
+[29,] "nulo"        NA     
+[30,] "17.5"        "17.5" 
+[31,] "."           NA     
+[32,] "18.5"        "18.5" 
+[33,] "18.4"        "18.4" 
+[34,] "24.9"        "24.9" 
+[35,] "19.0"        "19"   
+[36,] "253.1"       "253.1"
+[37,] "26.5"        "26.5" </code></pre>
+</div>
+</div>
+</section>
+<section id="corregimos-imc" class="slide level2 center">
+<h2>Corregimos <code>imc</code></h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a><span class="co"># 1. Cambiamos la coma por punto (para que R entienda decimales)</span></span>
+<span id="cb33-2"><a href=""></a>imcn <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">"."</span>, df<span class="sc">$</span>imc)</span>
+<span id="cb33-3"><a href=""></a></span>
+<span id="cb33-4"><a href=""></a><span class="fu">cbind</span>(df<span class="sc">$</span>imc,imcn) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell fragment">
+<div class="cell-output cell-output-stdout">
+<pre><code>                    imcn         
+ [1,] "24.7 kg/m^2" "24.7 kg/m^2"
+ [2,] "27.4"        "27.4"       
+ [3,] "19.8"        "19.8"       
+ [4,] "21.2"        "21.2"       
+ [5,] "21.0"        "21.0"       
+ [6,] "22.5"        "22.5"       
+ [7,] "22.7"        "22.7"       
+ [8,] "19.1"        "19.1"       
+ [9,] "20.1"        "20.1"       
+[10,] "24.6"        "24.6"       
+[11,] "20.1"        "20.1"       
+[12,] "17,9"        "17.9"       
+[13,] "20,6 kg/m2"  "20.6 kg/m2" 
+[14,] "NA"          "NA"         
+[15,] "0.0"         "0.0"        
+[16,] "22.3"        "22.3"       
+[17,] "21.8"        "21.8"       
+[18,] "31.1"        "31.1"       
+[19,] "29.0"        "29.0"       
+[20,] "17.8"        "17.8"       
+[21,] "16.8"        "16.8"       
+[22,] "No"          "No"         
+[23,] "30.1"        "30.1"       
+[24,] "19.3"        "19.3"       
+[25,] "27.0"        "27.0"       
+[26,] "20.0"        "20.0"       
+[27,] "33.5"        "33.5"       
+[28,] "19.5"        "19.5"       
+[29,] "nulo"        "nulo"       
+[30,] "17.5"        "17.5"       
+[31,] "."           "."          
+[32,] "18.5"        "18.5"       
+[33,] "18.4"        "18.4"       
+[34,] "24.9"        "24.9"       
+[35,] "19.0"        "19.0"       
+[36,] "253.1"       "253.1"      
+[37,] "26.5"        "26.5"       </code></pre>
+</div>
+</div>
+</section>
+<section id="corregimos-imc-ii" class="slide level2 center">
+<h2>Corregimos <code>imc</code> II</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href=""></a><span class="co"># 2. Usamos sub() con una expresión que busca el primer bloque numérico</span></span>
+<span id="cb35-2"><a href=""></a><span class="co"># Explicación del patrón:</span></span>
+<span id="cb35-3"><a href=""></a><span class="co"># ^[^0-9]* -&gt; Ignora todo al inicio que NO sea un número</span></span>
+<span id="cb35-4"><a href=""></a><span class="co"># ([0-9]+\\.?[0-9]*) -&gt; CAPTURA el primer número (con su decimal opcional)</span></span>
+<span id="cb35-5"><a href=""></a><span class="co"># .*$       -&gt; Ignora todo lo que venga después (como " kg/m^2")</span></span>
+<span id="cb35-6"><a href=""></a>imcn <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">"^[^0-9]*([0-9]+</span><span class="sc">\\</span><span class="st">.?[0-9]*).*$"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">1"</span>, imcn)</span>
+<span id="cb35-7"><a href=""></a></span>
+<span id="cb35-8"><a href=""></a><span class="co">#  3. Finalmente convertimos a numérico</span></span>
+<span id="cb35-9"><a href=""></a>imcn <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(imcn)</span>
+<span id="cb35-10"><a href=""></a><span class="fu">data.frame</span>(df<span class="sc">$</span>imc,imcn)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell fragment">
+<div class="cell-output cell-output-stdout">
+<pre><code>        df.imc  imcn
+1  24.7 kg/m^2  24.7
+2         27.4  27.4
+3         19.8  19.8
+4         21.2  21.2
+5         21.0  21.0
+6         22.5  22.5
+7         22.7  22.7
+8         19.1  19.1
+9         20.1  20.1
+10        24.6  24.6
+11        20.1  20.1
+12        17,9  17.9
+13  20,6 kg/m2  20.6
+14          NA    NA
+15         0.0   0.0
+16        22.3  22.3
+17        21.8  21.8
+18        31.1  31.1
+19        29.0  29.0
+20        17.8  17.8
+21        16.8  16.8
+22          No    NA
+23        30.1  30.1
+24        19.3  19.3
+25        27.0  27.0
+26        20.0  20.0
+27        33.5  33.5
+28        19.5  19.5
+29        nulo    NA
+30        17.5  17.5
+31           .    NA
+32        18.5  18.5
+33        18.4  18.4
+34        24.9  24.9
+35        19.0  19.0
+36       253.1 253.1
+37        26.5  26.5</code></pre>
+</div>
+</div>
+</section>
+<section id="agregamos-imc-a-df" class="slide level2 center">
+<h2>Agregamos <code>imc</code> a df</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a>df<span class="sc">$</span>imc<span class="ot">=</span>imcn </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell fragment">
+
+</div>
+</section>
+<section id="inspección-rápida-de-las-variables" class="slide level2 center">
+<h2>Inspección rápida de las variables</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a><span class="fu">summary</span>(df[,nombres2]) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell fragment">
+<div class="cell-output cell-output-stdout">
+<pre><code>      edad           fcr          presion_sis     presion_dia    
+ Min.   :17.0   Min.   : 54.00   Min.   : 93.0   Min.   : 33.00  
+ 1st Qu.:18.0   1st Qu.: 74.00   1st Qu.:110.0   1st Qu.: 66.00  
+ Median :18.0   Median : 79.00   Median :122.0   Median : 71.00  
+ Mean   :19.7   Mean   : 81.95   Mean   :120.8   Mean   : 71.49  
+ 3rd Qu.:19.0   3rd Qu.: 88.00   3rd Qu.:129.0   3rd Qu.: 78.00  
+ Max.   :60.0   Max.   :117.00   Max.   :162.0   Max.   :102.00  
+                                                                 
+    estatura     masa_corporal      cintura            imc        
+ Min.   :155.2   Min.   : 1.80   Min.   : 56.40   Min.   :  0.00  
+ 1st Qu.:160.8   1st Qu.:51.70   1st Qu.: 69.60   1st Qu.: 19.10  
+ Median :167.5   Median :62.60   Median : 73.00   Median : 21.00  
+ Mean   :168.5   Mean   :62.03   Mean   : 90.89   Mean   : 28.72  
+ 3rd Qu.:175.5   3rd Qu.:70.00   3rd Qu.: 82.00   3rd Qu.: 24.90  
+ Max.   :189.5   Max.   :97.00   Max.   :686.00   Max.   :253.10  
+                                                  NA's   :4       
+   masa_grasa    masa_muscular     masa_osea       grasa_vis     
+ Min.   : 0.00   Min.   : 0.00   Min.   :0.000   Min.   : 0.000  
+ 1st Qu.:14.85   1st Qu.:38.00   1st Qu.:2.100   1st Qu.: 1.000  
+ Median :23.55   Median :43.30   Median :2.400   Median : 1.000  
+ Mean   :22.73   Mean   :44.16   Mean   :2.415   Mean   : 2.864  
+ 3rd Qu.:28.27   3rd Qu.:51.10   3rd Qu.:2.700   3rd Qu.: 3.500  
+ Max.   :53.80   Max.   :70.70   Max.   :3.700   Max.   :13.000  
+ NA's   :5       NA's   :4       NA's   :4       NA's   :4       
+   fuerza_md       fuerza_mi    
+ Min.   :18.00   Min.   :18.00  
+ 1st Qu.:26.00   1st Qu.:24.00  
+ Median :32.00   Median :34.00  
+ Mean   :33.35   Mean   :32.43  
+ 3rd Qu.:40.00   3rd Qu.:40.00  
+ Max.   :54.00   Max.   :52.00  
+                                </code></pre>
+</div>
+</div>
+</section>
+<section id="identificar-filas-con-datos-erróneos-1" class="slide level2 center">
+<h2>Identificar filas con datos erróneos</h2>
+<ul>
+<li>Quién escribió <code>imc=253.1</code> ?</li>
+</ul>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href=""></a>df[df<span class="sc">$</span>imc<span class="sc">==</span><span class="fu">max</span>(df<span class="sc">$</span>imc,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="fu">c</span>(<span class="st">"nombre"</span>,<span class="st">"imc"</span>)] </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell fragment">
+<div class="cell-output cell-output-stdout">
+<pre><code>                     nombre   imc
+NA                     &lt;NA&gt;    NA
+NA.1                   &lt;NA&gt;    NA
+NA.2                   &lt;NA&gt;    NA
+NA.3                   &lt;NA&gt;    NA
+36   Angel Josep Ramos Paez 253.1</code></pre>
+</div>
+</div>
+</section>
+<section id="corregir-imc" class="slide level2 center">
+<h2>Corregir <code>imc</code></h2>
+</section>
+<section id="corregir-datos-erróneos-imc" class="slide level2 center">
+<h2>Corregir datos erróneos <code>imc</code></h2>
+<ul>
+<li>El imc</li>
+</ul>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a>df<span class="sc">$</span>imc[df<span class="sc">$</span>imc<span class="sc">==</span><span class="fu">max</span>(df<span class="sc">$</span>imc,<span class="at">na.rm=</span><span class="cn">TRUE</span>)]<span class="ot">=</span><span class="fl">25.3</span> </span>
+<span id="cb42-2"><a href=""></a><span class="fu">summary</span>(df<span class="sc">$</span>imc) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell fragment">
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+   0.00   19.10   21.00   21.82   24.90   33.50       4 </code></pre>
+</div>
+</div>
+</section>
+<section id="reemplazar-los-ceros-por-na" class="slide level2 center">
+<h2>Reemplazar los ceros por <code>NA</code></h2>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Importante</strong></p>
+</div>
+<div class="callout-content">
+<p>Sabemos que los ceros son de los estudiantes menores de edad que el instrumento de medición no entregó el dato, por lo tanto es un dato faltante. Reemplazaremos los ceros por <code>NA</code> porque luego haremos imputación de datos faltantes.</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href=""></a>df<span class="sc">$</span>imc[df<span class="sc">$</span>imc<span class="sc">==</span><span class="dv">0</span>]<span class="ot">=</span><span class="cn">NA</span> </span>
+<span id="cb44-2"><a href=""></a><span class="fu">summary</span>(df<span class="sc">$</span>imc)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell fragment">
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+  16.80   19.25   21.10   22.50   25.00   33.50       5 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href=""></a>df<span class="sc">$</span>masa_grasa[df<span class="sc">$</span>masa_grasa<span class="sc">==</span><span class="dv">0</span>]<span class="ot">=</span><span class="cn">NA</span></span>
+<span id="cb46-2"><a href=""></a>df<span class="sc">$</span>masa_muscular[df<span class="sc">$</span>masa_muscular<span class="sc">==</span><span class="dv">0</span>]<span class="ot">=</span><span class="cn">NA</span></span>
+<span id="cb46-3"><a href=""></a>df<span class="sc">$</span>masa_osea[df<span class="sc">$</span>masa_osea<span class="sc">==</span><span class="dv">0</span>]<span class="ot">=</span><span class="cn">NA</span></span>
+<span id="cb46-4"><a href=""></a>df<span class="sc">$</span>grasa_vis[df<span class="sc">$</span>grasa_vis<span class="sc">==</span><span class="dv">0</span>]<span class="ot">=</span><span class="cn">NA</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="inspección-rápida-de-las-variables-1" class="slide level2 center">
+<h2>Inspección rápida de las variables</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href=""></a><span class="fu">summary</span>(df[,nombres2]) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell fragment">
+<div class="cell-output cell-output-stdout">
+<pre><code>      edad           fcr          presion_sis     presion_dia    
+ Min.   :17.0   Min.   : 54.00   Min.   : 93.0   Min.   : 33.00  
+ 1st Qu.:18.0   1st Qu.: 74.00   1st Qu.:110.0   1st Qu.: 66.00  
+ Median :18.0   Median : 79.00   Median :122.0   Median : 71.00  
+ Mean   :19.7   Mean   : 81.95   Mean   :120.8   Mean   : 71.49  
+ 3rd Qu.:19.0   3rd Qu.: 88.00   3rd Qu.:129.0   3rd Qu.: 78.00  
+ Max.   :60.0   Max.   :117.00   Max.   :162.0   Max.   :102.00  
+                                                                 
+    estatura     masa_corporal      cintura            imc       
+ Min.   :155.2   Min.   : 1.80   Min.   : 56.40   Min.   :16.80  
+ 1st Qu.:160.8   1st Qu.:51.70   1st Qu.: 69.60   1st Qu.:19.25  
+ Median :167.5   Median :62.60   Median : 73.00   Median :21.10  
+ Mean   :168.5   Mean   :62.03   Mean   : 90.89   Mean   :22.50  
+ 3rd Qu.:175.5   3rd Qu.:70.00   3rd Qu.: 82.00   3rd Qu.:25.00  
+ Max.   :189.5   Max.   :97.00   Max.   :686.00   Max.   :33.50  
+                                                  NA's   :5      
+   masa_grasa    masa_muscular     masa_osea       grasa_vis     
+ Min.   :10.40   Min.   :22.90   Min.   :1.300   Min.   : 1.000  
+ 1st Qu.:15.40   1st Qu.:38.30   1st Qu.:2.250   1st Qu.: 1.000  
+ Median :23.80   Median :44.45   Median :2.500   Median : 1.250  
+ Mean   :23.46   Mean   :45.54   Mean   :2.491   Mean   : 2.953  
+ 3rd Qu.:28.35   3rd Qu.:51.20   3rd Qu.:2.725   3rd Qu.: 3.750  
+ Max.   :53.80   Max.   :70.70   Max.   :3.700   Max.   :13.000  
+ NA's   :6       NA's   :5       NA's   :5       NA's   :5       
+   fuerza_md       fuerza_mi    
+ Min.   :18.00   Min.   :18.00  
+ 1st Qu.:26.00   1st Qu.:24.00  
+ Median :32.00   Median :34.00  
+ Mean   :33.35   Mean   :32.43  
+ 3rd Qu.:40.00   3rd Qu.:40.00  
+ Max.   :54.00   Max.   :52.00  
+                                </code></pre>
+</div>
+</div>
+</section>
 <section id="anonimización-de-datos" class="slide level2 center">
 <h2>Anonimización de Datos</h2>
 <p>Manipularemos las columnas por índice o nombre y a generar identificadores únicos.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a><span class="co"># 1. Identificar columnas sensibles por nombre</span></span>
-<span id="cb16-2"><a href=""></a>columnas_sensibles <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"marca_temp"</span>, <span class="st">"email"</span>, <span class="st">"nombre"</span>,<span class="st">"documento"</span>,<span class="st">"f_nac"</span>, <span class="st">"sexo"</span>, <span class="st">"tel"</span>)   </span>
-<span id="cb16-3"><a href=""></a></span>
-<span id="cb16-4"><a href=""></a><span class="co"># 2. Crear un ID aleatorio único para cada fila</span></span>
-<span id="cb16-5"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb16-6"><a href=""></a>df<span class="sc">$</span>id_estudiante <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1000</span><span class="sc">:</span><span class="dv">9999</span>, <span class="fu">nrow</span>(df), <span class="at">replace =</span> <span class="cn">FALSE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href=""></a><span class="co"># 1. Identificar columnas sensibles por nombre</span></span>
+<span id="cb49-2"><a href=""></a>columnas_sensibles <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"marca_temp"</span>, <span class="st">"email"</span>, <span class="st">"nombre"</span>,<span class="st">"documento"</span>,<span class="st">"f_nac"</span>, <span class="st">"sexo"</span>, <span class="st">"tel"</span>)   </span>
+<span id="cb49-3"><a href=""></a></span>
+<span id="cb49-4"><a href=""></a><span class="co"># 2. Crear un ID aleatorio único para cada fila</span></span>
+<span id="cb49-5"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb49-6"><a href=""></a>df<span class="sc">$</span>id_estudiante <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1000</span><span class="sc">:</span><span class="dv">9999</span>, <span class="fu">nrow</span>(df), <span class="at">replace =</span> <span class="cn">FALSE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -603,12 +1232,12 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="co"># 3. Crear el nuevo dataframe omitiendo las sensibles</span></span>
-<span id="cb17-2"><a href=""></a><span class="co"># Usamos la indexación negativa o selección por nombre</span></span>
-<span id="cb17-3"><a href=""></a>df_anonimo <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, <span class="at">select=</span> <span class="sc">!</span>(<span class="fu">names</span>(df) <span class="sc">%in%</span> columnas_sensibles)) </span>
-<span id="cb17-4"><a href=""></a></span>
-<span id="cb17-5"><a href=""></a><span class="co"># 4. Reordenar para que el ID sea la primera columna</span></span>
-<span id="cb17-6"><a href=""></a>df_anonimo <span class="ot">&lt;-</span> df_anonimo[, <span class="fu">c</span>(<span class="fu">ncol</span>(df_anonimo), <span class="dv">1</span><span class="sc">:</span>(<span class="fu">ncol</span>(df_anonimo)<span class="sc">-</span><span class="dv">1</span>))]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href=""></a><span class="co"># 3. Crear el nuevo dataframe omitiendo las sensibles</span></span>
+<span id="cb50-2"><a href=""></a><span class="co"># Usamos la indexación negativa o selección por nombre</span></span>
+<span id="cb50-3"><a href=""></a>df_anonimo <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, <span class="at">select=</span> <span class="sc">!</span>(<span class="fu">names</span>(df) <span class="sc">%in%</span> columnas_sensibles)) </span>
+<span id="cb50-4"><a href=""></a></span>
+<span id="cb50-5"><a href=""></a><span class="co"># 4. Reordenar para que el ID sea la primera columna</span></span>
+<span id="cb50-6"><a href=""></a>df_anonimo <span class="ot">&lt;-</span> df_anonimo[, <span class="fu">c</span>(<span class="fu">ncol</span>(df_anonimo), <span class="dv">1</span><span class="sc">:</span>(<span class="fu">ncol</span>(df_anonimo)<span class="sc">-</span><span class="dv">1</span>))]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -617,14 +1246,15 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a><span class="fu">colnames</span>(df_anonimo)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href=""></a><span class="fu">colnames</span>(df_anonimo)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "id_estudiante"  "edad"           "consentimiento" "par_q"         
  [5] "apto"           "restriccion"    "fcr"            "presion_sis"   
- [9] "presión_dia"    "estatura"       "masa_corporal"  "cintura"       
+ [9] "presion_dia"    "estatura"       "masa_corporal"  "cintura"       
 [13] "imc"            "masa_grasa"     "masa_muscular"  "masa_osea"     
-[17] "grasa_vis"      "fuerza_md"      "fuerza_mi"     </code></pre>
+[17] "grasa_vis"      "fuerza_md"      "fuerza_mi"      "imcn"          
+[21] "imcn2"         </code></pre>
 </div>
 </div>
 </section>
@@ -634,8 +1264,8 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="co"># Creamos un dataframe aparte que SOLO tenga la llave y los nombres</span></span>
-<span id="cb20-2"><a href=""></a>df_llave_maestra <span class="ot">&lt;-</span> df[, <span class="fu">c</span>(<span class="st">"id_estudiante"</span>,<span class="st">"marca_temp"</span>, <span class="st">"email"</span>, <span class="st">"nombre"</span>,<span class="st">"documento"</span>,<span class="st">"f_nac"</span>, <span class="st">"sexo"</span>, <span class="st">"tel"</span>)]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href=""></a><span class="co"># Creamos un dataframe aparte que SOLO tenga la llave y los nombres</span></span>
+<span id="cb53-2"><a href=""></a>df_llave_maestra <span class="ot">&lt;-</span> df[, <span class="fu">c</span>(<span class="st">"id_estudiante"</span>,<span class="st">"marca_temp"</span>, <span class="st">"email"</span>, <span class="st">"nombre"</span>,<span class="st">"documento"</span>,<span class="st">"f_nac"</span>, <span class="st">"sexo"</span>, <span class="st">"tel"</span>)]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -645,8 +1275,8 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="co"># Desordenamos las filas aleatoriamente</span></span>
-<span id="cb21-2"><a href=""></a>df_anonimo_desordenado <span class="ot">&lt;-</span> df_anonimo[<span class="fu">sample</span>(<span class="fu">nrow</span>(df_anonimo)), ]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href=""></a><span class="co"># Desordenamos las filas aleatoriamente</span></span>
+<span id="cb54-2"><a href=""></a>df_anonimo_desordenado <span class="ot">&lt;-</span> df_anonimo[<span class="fu">sample</span>(<span class="fu">nrow</span>(df_anonimo)), ]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -656,10 +1286,10 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a><span class="co"># Unimos los nombres de vuelta al archivo desordenado usando la llave</span></span>
-<span id="cb22-2"><a href=""></a>df_recuperado <span class="ot">&lt;-</span> <span class="fu">merge</span>(<span class="at">x =</span> df_anonimo_desordenado, </span>
-<span id="cb22-3"><a href=""></a>                       <span class="at">y =</span> df_llave_maestra, </span>
-<span id="cb22-4"><a href=""></a>                       <span class="at">by =</span> <span class="st">"id_estudiante"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href=""></a><span class="co"># Unimos los nombres de vuelta al archivo desordenado usando la llave</span></span>
+<span id="cb55-2"><a href=""></a>df_recuperado <span class="ot">&lt;-</span> <span class="fu">merge</span>(<span class="at">x =</span> df_anonimo_desordenado, </span>
+<span id="cb55-3"><a href=""></a>                       <span class="at">y =</span> df_llave_maestra, </span>
+<span id="cb55-4"><a href=""></a>                       <span class="at">by =</span> <span class="st">"id_estudiante"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -685,19 +1315,19 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="co"># Retorna TRUE si hay al menos un dato faltante en cualquier parte</span></span>
-<span id="cb23-2"><a href=""></a><span class="fu">any</span>(<span class="fu">is.na</span>(df_anonimo))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href=""></a><span class="co"># Retorna TRUE si hay al menos un dato faltante en cualquier parte</span></span>
+<span id="cb56-2"><a href=""></a><span class="fu">any</span>(<span class="fu">is.na</span>(df_anonimo))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a><span class="co"># Cuenta el total de datos faltantes en toda la matriz</span></span>
-<span id="cb25-2"><a href=""></a><span class="fu">sum</span>(<span class="fu">is.na</span>(df_anonimo))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href=""></a><span class="co"># Cuenta el total de datos faltantes en toda la matriz</span></span>
+<span id="cb58-2"><a href=""></a><span class="fu">sum</span>(<span class="fu">is.na</span>(df_anonimo))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 21</code></pre>
+<pre><code>[1] 36</code></pre>
 </div>
 </div>
 </section>
@@ -708,35 +1338,39 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a><span class="co"># Retorna el número de NAs por cada columna</span></span>
-<span id="cb27-2"><a href=""></a>conteo_nas <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">is.na</span>(df_anonimo))</span>
-<span id="cb27-3"><a href=""></a><span class="fu">print</span>(conteo_nas)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href=""></a><span class="co"># Retorna el número de NAs por cada columna</span></span>
+<span id="cb60-2"><a href=""></a>conteo_nas <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">is.na</span>(df_anonimo))</span>
+<span id="cb60-3"><a href=""></a><span class="fu">print</span>(conteo_nas)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code> id_estudiante           edad consentimiento          par_q           apto 
              0              0              0              0              0 
-   restriccion            fcr    presion_sis    presión_dia       estatura 
+   restriccion            fcr    presion_sis    presion_dia       estatura 
              0              0              0              0              0 
  masa_corporal        cintura            imc     masa_grasa  masa_muscular 
-             0              0              4              5              4 
-     masa_osea      grasa_vis      fuerza_md      fuerza_mi 
-             4              4              0              0 </code></pre>
+             0              0              5              6              5 
+     masa_osea      grasa_vis      fuerza_md      fuerza_mi           imcn 
+             5              5              0              0              6 
+         imcn2 
+             4 </code></pre>
 </div>
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a><span class="co"># Para verlo como porcentaje (útil para decidir si imputar o descartar)</span></span>
-<span id="cb29-2"><a href=""></a>porcentaje_nas <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">is.na</span>(df_anonimo)) <span class="sc">/</span> <span class="fu">nrow</span>(df_anonimo) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb29-3"><a href=""></a><span class="fu">print</span>(porcentaje_nas)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href=""></a><span class="co"># Para verlo como porcentaje (útil para decidir si imputar o descartar)</span></span>
+<span id="cb62-2"><a href=""></a>porcentaje_nas <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">is.na</span>(df_anonimo)) <span class="sc">/</span> <span class="fu">nrow</span>(df_anonimo) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb62-3"><a href=""></a><span class="fu">print</span>(porcentaje_nas)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code> id_estudiante           edad consentimiento          par_q           apto 
        0.00000        0.00000        0.00000        0.00000        0.00000 
-   restriccion            fcr    presion_sis    presión_dia       estatura 
+   restriccion            fcr    presion_sis    presion_dia       estatura 
        0.00000        0.00000        0.00000        0.00000        0.00000 
  masa_corporal        cintura            imc     masa_grasa  masa_muscular 
-       0.00000        0.00000       10.81081       13.51351       10.81081 
-     masa_osea      grasa_vis      fuerza_md      fuerza_mi 
-      10.81081       10.81081        0.00000        0.00000 </code></pre>
+       0.00000        0.00000       13.51351       16.21622       13.51351 
+     masa_osea      grasa_vis      fuerza_md      fuerza_mi           imcn 
+      13.51351       13.51351        0.00000        0.00000       16.21622 
+         imcn2 
+      10.81081 </code></pre>
 </div>
 </div>
 </section>
@@ -746,16 +1380,16 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a>cual_na<span class="ot">=</span><span class="cf">function</span>(df){</span>
-<span id="cb31-2"><a href=""></a>  cual<span class="ot">=</span><span class="fu">apply</span>(<span class="fu">apply</span>(df,<span class="dv">2</span>,is.na),<span class="dv">2</span>,any)</span>
-<span id="cb31-3"><a href=""></a>  <span class="fu">colnames</span>(df)[cual] </span>
-<span id="cb31-4"><a href=""></a>} </span>
-<span id="cb31-5"><a href=""></a>vars_na<span class="ot">=</span><span class="fu">cual_na</span>(df_anonimo)</span>
-<span id="cb31-6"><a href=""></a>vars_na</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href=""></a>cual_na<span class="ot">=</span><span class="cf">function</span>(df){</span>
+<span id="cb64-2"><a href=""></a>  cual<span class="ot">=</span><span class="fu">apply</span>(<span class="fu">apply</span>(df,<span class="dv">2</span>,is.na),<span class="dv">2</span>,any)</span>
+<span id="cb64-3"><a href=""></a>  <span class="fu">colnames</span>(df)[cual] </span>
+<span id="cb64-4"><a href=""></a>} </span>
+<span id="cb64-5"><a href=""></a>vars_na<span class="ot">=</span><span class="fu">cual_na</span>(df_anonimo)</span>
+<span id="cb64-6"><a href=""></a>vars_na</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "imc"           "masa_grasa"    "masa_muscular" "masa_osea"    
-[5] "grasa_vis"    </code></pre>
+[5] "grasa_vis"     "imcn"          "imcn2"        </code></pre>
 </div>
 </div>
 </section>
@@ -764,12 +1398,14 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a>cols<span class="ot">=</span><span class="fu">cual_na</span>(df_anonimo)</span>
-<span id="cb33-2"><a href=""></a><span class="fu">apply</span>(<span class="fu">apply</span>(df[,cols],<span class="dv">2</span>,is.na),<span class="dv">2</span>,sum)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href=""></a>cols<span class="ot">=</span><span class="fu">cual_na</span>(df_anonimo)</span>
+<span id="cb66-2"><a href=""></a><span class="fu">apply</span>(<span class="fu">apply</span>(df[,cols],<span class="dv">2</span>,is.na),<span class="dv">2</span>,sum)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>          imc    masa_grasa masa_muscular     masa_osea     grasa_vis 
-            4             5             4             4             4 </code></pre>
+            5             6             5             5             5 
+         imcn         imcn2 
+            6             4 </code></pre>
 </div>
 </div>
 <!--
@@ -785,7 +1421,7 @@ image(is.na(df_anonimo), main = "Mapa de Datos Faltantes",
 ```
 
 ::: {.cell-output-display}
-![](Lab1DatosFisioE_files/figure-revealjs/unnamed-chunk-25-1.png){width=960}
+![](Lab1DatosFisioE_files/figure-revealjs/unnamed-chunk-44-1.png){width=960}
 :::
 :::
 
@@ -795,6 +1431,510 @@ image(is.na(df_anonimo), main = "Mapa de Datos Faltantes",
 <section id="imputación-de-faltantes" class="slide level2 center">
 <h2>Imputación de faltantes</h2>
 <p>Luego de identificar las variables de composición con <code>NA's</code>, procedemos a imputar, estimando el dato faltante usando la mediana.</p>
+</section></section>
+<section>
+<section id="uso-de-tydiverse" class="title-slide slide level1 center">
+<h1>Uso de <code>tydiverse</code></h1>
+
+</section>
+<section id="lectura-de-los-datos" class="slide level2 center">
+<h2>Lectura de los datos</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="annotated-cell-39"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-39" data-target-annotation="1" onclick="event.preventDefault();" href="">1</a><span id="annotated-cell-39-1" class="code-annotation-target"><a href="#annotated-cell-39-1"></a><span class="fu">library</span>(readxl)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-39" data-target-annotation="2" onclick="event.preventDefault();" href="">2</a><span id="annotated-cell-39-2" class="code-annotation-target"><a href="#annotated-cell-39-2"></a><span class="fu">library</span>(tidyverse)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-39" data-target-annotation="3" onclick="event.preventDefault();" href="">3</a><span id="annotated-cell-39-3" class="code-annotation-target"><a href="#annotated-cell-39-3"></a>df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"DatosLab1.xlsx"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-39" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-39" data-code-lines="1" data-code-annotation="1">Librería para leer archivos de Excel</span>
+</dd>
+<dt data-target-cell="annotated-cell-39" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-39" data-code-lines="2" data-code-annotation="2">Librería para limpieza y transformación de datos</span>
+</dd>
+<dt data-target-cell="annotated-cell-39" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-39" data-code-lines="3" data-code-annotation="3">Lectura</span>
+</dd>
+</dl>
+</div>
+</div>
+</section>
+<section id="los-nombres-de-las-columnas" class="slide level2 center">
+<h2>Los nombres de las columnas</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href=""></a><span class="fu">colnames</span>(df) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Marca temporal"                                       
+ [2] "Dirección de correo electrónico"                      
+ [3] "Nombre Completo"                                      
+ [4] "Documento"                                            
+ [5] "Fecha de Nacimiento"                                  
+ [6] "Edad"                                                 
+ [7] "Sexo"                                                 
+ [8] "Teléfono / Contacto"                                  
+ [9] "Consentimiento informado diligenciado"                
+[10] "Cuestionario PAR-Q diligenciado"                      
+[11] "Apto para la evaluación / práctica"                   
+[12] "Restricción o condición reportada por el participante"
+[13] "Frecuencia cardíaca en reposo (lpm)"                  
+[14] "Presión arterial sistólica (mmHg)"                    
+[15] "Presión arterial diastólica  (mmHg)"                  
+[16] "Estatura"                                             
+[17] "Masa Corporal"                                        
+[18] "Perímetro de Cintura"                                 
+[19] "IMC"                                                  
+[20] "Masa Grasa"                                           
+[21] "Masa Magra / Muscular"                                
+[22] "Masa Ósea"                                            
+[23] "Grasa Visceral"                                       
+[24] "Fuerza prensil mano derecha"                          
+[25] "Fuerza prensil mano izquierda"                        </code></pre>
+</div>
+</div>
+</section>
+<section id="cambiar-los-nombres-de-las-columnas" class="slide level2 center">
+<h2>Cambiar los nombres de las columnas</h2>
+<p>Primero se debe instalar y cargar el paquete <code>janitor</code></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href=""></a><span class="co"># install.packages("janitor")</span></span>
+<span id="cb70-2"><a href=""></a><span class="fu">library</span>(janitor)</span>
+<span id="cb70-3"><a href=""></a><span class="co"># Aplicar a su data frame</span></span>
+<span id="cb70-4"><a href=""></a>df <span class="ot">=</span> df <span class="sc">|&gt;</span> <span class="fu">clean_names</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="cambiar-los-nombres-de-las-columnas-1" class="slide level2 center">
+<h2>Cambiar los nombres de las columnas</h2>
+<p>Si no nos gustan los nombres que coloca R automáticamente, lo hacemos manual</p>
+<div class="cell column-screen-inset-shaded">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href=""></a>df <span class="ot">=</span> df <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">rename</span>(</span>
+<span id="cb71-2"><a href=""></a>    <span class="at">fcr =</span> frecuencia_cardiaca_en_reposo_lpm,</span>
+<span id="cb71-3"><a href=""></a>    <span class="at">cintura=</span>perimetro_de_cintura, </span>
+<span id="cb71-4"><a href=""></a>    <span class="at">presion_sis =</span> presion_arterial_sistolica_mm_hg,</span>
+<span id="cb71-5"><a href=""></a>    <span class="at">presion_dia =</span> presion_arterial_diastolica_mm_hg,</span>
+<span id="cb71-6"><a href=""></a>    <span class="at">masa_muscular =</span> masa_magra_muscular,</span>
+<span id="cb71-7"><a href=""></a>    <span class="at">fuerza_md =</span> fuerza_prensil_mano_derecha,                        <span class="at">fuerza_mi =</span> fuerza_prensil_mano_izquierda</span>
+<span id="cb71-8"><a href=""></a>    )</span>
+<span id="cb71-9"><a href=""></a><span class="fu">colnames</span>(df) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell column-screen-inset-shaded fragment">
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "marca_temporal"                                       
+ [2] "direccion_de_correo_electronico"                      
+ [3] "nombre_completo"                                      
+ [4] "documento"                                            
+ [5] "fecha_de_nacimiento"                                  
+ [6] "edad"                                                 
+ [7] "sexo"                                                 
+ [8] "telefono_contacto"                                    
+ [9] "consentimiento_informado_diligenciado"                
+[10] "cuestionario_par_q_diligenciado"                      
+[11] "apto_para_la_evaluacion_practica"                     
+[12] "restriccion_o_condicion_reportada_por_el_participante"
+[13] "fcr"                                                  
+[14] "presion_sis"                                          
+[15] "presion_dia"                                          
+[16] "estatura"                                             
+[17] "masa_corporal"                                        
+[18] "cintura"                                              
+[19] "imc"                                                  
+[20] "masa_grasa"                                           
+[21] "masa_muscular"                                        
+[22] "masa_osea"                                            
+[23] "grasa_visceral"                                       
+[24] "fuerza_md"                                            
+[25] "fuerza_mi"                                            </code></pre>
+</div>
+</div>
+</section>
+<section id="selección-de-columnas" class="slide level2 center">
+<h2>Selección de columnas</h2>
+<p>Seleccionamos la columnas de la 6 a la última.</p>
+<div class="cell column-screen-inset-shaded">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href=""></a>df <span class="ot">=</span> df <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">13</span><span class="sc">:</span><span class="fu">ncol</span>(df)))  </span>
+<span id="cb73-2"><a href=""></a>df </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell column-screen-inset-shaded fragment">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 37 × 15
+   edad  sexo        fcr presion_sis presion_dia estatura masa_corporal cintura
+   &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt;  
+ 1 24.0  Femenino     85         122          90 156.4 cm 60.3 kg       73.4 cm
+ 2 18.0  Masculino    75         125          82 182.0    90.7          89.4   
+ 3 19.0  Masculino    72         113          69 166.0    54.3          70.5   
+ 4 19.0  Masculino    88         108          71 180.5    69.0          73.0   
+ 5 18.0  Femenino     74         110          70 157.5    52.0          67.8   
+ 6 18.0  Femenino     78         105          67 156.6    55.2          70.0   
+ 7 18.0  Masculino   112         137          33 172.3    67.3          79.0   
+ 8 20.0  Masculino    78         118          46 164.5    51.5          68.0   
+ 9 18.0  Masculino    54         124          82 181.0    66.0          73.9   
+10 19.0  Masculino    85         135          64 168.6    70.0          82.0   
+# ℹ 27 more rows
+# ℹ 7 more variables: imc &lt;chr&gt;, masa_grasa &lt;chr&gt;, masa_muscular &lt;chr&gt;,
+#   masa_osea &lt;chr&gt;, grasa_visceral &lt;chr&gt;, fuerza_md &lt;chr&gt;, fuerza_mi &lt;chr&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="un-vistazo-al-df" class="slide level2 center">
+<h2>Un vistazo al <code>df</code></h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href=""></a><span class="fu">glimpse</span>(df)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 37
+Columns: 15
+$ edad           &lt;chr&gt; "24.0", "18.0", "19.0", "19.0", "18.0", "18.0", "18.0",…
+$ sexo           &lt;chr&gt; "Femenino", "Masculino", "Masculino", "Masculino", "Fem…
+$ fcr            &lt;dbl&gt; 85, 75, 72, 88, 74, 78, 112, 78, 54, 85, 77, 74, 68, 83…
+$ presion_sis    &lt;dbl&gt; 122, 125, 113, 108, 110, 105, 137, 118, 124, 135, 108, …
+$ presion_dia    &lt;dbl&gt; 90, 82, 69, 71, 70, 67, 33, 46, 82, 64, 70, 64, 61, 61,…
+$ estatura       &lt;chr&gt; "156.4 cm", "182.0", "166.0", "180.5", "157.5", "156.6"…
+$ masa_corporal  &lt;chr&gt; "60.3 kg", "90.7", "54.3", "69.0", "52.0", "55.2", "67.…
+$ cintura        &lt;chr&gt; "73.4 cm", "89.4", "70.5", "73.0", "67.8", "70.0", "79.…
+$ imc            &lt;chr&gt; "24.7 kg/m^2", "27.4", "19.8", "21.2", "21.0", "22.5", …
+$ masa_grasa     &lt;chr&gt; "32.8 %", "25.2", "15.9", "17.8", "30.6", "27.6", "19.4…
+$ masa_muscular  &lt;chr&gt; "38.4 Kg", "22.9", "43.3", "53.9", "34.2", "38.0", "51.…
+$ masa_osea      &lt;chr&gt; "2.1 kg", "3.4", "2.3", "2.9", "1.9", "2.0", "2.7", "2.…
+$ grasa_visceral &lt;chr&gt; "3.0", "6.0", "1.0", "2.0", "1.0", "1.0", "2.5", "1.0",…
+$ fuerza_md      &lt;chr&gt; "28.0", "32.0", "30.0", "38.0", "24.0", "28.0", "40.0",…
+$ fuerza_mi      &lt;chr&gt; "26.0", "34.0", "28.0", "40.0", "24.0", "22.0", "36.0",…</code></pre>
+</div>
+</div>
+</section>
+<section id="un-vistazo-al-df-ii" class="slide level2 center">
+<h2>Un vistazo al <code>df</code> II</h2>
+<div class="cell column-screen-inset-shaded">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href=""></a><span class="fu">library</span>(skimr)</span>
+<span id="cb77-2"><a href=""></a><span class="fu">skim</span>(df) <span class="sc">|&gt;</span> <span class="fu">yank</span>(<span class="st">"numeric"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb77-3"><a href=""></a> <span class="fu">select</span>(skim_variable,n_missing,p0,p100,mean) <span class="sc">|&gt;</span> </span>
+<span id="cb77-4"><a href=""></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">var=</span>skim_variable,<span class="at">faltan=</span>n_missing)  </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell column-screen-inset-shaded fragment">
+<p><strong>Variable type: numeric</strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">var</th>
+<th style="text-align: right;">faltan</th>
+<th style="text-align: right;">p0</th>
+<th style="text-align: right;">p100</th>
+<th style="text-align: right;">mean</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">fcr</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">54</td>
+<td style="text-align: right;">117</td>
+<td style="text-align: right;">81.95</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">presion_sis</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">93</td>
+<td style="text-align: right;">162</td>
+<td style="text-align: right;">120.81</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">presion_dia</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">102</td>
+<td style="text-align: right;">71.49</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="un-vistazo-al-df-iii" class="slide level2 center">
+<h2>Un vistazo al <code>df</code> III</h2>
+<div class="cell column-screen-inset-shaded">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href=""></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb78-2"><a href=""></a>  <span class="fu">skim</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb78-3"><a href=""></a>  <span class="fu">yank</span>(<span class="st">"character"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb78-4"><a href=""></a>  <span class="fu">select</span>(skim_variable, n_missing, complete_rate, n_unique) <span class="sc">%&gt;%</span> </span>
+<span id="cb78-5"><a href=""></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(</span>
+<span id="cb78-6"><a href=""></a>    <span class="at">var =</span> skim_variable,</span>
+<span id="cb78-7"><a href=""></a>    <span class="at">faltan =</span> n_missing,</span>
+<span id="cb78-8"><a href=""></a>    <span class="at">tasa_comp =</span> complete_rate,</span>
+<span id="cb78-9"><a href=""></a>    <span class="at">categorias =</span> n_unique</span>
+<span id="cb78-10"><a href=""></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell column-screen-inset-shaded fragment">
+<p><strong>Variable type: character</strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">var</th>
+<th style="text-align: right;">faltan</th>
+<th style="text-align: right;">tasa_comp</th>
+<th style="text-align: right;">categorias</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">edad</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sexo</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">estatura</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">35</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">masa_corporal</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">35</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cintura</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">33</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">imc</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">36</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">masa_grasa</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">35</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">masa_muscular</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">35</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">masa_osea</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">23</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">grasa_visceral</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">18</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fuerza_md</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">18</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fuerza_mi</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">17</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="limpieza-de-datos-contaminados" class="slide level2 center">
+<h2>Limpieza de “Datos Contaminados”</h2>
+<p>El primer reto es transformar columnas que R lee como texto (<code>character</code>) debido a entradas como “20 años” o “170 cm”.</p>
+<p>La función <code>parse_number()</code> es mágica: extrae el primer número que encuentra y descarta el texto.</p>
+</section>
+<section id="uso-de-parse_number" class="slide level2 center">
+<h2>Uso de <code>parse_number</code></h2>
+<div class="cell column-screen-inset-shaded">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href=""></a>df_limpio <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb79-2"><a href=""></a>  <span class="fu">mutate</span>(</span>
+<span id="cb79-3"><a href=""></a>    <span class="at">edad =</span> <span class="fu">parse_number</span>(edad),</span>
+<span id="cb79-4"><a href=""></a>    <span class="at">estatura =</span> <span class="fu">parse_number</span>(estatura),</span>
+<span id="cb79-5"><a href=""></a>    <span class="at">masa_corporal =</span> <span class="fu">parse_number</span>(masa_corporal),</span>
+<span id="cb79-6"><a href=""></a><span class="at">cintura =</span> <span class="fu">parse_number</span>(cintura) </span>
+<span id="cb79-7"><a href=""></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell column-screen-inset-shaded fragment">
+
+</div>
+</section>
+<section id="cómo-va-el-data" class="slide level2 center">
+<h2>Cómo va el data ?</h2>
+<div class="cell column-screen-inset-shaded">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href=""></a><span class="fu">library</span>(skimr)</span>
+<span id="cb80-2"><a href=""></a><span class="fu">skim</span>(df_limpio) <span class="sc">|&gt;</span> <span class="fu">yank</span>(<span class="st">"numeric"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb80-3"><a href=""></a> <span class="fu">select</span>(skim_variable,n_missing,p0,p100,mean) <span class="sc">|&gt;</span> </span>
+<span id="cb80-4"><a href=""></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">var=</span>skim_variable,<span class="at">faltan=</span>n_missing)  </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell column-screen-inset-shaded fragment">
+<p><strong>Variable type: numeric</strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">var</th>
+<th style="text-align: right;">faltan</th>
+<th style="text-align: right;">p0</th>
+<th style="text-align: right;">p100</th>
+<th style="text-align: right;">mean</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">edad</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">17.00</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">19.70</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fcr</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">54.00</td>
+<td style="text-align: right;">117</td>
+<td style="text-align: right;">81.95</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">presion_sis</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">93.00</td>
+<td style="text-align: right;">162</td>
+<td style="text-align: right;">120.81</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">presion_dia</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">33.00</td>
+<td style="text-align: right;">102</td>
+<td style="text-align: right;">71.49</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">estatura</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.57</td>
+<td style="text-align: right;">1755</td>
+<td style="text-align: right;">232.95</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">masa_corporal</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.80</td>
+<td style="text-align: right;">97</td>
+<td style="text-align: right;">62.03</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cintura</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">56.40</td>
+<td style="text-align: right;">686</td>
+<td style="text-align: right;">90.89</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!--
+
+
+#### B. Anonimización (Ética de Datos)
+Como docente, debe enseñarles que la privacidad es sagrada. Antes de que ellos procesen el archivo grupal, realizaremos una anonimización irreversible.
+
+```r
+# Eliminamos nombres y documentos, y creamos un ID aleatorio
+set.seed(123) # Para reproducibilidad
+df_final <- df_limpio %>%
+  select(-nombre_completo, -documento, -fecha_nacimiento) %>% 
+  mutate(id_estudiante = sample(100:999, n(), replace = FALSE)) %>%
+  select(id_estudiante, everything())
+```
+
+#### C. Tratamiento de Datos Faltantes (Imputación)
+Para los menores de 18 años donde la báscula de bioimpedancia no arrojó datos de grasa visceral o masa ósea, enseñaremos la técnica de imputación por la mediana o regresión.
+
+```r
+library(mice)
+
+# Imputación simple por la mediana para variables de composición corporal
+df_final <- df_final %>%
+  mutate(across(c(masa_grasa, masa_muscular, masa_osea, grasa_visceral), 
+                ~ifelse(is.na(.), median(., na.rm = TRUE), .)))
+```
+
+---
+
+### 2. Guía para el Informe de Laboratorio: "Análisis Biométrico y Funcional"
+
+Este informe debe ser un documento técnico de alto nivel. Aquí tiene la estructura sugerida:
+
+#### I. Introducción y Justificación Fisiológica
+Los estudiantes deben investigar y profundizar en la naturaleza de las variables medidas:
+* **Frecuencia Cardíaca en Reposo (FCR):** Explicar que una FCR elevada puede estar asociada a un menor volumen sistólico o menor eficiencia cardiaca. ¿Qué implicaciones tiene esto en el riesgo cardiovascular?
+* **Bioimpedancia Eléctrica:** ¿Cómo mide la báscula la grasa visceral y el agua corporal?. Deben explicar el principio de resistencia de los tejidos al paso de una corriente eléctrica leve.
+* **Fuerza Prensil:** Investigar por qué la fuerza de agarre se considera hoy un "biomarcador de envejecimiento" y salud general.
+
+
+
+#### II. Metodología
+* Descripción de los instrumentos (Tensiómetro, Dinamómetro, Báscula de Bioimpedancia).
+* Descripción del proceso de limpieza de datos realizado en R.
+
+#### III. Resultados y Análisis Estadístico
+* **Análisis Descriptivo:** Tablas de frecuencia, medidas de tendencia central y dispersión para IMC, Masa Magra y Masa Grasa.
+* **Visualización de Datos:** * Histogramas de la distribución de la Presión Arterial.
+    * Diagramas de dispersión (Scatter plots) para ver la relación entre Masa Muscular y Fuerza Prensil.
+* **Análisis por Grupo:** Comparar los promedios de Composición Corporal entre hombres y mujeres usando diagramas de caja (boxplots).
+
+#### IV. Discusión y Conclusiones
+* Comparar los resultados del grupo con los valores de referencia internacionales (OMS).
+* **Reflexión sobre el Dato Faltante:** Discutir por qué los menores de 18 años no tenían registros de grasa visceral y qué impacto tuvo la imputación en los promedios finales.
+
+
+
+### Un toque de "Sherlock" para su clase
+Dr. Morales, para que la clase sea inolvidable, plantéeles este dilema: *"Si tenemos un estudiante con mucha masa muscular, su IMC será alto y saldrá clasificado con 'Sobrepeso'. ¿Es el IMC un indicador perfecto? ¿Cómo nos ayudan las otras variables de la báscula a corregir esa interpretación?"*. Esto los obligará a pensar como estadísticos y no solo como digitadores de datos.
+
+¿Le gustaría que preparemos una rúbrica de evaluación específica para este informe de laboratorio?
+
+-->
 
 </section></section>
     </div>

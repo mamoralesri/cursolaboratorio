@@ -147,15 +147,21 @@ colnames(df)
 
 ```{r}
 #| echo: false
-nombres2=c("edad","fcr","presion_sis","presión_dia","estatura","masa_corporal","cintura","imc","masa_grasa","masa_muscular","masa_osea","grasa_vis", "fuerza_md","fuerza_mi")
+nombres2=c("edad","fcr","presion_sis","presion_dia","estatura","masa_corporal","cintura","imc","masa_grasa","masa_muscular","masa_osea","grasa_vis", "fuerza_md","fuerza_mi")
 ```
 
+## Un vistazo a estatura 
 
 ```{r}
 #| echo: false
-
-str(df[,nombres2])
+#| output-location: fragment
+estat_sucio=df$estatura 
+estat_sucio
 ```
+
+
+
+
 
 
 ## Limpieza de "Datos Contaminados" (Uso de Expresiones Regulares)
@@ -180,7 +186,7 @@ Haga lo mismo con las columnas que faltan
 ```{r}
 #| echo: false
 df$cintura<- as.numeric(gsub("[^0-9.]", "", df$cintura))
-df$imc<- as.numeric(gsub("[^0-9.]", "", df$imc))
+df$imcn<- as.numeric(gsub("[^0-9.,]", "", df$imc))
 df$masa_grasa<- as.numeric(gsub("[^0-9.]", "", df$masa_grasa))
 df$masa_muscular<- as.numeric(gsub("[^0-9.]", "", df$masa_muscular))
 df$masa_osea<- as.numeric(gsub("[^0-9.]", "", df$masa_osea)) 
@@ -192,7 +198,240 @@ df$fuerza_mi<- as.numeric(gsub("[^0-9.]", "", df$fuerza_mi))
 
 ```{r}
 #| echo: false
+#| output-location: fragment
 str(df[,nombres2])
+```
+
+## Estatura luego de la limpieza 
+
+```{r}
+#| echo: false
+#| output-location: fragment
+data.frame(EstSucia=estat_sucio, EstLimpia=df$estatura)
+```
+
+## Comas por puntos 
+
+- Primero hay que reemplazar las comas por punto
+
+```{r}
+#| echo: true 
+#| output-location: fragment
+estat_sucio2 <- gsub(",", ".", estat_sucio) 
+data.frame(EstSucia1=estat_sucio, EstSucia2=estat_sucio2)
+```
+
+
+## Ahora si usamos la expresion regular 
+
+```{r}
+#| echo: true 
+#| output-location: fragment
+
+estat_fin <- as.numeric(gsub("[^0-9.]", "", estat_sucio2)) 
+data.frame(EstSucia1=estat_sucio2, EstFinal=estat_fin)
+```
+
+
+## Agregamos `estatura` limpia al data 
+
+```{r}
+#| echo: true 
+#| output-location: fragment
+df$estatura=estat_fin
+```
+
+
+
+
+## Un vistazo a las columnas 
+
+```{r}
+#| echo: false
+#| output-location: fragment
+summary(df[,nombres2])
+```
+
+
+## Identificar filas con datos erróneos
+
+- Quién escribió `estatura=`r min(df$estatura)` ` ? 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+df[df$estatura==min(df$estatura),c("nombre","estatura")] 
+```
+
+
+
+## Corregir  datos erróneos  
+
+- La estatura 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+df$estatura[df$estatura==min(df$estatura)]=157 
+summary(df$estatura) 
+```
+
+
+## Visualizar todas las estaturas
+
+```{r}
+#| echo: true
+#| output-location: fragment
+df$estatura
+```
+
+
+
+
+## Una forma más eficiente para estatura  
+
+::: callout-important
+Al parecer lo que ocurre es que esas personas ingresaron la estatura en metro, entonces una forma de corregir este problema de manera  rápida y automática es multiplicando esos valores por 100.  
+:::
+
+
+```{r}
+#| echo: true
+#| output-location: fragment
+df$estatura[df$estatura<2.2]=df$estatura[df$estatura<2.2]*100  
+summary(df$estatura) 
+```
+
+
+
+
+
+## Un detalle con `imc` 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+
+cbind(df$imc,df$imcn) 
+
+```
+
+
+## Corregimos `imc` 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+
+# 1. Cambiamos la coma por punto (para que R entienda decimales)
+imcn <- gsub(",", ".", df$imc)
+
+cbind(df$imc,imcn) 
+
+```
+
+
+## Corregimos `imc`  II 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+
+# 2. Usamos sub() con una expresión que busca el primer bloque numérico
+# Explicación del patrón:
+# ^[^0-9]* -> Ignora todo al inicio que NO sea un número
+# ([0-9]+\\.?[0-9]*) -> CAPTURA el primer número (con su decimal opcional)
+# .*$       -> Ignora todo lo que venga después (como " kg/m^2")
+imcn <- sub("^[^0-9]*([0-9]+\\.?[0-9]*).*$", "\\1", imcn)
+
+#  3. Finalmente convertimos a numérico
+imcn <- as.numeric(imcn)
+data.frame(df$imc,imcn)
+```
+
+
+## Agregamos `imc` a df 
+
+```{r}
+#| echo: true 
+#| output-location: fragment
+df$imc=imcn 
+```
+
+
+
+
+
+## Inspección rápida de las variables 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+summary(df[,nombres2]) 
+```
+
+## Identificar filas con datos erróneos
+
+- Quién escribió `imc=`r max(df$imc,na.rm=TRUE)` ` ? 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+df[df$imc==max(df$imc,na.rm=TRUE),c("nombre","imc")] 
+```
+
+
+
+
+## Corregir `imc` 
+
+```{r}
+# las comas 
+df$imcn2<- as.numeric(gsub(",", "", df$imc))
+```
+
+
+## Corregir  datos erróneos `imc`  
+
+
+- El imc 
+
+
+```{r}
+#| echo: true
+#| output-location: fragment
+df$imc[df$imc==max(df$imc,na.rm=TRUE)]=25.3 
+summary(df$imc) 
+```
+
+
+
+
+## Reemplazar los ceros por `NA` 
+
+::: callout-important
+Sabemos que los ceros son de los estudiantes menores de edad que el instrumento de medición no entregó el dato, por lo tanto es un dato faltante. Reemplazaremos los ceros por `NA` porque luego haremos imputación de datos faltantes.    
+:::
+
+```{r}
+#| echo: true
+#| output-location: fragment
+
+df$imc[df$imc==0]=NA 
+summary(df$imc)
+df$masa_grasa[df$masa_grasa==0]=NA
+df$masa_muscular[df$masa_muscular==0]=NA
+df$masa_osea[df$masa_osea==0]=NA
+df$grasa_vis[df$grasa_vis==0]=NA
+```
+
+
+## Inspección rápida de las variables 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+summary(df[,nombres2]) 
 ```
 
 
@@ -368,7 +607,224 @@ df_anonimo[is.na(df_anonimo[, v]), v] <- mediana_v
 
 
 
+# Uso de `tydiverse`
 
+
+## Lectura de los datos 
+
+
+```{r} 
+#| echo: true
+library(readxl) #<1> 
+library(tidyverse) # <2>
+df <- read_excel("DatosLab1.xlsx") #<3>
+``` 
+1. Librería para leer archivos de Excel
+2. Librería para limpieza y transformación de datos 
+3. Lectura
+
+## Los nombres de las columnas 
+
+```{r}
+#| echo: true
+colnames(df) 
+```
+
+
+## Cambiar los nombres de las columnas 
+
+Primero se debe instalar y cargar el paquete `janitor` 
+
+```{r}
+#| echo: true
+# install.packages("janitor")
+library(janitor)
+# Aplicar a su data frame
+df = df |> clean_names()
+```
+
+
+## Cambiar los nombres de las columnas  
+
+Si no nos gustan los nombres que coloca R automáticamente, lo hacemos manual
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded 
+
+df = df |> dplyr::rename(
+    fcr = frecuencia_cardiaca_en_reposo_lpm,
+    cintura=perimetro_de_cintura, 
+    presion_sis = presion_arterial_sistolica_mm_hg,
+    presion_dia = presion_arterial_diastolica_mm_hg,
+    masa_muscular = masa_magra_muscular,
+    fuerza_md = fuerza_prensil_mano_derecha,                        fuerza_mi = fuerza_prensil_mano_izquierda
+    )
+colnames(df) 
+```
+
+
+## Selección de columnas 
+Seleccionamos la columnas de la 6 a la última. 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+df = df |> select(c(6,7,13:ncol(df)))  
+df 
+```
+
+
+
+
+## Un vistazo al `df` 
+
+```{r}
+#| echo: true
+glimpse(df)
+```
+
+
+
+## Un vistazo al `df` II 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+#| results: 'asis'
+library(skimr)
+skim(df) |> yank("numeric") |>
+ select(skim_variable,n_missing,p0,p100,mean) |> 
+  dplyr::rename(var=skim_variable,faltan=n_missing)  
+```
+
+## Un vistazo al `df` III 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+#| results: 'asis'
+
+
+df %>% 
+  skim() %>% 
+  yank("character") %>% 
+  select(skim_variable, n_missing, complete_rate, n_unique) %>% 
+  dplyr::rename(
+    var = skim_variable,
+    faltan = n_missing,
+    tasa_comp = complete_rate,
+    categorias = n_unique
+  )
+```
+
+
+## Limpieza de "Datos Contaminados" 
+
+El primer reto es transformar columnas que R lee como texto (`character`) debido a entradas como "20 años" o "170 cm".
+
+La  función `parse_number()` es mágica: extrae el primer número que encuentra y descarta el texto.
+
+## Uso de `parse_number`  
+
+```{r} 
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded 
+
+
+df_limpio <- df %>%
+  mutate(
+    edad = parse_number(edad),
+    estatura = parse_number(estatura),
+    masa_corporal = parse_number(masa_corporal),
+cintura = parse_number(cintura) 
+)
+```
+
+
+## Cómo va el data ?  
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+#| results: 'asis'
+library(skimr)
+skim(df_limpio) |> yank("numeric") |>
+ select(skim_variable,n_missing,p0,p100,mean) |> 
+  dplyr::rename(var=skim_variable,faltan=n_missing)  
+```
+
+
+<!--
+
+
+#### B. Anonimización (Ética de Datos)
+Como docente, debe enseñarles que la privacidad es sagrada. Antes de que ellos procesen el archivo grupal, realizaremos una anonimización irreversible.
+
+```r
+# Eliminamos nombres y documentos, y creamos un ID aleatorio
+set.seed(123) # Para reproducibilidad
+df_final <- df_limpio %>%
+  select(-nombre_completo, -documento, -fecha_nacimiento) %>% 
+  mutate(id_estudiante = sample(100:999, n(), replace = FALSE)) %>%
+  select(id_estudiante, everything())
+```
+
+#### C. Tratamiento de Datos Faltantes (Imputación)
+Para los menores de 18 años donde la báscula de bioimpedancia no arrojó datos de grasa visceral o masa ósea, enseñaremos la técnica de imputación por la mediana o regresión.
+
+```r
+library(mice)
+
+# Imputación simple por la mediana para variables de composición corporal
+df_final <- df_final %>%
+  mutate(across(c(masa_grasa, masa_muscular, masa_osea, grasa_visceral), 
+                ~ifelse(is.na(.), median(., na.rm = TRUE), .)))
+```
+
+---
+
+### 2. Guía para el Informe de Laboratorio: "Análisis Biométrico y Funcional"
+
+Este informe debe ser un documento técnico de alto nivel. Aquí tiene la estructura sugerida:
+
+#### I. Introducción y Justificación Fisiológica
+Los estudiantes deben investigar y profundizar en la naturaleza de las variables medidas:
+* **Frecuencia Cardíaca en Reposo (FCR):** Explicar que una FCR elevada puede estar asociada a un menor volumen sistólico o menor eficiencia cardiaca. ¿Qué implicaciones tiene esto en el riesgo cardiovascular?
+* **Bioimpedancia Eléctrica:** ¿Cómo mide la báscula la grasa visceral y el agua corporal?. Deben explicar el principio de resistencia de los tejidos al paso de una corriente eléctrica leve.
+* **Fuerza Prensil:** Investigar por qué la fuerza de agarre se considera hoy un "biomarcador de envejecimiento" y salud general.
+
+
+
+#### II. Metodología
+* Descripción de los instrumentos (Tensiómetro, Dinamómetro, Báscula de Bioimpedancia).
+* Descripción del proceso de limpieza de datos realizado en R.
+
+#### III. Resultados y Análisis Estadístico
+* **Análisis Descriptivo:** Tablas de frecuencia, medidas de tendencia central y dispersión para IMC, Masa Magra y Masa Grasa.
+* **Visualización de Datos:** * Histogramas de la distribución de la Presión Arterial.
+    * Diagramas de dispersión (Scatter plots) para ver la relación entre Masa Muscular y Fuerza Prensil.
+* **Análisis por Grupo:** Comparar los promedios de Composición Corporal entre hombres y mujeres usando diagramas de caja (boxplots).
+
+#### IV. Discusión y Conclusiones
+* Comparar los resultados del grupo con los valores de referencia internacionales (OMS).
+* **Reflexión sobre el Dato Faltante:** Discutir por qué los menores de 18 años no tenían registros de grasa visceral y qué impacto tuvo la imputación en los promedios finales.
+
+
+
+### Un toque de "Sherlock" para su clase
+Dr. Morales, para que la clase sea inolvidable, plantéeles este dilema: *"Si tenemos un estudiante con mucha masa muscular, su IMC será alto y saldrá clasificado con 'Sobrepeso'. ¿Es el IMC un indicador perfecto? ¿Cómo nos ayudan las otras variables de la báscula a corregir esa interpretación?"*. Esto los obligará a pensar como estadísticos y no solo como digitadores de datos.
+
+¿Le gustaría que preparemos una rúbrica de evaluación específica para este informe de laboratorio?
+
+--> 
 
 
 
