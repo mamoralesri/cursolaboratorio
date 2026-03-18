@@ -1,0 +1,196 @@
+---
+title: "Guia para presentar el informe del laboratorio 1."
+author: "Mario Morales"
+format: pdf
+---
+
+
+# Guía para el Informe de Laboratorio: "Análisis Biométrico y Funcional"
+
+Este informe debe ser un documento técnico de alto nivel. Aquí tiene la estructura sugerida:
+
+##  Introducción y Justificación Fisiológica
+
+Los estudiantes deben investigar y profundizar en la naturaleza de las variables medidas:
+
+* **Frecuencia Cardíaca en Reposo (FCR):** Explicar que una FCR elevada puede estar asociada a un menor volumen sistólico o menor eficiencia cardíaca. ¿Qué implicaciones tiene esto en el riesgo cardiovascular?
+
+* **Bioimpedancia Eléctrica:** ¿Cómo mide la báscula la grasa visceral y el agua corporal?. Deben explicar el principio de resistencia de los tejidos al paso de una corriente eléctrica leve.
+
+* **Fuerza Prensil:** Investigar por qué la fuerza de agarre se considera hoy un "biomarcador de envejecimiento" y salud general.
+
+
+
+##  Metodología
+
+* Descripción de los instrumentos (Tensiómetro, Dinamómetro, Báscula de Bioimpedancia).
+
+* Descripción del proceso de limpieza de datos realizado en R.
+
+### Resultados y Análisis Estadístico
+
+* **Análisis Descriptivo:** Tablas de frecuencia, medidas de tendencia central y dispersión para IMC, Masa Magra y Masa Grasa.
+
+* **Visualización de Datos:** * Histogramas de la distribución de la Presión Arterial.
+
+* Diagramas de dispersión (Scatter plots) para ver la relación entre Masa Muscular y Fuerza Prensil.
+
+* **Análisis por Grupo:** Comparar los promedios de Composición Corporal entre hombres y mujeres usando diagramas de caja (boxplots).
+
+###  Discusión y Conclusiones
+
+* Comparar los resultados del grupo con los valores de referencia internacionales (OMS).
+
+
+## Refinamiento de Datos y Predicción de Valores Faltantes
+
+En clase usamos  medidas de tendencia central (la mediana) para llenar los vacíos de información (como los registros de grasa visceral o IMC faltantes en menores de 18 años).
+
+Ahora se debe aplicar un Modelo de Imputación por Regresión. A continuación se dan las instrucciones para hacerlo. 
+
+
+### Construcción del Modelo Predictivo:
+
+Se deberá  ajustar un modelo de regresión lineal múltiple utilizando el subconjunto de datos que esté completo. 
+
+* Variable Respuesta ($Y$): La variable que presenta el dato faltante (ej. imc o grasa_visceral).
+
+* Variables Predictoras ($X_n$): Variables con alta correlación biológica como estatura, masa_corporal, cintura y fuerza_prensil. 
+
+* Evaluación de la Bondad de Ajuste: Antes de imputar, el grupo debe reportar el Coeficiente de Determinación ($R^2$).  Esto les permitirá discutir qué tan confiable es el modelo para predecir los datos de sus compañeros.
+
+Ejecución de la Imputación: Utilizando la función predict() en R, deberán estimar los valores específicos para aquellos estudiantes que no contaban con la medida original. 
+
+Análisis Crítico: En la sección de Discusión, deberán comparar si los promedios del grupo cambian significativamente al usar este método predictivo en comparación con la mediana simple. 
+
+Sugerencia: 
+
+- En R Base: Pueden usar la función lm() y luego asignar los valores faltantes usando indexación:
+
+```{r}
+#| echo: true
+#| eval: false
+
+df$imcn[is.na(df$imcn)] <- predict(modelo, newdata = ...)
+
+```
+
+- En Tidyverse: Pueden usar el paquete `recipes` o simplemente un `mutate()` combinado con  `if_else(is.na(.))` 
+
+
+
+# Anexo: Guía de Implementación para Imputación por Regresión
+
+Para estimar los valores faltantes (registros con NA), se sugieren tres pasos: 
+
+- Filtrar los datos completos para entrenar el modelo 
+- Ajustar la regresión
+
+- Predecir los vacíos.
+
+
+## Opción A: El Mundo de R Base (Enfoque Procedural) 
+
+Este método es ideal para entender la manipulación directa de vectores e índices.
+
+1. Crear un subset con los datos completos para el modelo
+```{r}
+#| echo: true
+#| eval: false
+
+
+datos_completos <- df[!is.na(df$imcn), ]
+```
+
+2. Ajustar el modelo de regresión lineal múltiple
+
+```{r}
+#| echo: true
+#| eval: false
+
+
+# Ejemplo: IMC en función de estatura, masa corporal y cintura
+modelo_base <- lm(imcn ~ estatura + masa_corporal + cintura, data = datos_completos)
+```
+
+3. Ver el resumen del modelo (R-cuadrado y significancia) 
+
+```{r}
+#| echo: true
+#| eval: false
+
+summary(modelo_base)
+
+```
+
+4. Identificar las filas que tienen `NA` en `imcn` 
+
+```{r}
+#| echo: true
+#| eval: false
+
+filas_faltantes <- is.na(df$imcn)
+
+```
+
+5. Imputar los valores usando la función `predict` 
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Solo se reemplazan los NAs con la estimación del modelo
+df$imcn[filas_faltantes] <- predict(modelo_base, newdata = df[filas_faltantes, ])
+
+```
+
+
+
+
+## Opción B: El Mundo de Tidyverse (Enfoque Funcional)
+
+Este método destaca por su legibilidad y el uso de "tuberías" (%>% o |>) para el flujo de datos.
+
+## Fragmento de código
+
+1. Ajustar el modelo usando el dataframe filtrado internamente
+
+```{r}
+#| echo: true
+#| eval: false
+
+modelo_tidy <- lm(imcn ~ estatura + masa_corporal + cintura, 
+                  data = df %>% filter(!is.na(imcn)))
+
+```
+
+
+
+2. Imputar usando `mutate` e `if_else`
+
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Si es NA, usa la predicción; si no, deja el valor original
+df <- df %>%
+  mutate(imcn = if_else(
+    is.na(imcn), 
+    predict(modelo_tidy, newdata = .), 
+    imcn
+  )) 
+```
+
+
+3. Verificación rápida con `skimr` 
+
+
+```{r}
+#| echo: true
+#| eval: false
+
+# El conteo de 'n_missing' para imcn ahora debe ser 0
+library(skimr)
+df %>% skim(imcn)
+```

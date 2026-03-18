@@ -153,7 +153,7 @@ nombres2=c("edad","fcr","presion_sis","presion_dia","estatura","masa_corporal","
 ## Un vistazo a estatura 
 
 ```{r}
-#| echo: false
+#| echo: true
 #| output-location: fragment
 estat_sucio=df$estatura 
 estat_sucio
@@ -370,6 +370,7 @@ df$imc=imcn
 summary(df[,nombres2]) 
 ```
 
+
 ## Identificar filas con datos erróneos
 
 - Quién escribió `imc=`r max(df$imc,na.rm=TRUE)` ` ? 
@@ -434,6 +435,18 @@ df$grasa_vis[df$grasa_vis==0]=NA
 summary(df[,nombres2]) 
 ```
 
+
+## Ejercicios  
+
+- Identifique a la persona que escribió `cintura=`r max(df$cintura)` ` . 
+
+- Corrija  de acuerdo con el dato real que debe tener el estudiante en su formulario en papel.
+
+- Identifique a la persona que escribió `presion_sis=`r max(df$presion_sis)` ` . 
+
+- Corrija  de acuerdo con el dato real que debe tener el estudiante en su formulario en papel.
+
+- En caso que ese valor esté correcto debe repetir la medición y si persiste se debe remitir al médico.   
 
 ## Anonimización de Datos
 

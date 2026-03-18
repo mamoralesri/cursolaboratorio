@@ -1,0 +1,198 @@
+---
+title: "Limpieza de datos"
+author: "Mario Morales"
+format: pdf
+---
+
+```{r}
+#| echo: false
+# aquí la va ruta de su carpeta de trabajo 
+# la carpeta donde tiene el archivo de datos
+setwd("~/Documents/Cursos/Laboratorio") 
+```
+
+
+
+# Lectura y preparación de los datos
+
+Versión para los estudiantes. 
+
+## Objetivo general  
+
+Enfrentar al estudiante al "dato sucio" y real. 
+
+
+## Objetivo específico  
+
+Realizar la preparación de los datos tomados en el laboratorio para que queden listos para la realización del informe que deberán presentar los estudiantes. La preparación incluye: 
+
+- Lectura
+- Limpieza
+- Imputación
+- Anonimización 
+
+
+
+
+
+
+# Lectura, Limpieza e Imputación en R
+
+## Lectura 
+
+Para esta tarea usaremos el sistema R base. 
+
+```{r} 
+#| echo: true
+library(readxl) #<1> 
+df <- read_excel("DatosLab1.xlsx") #<2>
+df <- as.data.frame(df) #<3>
+``` 
+1. Librería para leer archivos de Excel
+2. Lectura 
+3. Convertimos a `data.frame` puro de R Base para evitar el formato tibble 
+
+## Inspección visual de los datos 
+
+```{r} 
+#| echo: true
+head(df)
+```
+
+
+## Inspección visual de los datos: Columnas 6 hasta el final 
+
+```{r} 
+#| echo: true
+head(df[,6:ncol(df)])
+```
+
+
+## Inspección visual de los datos `str` 
+
+
+```{r} 
+#| echo: true
+str(df[,6:ncol(df)]) 
+```
+
+
+## Renombrar columnas 
+
+En el Formato de registro de variables, hay nombres largos como `Frecuencia cardíaca en reposo`. En R base es una buena práctica:
+
+- Evitar espacios: Usar guiones bajos (_).
+- Evitar tildes y eñes: Para prevenir problemas de codificación (encoding).
+- Minúsculas: R es sensible a mayúsculas (case-sensitive), y escribir todo en minúsculas evita errores comunes de digitación.
+
+## Recuperar los nombres actuales 
+
+
+```{r} 
+#| echo: true
+colnames(df)
+```
+
+
+## Asignar nuevos nombres 
+
+Creamos un vector con los nuevos nombres
+
+```{r} 
+#| echo: true
+nombres=c("marca_temp","email","nombre","documento","f_nac", "edad","sexo","tel", "consentimiento", "par_q","apto","restriccion","fcr","presion_sis","presion_dia","estatura","masa_corporal","cintura","imc","masa_grasa","masa_muscular","masa_osea","grasa_vis", "fuerza_md","fuerza_mi")
+```
+
+
+## Asignar nuevos nombres 
+
+```{r} 
+#| echo: true
+colnames(df)=nombres
+```
+
+
+## Imprimir los  nuevos nombres 
+
+```{r} 
+#| echo: true
+colnames(df)
+```
+
+
+
+## Tipos de datos en las columnas 
+
+```{r}
+#| echo: false
+nombres2=c("edad","fcr","presion_sis","presion_dia","estatura","masa_corporal","cintura","imc","masa_grasa","masa_muscular","masa_osea","grasa_vis", "fuerza_md","fuerza_mi")
+```
+
+## Un vistazo a estatura 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+estat_sucio=df$estatura 
+estat_sucio
+```
+
+
+
+
+
+
+## Limpieza de "Datos Contaminados" (Uso de Expresiones Regulares)
+
+Para limpiar el "60.3 kg" usaremos `gsub` para eliminar texto y `as.numeric` para transformar.
+
+```{r} 
+#| echo: true
+# Limpieza de la columna Edad
+# gsub("[^0-9.]", "", x) elimina todo lo que NO sea número o punto
+df$edad <- gsub("[^0-9.]", "", df$edad)
+df$edad <- as.numeric(df$edad)
+# Aplicamos lo mismo a estatura y masa corporal
+df$estatura <- as.numeric(gsub("[^0-9.]", "", df$estatura))
+df$masa_corporal <- as.numeric(gsub("[^0-9.]", "", df$masa_corporal))
+```
+
+## Continue usted
+
+Haga lo mismo con las columnas que faltan 
+
+```{r}
+#| echo: false
+df$cintura<- as.numeric(gsub("[^0-9.]", "", df$cintura))
+df$imcn<- as.numeric(gsub("[^0-9.,]", "", df$imc))
+df$masa_grasa<- as.numeric(gsub("[^0-9.]", "", df$masa_grasa))
+df$masa_muscular<- as.numeric(gsub("[^0-9.]", "", df$masa_muscular))
+df$masa_osea<- as.numeric(gsub("[^0-9.]", "", df$masa_osea)) 
+df$grasa_vis<- as.numeric(gsub("[^0-9.]", "", df$grasa_vis))
+df$fuerza_md<- as.numeric(gsub("[^0-9.]", "", df$fuerza_md))
+df$fuerza_mi<- as.numeric(gsub("[^0-9.]", "", df$fuerza_mi))
+```
+
+
+```{r}
+#| echo: false
+#| output-location: fragment
+str(df[,nombres2])
+```
+
+
+
+```{r}
+#| echo: false
+# 2. Usamos sub() con una expresión que busca el primer bloque numérico
+# Explicación del patrón:
+# ^[^0-9]* -> Ignora todo al inicio que NO sea un número
+# ([0-9]+\\.?[0-9]*) -> CAPTURA el primer número (con su decimal opcional)
+# .*$       -> Ignora todo lo que venga después (como " kg/m^2")
+#imcn <- sub("^[^0-9]*([0-9]+\\.?[0-9]*).*$", "\\1", imcn)
+
+#  3. Finalmente convertimos a numérico
+#imcn <- as.numeric(imcn)
+#data.frame(df$imc,imcn)
+```
+

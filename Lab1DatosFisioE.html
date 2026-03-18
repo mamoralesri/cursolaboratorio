@@ -528,6 +528,13 @@
 <section id="un-vistazo-a-estatura" class="slide level2 center">
 <h2>Un vistazo a estatura</h2>
 <div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>estat_sucio<span class="ot">=</span>df<span class="sc">$</span>estatura </span>
+<span id="cb13-2"><a href=""></a>estat_sucio</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell fragment">
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "156.4 cm" "182.0"    "166.0"    "180.5"    "157.5"    "156.6"   
  [7] "172.3"    "164.5"    "181.0"    "168.6"    "177.0"    "163,2"   
@@ -545,13 +552,13 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a><span class="co"># Limpieza de la columna Edad</span></span>
-<span id="cb14-2"><a href=""></a><span class="co"># gsub("[^0-9.]", "", x) elimina todo lo que NO sea número o punto</span></span>
-<span id="cb14-3"><a href=""></a>df<span class="sc">$</span>edad <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"[^0-9.]"</span>, <span class="st">""</span>, df<span class="sc">$</span>edad)</span>
-<span id="cb14-4"><a href=""></a>df<span class="sc">$</span>edad <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(df<span class="sc">$</span>edad)</span>
-<span id="cb14-5"><a href=""></a><span class="co"># Aplicamos lo mismo a estatura y masa corporal</span></span>
-<span id="cb14-6"><a href=""></a>df<span class="sc">$</span>estatura <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">"[^0-9.]"</span>, <span class="st">""</span>, df<span class="sc">$</span>estatura))</span>
-<span id="cb14-7"><a href=""></a>df<span class="sc">$</span>masa_corporal <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">"[^0-9.]"</span>, <span class="st">""</span>, df<span class="sc">$</span>masa_corporal))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="co"># Limpieza de la columna Edad</span></span>
+<span id="cb15-2"><a href=""></a><span class="co"># gsub("[^0-9.]", "", x) elimina todo lo que NO sea número o punto</span></span>
+<span id="cb15-3"><a href=""></a>df<span class="sc">$</span>edad <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"[^0-9.]"</span>, <span class="st">""</span>, df<span class="sc">$</span>edad)</span>
+<span id="cb15-4"><a href=""></a>df<span class="sc">$</span>edad <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(df<span class="sc">$</span>edad)</span>
+<span id="cb15-5"><a href=""></a><span class="co"># Aplicamos lo mismo a estatura y masa corporal</span></span>
+<span id="cb15-6"><a href=""></a>df<span class="sc">$</span>estatura <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">"[^0-9.]"</span>, <span class="st">""</span>, df<span class="sc">$</span>estatura))</span>
+<span id="cb15-7"><a href=""></a>df<span class="sc">$</span>masa_corporal <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">"[^0-9.]"</span>, <span class="st">""</span>, df<span class="sc">$</span>masa_corporal))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -631,8 +638,8 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>estat_sucio2 <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">"."</span>, estat_sucio) </span>
-<span id="cb17-2"><a href=""></a><span class="fu">data.frame</span>(<span class="at">EstSucia1=</span>estat_sucio, <span class="at">EstSucia2=</span>estat_sucio2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a>estat_sucio2 <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">"."</span>, estat_sucio) </span>
+<span id="cb18-2"><a href=""></a><span class="fu">data.frame</span>(<span class="at">EstSucia1=</span>estat_sucio, <span class="at">EstSucia2=</span>estat_sucio2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell fragment">
@@ -683,8 +690,8 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>estat_fin <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">"[^0-9.]"</span>, <span class="st">""</span>, estat_sucio2)) </span>
-<span id="cb19-2"><a href=""></a><span class="fu">data.frame</span>(<span class="at">EstSucia1=</span>estat_sucio2, <span class="at">EstFinal=</span>estat_fin)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a>estat_fin <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">"[^0-9.]"</span>, <span class="st">""</span>, estat_sucio2)) </span>
+<span id="cb20-2"><a href=""></a><span class="fu">data.frame</span>(<span class="at">EstSucia1=</span>estat_sucio2, <span class="at">EstFinal=</span>estat_fin)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell fragment">
@@ -735,7 +742,7 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>df<span class="sc">$</span>estatura<span class="ot">=</span>estat_fin</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a>df<span class="sc">$</span>estatura<span class="ot">=</span>estat_fin</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell fragment">
@@ -789,7 +796,7 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>df[df<span class="sc">$</span>estatura<span class="sc">==</span><span class="fu">min</span>(df<span class="sc">$</span>estatura),<span class="fu">c</span>(<span class="st">"nombre"</span>,<span class="st">"estatura"</span>)] </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a>df[df<span class="sc">$</span>estatura<span class="sc">==</span><span class="fu">min</span>(df<span class="sc">$</span>estatura),<span class="fu">c</span>(<span class="st">"nombre"</span>,<span class="st">"estatura"</span>)] </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell fragment">
@@ -807,8 +814,8 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>df<span class="sc">$</span>estatura[df<span class="sc">$</span>estatura<span class="sc">==</span><span class="fu">min</span>(df<span class="sc">$</span>estatura)]<span class="ot">=</span><span class="dv">157</span> </span>
-<span id="cb25-2"><a href=""></a><span class="fu">summary</span>(df<span class="sc">$</span>estatura) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a>df<span class="sc">$</span>estatura[df<span class="sc">$</span>estatura<span class="sc">==</span><span class="fu">min</span>(df<span class="sc">$</span>estatura)]<span class="ot">=</span><span class="dv">157</span> </span>
+<span id="cb26-2"><a href=""></a><span class="fu">summary</span>(df<span class="sc">$</span>estatura) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell fragment">
@@ -823,7 +830,7 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a>df<span class="sc">$</span>estatura</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a>df<span class="sc">$</span>estatura</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell fragment">
@@ -853,8 +860,8 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>df<span class="sc">$</span>estatura[df<span class="sc">$</span>estatura<span class="sc">&lt;</span><span class="fl">2.2</span>]<span class="ot">=</span>df<span class="sc">$</span>estatura[df<span class="sc">$</span>estatura<span class="sc">&lt;</span><span class="fl">2.2</span>]<span class="sc">*</span><span class="dv">100</span>  </span>
-<span id="cb29-2"><a href=""></a><span class="fu">summary</span>(df<span class="sc">$</span>estatura) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a>df<span class="sc">$</span>estatura[df<span class="sc">$</span>estatura<span class="sc">&lt;</span><span class="fl">2.2</span>]<span class="ot">=</span>df<span class="sc">$</span>estatura[df<span class="sc">$</span>estatura<span class="sc">&lt;</span><span class="fl">2.2</span>]<span class="sc">*</span><span class="dv">100</span>  </span>
+<span id="cb30-2"><a href=""></a><span class="fu">summary</span>(df<span class="sc">$</span>estatura) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell fragment">
@@ -869,7 +876,7 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a><span class="fu">cbind</span>(df<span class="sc">$</span>imc,df<span class="sc">$</span>imcn) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a><span class="fu">cbind</span>(df<span class="sc">$</span>imc,df<span class="sc">$</span>imcn) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell fragment">
@@ -920,10 +927,10 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a><span class="co"># 1. Cambiamos la coma por punto (para que R entienda decimales)</span></span>
-<span id="cb33-2"><a href=""></a>imcn <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">"."</span>, df<span class="sc">$</span>imc)</span>
-<span id="cb33-3"><a href=""></a></span>
-<span id="cb33-4"><a href=""></a><span class="fu">cbind</span>(df<span class="sc">$</span>imc,imcn) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a><span class="co"># 1. Cambiamos la coma por punto (para que R entienda decimales)</span></span>
+<span id="cb34-2"><a href=""></a>imcn <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">"."</span>, df<span class="sc">$</span>imc)</span>
+<span id="cb34-3"><a href=""></a></span>
+<span id="cb34-4"><a href=""></a><span class="fu">cbind</span>(df<span class="sc">$</span>imc,imcn) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell fragment">
@@ -974,16 +981,16 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href=""></a><span class="co"># 2. Usamos sub() con una expresión que busca el primer bloque numérico</span></span>
-<span id="cb35-2"><a href=""></a><span class="co"># Explicación del patrón:</span></span>
-<span id="cb35-3"><a href=""></a><span class="co"># ^[^0-9]* -&gt; Ignora todo al inicio que NO sea un número</span></span>
-<span id="cb35-4"><a href=""></a><span class="co"># ([0-9]+\\.?[0-9]*) -&gt; CAPTURA el primer número (con su decimal opcional)</span></span>
-<span id="cb35-5"><a href=""></a><span class="co"># .*$       -&gt; Ignora todo lo que venga después (como " kg/m^2")</span></span>
-<span id="cb35-6"><a href=""></a>imcn <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">"^[^0-9]*([0-9]+</span><span class="sc">\\</span><span class="st">.?[0-9]*).*$"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">1"</span>, imcn)</span>
-<span id="cb35-7"><a href=""></a></span>
-<span id="cb35-8"><a href=""></a><span class="co">#  3. Finalmente convertimos a numérico</span></span>
-<span id="cb35-9"><a href=""></a>imcn <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(imcn)</span>
-<span id="cb35-10"><a href=""></a><span class="fu">data.frame</span>(df<span class="sc">$</span>imc,imcn)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a><span class="co"># 2. Usamos sub() con una expresión que busca el primer bloque numérico</span></span>
+<span id="cb36-2"><a href=""></a><span class="co"># Explicación del patrón:</span></span>
+<span id="cb36-3"><a href=""></a><span class="co"># ^[^0-9]* -&gt; Ignora todo al inicio que NO sea un número</span></span>
+<span id="cb36-4"><a href=""></a><span class="co"># ([0-9]+\\.?[0-9]*) -&gt; CAPTURA el primer número (con su decimal opcional)</span></span>
+<span id="cb36-5"><a href=""></a><span class="co"># .*$       -&gt; Ignora todo lo que venga después (como " kg/m^2")</span></span>
+<span id="cb36-6"><a href=""></a>imcn <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">"^[^0-9]*([0-9]+</span><span class="sc">\\</span><span class="st">.?[0-9]*).*$"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">1"</span>, imcn)</span>
+<span id="cb36-7"><a href=""></a></span>
+<span id="cb36-8"><a href=""></a><span class="co">#  3. Finalmente convertimos a numérico</span></span>
+<span id="cb36-9"><a href=""></a>imcn <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(imcn)</span>
+<span id="cb36-10"><a href=""></a><span class="fu">data.frame</span>(df<span class="sc">$</span>imc,imcn)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell fragment">
@@ -1034,7 +1041,7 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a>df<span class="sc">$</span>imc<span class="ot">=</span>imcn </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a>df<span class="sc">$</span>imc<span class="ot">=</span>imcn </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell fragment">
@@ -1046,7 +1053,7 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a><span class="fu">summary</span>(df[,nombres2]) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a><span class="fu">summary</span>(df[,nombres2]) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell fragment">
@@ -1094,7 +1101,7 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href=""></a>df[df<span class="sc">$</span>imc<span class="sc">==</span><span class="fu">max</span>(df<span class="sc">$</span>imc,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="fu">c</span>(<span class="st">"nombre"</span>,<span class="st">"imc"</span>)] </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href=""></a>df[df<span class="sc">$</span>imc<span class="sc">==</span><span class="fu">max</span>(df<span class="sc">$</span>imc,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="fu">c</span>(<span class="st">"nombre"</span>,<span class="st">"imc"</span>)] </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell fragment">
@@ -1119,8 +1126,8 @@ NA.3                   &lt;NA&gt;    NA
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a>df<span class="sc">$</span>imc[df<span class="sc">$</span>imc<span class="sc">==</span><span class="fu">max</span>(df<span class="sc">$</span>imc,<span class="at">na.rm=</span><span class="cn">TRUE</span>)]<span class="ot">=</span><span class="fl">25.3</span> </span>
-<span id="cb42-2"><a href=""></a><span class="fu">summary</span>(df<span class="sc">$</span>imc) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href=""></a>df<span class="sc">$</span>imc[df<span class="sc">$</span>imc<span class="sc">==</span><span class="fu">max</span>(df<span class="sc">$</span>imc,<span class="at">na.rm=</span><span class="cn">TRUE</span>)]<span class="ot">=</span><span class="fl">25.3</span> </span>
+<span id="cb43-2"><a href=""></a><span class="fu">summary</span>(df<span class="sc">$</span>imc) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell fragment">
@@ -1148,8 +1155,8 @@ NA.3                   &lt;NA&gt;    NA
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href=""></a>df<span class="sc">$</span>imc[df<span class="sc">$</span>imc<span class="sc">==</span><span class="dv">0</span>]<span class="ot">=</span><span class="cn">NA</span> </span>
-<span id="cb44-2"><a href=""></a><span class="fu">summary</span>(df<span class="sc">$</span>imc)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href=""></a>df<span class="sc">$</span>imc[df<span class="sc">$</span>imc<span class="sc">==</span><span class="dv">0</span>]<span class="ot">=</span><span class="cn">NA</span> </span>
+<span id="cb45-2"><a href=""></a><span class="fu">summary</span>(df<span class="sc">$</span>imc)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell fragment">
@@ -1159,10 +1166,10 @@ NA.3                   &lt;NA&gt;    NA
 </div>
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href=""></a>df<span class="sc">$</span>masa_grasa[df<span class="sc">$</span>masa_grasa<span class="sc">==</span><span class="dv">0</span>]<span class="ot">=</span><span class="cn">NA</span></span>
-<span id="cb46-2"><a href=""></a>df<span class="sc">$</span>masa_muscular[df<span class="sc">$</span>masa_muscular<span class="sc">==</span><span class="dv">0</span>]<span class="ot">=</span><span class="cn">NA</span></span>
-<span id="cb46-3"><a href=""></a>df<span class="sc">$</span>masa_osea[df<span class="sc">$</span>masa_osea<span class="sc">==</span><span class="dv">0</span>]<span class="ot">=</span><span class="cn">NA</span></span>
-<span id="cb46-4"><a href=""></a>df<span class="sc">$</span>grasa_vis[df<span class="sc">$</span>grasa_vis<span class="sc">==</span><span class="dv">0</span>]<span class="ot">=</span><span class="cn">NA</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href=""></a>df<span class="sc">$</span>masa_grasa[df<span class="sc">$</span>masa_grasa<span class="sc">==</span><span class="dv">0</span>]<span class="ot">=</span><span class="cn">NA</span></span>
+<span id="cb47-2"><a href=""></a>df<span class="sc">$</span>masa_muscular[df<span class="sc">$</span>masa_muscular<span class="sc">==</span><span class="dv">0</span>]<span class="ot">=</span><span class="cn">NA</span></span>
+<span id="cb47-3"><a href=""></a>df<span class="sc">$</span>masa_osea[df<span class="sc">$</span>masa_osea<span class="sc">==</span><span class="dv">0</span>]<span class="ot">=</span><span class="cn">NA</span></span>
+<span id="cb47-4"><a href=""></a>df<span class="sc">$</span>grasa_vis[df<span class="sc">$</span>grasa_vis<span class="sc">==</span><span class="dv">0</span>]<span class="ot">=</span><span class="cn">NA</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -1171,7 +1178,7 @@ NA.3                   &lt;NA&gt;    NA
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href=""></a><span class="fu">summary</span>(df[,nombres2]) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href=""></a><span class="fu">summary</span>(df[,nombres2]) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell fragment">
@@ -1211,18 +1218,28 @@ NA.3                   &lt;NA&gt;    NA
 </div>
 </div>
 </section>
+<section id="ejercicios" class="slide level2 center">
+<h2>Ejercicios</h2>
+<ul>
+<li><p>Identifique a la persona que escribió <code>cintura=686</code> .</p></li>
+<li><p>Corrija de acuerdo con el dato real que debe tener el estudiante en su formulario en papel.</p></li>
+<li><p>Identifique a la persona que escribió <code>presion_sis=162</code> .</p></li>
+<li><p>Corrija de acuerdo con el dato real que debe tener el estudiante en su formulario en papel.</p></li>
+<li><p>En caso que ese valor esté correcto debe repetir la medición y si persiste se debe remitir al médico.</p></li>
+</ul>
+</section>
 <section id="anonimización-de-datos" class="slide level2 center">
 <h2>Anonimización de Datos</h2>
 <p>Manipularemos las columnas por índice o nombre y a generar identificadores únicos.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href=""></a><span class="co"># 1. Identificar columnas sensibles por nombre</span></span>
-<span id="cb49-2"><a href=""></a>columnas_sensibles <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"marca_temp"</span>, <span class="st">"email"</span>, <span class="st">"nombre"</span>,<span class="st">"documento"</span>,<span class="st">"f_nac"</span>, <span class="st">"sexo"</span>, <span class="st">"tel"</span>)   </span>
-<span id="cb49-3"><a href=""></a></span>
-<span id="cb49-4"><a href=""></a><span class="co"># 2. Crear un ID aleatorio único para cada fila</span></span>
-<span id="cb49-5"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb49-6"><a href=""></a>df<span class="sc">$</span>id_estudiante <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1000</span><span class="sc">:</span><span class="dv">9999</span>, <span class="fu">nrow</span>(df), <span class="at">replace =</span> <span class="cn">FALSE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href=""></a><span class="co"># 1. Identificar columnas sensibles por nombre</span></span>
+<span id="cb50-2"><a href=""></a>columnas_sensibles <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"marca_temp"</span>, <span class="st">"email"</span>, <span class="st">"nombre"</span>,<span class="st">"documento"</span>,<span class="st">"f_nac"</span>, <span class="st">"sexo"</span>, <span class="st">"tel"</span>)   </span>
+<span id="cb50-3"><a href=""></a></span>
+<span id="cb50-4"><a href=""></a><span class="co"># 2. Crear un ID aleatorio único para cada fila</span></span>
+<span id="cb50-5"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb50-6"><a href=""></a>df<span class="sc">$</span>id_estudiante <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1000</span><span class="sc">:</span><span class="dv">9999</span>, <span class="fu">nrow</span>(df), <span class="at">replace =</span> <span class="cn">FALSE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -1232,12 +1249,12 @@ NA.3                   &lt;NA&gt;    NA
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href=""></a><span class="co"># 3. Crear el nuevo dataframe omitiendo las sensibles</span></span>
-<span id="cb50-2"><a href=""></a><span class="co"># Usamos la indexación negativa o selección por nombre</span></span>
-<span id="cb50-3"><a href=""></a>df_anonimo <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, <span class="at">select=</span> <span class="sc">!</span>(<span class="fu">names</span>(df) <span class="sc">%in%</span> columnas_sensibles)) </span>
-<span id="cb50-4"><a href=""></a></span>
-<span id="cb50-5"><a href=""></a><span class="co"># 4. Reordenar para que el ID sea la primera columna</span></span>
-<span id="cb50-6"><a href=""></a>df_anonimo <span class="ot">&lt;-</span> df_anonimo[, <span class="fu">c</span>(<span class="fu">ncol</span>(df_anonimo), <span class="dv">1</span><span class="sc">:</span>(<span class="fu">ncol</span>(df_anonimo)<span class="sc">-</span><span class="dv">1</span>))]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href=""></a><span class="co"># 3. Crear el nuevo dataframe omitiendo las sensibles</span></span>
+<span id="cb51-2"><a href=""></a><span class="co"># Usamos la indexación negativa o selección por nombre</span></span>
+<span id="cb51-3"><a href=""></a>df_anonimo <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, <span class="at">select=</span> <span class="sc">!</span>(<span class="fu">names</span>(df) <span class="sc">%in%</span> columnas_sensibles)) </span>
+<span id="cb51-4"><a href=""></a></span>
+<span id="cb51-5"><a href=""></a><span class="co"># 4. Reordenar para que el ID sea la primera columna</span></span>
+<span id="cb51-6"><a href=""></a>df_anonimo <span class="ot">&lt;-</span> df_anonimo[, <span class="fu">c</span>(<span class="fu">ncol</span>(df_anonimo), <span class="dv">1</span><span class="sc">:</span>(<span class="fu">ncol</span>(df_anonimo)<span class="sc">-</span><span class="dv">1</span>))]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -1246,7 +1263,7 @@ NA.3                   &lt;NA&gt;    NA
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href=""></a><span class="fu">colnames</span>(df_anonimo)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href=""></a><span class="fu">colnames</span>(df_anonimo)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "id_estudiante"  "edad"           "consentimiento" "par_q"         
@@ -1264,8 +1281,8 @@ NA.3                   &lt;NA&gt;    NA
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href=""></a><span class="co"># Creamos un dataframe aparte que SOLO tenga la llave y los nombres</span></span>
-<span id="cb53-2"><a href=""></a>df_llave_maestra <span class="ot">&lt;-</span> df[, <span class="fu">c</span>(<span class="st">"id_estudiante"</span>,<span class="st">"marca_temp"</span>, <span class="st">"email"</span>, <span class="st">"nombre"</span>,<span class="st">"documento"</span>,<span class="st">"f_nac"</span>, <span class="st">"sexo"</span>, <span class="st">"tel"</span>)]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href=""></a><span class="co"># Creamos un dataframe aparte que SOLO tenga la llave y los nombres</span></span>
+<span id="cb54-2"><a href=""></a>df_llave_maestra <span class="ot">&lt;-</span> df[, <span class="fu">c</span>(<span class="st">"id_estudiante"</span>,<span class="st">"marca_temp"</span>, <span class="st">"email"</span>, <span class="st">"nombre"</span>,<span class="st">"documento"</span>,<span class="st">"f_nac"</span>, <span class="st">"sexo"</span>, <span class="st">"tel"</span>)]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -1275,8 +1292,8 @@ NA.3                   &lt;NA&gt;    NA
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href=""></a><span class="co"># Desordenamos las filas aleatoriamente</span></span>
-<span id="cb54-2"><a href=""></a>df_anonimo_desordenado <span class="ot">&lt;-</span> df_anonimo[<span class="fu">sample</span>(<span class="fu">nrow</span>(df_anonimo)), ]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href=""></a><span class="co"># Desordenamos las filas aleatoriamente</span></span>
+<span id="cb55-2"><a href=""></a>df_anonimo_desordenado <span class="ot">&lt;-</span> df_anonimo[<span class="fu">sample</span>(<span class="fu">nrow</span>(df_anonimo)), ]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -1286,10 +1303,10 @@ NA.3                   &lt;NA&gt;    NA
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href=""></a><span class="co"># Unimos los nombres de vuelta al archivo desordenado usando la llave</span></span>
-<span id="cb55-2"><a href=""></a>df_recuperado <span class="ot">&lt;-</span> <span class="fu">merge</span>(<span class="at">x =</span> df_anonimo_desordenado, </span>
-<span id="cb55-3"><a href=""></a>                       <span class="at">y =</span> df_llave_maestra, </span>
-<span id="cb55-4"><a href=""></a>                       <span class="at">by =</span> <span class="st">"id_estudiante"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href=""></a><span class="co"># Unimos los nombres de vuelta al archivo desordenado usando la llave</span></span>
+<span id="cb56-2"><a href=""></a>df_recuperado <span class="ot">&lt;-</span> <span class="fu">merge</span>(<span class="at">x =</span> df_anonimo_desordenado, </span>
+<span id="cb56-3"><a href=""></a>                       <span class="at">y =</span> df_llave_maestra, </span>
+<span id="cb56-4"><a href=""></a>                       <span class="at">by =</span> <span class="st">"id_estudiante"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -1315,16 +1332,16 @@ NA.3                   &lt;NA&gt;    NA
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href=""></a><span class="co"># Retorna TRUE si hay al menos un dato faltante en cualquier parte</span></span>
-<span id="cb56-2"><a href=""></a><span class="fu">any</span>(<span class="fu">is.na</span>(df_anonimo))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href=""></a><span class="co"># Retorna TRUE si hay al menos un dato faltante en cualquier parte</span></span>
+<span id="cb57-2"><a href=""></a><span class="fu">any</span>(<span class="fu">is.na</span>(df_anonimo))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href=""></a><span class="co"># Cuenta el total de datos faltantes en toda la matriz</span></span>
-<span id="cb58-2"><a href=""></a><span class="fu">sum</span>(<span class="fu">is.na</span>(df_anonimo))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href=""></a><span class="co"># Cuenta el total de datos faltantes en toda la matriz</span></span>
+<span id="cb59-2"><a href=""></a><span class="fu">sum</span>(<span class="fu">is.na</span>(df_anonimo))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 36</code></pre>
@@ -1338,9 +1355,9 @@ NA.3                   &lt;NA&gt;    NA
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href=""></a><span class="co"># Retorna el número de NAs por cada columna</span></span>
-<span id="cb60-2"><a href=""></a>conteo_nas <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">is.na</span>(df_anonimo))</span>
-<span id="cb60-3"><a href=""></a><span class="fu">print</span>(conteo_nas)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href=""></a><span class="co"># Retorna el número de NAs por cada columna</span></span>
+<span id="cb61-2"><a href=""></a>conteo_nas <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">is.na</span>(df_anonimo))</span>
+<span id="cb61-3"><a href=""></a><span class="fu">print</span>(conteo_nas)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code> id_estudiante           edad consentimiento          par_q           apto 
@@ -1356,9 +1373,9 @@ NA.3                   &lt;NA&gt;    NA
 </div>
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href=""></a><span class="co"># Para verlo como porcentaje (útil para decidir si imputar o descartar)</span></span>
-<span id="cb62-2"><a href=""></a>porcentaje_nas <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">is.na</span>(df_anonimo)) <span class="sc">/</span> <span class="fu">nrow</span>(df_anonimo) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb62-3"><a href=""></a><span class="fu">print</span>(porcentaje_nas)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href=""></a><span class="co"># Para verlo como porcentaje (útil para decidir si imputar o descartar)</span></span>
+<span id="cb63-2"><a href=""></a>porcentaje_nas <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">is.na</span>(df_anonimo)) <span class="sc">/</span> <span class="fu">nrow</span>(df_anonimo) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb63-3"><a href=""></a><span class="fu">print</span>(porcentaje_nas)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code> id_estudiante           edad consentimiento          par_q           apto 
@@ -1380,12 +1397,12 @@ NA.3                   &lt;NA&gt;    NA
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href=""></a>cual_na<span class="ot">=</span><span class="cf">function</span>(df){</span>
-<span id="cb64-2"><a href=""></a>  cual<span class="ot">=</span><span class="fu">apply</span>(<span class="fu">apply</span>(df,<span class="dv">2</span>,is.na),<span class="dv">2</span>,any)</span>
-<span id="cb64-3"><a href=""></a>  <span class="fu">colnames</span>(df)[cual] </span>
-<span id="cb64-4"><a href=""></a>} </span>
-<span id="cb64-5"><a href=""></a>vars_na<span class="ot">=</span><span class="fu">cual_na</span>(df_anonimo)</span>
-<span id="cb64-6"><a href=""></a>vars_na</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href=""></a>cual_na<span class="ot">=</span><span class="cf">function</span>(df){</span>
+<span id="cb65-2"><a href=""></a>  cual<span class="ot">=</span><span class="fu">apply</span>(<span class="fu">apply</span>(df,<span class="dv">2</span>,is.na),<span class="dv">2</span>,any)</span>
+<span id="cb65-3"><a href=""></a>  <span class="fu">colnames</span>(df)[cual] </span>
+<span id="cb65-4"><a href=""></a>} </span>
+<span id="cb65-5"><a href=""></a>vars_na<span class="ot">=</span><span class="fu">cual_na</span>(df_anonimo)</span>
+<span id="cb65-6"><a href=""></a>vars_na</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "imc"           "masa_grasa"    "masa_muscular" "masa_osea"    
@@ -1398,8 +1415,8 @@ NA.3                   &lt;NA&gt;    NA
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href=""></a>cols<span class="ot">=</span><span class="fu">cual_na</span>(df_anonimo)</span>
-<span id="cb66-2"><a href=""></a><span class="fu">apply</span>(<span class="fu">apply</span>(df[,cols],<span class="dv">2</span>,is.na),<span class="dv">2</span>,sum)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href=""></a>cols<span class="ot">=</span><span class="fu">cual_na</span>(df_anonimo)</span>
+<span id="cb67-2"><a href=""></a><span class="fu">apply</span>(<span class="fu">apply</span>(df[,cols],<span class="dv">2</span>,is.na),<span class="dv">2</span>,sum)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>          imc    masa_grasa masa_muscular     masa_osea     grasa_vis 
@@ -1442,23 +1459,23 @@ image(is.na(df_anonimo), main = "Mapa de Datos Faltantes",
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="annotated-cell-39"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-39" data-target-annotation="1" onclick="event.preventDefault();" href="">1</a><span id="annotated-cell-39-1" class="code-annotation-target"><a href="#annotated-cell-39-1"></a><span class="fu">library</span>(readxl)</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-39" data-target-annotation="2" onclick="event.preventDefault();" href="">2</a><span id="annotated-cell-39-2" class="code-annotation-target"><a href="#annotated-cell-39-2"></a><span class="fu">library</span>(tidyverse)</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-39" data-target-annotation="3" onclick="event.preventDefault();" href="">3</a><span id="annotated-cell-39-3" class="code-annotation-target"><a href="#annotated-cell-39-3"></a>df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"DatosLab1.xlsx"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-40"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-40" data-target-annotation="1" onclick="event.preventDefault();" href="">1</a><span id="annotated-cell-40-1" class="code-annotation-target"><a href="#annotated-cell-40-1"></a><span class="fu">library</span>(readxl)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-40" data-target-annotation="2" onclick="event.preventDefault();" href="">2</a><span id="annotated-cell-40-2" class="code-annotation-target"><a href="#annotated-cell-40-2"></a><span class="fu">library</span>(tidyverse)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-40" data-target-annotation="3" onclick="event.preventDefault();" href="">3</a><span id="annotated-cell-40-3" class="code-annotation-target"><a href="#annotated-cell-40-3"></a>df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"DatosLab1.xlsx"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-39" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-40" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-39" data-code-lines="1" data-code-annotation="1">Librería para leer archivos de Excel</span>
+<span data-code-cell="annotated-cell-40" data-code-lines="1" data-code-annotation="1">Librería para leer archivos de Excel</span>
 </dd>
-<dt data-target-cell="annotated-cell-39" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-40" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-39" data-code-lines="2" data-code-annotation="2">Librería para limpieza y transformación de datos</span>
+<span data-code-cell="annotated-cell-40" data-code-lines="2" data-code-annotation="2">Librería para limpieza y transformación de datos</span>
 </dd>
-<dt data-target-cell="annotated-cell-39" data-target-annotation="3">3</dt>
+<dt data-target-cell="annotated-cell-40" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-39" data-code-lines="3" data-code-annotation="3">Lectura</span>
+<span data-code-cell="annotated-cell-40" data-code-lines="3" data-code-annotation="3">Lectura</span>
 </dd>
 </dl>
 </div>
@@ -1469,7 +1486,7 @@ image(is.na(df_anonimo), main = "Mapa de Datos Faltantes",
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href=""></a><span class="fu">colnames</span>(df) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href=""></a><span class="fu">colnames</span>(df) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "Marca temporal"                                       
@@ -1506,10 +1523,10 @@ image(is.na(df_anonimo), main = "Mapa de Datos Faltantes",
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href=""></a><span class="co"># install.packages("janitor")</span></span>
-<span id="cb70-2"><a href=""></a><span class="fu">library</span>(janitor)</span>
-<span id="cb70-3"><a href=""></a><span class="co"># Aplicar a su data frame</span></span>
-<span id="cb70-4"><a href=""></a>df <span class="ot">=</span> df <span class="sc">|&gt;</span> <span class="fu">clean_names</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href=""></a><span class="co"># install.packages("janitor")</span></span>
+<span id="cb71-2"><a href=""></a><span class="fu">library</span>(janitor)</span>
+<span id="cb71-3"><a href=""></a><span class="co"># Aplicar a su data frame</span></span>
+<span id="cb71-4"><a href=""></a>df <span class="ot">=</span> df <span class="sc">|&gt;</span> <span class="fu">clean_names</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -1519,15 +1536,15 @@ image(is.na(df_anonimo), main = "Mapa de Datos Faltantes",
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href=""></a>df <span class="ot">=</span> df <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">rename</span>(</span>
-<span id="cb71-2"><a href=""></a>    <span class="at">fcr =</span> frecuencia_cardiaca_en_reposo_lpm,</span>
-<span id="cb71-3"><a href=""></a>    <span class="at">cintura=</span>perimetro_de_cintura, </span>
-<span id="cb71-4"><a href=""></a>    <span class="at">presion_sis =</span> presion_arterial_sistolica_mm_hg,</span>
-<span id="cb71-5"><a href=""></a>    <span class="at">presion_dia =</span> presion_arterial_diastolica_mm_hg,</span>
-<span id="cb71-6"><a href=""></a>    <span class="at">masa_muscular =</span> masa_magra_muscular,</span>
-<span id="cb71-7"><a href=""></a>    <span class="at">fuerza_md =</span> fuerza_prensil_mano_derecha,                        <span class="at">fuerza_mi =</span> fuerza_prensil_mano_izquierda</span>
-<span id="cb71-8"><a href=""></a>    )</span>
-<span id="cb71-9"><a href=""></a><span class="fu">colnames</span>(df) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href=""></a>df <span class="ot">=</span> df <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">rename</span>(</span>
+<span id="cb72-2"><a href=""></a>    <span class="at">fcr =</span> frecuencia_cardiaca_en_reposo_lpm,</span>
+<span id="cb72-3"><a href=""></a>    <span class="at">cintura=</span>perimetro_de_cintura, </span>
+<span id="cb72-4"><a href=""></a>    <span class="at">presion_sis =</span> presion_arterial_sistolica_mm_hg,</span>
+<span id="cb72-5"><a href=""></a>    <span class="at">presion_dia =</span> presion_arterial_diastolica_mm_hg,</span>
+<span id="cb72-6"><a href=""></a>    <span class="at">masa_muscular =</span> masa_magra_muscular,</span>
+<span id="cb72-7"><a href=""></a>    <span class="at">fuerza_md =</span> fuerza_prensil_mano_derecha,                        <span class="at">fuerza_mi =</span> fuerza_prensil_mano_izquierda</span>
+<span id="cb72-8"><a href=""></a>    )</span>
+<span id="cb72-9"><a href=""></a><span class="fu">colnames</span>(df) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -1566,8 +1583,8 @@ image(is.na(df_anonimo), main = "Mapa de Datos Faltantes",
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href=""></a>df <span class="ot">=</span> df <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">13</span><span class="sc">:</span><span class="fu">ncol</span>(df)))  </span>
-<span id="cb73-2"><a href=""></a>df </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href=""></a>df <span class="ot">=</span> df <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">13</span><span class="sc">:</span><span class="fu">ncol</span>(df)))  </span>
+<span id="cb74-2"><a href=""></a>df </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -1596,7 +1613,7 @@ image(is.na(df_anonimo), main = "Mapa de Datos Faltantes",
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href=""></a><span class="fu">glimpse</span>(df)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href=""></a><span class="fu">glimpse</span>(df)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 37
@@ -1624,10 +1641,10 @@ $ fuerza_mi      &lt;chr&gt; "26.0", "34.0", "28.0", "40.0", "24.0", "22.0", "36
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href=""></a><span class="fu">library</span>(skimr)</span>
-<span id="cb77-2"><a href=""></a><span class="fu">skim</span>(df) <span class="sc">|&gt;</span> <span class="fu">yank</span>(<span class="st">"numeric"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb77-3"><a href=""></a> <span class="fu">select</span>(skim_variable,n_missing,p0,p100,mean) <span class="sc">|&gt;</span> </span>
-<span id="cb77-4"><a href=""></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">var=</span>skim_variable,<span class="at">faltan=</span>n_missing)  </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href=""></a><span class="fu">library</span>(skimr)</span>
+<span id="cb78-2"><a href=""></a><span class="fu">skim</span>(df) <span class="sc">|&gt;</span> <span class="fu">yank</span>(<span class="st">"numeric"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb78-3"><a href=""></a> <span class="fu">select</span>(skim_variable,n_missing,p0,p100,mean) <span class="sc">|&gt;</span> </span>
+<span id="cb78-4"><a href=""></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">var=</span>skim_variable,<span class="at">faltan=</span>n_missing)  </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -1673,16 +1690,16 @@ $ fuerza_mi      &lt;chr&gt; "26.0", "34.0", "28.0", "40.0", "24.0", "22.0", "36
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href=""></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb78-2"><a href=""></a>  <span class="fu">skim</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb78-3"><a href=""></a>  <span class="fu">yank</span>(<span class="st">"character"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb78-4"><a href=""></a>  <span class="fu">select</span>(skim_variable, n_missing, complete_rate, n_unique) <span class="sc">%&gt;%</span> </span>
-<span id="cb78-5"><a href=""></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(</span>
-<span id="cb78-6"><a href=""></a>    <span class="at">var =</span> skim_variable,</span>
-<span id="cb78-7"><a href=""></a>    <span class="at">faltan =</span> n_missing,</span>
-<span id="cb78-8"><a href=""></a>    <span class="at">tasa_comp =</span> complete_rate,</span>
-<span id="cb78-9"><a href=""></a>    <span class="at">categorias =</span> n_unique</span>
-<span id="cb78-10"><a href=""></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href=""></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb79-2"><a href=""></a>  <span class="fu">skim</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb79-3"><a href=""></a>  <span class="fu">yank</span>(<span class="st">"character"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb79-4"><a href=""></a>  <span class="fu">select</span>(skim_variable, n_missing, complete_rate, n_unique) <span class="sc">%&gt;%</span> </span>
+<span id="cb79-5"><a href=""></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(</span>
+<span id="cb79-6"><a href=""></a>    <span class="at">var =</span> skim_variable,</span>
+<span id="cb79-7"><a href=""></a>    <span class="at">faltan =</span> n_missing,</span>
+<span id="cb79-8"><a href=""></a>    <span class="at">tasa_comp =</span> complete_rate,</span>
+<span id="cb79-9"><a href=""></a>    <span class="at">categorias =</span> n_unique</span>
+<span id="cb79-10"><a href=""></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -1783,13 +1800,13 @@ $ fuerza_mi      &lt;chr&gt; "26.0", "34.0", "28.0", "40.0", "24.0", "22.0", "36
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href=""></a>df_limpio <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb79-2"><a href=""></a>  <span class="fu">mutate</span>(</span>
-<span id="cb79-3"><a href=""></a>    <span class="at">edad =</span> <span class="fu">parse_number</span>(edad),</span>
-<span id="cb79-4"><a href=""></a>    <span class="at">estatura =</span> <span class="fu">parse_number</span>(estatura),</span>
-<span id="cb79-5"><a href=""></a>    <span class="at">masa_corporal =</span> <span class="fu">parse_number</span>(masa_corporal),</span>
-<span id="cb79-6"><a href=""></a><span class="at">cintura =</span> <span class="fu">parse_number</span>(cintura) </span>
-<span id="cb79-7"><a href=""></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href=""></a>df_limpio <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb80-2"><a href=""></a>  <span class="fu">mutate</span>(</span>
+<span id="cb80-3"><a href=""></a>    <span class="at">edad =</span> <span class="fu">parse_number</span>(edad),</span>
+<span id="cb80-4"><a href=""></a>    <span class="at">estatura =</span> <span class="fu">parse_number</span>(estatura),</span>
+<span id="cb80-5"><a href=""></a>    <span class="at">masa_corporal =</span> <span class="fu">parse_number</span>(masa_corporal),</span>
+<span id="cb80-6"><a href=""></a><span class="at">cintura =</span> <span class="fu">parse_number</span>(cintura) </span>
+<span id="cb80-7"><a href=""></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -1801,10 +1818,10 @@ $ fuerza_mi      &lt;chr&gt; "26.0", "34.0", "28.0", "40.0", "24.0", "22.0", "36
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href=""></a><span class="fu">library</span>(skimr)</span>
-<span id="cb80-2"><a href=""></a><span class="fu">skim</span>(df_limpio) <span class="sc">|&gt;</span> <span class="fu">yank</span>(<span class="st">"numeric"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb80-3"><a href=""></a> <span class="fu">select</span>(skim_variable,n_missing,p0,p100,mean) <span class="sc">|&gt;</span> </span>
-<span id="cb80-4"><a href=""></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">var=</span>skim_variable,<span class="at">faltan=</span>n_missing)  </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href=""></a><span class="fu">library</span>(skimr)</span>
+<span id="cb81-2"><a href=""></a><span class="fu">skim</span>(df_limpio) <span class="sc">|&gt;</span> <span class="fu">yank</span>(<span class="st">"numeric"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb81-3"><a href=""></a> <span class="fu">select</span>(skim_variable,n_missing,p0,p100,mean) <span class="sc">|&gt;</span> </span>
+<span id="cb81-4"><a href=""></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">var=</span>skim_variable,<span class="at">faltan=</span>n_missing)  </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
