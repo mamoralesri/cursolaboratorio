@@ -804,33 +804,6 @@ df_final <- df_final %>%
 
 ---
 
-### 2. Guía para el Informe de Laboratorio: "Análisis Biométrico y Funcional"
-
-Este informe debe ser un documento técnico de alto nivel. Aquí tiene la estructura sugerida:
-
-#### I. Introducción y Justificación Fisiológica
-Los estudiantes deben investigar y profundizar en la naturaleza de las variables medidas:
-* **Frecuencia Cardíaca en Reposo (FCR):** Explicar que una FCR elevada puede estar asociada a un menor volumen sistólico o menor eficiencia cardiaca. ¿Qué implicaciones tiene esto en el riesgo cardiovascular?
-* **Bioimpedancia Eléctrica:** ¿Cómo mide la báscula la grasa visceral y el agua corporal?. Deben explicar el principio de resistencia de los tejidos al paso de una corriente eléctrica leve.
-* **Fuerza Prensil:** Investigar por qué la fuerza de agarre se considera hoy un "biomarcador de envejecimiento" y salud general.
-
-
-
-#### II. Metodología
-* Descripción de los instrumentos (Tensiómetro, Dinamómetro, Báscula de Bioimpedancia).
-* Descripción del proceso de limpieza de datos realizado en R.
-
-#### III. Resultados y Análisis Estadístico
-* **Análisis Descriptivo:** Tablas de frecuencia, medidas de tendencia central y dispersión para IMC, Masa Magra y Masa Grasa.
-* **Visualización de Datos:** * Histogramas de la distribución de la Presión Arterial.
-    * Diagramas de dispersión (Scatter plots) para ver la relación entre Masa Muscular y Fuerza Prensil.
-* **Análisis por Grupo:** Comparar los promedios de Composición Corporal entre hombres y mujeres usando diagramas de caja (boxplots).
-
-#### IV. Discusión y Conclusiones
-* Comparar los resultados del grupo con los valores de referencia internacionales (OMS).
-* **Reflexión sobre el Dato Faltante:** Discutir por qué los menores de 18 años no tenían registros de grasa visceral y qué impacto tuvo la imputación en los promedios finales.
-
-
 
 ### Un toque de "Sherlock" para su clase
 Dr. Morales, para que la clase sea inolvidable, plantéeles este dilema: *"Si tenemos un estudiante con mucha masa muscular, su IMC será alto y saldrá clasificado con 'Sobrepeso'. ¿Es el IMC un indicador perfecto? ¿Cómo nos ayudan las otras variables de la báscula a corregir esa interpretación?"*. Esto los obligará a pensar como estadísticos y no solo como digitadores de datos.

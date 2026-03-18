@@ -1,7 +1,7 @@
 ---
 title: "Guia para presentar el informe del laboratorio 1."
 author: "Mario Morales"
-format: pdf
+format: pdf 
 ---
 
 
