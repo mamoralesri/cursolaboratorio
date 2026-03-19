@@ -11,7 +11,7 @@ Este informe debe ser un documento técnico de alto nivel. Aquí tiene la estruc
 
 ##  Introducción y Justificación Fisiológica
 
-Los estudiantes deben investigar y profundizar en la naturaleza de las variables medidas:
+Los estudiantes deben investigar y profundizar en la naturaleza de las variables medidas, por ejemplo: 
 
 * **Frecuencia Cardíaca en Reposo (FCR):** Explicar que una FCR elevada puede estar asociada a un menor volumen sistólico o menor eficiencia cardíaca. ¿Qué implicaciones tiene esto en el riesgo cardiovascular?
 
@@ -37,9 +37,23 @@ Los estudiantes deben investigar y profundizar en la naturaleza de las variables
 
 * **Análisis por Grupo:** Comparar los promedios de Composición Corporal entre hombres y mujeres usando diagramas de caja (boxplots).
 
-###  Discusión y Conclusiones
-
 * Comparar los resultados del grupo con los valores de referencia internacionales (OMS).
+
+
+
+### Tareas Complementarias de Análisis
+
+Para profundizar en la relación entre las variables biométricas, cada grupo deberá:
+
+1. **Análisis de Correlación:** Calcular la matriz de correlación para las variables numéricas limpias. ¿Qué variables están más asociadas con la Grasa Visceral?
+
+2. **Modelado Alternativo:** Ajustar un modelo de regresión para predecir la **Fuerza Prensil** usando como predictores la **Masa Magra** y la **Estatura**. Reportar el modelo y su capacidad explicativa ($R^2$).
+
+3. **Visualización Avanzada:** Crear un diagrama de dispersión de la relación más fuerte encontrada, etiquetando los puntos que el modelo de regresión identificó como "atípicos" (outliers).
+
+
+
+
 
 
 ## Refinamiento de Datos y Predicción de Valores Faltantes
@@ -59,24 +73,26 @@ Se deberá  ajustar un modelo de regresión lineal múltiple utilizando el subco
 
 * Evaluación de la Bondad de Ajuste: Antes de imputar, el grupo debe reportar el Coeficiente de Determinación ($R^2$).  Esto les permitirá discutir qué tan confiable es el modelo para predecir los datos de sus compañeros.
 
-Ejecución de la Imputación: Utilizando la función predict() en R, deberán estimar los valores específicos para aquellos estudiantes que no contaban con la medida original. 
+Ejecución de la Imputación: Utilizando la función `predict()` en R, deberán estimar los valores específicos para aquellos estudiantes que no contaban con la medida original. 
 
 Análisis Crítico: En la sección de Discusión, deberán comparar si los promedios del grupo cambian significativamente al usar este método predictivo en comparación con la mediana simple. 
 
 Sugerencia: 
 
-- En R Base: Pueden usar la función lm() y luego asignar los valores faltantes usando indexación:
+- En R Base: Pueden usar la función `lm()` y luego asignar los valores faltantes usando indexación:
 
 ```{r}
 #| echo: true
 #| eval: false
-
 df$imcn[is.na(df$imcn)] <- predict(modelo, newdata = ...)
-
 ```
 
 - En Tidyverse: Pueden usar el paquete `recipes` o simplemente un `mutate()` combinado con  `if_else(is.na(.))` 
 
+
+## Discusión y Conclusiones
+
+Escriba aquí una discusión sobre los resultados y conclusiones.  
 
 
 # Anexo: Guía de Implementación para Imputación por Regresión
@@ -153,7 +169,7 @@ Este método destaca por su legibilidad y el uso de "tuberías" (%>% o |>) para 
 
 ## Fragmento de código
 
-1. Ajustar el modelo usando el dataframe filtrado internamente
+1. Ajustar el modelo usando el `dataframe` filtrado internamente
 
 ```{r}
 #| echo: true
@@ -194,3 +210,5 @@ df <- df %>%
 library(skimr)
 df %>% skim(imcn)
 ```
+
+

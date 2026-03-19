@@ -608,6 +608,7 @@ image(is.na(df_anonimo), main = "Mapa de Datos Faltantes",
 Luego de identificar las variables de composición con `NA's`, procedemos a imputar, estimando el dato faltante usando la mediana. 
 
 ```{r}
+#| echo: true
 for(v in vars_na) {
   # Calcular la mediana ignorando los NAs
   mediana_v <- median(df_anonimo[, v], na.rm = TRUE)
@@ -615,7 +616,6 @@ for(v in vars_na) {
 # Reemplazar solo donde hay NA
 df_anonimo[is.na(df_anonimo[, v]), v] <- mediana_v
 }
-
 ```
 
 
@@ -724,10 +724,10 @@ skim(df) |> yank("numeric") |>
 #| results: 'asis'
 
 
-df %>% 
-  skim() %>% 
-  yank("character") %>% 
-  select(skim_variable, n_missing, complete_rate, n_unique) %>% 
+df |> 
+  skim() |> 
+  yank("character") |> 
+  select(skim_variable, n_missing, complete_rate, n_unique) |> 
   dplyr::rename(
     var = skim_variable,
     faltan = n_missing,
@@ -751,7 +751,7 @@ La  función `parse_number()` es mágica: extrae el primer número que encuentra
 #| column: screen-inset-shaded 
 
 
-df_limpio <- df %>%
+df_limpio <- df |>
   mutate(
     edad = parse_number(edad),
     estatura = parse_number(estatura),
@@ -784,9 +784,9 @@ Como docente, debe enseñarles que la privacidad es sagrada. Antes de que ellos 
 ```r
 # Eliminamos nombres y documentos, y creamos un ID aleatorio
 set.seed(123) # Para reproducibilidad
-df_final <- df_limpio %>%
-  select(-nombre_completo, -documento, -fecha_nacimiento) %>% 
-  mutate(id_estudiante = sample(100:999, n(), replace = FALSE)) %>%
+df_final <- df_limpio |>
+  select(-nombre_completo, -documento, -fecha_nacimiento) |> 
+  mutate(id_estudiante = sample(100:999, n(), replace = FALSE)) |>
   select(id_estudiante, everything())
 ```
 
@@ -797,7 +797,7 @@ Para los menores de 18 años donde la báscula de bioimpedancia no arrojó datos
 library(mice)
 
 # Imputación simple por la mediana para variables de composición corporal
-df_final <- df_final %>%
+df_final <- df_final |>
   mutate(across(c(masa_grasa, masa_muscular, masa_osea, grasa_visceral), 
                 ~ifelse(is.na(.), median(., na.rm = TRUE), .)))
 ```

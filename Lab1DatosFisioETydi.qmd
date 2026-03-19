@@ -1,0 +1,426 @@
+---
+title: "Datos de fisiología del ejercicio"
+subtitle: "Laboratorio 1"   
+author: 
+  - name: Mario Morales
+    orcid: 0000-0001-8814-0179
+    email: mamorales@correo.unicordoba.edu.co
+    url: https://mariomorales.xyz/
+    affiliations:
+      - name: Universidad de Córdoba, Montería
+format: 
+  revealjs:
+    theme: "moon"
+    highlight: "tango"
+    center: true
+    #transition: fade
+    lang: es
+    code-fold: true
+    slide-level: 2
+    scrollable: true
+  beamer:
+    theme: "CambridgeUS"
+    slide-level: 2
+    keep-tex: false # Cambiado a false para evitar basura de archivos temporales
+    fonttheme: "professionalfonts"
+toc: true
+toc-depth: 1 # <--- ¡CLAVE! Solo nivel 1 para que quepa en la pantalla
+toc-title: "Contenido"
+---
+
+
+
+```{r}
+#| echo: false
+setwd("~/Documents/Cursos/Laboratorio") 
+```
+
+
+
+# Lectura y preparación de los datos 
+
+## Objetivo general  
+
+Enfrentar al estudiante al "dato sucio" y real. 
+
+
+## Objetivo específico  
+
+Realizar la preparación de los datos tomados en el laboratorio para que queden listos para la realización del informe que deberán presentar los estudiantes. La preparación incluye: 
+
+- Lectura
+- Limpieza
+- Imputación
+- Anonimización 
+
+
+
+
+
+
+# Lectura, Limpieza e Imputación en R
+
+## Lectura 
+
+Para esta tarea usaremos el `universo tydiverse` de R. 
+
+
+# Uso de `tydiverse`
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded 
+
+library(tidyverse) #<1>
+options(pillar.sigfig = 5) # <2>
+```
+1. Librería para limpieza y transformación de datos 
+2. Configurar para que imprima dos dígitos significativos 
+
+
+## Lectura de los datos 
+
+
+```{r} 
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+library(readxl) #<1> 
+df <- read_excel("DatosLab1.xlsx") #<2>
+``` 
+1. Librería para leer archivos de Excel
+2. Lectura
+
+## Los nombres de las columnas 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+df |> names()  
+```
+
+
+## Cambiar los nombres de las columnas 
+
+Primero se debe instalar y cargar el paquete `janitor` 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+# install.packages("janitor")
+library(janitor)
+# Aplicar a su data frame
+df = df |> clean_names() 
+df |> names()   
+```
+
+
+## Cambiar los nombres de las columnas  
+
+Si no nos gustan los nombres que coloca R automáticamente, lo hacemos manual
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded 
+
+df = df |> dplyr::rename(
+    fcr = frecuencia_cardiaca_en_reposo_lpm,
+    cintura=perimetro_de_cintura, 
+    presion_sis = presion_arterial_sistolica_mm_hg,
+    presion_dia = presion_arterial_diastolica_mm_hg,
+    masa_muscular = masa_magra_muscular,
+    fuerza_md = fuerza_prensil_mano_derecha,                        fuerza_mi = fuerza_prensil_mano_izquierda
+    )
+df|>names()|>as_tibble()
+```
+
+
+## Selección de columnas 
+Seleccionamos la columnas de la 6 a la última. 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+df = df |> select(c(6,7,13:ncol(df)))  
+df 
+```
+
+
+
+
+## Un vistazo al `df` 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+df|>glimpse()
+```
+
+
+
+## Un vistazo al `df` II 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+#| results: 'asis'
+library(skimr)
+skim(df) |> yank("numeric") |> select(skim_variable,n_missing,p0,p100,mean) |> 
+ dplyr::rename(var=skim_variable,faltan=n_missing)  
+```
+
+## Un vistazo al `df` III 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+#| results: 'asis'
+
+
+df |> 
+  skim() |> 
+  yank("character") |> 
+  select(skim_variable, n_missing, complete_rate, n_unique) |> 
+  dplyr::rename(
+    var = skim_variable,
+    faltan = n_missing,
+    tasa_comp = complete_rate,
+    categorias = n_unique
+  )
+```
+
+
+## Limpieza de "Datos Contaminados" 
+
+El primer reto es transformar columnas que R lee como texto (`character`) debido a entradas como "20 años" o "170 cm".
+
+La  función `parse_number()` es mágica: extrae el primer número que encuentra y descarta el texto.
+
+## Uso de `parse_number`  
+
+```{r} 
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded 
+
+df_limpio <- df |>
+  mutate(
+    edad = parse_number(edad),
+    estatura = parse_number(estatura),
+    masa_corporal = parse_number(masa_corporal),
+    cintura = parse_number(cintura), 
+    masa_grasa = parse_number(masa_grasa),
+    masa_muscular= parse_number(masa_muscular),
+    masa_osea= parse_number(masa_osea), 
+    grasa_visceral= parse_number(grasa_visceral)  
+)
+```
+
+
+
+## Cómo va el data ?  
+
+```{r}
+#| echo: false
+#| output-location: fragment
+#| column: screen-inset-shaded
+#| results: 'asis'
+library(skimr)
+skim(df_limpio) |> yank("numeric") |>
+ select(skim_variable,n_missing,p0,p100,mean) |> 
+  dplyr::rename(var=skim_variable,faltan=n_missing)  
+```
+
+## Las dos estaturas 
+
+```{r}
+#| echo: false
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+df_limpio |>
+  select(estatura) |> 
+  bind_cols(df |> select(estatura_sucia=estatura)) |> select(estatura_sucia, estatura)|> slice(10:20)         
+```
+
+
+## Primero reemplazamos las comas por punto
+
+```{r} 
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded 
+
+
+df_limpio <- df |>
+  mutate(estatura = estatura|> 
+           str_replace(",", ".") |> 
+           parse_number(),
+         imc=imc|> 
+           str_replace(",", ".") |> 
+           parse_number()) 
+```
+
+
+## Las dos estaturas 
+
+```{r}
+#| echo: false
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+df_limpio |>
+  select(estatura) |> 
+  bind_cols(df |> select(estatura_sucia=estatura)) |> select(estatura_sucia, estatura)|> slice(10:20)         
+```
+
+
+## Cómo va el data ?  
+
+```{r}
+#| echo: false
+#| output-location: fragment
+#| column: screen-inset-shaded
+#| results: 'asis'
+library(skimr)
+skim(df_limpio) |> yank("numeric") |>
+ select(skim_variable,n_missing,p0,p100,mean) |> 
+  dplyr::rename(var=skim_variable,faltan=n_missing)  
+```
+
+
+## Cuantas estaturas hay en metro
+
+```{r} 
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+df_limpio |> 
+  filter(estatura< 2.0) |> 
+  count()
+```
+
+
+
+## Corregir las estaturas que están en metro 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+
+df_limpio <- df_limpio |>
+  mutate(estatura= if_else(
+    estatura < 2.0,
+    estatura * 100,
+    estatura  
+  ))
+
+summary(df_limpio$estatura) 
+```
+
+
+## Corregir el `imc` mal digitado 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+
+df_limpio <- df_limpio |>
+  mutate(imc=if_else(
+    imc==253.1,
+    25.3,
+    imc  
+  ))
+
+summary(df_limpio$imc) 
+```
+
+## Ejercicios 
+
+- Identifique a la persona que escribió `cintura=`r max(df$cintura)` ` . 
+
+- Corrija  de acuerdo con el dato real que debe tener el estudiante en su formulario en papel.
+
+- Identifique a la persona que escribió `presion_sis=`r max(df$presion_sis)` ` . 
+
+- Corrija  de acuerdo con el dato real que debe tener el estudiante en su formulario en papel.
+
+- En caso que ese valor esté correcto debe repetir la medición y si persiste se debe remitir al médico.   
+
+
+## Ceros a `NA`  
+
+En estadística, confundir un "cero" con un "valor faltante" (NA) es un error grave que sesgaría totalmente cualquier modelo de regresión o promedio. 
+
+```{r}
+df_limpio <- df_limpio |>
+  mutate(
+    imc = na_if(imc, 0),
+    masa_grasa = na_if(masa_grasa, 0),
+    masa_muscular= na_if(masa_muscular, 0),
+    masa_osea= na_if(masa_osea, 0), 
+    grasa_vis= na_if(grasa_vis, 0) 
+    )
+
+df_limpio|>names()
+```
+
+
+
+<!--
+
+
+#### B. Anonimización (Ética de Datos)
+Como docente, debe enseñarles que la privacidad es sagrada. Antes de que ellos procesen el archivo grupal, realizaremos una anonimización irreversible.
+
+```r
+# Eliminamos nombres y documentos, y creamos un ID aleatorio
+set.seed(123) # Para reproducibilidad
+df_final <- df_limpio |>
+  select(-nombre_completo, -documento, -fecha_nacimiento) |> 
+  mutate(id_estudiante = sample(100:999, n(), replace = FALSE)) |>
+  select(id_estudiante, everything())
+```
+
+#### C. Tratamiento de Datos Faltantes (Imputación)
+Para los menores de 18 años donde la báscula de bioimpedancia no arrojó datos de grasa visceral o masa ósea, enseñaremos la técnica de imputación por la mediana o regresión.
+
+```r
+library(mice)
+
+# Imputación simple por la mediana para variables de composición corporal
+df_final <- df_final |>
+  mutate(across(c(masa_grasa, masa_muscular, masa_osea, grasa_visceral), 
+                ~ifelse(is.na(.), median(., na.rm = TRUE), .)))
+```
+
+---
+
+
+### Un toque de "Sherlock" para su clase
+Dr. Morales, para que la clase sea inolvidable, plantéeles este dilema: *"Si tenemos un estudiante con mucha masa muscular, su IMC será alto y saldrá clasificado con 'Sobrepeso'. ¿Es el IMC un indicador perfecto? ¿Cómo nos ayudan las otras variables de la báscula a corregir esa interpretación?"*. Esto los obligará a pensar como estadísticos y no solo como digitadores de datos.
+
+¿Le gustaría que preparemos una rúbrica de evaluación específica para este informe de laboratorio?
+
+--> 
+
+
+
+
+
