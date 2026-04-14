@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>Limpieza/parse_num</text>
+    </category>
+    <info format="html">
+      <text>texto</text>
+    </info>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>Filter 1</text>
+    </name>
+    <questiontext format="html">
+      <text>El archivo &lt;code&gt;DatosEstudiantes.xlsx&lt;/code&gt; contiene datos tomados de estudiantes de primer semestre durante un experimento que buscaba evaluar el nivel de satisfacci&#xF3;n de los estudiantes con el servicio prestado por la Universidad. Haga la lectura de los datos y responda:&lt;br&gt;Cu&#xE1;ntos datos faltantes hay en la columna &lt;code&gt;Peso&lt;/code&gt;: {1:NM:=1.0:0.0}&lt;br&gt;Un posible codigo, en lenguaje &lt;code&gt;R&lt;/code&gt;, usando la librer&#xED;a &lt;code&gt;tidyverse&lt;/code&gt; y el &lt;code&gt;pipe&lt;/code&gt; para obtener la respuesta a la pregunta anterior es: &lt;br&gt; &lt;pre&gt; 
+library(tidyverse)
+library(readxl)
+df=read_excel('DatosEstudiantes.xlsx')
+df= {1:MULTICHOICE:~%0%is_na(Peso)~=mutate~%0%n()~%0%mean(Peso)~%0%parse_number~%0%Peso~%0%summarise} (Peso= {1:MULTICHOICE:~%0%is_na(Peso)~%0%mutate~%0%n()~%0%mean(Peso)~=parse_number~%0%Peso~%0%summarise} ( {1:MULTICHOICE:~%0%is_na(Peso)~%0%mutate~%0%n()~%0%mean(Peso)~%0%parse_number~=Peso~%0%summarise} )|&gt; {1:MULTICHOICE:~%0%is_na(Peso)~%0%mutate~%0%n()~%0%mean(Peso)~%0%parse_number~%0%Peso~=summarise} (sum(is.na(Peso)))&lt;/pre&gt;&lt;br&gt;&lt;br&gt; Complete la siguiente tabla con estad&#xED;sticas descriptivas b&#xE1;sicas de la columna &lt;code&gt;Peso&lt;/code&gt; &lt;br&gt; &lt;br&gt;&lt;table style="border-collapse:collapse;border-color:#aaa;border-spacing:0" class="tg"&gt;&lt;thead&gt;
+&lt;tr&gt;&lt;th style="background-color:#f38630;border-color:inherit;border-style:solid;border-width:1px;color:#fff;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"&gt;N&lt;/th&gt;&lt;th style="background-color:#f38630;border-color:inherit;border-style:solid;border-width:1px;color:#fff;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"&gt;Min&lt;/th&gt;&lt;th style="background-color:#f38630;border-color:inherit;border-style:solid;border-width:1px;color:#fff;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"&gt;Q1&lt;/th&gt;
+&lt;th style="background-color:#f38630;border-color:inherit;border-style:solid;border-width:1px;color:#fff;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"&gt;Mediana&lt;/th&gt;&lt;th style="background-color:#f38630;border-color:inherit;border-style:solid;border-width:1px;color:#fff;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"&gt;Media&lt;/th&gt;&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td style="background-color:#fff;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"&gt;{1:NM:=45:0}&lt;/td&gt;&lt;td style="background-color:#fff;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"&gt;{1:NM:=39:0}&lt;/td&gt;&lt;td style="background-color:#fff;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"&gt;{1:NM:=49.75:0.01}&lt;/td&gt;&lt;td style="background-color:#fff;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"&gt;{1:NM:=57.00:0.01}&lt;/td&gt;
+&lt;td style="background-color:#fff;border-color:inherit;border-style:solid;border-width:1px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"&gt;{1:NM:=56.920:0.005}&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text/>
+    </generalfeedback>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+</quiz>

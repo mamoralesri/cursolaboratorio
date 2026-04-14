@@ -143,7 +143,7 @@ colnames(df)
 
 
 
-## Tipos de datos en las columnas 
+
 
 ```{r}
 #| echo: false
@@ -207,8 +207,13 @@ str(df[,nombres2])
 ```{r}
 #| echo: false
 #| output-location: fragment
-data.frame(EstSucia=estat_sucio, EstLimpia=df$estatura)
+df_est=data.frame(EstSucia=estat_sucio, EstLimpia=df$estatura)
+df_est[10:15,]
 ```
+
+- Observe, en la fila 12, que `163,2` se transformó en `1632`, lo cual está mal. Algo similar ocurre en la fila 13, con `175,5`, el cual se transforma en `1755`. 
+
+- Ese error es debido a la coma `(,)`
 
 ## Comas por puntos 
 
@@ -218,9 +223,11 @@ data.frame(EstSucia=estat_sucio, EstLimpia=df$estatura)
 #| echo: true 
 #| output-location: fragment
 estat_sucio2 <- gsub(",", ".", estat_sucio) 
-data.frame(EstSucia1=estat_sucio, EstSucia2=estat_sucio2)
+df_est=data.frame(EstSucia1=estat_sucio, EstSucia2=estat_sucio2)
+df_est[10:15,]
 ```
 
+- Observe que ya no hay comas `(,)`
 
 ## Ahora si usamos la expresion regular 
 
@@ -229,9 +236,11 @@ data.frame(EstSucia1=estat_sucio, EstSucia2=estat_sucio2)
 #| output-location: fragment
 
 estat_fin <- as.numeric(gsub("[^0-9.]", "", estat_sucio2)) 
-data.frame(EstSucia1=estat_sucio2, EstFinal=estat_fin)
+df_est=data.frame(EstSucia1=estat_sucio2, EstFinal=estat_fin)
+df_est[10:15,]
 ```
 
+- Observe que ya no aparecen las unidades.  
 
 ## Agregamos `estatura` limpia al data 
 
@@ -401,7 +410,7 @@ df$imcn2<- as.numeric(gsub(",", "", df$imc))
 ```{r}
 #| echo: true
 #| output-location: fragment
-df$imc[df$imc==max(df$imc,na.rm=TRUE)]=25.3 
+df$imc[df$imc==max(df$imc,na.rm=TRUE)]=25 
 summary(df$imc) 
 ```
 
@@ -420,12 +429,19 @@ Sabemos que los ceros son de los estudiantes menores de edad que el instrumento 
 
 df$imc[df$imc==0]=NA 
 summary(df$imc)
+```
+
+## Reemplazar los ceros por `NA` 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+
 df$masa_grasa[df$masa_grasa==0]=NA
 df$masa_muscular[df$masa_muscular==0]=NA
 df$masa_osea[df$masa_osea==0]=NA
 df$grasa_vis[df$grasa_vis==0]=NA
 ```
-
 
 ## Inspección rápida de las variables 
 
@@ -619,200 +635,19 @@ df_anonimo[is.na(df_anonimo[, v]), v] <- mediana_v
 ```
 
 
+```{r}
+estat_sucio2 <- gsub(",", ".", estat_sucio) 
+```
 
-# Uso de `tydiverse`
-
-
-## Lectura de los datos 
-
-
-```{r} 
-#| echo: true
-library(readxl) #<1> 
-library(tidyverse) # <2>
-df <- read_excel("DatosLab1.xlsx") #<3>
-``` 
-1. Librería para leer archivos de Excel
-2. Librería para limpieza y transformación de datos 
-3. Lectura
-
-## Los nombres de las columnas 
 
 ```{r}
-#| echo: true
-colnames(df) 
+estat_fin <- as.numeric(gsub("[^0-9.]", "", estat_sucio2)) 
 ```
 
-
-## Cambiar los nombres de las columnas 
-
-Primero se debe instalar y cargar el paquete `janitor` 
 
 ```{r}
-#| echo: true
-# install.packages("janitor")
-library(janitor)
-# Aplicar a su data frame
-df = df |> clean_names()
+df$estatura=estat_fin
 ```
-
-
-## Cambiar los nombres de las columnas  
-
-Si no nos gustan los nombres que coloca R automáticamente, lo hacemos manual
-
-```{r}
-#| echo: true
-#| output-location: fragment
-#| column: screen-inset-shaded 
-
-df = df |> dplyr::rename(
-    fcr = frecuencia_cardiaca_en_reposo_lpm,
-    cintura=perimetro_de_cintura, 
-    presion_sis = presion_arterial_sistolica_mm_hg,
-    presion_dia = presion_arterial_diastolica_mm_hg,
-    masa_muscular = masa_magra_muscular,
-    fuerza_md = fuerza_prensil_mano_derecha,                        fuerza_mi = fuerza_prensil_mano_izquierda
-    )
-colnames(df) 
-```
-
-
-## Selección de columnas 
-Seleccionamos la columnas de la 6 a la última. 
-
-```{r}
-#| echo: true
-#| output-location: fragment
-#| column: screen-inset-shaded
-
-df = df |> select(c(6,7,13:ncol(df)))  
-df 
-```
-
-
-
-
-## Un vistazo al `df` 
-
-```{r}
-#| echo: true
-glimpse(df)
-```
-
-
-
-## Un vistazo al `df` II 
-
-```{r}
-#| echo: true
-#| output-location: fragment
-#| column: screen-inset-shaded
-#| results: 'asis'
-library(skimr)
-skim(df) |> yank("numeric") |>
- select(skim_variable,n_missing,p0,p100,mean) |> 
-  dplyr::rename(var=skim_variable,faltan=n_missing)  
-```
-
-## Un vistazo al `df` III 
-
-```{r}
-#| echo: true
-#| output-location: fragment
-#| column: screen-inset-shaded
-#| results: 'asis'
-
-
-df |> 
-  skim() |> 
-  yank("character") |> 
-  select(skim_variable, n_missing, complete_rate, n_unique) |> 
-  dplyr::rename(
-    var = skim_variable,
-    faltan = n_missing,
-    tasa_comp = complete_rate,
-    categorias = n_unique
-  )
-```
-
-
-## Limpieza de "Datos Contaminados" 
-
-El primer reto es transformar columnas que R lee como texto (`character`) debido a entradas como "20 años" o "170 cm".
-
-La  función `parse_number()` es mágica: extrae el primer número que encuentra y descarta el texto.
-
-## Uso de `parse_number`  
-
-```{r} 
-#| echo: true
-#| output-location: fragment
-#| column: screen-inset-shaded 
-
-
-df_limpio <- df |>
-  mutate(
-    edad = parse_number(edad),
-    estatura = parse_number(estatura),
-    masa_corporal = parse_number(masa_corporal),
-cintura = parse_number(cintura) 
-)
-```
-
-
-## Cómo va el data ?  
-
-```{r}
-#| echo: true
-#| output-location: fragment
-#| column: screen-inset-shaded
-#| results: 'asis'
-library(skimr)
-skim(df_limpio) |> yank("numeric") |>
- select(skim_variable,n_missing,p0,p100,mean) |> 
-  dplyr::rename(var=skim_variable,faltan=n_missing)  
-```
-
-
-<!--
-
-
-#### B. Anonimización (Ética de Datos)
-Como docente, debe enseñarles que la privacidad es sagrada. Antes de que ellos procesen el archivo grupal, realizaremos una anonimización irreversible.
-
-```r
-# Eliminamos nombres y documentos, y creamos un ID aleatorio
-set.seed(123) # Para reproducibilidad
-df_final <- df_limpio |>
-  select(-nombre_completo, -documento, -fecha_nacimiento) |> 
-  mutate(id_estudiante = sample(100:999, n(), replace = FALSE)) |>
-  select(id_estudiante, everything())
-```
-
-#### C. Tratamiento de Datos Faltantes (Imputación)
-Para los menores de 18 años donde la báscula de bioimpedancia no arrojó datos de grasa visceral o masa ósea, enseñaremos la técnica de imputación por la mediana o regresión.
-
-```r
-library(mice)
-
-# Imputación simple por la mediana para variables de composición corporal
-df_final <- df_final |>
-  mutate(across(c(masa_grasa, masa_muscular, masa_osea, grasa_visceral), 
-                ~ifelse(is.na(.), median(., na.rm = TRUE), .)))
-```
-
----
-
-
-### Un toque de "Sherlock" para su clase
-Dr. Morales, para que la clase sea inolvidable, plantéeles este dilema: *"Si tenemos un estudiante con mucha masa muscular, su IMC será alto y saldrá clasificado con 'Sobrepeso'. ¿Es el IMC un indicador perfecto? ¿Cómo nos ayudan las otras variables de la báscula a corregir esa interpretación?"*. Esto los obligará a pensar como estadísticos y no solo como digitadores de datos.
-
-¿Le gustaría que preparemos una rúbrica de evaluación específica para este informe de laboratorio?
-
---> 
-
-
 
 
 

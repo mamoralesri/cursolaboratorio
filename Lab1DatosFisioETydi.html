@@ -217,7 +217,9 @@
 <ul>
 <li><a href="#/lectura-y-preparación-de-los-datos" id="/toc-lectura-y-preparación-de-los-datos">Lectura y preparación de los datos</a></li>
 <li><a href="#/lectura-limpieza-e-imputación-en-r" id="/toc-lectura-limpieza-e-imputación-en-r">Lectura, Limpieza e Imputación en R</a></li>
-<li><a href="#/uso-de-tydiverse" id="/toc-uso-de-tydiverse">Uso de <code>tydiverse</code></a></li>
+<li><a href="#/uso-de-tidyverse" id="/toc-uso-de-tidyverse">Uso de <code>tidyverse</code></a></li>
+<li><a href="#/imputación-de-datos-faltantes" id="/toc-imputación-de-datos-faltantes">Imputación de datos faltantes</a></li>
+<li><a href="#/cálculos-por-niveles-de-un-factor" id="/toc-cálculos-por-niveles-de-un-factor">Cálculos por niveles de un factor</a></li>
 </ul>
 </nav>
 </section>
@@ -247,11 +249,11 @@
 </section>
 <section id="lectura" class="slide level2 center">
 <h2>Lectura</h2>
-<p>Para esta tarea usaremos el <code>universo tydiverse</code> de R.</p>
+<p>Para esta tarea usaremos el <code>universo tidyverse</code> de R.</p>
 </section></section>
 <section>
-<section id="uso-de-tydiverse" class="title-slide slide level1 center">
-<h1>Uso de <code>tydiverse</code></h1>
+<section id="uso-de-tidyverse" class="title-slide slide level1 center">
+<h1>Uso de <code>tidyverse</code></h1>
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
@@ -393,9 +395,10 @@
 <span id="cb5-4"><a href=""></a>    <span class="at">presion_sis =</span> presion_arterial_sistolica_mm_hg,</span>
 <span id="cb5-5"><a href=""></a>    <span class="at">presion_dia =</span> presion_arterial_diastolica_mm_hg,</span>
 <span id="cb5-6"><a href=""></a>    <span class="at">masa_muscular =</span> masa_magra_muscular,</span>
-<span id="cb5-7"><a href=""></a>    <span class="at">fuerza_md =</span> fuerza_prensil_mano_derecha,                        <span class="at">fuerza_mi =</span> fuerza_prensil_mano_izquierda</span>
-<span id="cb5-8"><a href=""></a>    )</span>
-<span id="cb5-9"><a href=""></a>df<span class="sc">|&gt;</span><span class="fu">names</span>()<span class="sc">|&gt;</span><span class="fu">as_tibble</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-7"><a href=""></a>    <span class="at">fuerza_md =</span> fuerza_prensil_mano_derecha,</span>
+<span id="cb5-8"><a href=""></a>    <span class="at">fuerza_mi =</span> fuerza_prensil_mano_izquierda</span>
+<span id="cb5-9"><a href=""></a>    )</span>
+<span id="cb5-10"><a href=""></a>df<span class="sc">|&gt;</span><span class="fu">names</span>()<span class="sc">|&gt;</span><span class="fu">as_tibble</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -636,31 +639,121 @@ $ fuerza_mi      &lt;chr&gt; "26.0", "34.0", "28.0", "40.0", "24.0", "22.0", "36
 <p>El primer reto es transformar columnas que R lee como texto (<code>character</code>) debido a entradas como “20 años” o “170 cm”.</p>
 <p>La función <code>parse_number()</code> es mágica: extrae el primer número que encuentra y descarta el texto.</p>
 </section>
+<section id="un-vistazo" class="slide level2 center">
+<h2>Un vistazo</h2>
+<div class="cell column-screen-inset-shaded">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="fu">summary</span>(df)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell column-screen-inset-shaded fragment">
+<div class="cell-output cell-output-stdout">
+<pre><code>     edad               sexo                fcr          presion_sis   
+ Length:37          Length:37          Min.   : 54.00   Min.   : 93.0  
+ Class :character   Class :character   1st Qu.: 74.00   1st Qu.:110.0  
+ Mode  :character   Mode  :character   Median : 79.00   Median :122.0  
+                                       Mean   : 81.95   Mean   :120.8  
+                                       3rd Qu.: 88.00   3rd Qu.:129.0  
+                                       Max.   :117.00   Max.   :162.0  
+  presion_dia       estatura         masa_corporal        cintura         
+ Min.   : 33.00   Length:37          Length:37          Length:37         
+ 1st Qu.: 66.00   Class :character   Class :character   Class :character  
+ Median : 71.00   Mode  :character   Mode  :character   Mode  :character  
+ Mean   : 71.49                                                           
+ 3rd Qu.: 78.00                                                           
+ Max.   :102.00                                                           
+     imc             masa_grasa        masa_muscular       masa_osea        
+ Length:37          Length:37          Length:37          Length:37         
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+ grasa_visceral      fuerza_md          fuerza_mi        
+ Length:37          Length:37          Length:37         
+ Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character  
+                                                         
+                                                         
+                                                         </code></pre>
+</div>
+</div>
+</section>
 <section id="uso-de-parse_number" class="slide level2 center">
 <h2>Uso de <code>parse_number</code></h2>
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>df_limpio <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a href=""></a>  <span class="fu">mutate</span>(</span>
-<span id="cb13-3"><a href=""></a>    <span class="at">edad =</span> <span class="fu">parse_number</span>(edad),</span>
-<span id="cb13-4"><a href=""></a>    <span class="at">estatura =</span> <span class="fu">parse_number</span>(estatura),</span>
-<span id="cb13-5"><a href=""></a>    <span class="at">masa_corporal =</span> <span class="fu">parse_number</span>(masa_corporal),</span>
-<span id="cb13-6"><a href=""></a>    <span class="at">cintura =</span> <span class="fu">parse_number</span>(cintura), </span>
-<span id="cb13-7"><a href=""></a>    <span class="at">masa_grasa =</span> <span class="fu">parse_number</span>(masa_grasa),</span>
-<span id="cb13-8"><a href=""></a>    <span class="at">masa_muscular=</span> <span class="fu">parse_number</span>(masa_muscular),</span>
-<span id="cb13-9"><a href=""></a>    <span class="at">masa_osea=</span> <span class="fu">parse_number</span>(masa_osea), </span>
-<span id="cb13-10"><a href=""></a>    <span class="at">grasa_visceral=</span> <span class="fu">parse_number</span>(grasa_visceral)  </span>
-<span id="cb13-11"><a href=""></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>df_limpio <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href=""></a>  <span class="fu">mutate</span>(</span>
+<span id="cb15-3"><a href=""></a>    <span class="at">edad =</span> <span class="fu">parse_number</span>(edad),</span>
+<span id="cb15-4"><a href=""></a>    <span class="at">estatura =</span> <span class="fu">parse_number</span>(estatura),</span>
+<span id="cb15-5"><a href=""></a>    <span class="at">masa_corporal =</span> <span class="fu">parse_number</span>(masa_corporal),</span>
+<span id="cb15-6"><a href=""></a>    <span class="at">cintura =</span> <span class="fu">parse_number</span>(cintura), </span>
+<span id="cb15-7"><a href=""></a>    <span class="at">imc =</span> <span class="fu">parse_number</span>(imc), </span>
+<span id="cb15-8"><a href=""></a>    <span class="at">masa_grasa =</span> <span class="fu">parse_number</span>(masa_grasa),</span>
+<span id="cb15-9"><a href=""></a>    <span class="at">masa_muscular=</span> <span class="fu">parse_number</span>(masa_muscular),</span>
+<span id="cb15-10"><a href=""></a>    <span class="at">masa_osea=</span> <span class="fu">parse_number</span>(masa_osea), </span>
+<span id="cb15-11"><a href=""></a>    <span class="at">grasa_visceral=</span> <span class="fu">parse_number</span>(grasa_visceral),  </span>
+<span id="cb15-12"><a href=""></a>    <span class="at">fuerza_md=</span><span class="fu">parse_number</span>(fuerza_md),</span>
+<span id="cb15-13"><a href=""></a>    <span class="at">fuerza_mi=</span><span class="fu">parse_number</span>(fuerza_mi)</span>
+<span id="cb15-14"><a href=""></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
 
 </div>
 </section>
+<section id="un-vistazo-despues-de-parsenumber" class="slide level2 center">
+<h2>Un vistazo, despues de <code>parsenumber</code></h2>
+<div class="cell column-screen-inset-shaded">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a><span class="fu">summary</span>(df_limpio) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell column-screen-inset-shaded fragment">
+<div class="cell-output cell-output-stdout">
+<pre><code>      edad          sexo                fcr          presion_sis   
+ Min.   :17.0   Length:37          Min.   : 54.00   Min.   : 93.0  
+ 1st Qu.:18.0   Class :character   1st Qu.: 74.00   1st Qu.:110.0  
+ Median :18.0   Mode  :character   Median : 79.00   Median :122.0  
+ Mean   :19.7                      Mean   : 81.95   Mean   :120.8  
+ 3rd Qu.:19.0                      3rd Qu.: 88.00   3rd Qu.:129.0  
+ Max.   :60.0                      Max.   :117.00   Max.   :162.0  
+                                                                   
+  presion_dia        estatura       masa_corporal      cintura      
+ Min.   : 33.00   Min.   :   1.57   Min.   : 1.80   Min.   : 56.40  
+ 1st Qu.: 66.00   1st Qu.: 157.50   1st Qu.:51.70   1st Qu.: 69.60  
+ Median : 71.00   Median : 165.50   Median :62.60   Median : 73.00  
+ Mean   : 71.49   Mean   : 232.95   Mean   :62.03   Mean   : 90.89  
+ 3rd Qu.: 78.00   3rd Qu.: 177.00   3rd Qu.:70.00   3rd Qu.: 82.00  
+ Max.   :102.00   Max.   :1755.00   Max.   :97.00   Max.   :686.00  
+                                                                    
+      imc           masa_grasa    masa_muscular     masa_osea    
+ Min.   :  0.00   Min.   : 0.00   Min.   : 0.00   Min.   :0.000  
+ 1st Qu.: 19.30   1st Qu.:14.85   1st Qu.:38.00   1st Qu.:2.100  
+ Median : 21.80   Median :23.55   Median :43.30   Median :2.400  
+ Mean   : 39.22   Mean   :22.73   Mean   :44.16   Mean   :2.415  
+ 3rd Qu.: 27.00   3rd Qu.:28.27   3rd Qu.:51.10   3rd Qu.:2.700  
+ Max.   :253.10   Max.   :53.80   Max.   :70.70   Max.   :3.700  
+ NA's   :4        NA's   :5       NA's   :4       NA's   :4      
+ grasa_visceral     fuerza_md       fuerza_mi    
+ Min.   : 0.000   Min.   :18.00   Min.   :18.00  
+ 1st Qu.: 1.000   1st Qu.:26.00   1st Qu.:24.00  
+ Median : 1.000   Median :32.00   Median :34.00  
+ Mean   : 2.864   Mean   :33.35   Mean   :32.43  
+ 3rd Qu.: 3.500   3rd Qu.:40.00   3rd Qu.:40.00  
+ Max.   :13.000   Max.   :54.00   Max.   :52.00  
+ NA's   :4                                       </code></pre>
+</div>
+</div>
+</section>
 <section id="cómo-va-el-data" class="slide level2 center">
 <h2>Cómo va el data ?</h2>
-<div class="cell column-screen-inset-shaded">
+<div class="cell">
+<div class="cell-output-display column-screen-inset-shaded">
 <p><strong>Variable type: numeric</strong></p>
 <table class="caption-top">
 <thead>
@@ -723,35 +816,57 @@ $ fuerza_mi      &lt;chr&gt; "26.0", "34.0", "28.0", "40.0", "24.0", "22.0", "36
 <td style="text-align: right;">90.89</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">imc</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">253.1</td>
+<td style="text-align: right;">39.22</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">masa_grasa</td>
 <td style="text-align: right;">5</td>
 <td style="text-align: right;">0.00</td>
 <td style="text-align: right;">53.8</td>
 <td style="text-align: right;">22.72</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">masa_muscular</td>
 <td style="text-align: right;">4</td>
 <td style="text-align: right;">0.00</td>
 <td style="text-align: right;">70.7</td>
 <td style="text-align: right;">44.16</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">masa_osea</td>
 <td style="text-align: right;">4</td>
 <td style="text-align: right;">0.00</td>
 <td style="text-align: right;">3.7</td>
 <td style="text-align: right;">2.42</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">grasa_visceral</td>
 <td style="text-align: right;">4</td>
 <td style="text-align: right;">0.00</td>
 <td style="text-align: right;">13.0</td>
 <td style="text-align: right;">2.86</td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;">fuerza_md</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">18.00</td>
+<td style="text-align: right;">54.0</td>
+<td style="text-align: right;">33.35</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fuerza_mi</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">18.00</td>
+<td style="text-align: right;">52.0</td>
+<td style="text-align: right;">32.43</td>
+</tr>
 </tbody>
 </table>
+</div>
 </div>
 </section>
 <section id="las-dos-estaturas" class="slide level2 center">
@@ -775,18 +890,65 @@ $ fuerza_mi      &lt;chr&gt; "26.0", "34.0", "28.0", "40.0", "24.0", "22.0", "36
 </div>
 </div>
 </section>
+<section id="las-dos-imc" class="slide level2 center">
+<h2>Las dos imc</h2>
+<div class="cell column-screen-inset-shaded">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 11 × 2
+   imc_sucia    imc
+   &lt;chr&gt;      &lt;dbl&gt;
+ 1 24.6        24.6
+ 2 20.1        20.1
+ 3 17,9       179  
+ 4 20,6 kg/m2 206  
+ 5 NA          NA  
+ 6 0.0          0  
+ 7 22.3        22.3
+ 8 21.8        21.8
+ 9 31.1        31.1
+10 29.0        29  
+11 17.8        17.8</code></pre>
+</div>
+</div>
+</section>
 <section id="primero-reemplazamos-las-comas-por-punto" class="slide level2 center">
 <h2>Primero reemplazamos las comas por punto</h2>
+<p>La razón de eso son las comas, hay que quitarlas primero, reemplazándolas por punto.</p>
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>df_limpio <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">estatura =</span> estatura<span class="sc">|&gt;</span> </span>
-<span id="cb15-3"><a href=""></a>           <span class="fu">str_replace</span>(<span class="st">","</span>, <span class="st">"."</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb15-4"><a href=""></a>           <span class="fu">parse_number</span>(),</span>
-<span id="cb15-5"><a href=""></a>         <span class="at">imc=</span>imc<span class="sc">|&gt;</span> </span>
-<span id="cb15-6"><a href=""></a>           <span class="fu">str_replace</span>(<span class="st">","</span>, <span class="st">"."</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb15-7"><a href=""></a>           <span class="fu">parse_number</span>()) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a>df_limpio <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">estatura =</span> estatura<span class="sc">|&gt;</span> </span>
+<span id="cb20-3"><a href=""></a>           <span class="fu">str_replace</span>(<span class="st">","</span>, <span class="st">"."</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb20-4"><a href=""></a>           <span class="fu">parse_number</span>(),</span>
+<span id="cb20-5"><a href=""></a>         <span class="at">imc=</span>imc<span class="sc">|&gt;</span> </span>
+<span id="cb20-6"><a href=""></a>           <span class="fu">str_replace</span>(<span class="st">","</span>, <span class="st">"."</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb20-7"><a href=""></a>           <span class="fu">parse_number</span>()) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell column-screen-inset-shaded fragment">
+
+</div>
+</section>
+<section id="uso-de-parse_number-1" class="slide level2 center">
+<h2>Uso de <code>parse_number</code></h2>
+<div class="cell column-screen-inset-shaded">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>df_limpio <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href=""></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-3"><a href=""></a>    <span class="at">edad =</span> edad<span class="sc">|&gt;</span><span class="fu">str_replace</span>(<span class="st">","</span>, <span class="st">"."</span>)<span class="sc">|&gt;</span><span class="fu">parse_number</span>(),</span>
+<span id="cb21-4"><a href=""></a>    <span class="at">estatura =</span> estatura<span class="sc">|&gt;</span><span class="fu">str_replace</span>(<span class="st">","</span>, <span class="st">"."</span>)<span class="sc">|&gt;</span><span class="fu">parse_number</span>(),</span>
+<span id="cb21-5"><a href=""></a>    <span class="at">masa_corporal =</span>masa_corporal <span class="sc">|&gt;</span><span class="fu">str_replace</span>(<span class="st">","</span>, <span class="st">"."</span>)<span class="sc">|&gt;</span><span class="fu">parse_number</span>(),</span>
+<span id="cb21-6"><a href=""></a>    <span class="at">cintura =</span>cintura <span class="sc">|&gt;</span><span class="fu">str_replace</span>(<span class="st">","</span>, <span class="st">"."</span>)<span class="sc">|&gt;</span><span class="fu">parse_number</span>(), </span>
+<span id="cb21-7"><a href=""></a>    <span class="at">imc =</span> imc <span class="sc">|&gt;</span><span class="fu">str_replace</span>(<span class="st">","</span>, <span class="st">"."</span>)<span class="sc">|&gt;</span><span class="fu">parse_number</span>(), </span>
+<span id="cb21-8"><a href=""></a>    <span class="at">masa_grasa =</span>masa_grasa<span class="sc">|&gt;</span><span class="fu">str_replace</span>(<span class="st">","</span>, <span class="st">"."</span>)<span class="sc">|&gt;</span><span class="fu">parse_number</span>(),</span>
+<span id="cb21-9"><a href=""></a>    <span class="at">masa_muscular=</span> masa_muscular<span class="sc">|&gt;</span><span class="fu">str_replace</span>(<span class="st">","</span>, <span class="st">"."</span>)<span class="sc">|&gt;</span><span class="fu">parse_number</span>(),</span>
+<span id="cb21-10"><a href=""></a>    <span class="at">masa_osea=</span> masa_osea<span class="sc">|&gt;</span><span class="fu">str_replace</span>(<span class="st">","</span>, <span class="st">"."</span>)<span class="sc">|&gt;</span><span class="fu">parse_number</span>(), </span>
+<span id="cb21-11"><a href=""></a>    <span class="at">grasa_visceral=</span>grasa_visceral <span class="sc">|&gt;</span><span class="fu">str_replace</span>(<span class="st">","</span>, <span class="st">"."</span>)<span class="sc">|&gt;</span><span class="fu">parse_number</span>(),  </span>
+<span id="cb21-12"><a href=""></a>    <span class="at">fuerza_md=</span>fuerza_md<span class="sc">|&gt;</span><span class="fu">str_replace</span>(<span class="st">","</span>, <span class="st">"."</span>)<span class="sc">|&gt;</span><span class="fu">parse_number</span>(),</span>
+<span id="cb21-13"><a href=""></a>    <span class="at">fuerza_mi=</span>fuerza_mi<span class="sc">|&gt;</span><span class="fu">str_replace</span>(<span class="st">","</span>, <span class="st">"."</span>)<span class="sc">|&gt;</span><span class="fu">parse_number</span>()</span>
+<span id="cb21-14"><a href=""></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -830,39 +992,102 @@ $ fuerza_mi      &lt;chr&gt; "26.0", "34.0", "28.0", "40.0", "24.0", "22.0", "36
 </thead>
 <tbody>
 <tr class="odd">
+<td style="text-align: left;">edad</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">17.00</td>
+<td style="text-align: right;">60.0</td>
+<td style="text-align: right;">19.70</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">fcr</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">54.00</td>
 <td style="text-align: right;">117.0</td>
 <td style="text-align: right;">81.95</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">presion_sis</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">93.00</td>
 <td style="text-align: right;">162.0</td>
 <td style="text-align: right;">120.81</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">presion_dia</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">33.00</td>
 <td style="text-align: right;">102.0</td>
 <td style="text-align: right;">71.49</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">estatura</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">1.57</td>
 <td style="text-align: right;">189.5</td>
 <td style="text-align: right;">150.57</td>
 </tr>
+<tr class="even">
+<td style="text-align: left;">masa_corporal</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.80</td>
+<td style="text-align: right;">97.0</td>
+<td style="text-align: right;">62.03</td>
+</tr>
 <tr class="odd">
+<td style="text-align: left;">cintura</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">56.40</td>
+<td style="text-align: right;">686.0</td>
+<td style="text-align: right;">90.89</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">imc</td>
 <td style="text-align: right;">4</td>
 <td style="text-align: right;">0.00</td>
 <td style="text-align: right;">253.1</td>
 <td style="text-align: right;">28.72</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">masa_grasa</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">53.8</td>
+<td style="text-align: right;">22.72</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">masa_muscular</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">70.7</td>
+<td style="text-align: right;">44.16</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">masa_osea</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">3.7</td>
+<td style="text-align: right;">2.42</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">grasa_visceral</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">13.0</td>
+<td style="text-align: right;">2.86</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fuerza_md</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">18.00</td>
+<td style="text-align: right;">54.0</td>
+<td style="text-align: right;">33.35</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fuerza_mi</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">18.00</td>
+<td style="text-align: right;">52.0</td>
+<td style="text-align: right;">32.43</td>
 </tr>
 </tbody>
 </table>
@@ -873,9 +1098,9 @@ $ fuerza_mi      &lt;chr&gt; "26.0", "34.0", "28.0", "40.0", "24.0", "22.0", "36
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>df_limpio <span class="sc">|&gt;</span> </span>
-<span id="cb17-2"><a href=""></a>  <span class="fu">filter</span>(estatura<span class="sc">&lt;</span> <span class="fl">2.0</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb17-3"><a href=""></a>  <span class="fu">count</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>df_limpio <span class="sc">|&gt;</span> </span>
+<span id="cb23-2"><a href=""></a>  <span class="fu">filter</span>(estatura<span class="sc">&lt;</span> <span class="fl">2.0</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb23-3"><a href=""></a>  <span class="fu">count</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -892,14 +1117,14 @@ $ fuerza_mi      &lt;chr&gt; "26.0", "34.0", "28.0", "40.0", "24.0", "22.0", "36
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>df_limpio <span class="ot">&lt;-</span> df_limpio <span class="sc">|&gt;</span></span>
-<span id="cb19-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">estatura=</span> <span class="fu">if_else</span>(</span>
-<span id="cb19-3"><a href=""></a>    estatura <span class="sc">&lt;</span> <span class="fl">2.0</span>,</span>
-<span id="cb19-4"><a href=""></a>    estatura <span class="sc">*</span> <span class="dv">100</span>,</span>
-<span id="cb19-5"><a href=""></a>    estatura  </span>
-<span id="cb19-6"><a href=""></a>  ))</span>
-<span id="cb19-7"><a href=""></a></span>
-<span id="cb19-8"><a href=""></a><span class="fu">summary</span>(df_limpio<span class="sc">$</span>estatura) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>df_limpio <span class="ot">&lt;-</span> df_limpio <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">estatura=</span> <span class="fu">if_else</span>(</span>
+<span id="cb25-3"><a href=""></a>    estatura <span class="sc">&lt;</span> <span class="fl">2.0</span>,</span>
+<span id="cb25-4"><a href=""></a>    estatura <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb25-5"><a href=""></a>    estatura  </span>
+<span id="cb25-6"><a href=""></a>  ))</span>
+<span id="cb25-7"><a href=""></a></span>
+<span id="cb25-8"><a href=""></a><span class="fu">summary</span>(df_limpio<span class="sc">$</span>estatura) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -914,14 +1139,14 @@ $ fuerza_mi      &lt;chr&gt; "26.0", "34.0", "28.0", "40.0", "24.0", "22.0", "36
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>df_limpio <span class="ot">&lt;-</span> df_limpio <span class="sc">|&gt;</span></span>
-<span id="cb21-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">imc=</span><span class="fu">if_else</span>(</span>
-<span id="cb21-3"><a href=""></a>    imc<span class="sc">==</span><span class="fl">253.1</span>,</span>
-<span id="cb21-4"><a href=""></a>    <span class="fl">25.3</span>,</span>
-<span id="cb21-5"><a href=""></a>    imc  </span>
-<span id="cb21-6"><a href=""></a>  ))</span>
-<span id="cb21-7"><a href=""></a></span>
-<span id="cb21-8"><a href=""></a><span class="fu">summary</span>(df_limpio<span class="sc">$</span>imc) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a>df_limpio <span class="ot">&lt;-</span> df_limpio <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">imc=</span><span class="fu">if_else</span>(</span>
+<span id="cb27-3"><a href=""></a>    imc<span class="sc">==</span><span class="fl">253.1</span>,</span>
+<span id="cb27-4"><a href=""></a>    <span class="fl">25.3</span>,</span>
+<span id="cb27-5"><a href=""></a>    imc  </span>
+<span id="cb27-6"><a href=""></a>  ))</span>
+<span id="cb27-7"><a href=""></a></span>
+<span id="cb27-8"><a href=""></a><span class="fu">summary</span>(df_limpio<span class="sc">$</span>imc) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -940,10 +1165,187 @@ $ fuerza_mi      &lt;chr&gt; "26.0", "34.0", "28.0", "40.0", "24.0", "22.0", "36
 <li><p>Corrija de acuerdo con el dato real que debe tener el estudiante en su formulario en papel.</p></li>
 <li><p>En caso que ese valor esté correcto debe repetir la medición y si persiste se debe remitir al médico.</p></li>
 </ul>
+<!--
+## 
+
+
+::: {.cell}
+
+```{.r .cell-code}
+df_limpio|>select(starts_with('masa'))
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 37 × 4
+   masa_corporal masa_grasa masa_muscular masa_osea
+           <dbl>      <dbl>         <dbl>     <dbl>
+ 1          60.3       32.8          38.4       2.1
+ 2          90.7       25.2          22.9       3.4
+ 3          54.3       15.9          43.3       2.3
+ 4          69         17.8          53.9       2.9
+ 5          52         30.6          34.2       1.9
+ 6          55.2       27.6          38         2  
+ 7          67.3       19.4          51.5       2.7
+ 8          51.5       14.4          41.8       2.3
+ 9          66         23.8          47.7       2.6
+10          70         24.6          50.2       2.7
+# ℹ 27 more rows
+```
+
+
+:::
+
+```{.r .cell-code}
+#masa_grasa        masa_muscular       masa_osea  
+```
+:::
+
+
+## Las variables de caracter  
+
+
+::: {.cell .column-screen-inset-shaded output-location='fragment'}
+
+```{.r .cell-code}
+df_limpio|> select(where(is.character) ) 
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 37 × 1
+   sexo     
+   <chr>    
+ 1 Femenino 
+ 2 Masculino
+ 3 Masculino
+ 4 Masculino
+ 5 Femenino 
+ 6 Femenino 
+ 7 Masculino
+ 8 Masculino
+ 9 Masculino
+10 Masculino
+# ℹ 27 more rows
+```
+
+
+:::
+:::
+
+
+-->
 </section>
 <section id="ceros-a-na" class="slide level2 center">
 <h2>Ceros a <code>NA</code></h2>
 <p>En estadística, confundir un “cero” con un “valor faltante” (NA) es un error grave que sesgaría totalmente cualquier modelo de regresión o promedio.</p>
+<div class="cell column-screen-inset-shaded">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>df_limpio <span class="ot">&lt;-</span> df_limpio <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href=""></a>  <span class="fu">mutate</span>(</span>
+<span id="cb29-3"><a href=""></a>    <span class="at">imc =</span> <span class="fu">na_if</span>(imc, <span class="dv">0</span>),</span>
+<span id="cb29-4"><a href=""></a>    <span class="at">masa_grasa =</span> <span class="fu">na_if</span>(masa_grasa, <span class="dv">0</span>),</span>
+<span id="cb29-5"><a href=""></a>    <span class="at">masa_muscular=</span> <span class="fu">na_if</span>(masa_muscular, <span class="dv">0</span>),</span>
+<span id="cb29-6"><a href=""></a>    <span class="at">masa_osea=</span> <span class="fu">na_if</span>(masa_osea, <span class="dv">0</span>), </span>
+<span id="cb29-7"><a href=""></a>    <span class="at">grasa_visceral=</span> <span class="fu">na_if</span>(grasa_visceral, <span class="dv">0</span>) </span>
+<span id="cb29-8"><a href=""></a>    )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell column-screen-inset-shaded fragment">
+
+</div>
+</section></section>
+<section>
+<section id="imputación-de-datos-faltantes" class="title-slide slide level1 center">
+<h1>Imputación de datos faltantes</h1>
+
+</section>
+<section id="imputación-básica-para-una-variable" class="slide level2 center">
+<h2>Imputación básica para una variable</h2>
+<p>Imputaremos <code>imc</code> con la mediana. <code>imc</code> antes de imputar.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+  16.80   19.25   21.10   22.50   25.00   33.50       5 </code></pre>
+</div>
+</div>
+<div class="cell column-screen-inset-shaded">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a>df_limpio<span class="ot">&lt;-</span>df_limpio <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">imc =</span> <span class="fu">if_else</span>(</span>
+<span id="cb31-2"><a href=""></a>    <span class="fu">is.na</span>(imc),</span>
+<span id="cb31-3"><a href=""></a>    <span class="fu">median</span>(imc, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb31-4"><a href=""></a>    imc</span>
+<span id="cb31-5"><a href=""></a>  ))</span>
+<span id="cb31-6"><a href=""></a></span>
+<span id="cb31-7"><a href=""></a><span class="fu">summary</span>(df_limpio<span class="sc">$</span>imc)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell column-screen-inset-shaded fragment">
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  16.80   19.50   21.10   22.31   24.70   33.50 </code></pre>
+</div>
+</div>
+</section>
+<section id="section" class="slide level2 center">
+<h2></h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a>vars_a_imputar <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"imc"</span>, <span class="st">"masa_grasa"</span>, <span class="st">"masa_muscular"</span>, <span class="st">"masa_osea"</span>, <span class="st">"grasa_visceral"</span>)</span>
+<span id="cb33-2"><a href=""></a></span>
+<span id="cb33-3"><a href=""></a>df_limpio <span class="ot">&lt;-</span> df_limpio <span class="sc">|&gt;</span></span>
+<span id="cb33-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(vars_a_imputar), </span>
+<span id="cb33-5"><a href=""></a>                <span class="sc">~</span> <span class="fu">if_else</span>(<span class="fu">is.na</span>(.x), <span class="fu">median</span>(.x, <span class="at">na.rm =</span> T), .x)))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="section-1" class="slide level2 center">
+<h2></h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>      edad          sexo                fcr          presion_sis   
+ Min.   :17.0   Length:37          Min.   : 54.00   Min.   : 93.0  
+ 1st Qu.:18.0   Class :character   1st Qu.: 74.00   1st Qu.:110.0  
+ Median :18.0   Mode  :character   Median : 79.00   Median :122.0  
+ Mean   :19.7                      Mean   : 81.95   Mean   :120.8  
+ 3rd Qu.:19.0                      3rd Qu.: 88.00   3rd Qu.:129.0  
+ Max.   :60.0                      Max.   :117.00   Max.   :162.0  
+  presion_dia        estatura     masa_corporal      cintura      
+ Min.   : 33.00   Min.   :155.2   Min.   : 1.80   Min.   : 56.40  
+ 1st Qu.: 66.00   1st Qu.:160.8   1st Qu.:51.70   1st Qu.: 69.60  
+ Median : 71.00   Median :167.5   Median :62.60   Median : 73.00  
+ Mean   : 71.49   Mean   :168.5   Mean   :62.03   Mean   : 90.89  
+ 3rd Qu.: 78.00   3rd Qu.:175.5   3rd Qu.:70.00   3rd Qu.: 82.00  
+ Max.   :102.00   Max.   :189.5   Max.   :97.00   Max.   :686.00  
+      imc          masa_grasa    masa_muscular     masa_osea    
+ Min.   :16.80   Min.   :10.40   Min.   :22.90   Min.   :1.300  
+ 1st Qu.:19.50   1st Qu.:16.50   1st Qu.:41.60   1st Qu.:2.300  
+ Median :21.10   Median :23.80   Median :44.45   Median :2.500  
+ Mean   :22.31   Mean   :23.51   Mean   :45.39   Mean   :2.492  
+ 3rd Qu.:24.70   3rd Qu.:27.60   3rd Qu.:50.50   3rd Qu.:2.700  
+ Max.   :33.50   Max.   :53.80   Max.   :70.70   Max.   :3.700  
+ grasa_visceral     fuerza_md       fuerza_mi    
+ Min.   : 1.000   Min.   :18.00   Min.   :18.00  
+ 1st Qu.: 1.000   1st Qu.:26.00   1st Qu.:24.00  
+ Median : 1.250   Median :32.00   Median :34.00  
+ Mean   : 2.723   Mean   :33.35   Mean   :32.43  
+ 3rd Qu.: 3.000   3rd Qu.:40.00   3rd Qu.:40.00  
+ Max.   :13.000   Max.   :54.00   Max.   :52.00  </code></pre>
+</div>
+</div>
+</section></section>
+<section>
+<section id="cálculos-por-niveles-de-un-factor" class="title-slide slide level1 center">
+<h1>Cálculos por niveles de un factor</h1>
+
+</section>
+<section id="section-2" class="slide level2 center">
+<h2></h2>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "edad"           "sexo"           "fcr"            "presion_sis"   
@@ -952,42 +1354,82 @@ $ fuerza_mi      &lt;chr&gt; "26.0", "34.0", "28.0", "40.0", "24.0", "22.0", "36
 [13] "grasa_visceral" "fuerza_md"      "fuerza_mi"     </code></pre>
 </div>
 </div>
-<!--
-
-
-#### B. Anonimización (Ética de Datos)
-Como docente, debe enseñarles que la privacidad es sagrada. Antes de que ellos procesen el archivo grupal, realizaremos una anonimización irreversible.
-
-```r
-# Eliminamos nombres y documentos, y creamos un ID aleatorio
-set.seed(123) # Para reproducibilidad
-df_final <- df_limpio |>
-  select(-nombre_completo, -documento, -fecha_nacimiento) |> 
-  mutate(id_estudiante = sample(100:999, n(), replace = FALSE)) |>
-  select(id_estudiante, everything())
-```
-
-#### C. Tratamiento de Datos Faltantes (Imputación)
-Para los menores de 18 años donde la báscula de bioimpedancia no arrojó datos de grasa visceral o masa ósea, enseñaremos la técnica de imputación por la mediana o regresión.
-
-```r
-library(mice)
-
-# Imputación simple por la mediana para variables de composición corporal
-df_final <- df_final |>
-  mutate(across(c(masa_grasa, masa_muscular, masa_osea, grasa_visceral), 
-                ~ifelse(is.na(.), median(., na.rm = TRUE), .)))
-```
-
----
-
-
-### Un toque de "Sherlock" para su clase
-Dr. Morales, para que la clase sea inolvidable, plantéeles este dilema: *"Si tenemos un estudiante con mucha masa muscular, su IMC será alto y saldrá clasificado con 'Sobrepeso'. ¿Es el IMC un indicador perfecto? ¿Cómo nos ayudan las otras variables de la báscula a corregir esa interpretación?"*. Esto los obligará a pensar como estadísticos y no solo como digitadores de datos.
-
-¿Le gustaría que preparemos una rúbrica de evaluación específica para este informe de laboratorio?
-
--->
+</section>
+<section id="agrupamiento-por-sexo" class="slide level2 center">
+<h2>Agrupamiento por <code>sexo</code></h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a>df_limpio<span class="sc">|&gt;</span><span class="fu">group_by</span>(sexo)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 37 × 15
+# Groups:   sexo [2]
+    edad sexo        fcr presion_sis presion_dia estatura masa_corporal cintura
+   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;
+ 1    24 Femenino     85         122          90    156.4          60.3    73.4
+ 2    18 Masculino    75         125          82    182            90.7    89.4
+ 3    19 Masculino    72         113          69    166            54.3    70.5
+ 4    19 Masculino    88         108          71    180.5          69      73  
+ 5    18 Femenino     74         110          70    157.5          52      67.8
+ 6    18 Femenino     78         105          67    156.6          55.2    70  
+ 7    18 Masculino   112         137          33    172.3          67.3    79  
+ 8    20 Masculino    78         118          46    164.5          51.5    68  
+ 9    18 Masculino    54         124          82    181            66      73.9
+10    19 Masculino    85         135          64    168.6          70      82  
+# ℹ 27 more rows
+# ℹ 7 more variables: imc &lt;dbl&gt;, masa_grasa &lt;dbl&gt;, masa_muscular &lt;dbl&gt;,
+#   masa_osea &lt;dbl&gt;, grasa_visceral &lt;dbl&gt;, fuerza_md &lt;dbl&gt;, fuerza_mi &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="cuántos-hombres-y-cuántas-mujeres" class="slide level2 center">
+<h2>Cuántos hombres y cuántas mujeres</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a>df_limpio<span class="sc">|&gt;</span><span class="fu">group_by</span>(sexo)<span class="sc">|&gt;</span><span class="fu">summarise</span>(<span class="at">N=</span><span class="fu">n</span>()) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  sexo          N
+  &lt;chr&gt;     &lt;int&gt;
+1 Femenino     11
+2 Masculino    26</code></pre>
+</div>
+</div>
+</section>
+<section id="media-de-hombres-y-mujeres" class="slide level2 center">
+<h2>Media de hombres y mujeres</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href=""></a>df_limpio<span class="sc">|&gt;</span><span class="fu">group_by</span>(sexo)<span class="sc">|&gt;</span><span class="fu">summarise</span>(<span class="at">N=</span><span class="fu">n</span>(),<span class="at">Media=</span><span class="fu">mean</span>(edad)) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  sexo          N  Media
+  &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;
+1 Femenino     11 18.727
+2 Masculino    26 20.115</code></pre>
+</div>
+</div>
+</section>
+<section id="min-y-max-de-edad-hombres-y-mujeres" class="slide level2 center">
+<h2>Min y max de edad hombres y mujeres</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a>df_limpio<span class="sc">|&gt;</span><span class="fu">group_by</span>(sexo)<span class="sc">|&gt;</span><span class="fu">summarise</span>(<span class="at">N=</span><span class="fu">n</span>(),<span class="at">Media=</span><span class="fu">mean</span>(edad), <span class="at">Min=</span><span class="fu">min</span>(edad), <span class="at">Max=</span><span class="fu">max</span>(edad))  </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  sexo          N  Media   Min   Max
+  &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 Femenino     11 18.727    17    24
+2 Masculino    26 20.115    17    60</code></pre>
+</div>
+</div>
 
 </section></section>
     </div>

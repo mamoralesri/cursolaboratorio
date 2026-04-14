@@ -62,10 +62,10 @@ Realizar la preparación de los datos tomados en el laboratorio para que queden 
 
 ## Lectura 
 
-Para esta tarea usaremos el `universo tydiverse` de R. 
+Para esta tarea usaremos el `universo tidyverse` de R. 
 
 
-# Uso de `tydiverse`
+# Uso de `tidyverse`
 
 ```{r}
 #| echo: true
@@ -136,7 +136,8 @@ df = df |> dplyr::rename(
     presion_sis = presion_arterial_sistolica_mm_hg,
     presion_dia = presion_arterial_diastolica_mm_hg,
     masa_muscular = masa_magra_muscular,
-    fuerza_md = fuerza_prensil_mano_derecha,                        fuerza_mi = fuerza_prensil_mano_izquierda
+    fuerza_md = fuerza_prensil_mano_derecha,
+    fuerza_mi = fuerza_prensil_mano_izquierda
     )
 df|>names()|>as_tibble()
 ```
@@ -208,6 +209,18 @@ El primer reto es transformar columnas que R lee como texto (`character`) debido
 
 La  función `parse_number()` es mágica: extrae el primer número que encuentra y descarta el texto.
 
+## Un vistazo 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded 
+
+summary(df)
+
+```
+
+
 ## Uso de `parse_number`  
 
 ```{r} 
@@ -221,13 +234,26 @@ df_limpio <- df |>
     estatura = parse_number(estatura),
     masa_corporal = parse_number(masa_corporal),
     cintura = parse_number(cintura), 
+    imc = parse_number(imc), 
     masa_grasa = parse_number(masa_grasa),
     masa_muscular= parse_number(masa_muscular),
     masa_osea= parse_number(masa_osea), 
-    grasa_visceral= parse_number(grasa_visceral)  
+    grasa_visceral= parse_number(grasa_visceral),  
+    fuerza_md=parse_number(fuerza_md),
+    fuerza_mi=parse_number(fuerza_mi)
 )
 ```
 
+## Un vistazo, despues de `parsenumber` 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+summary(df_limpio) 
+
+```
 
 
 ## Cómo va el data ?  
@@ -236,7 +262,8 @@ df_limpio <- df |>
 #| echo: false
 #| output-location: fragment
 #| column: screen-inset-shaded
-#| results: 'asis'
+##| results: 'asis'
+
 library(skimr)
 skim(df_limpio) |> yank("numeric") |>
  select(skim_variable,n_missing,p0,p100,mean) |> 
@@ -256,7 +283,21 @@ df_limpio |>
 ```
 
 
+## Las dos imc  
+
+```{r}
+#| echo: false
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+df_limpio |>
+  select(imc) |> 
+  bind_cols(df |> select(imc_sucia=imc)) |> select(imc_sucia,imc)|> slice(10:20)          
+```
+
 ## Primero reemplazamos las comas por punto
+
+La razón de eso son las comas, hay que quitarlas  primero, reemplazándolas por punto.  
 
 ```{r} 
 #| echo: true
@@ -272,6 +313,30 @@ df_limpio <- df |>
            str_replace(",", ".") |> 
            parse_number()) 
 ```
+
+## Uso de `parse_number`  
+
+```{r} 
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded 
+
+df_limpio <- df |>
+  mutate(
+    edad = edad|>str_replace(",", ".")|>parse_number(),
+    estatura = estatura|>str_replace(",", ".")|>parse_number(),
+    masa_corporal =masa_corporal |>str_replace(",", ".")|>parse_number(),
+    cintura =cintura |>str_replace(",", ".")|>parse_number(), 
+    imc = imc |>str_replace(",", ".")|>parse_number(), 
+    masa_grasa =masa_grasa|>str_replace(",", ".")|>parse_number(),
+    masa_muscular= masa_muscular|>str_replace(",", ".")|>parse_number(),
+    masa_osea= masa_osea|>str_replace(",", ".")|>parse_number(), 
+    grasa_visceral=grasa_visceral |>str_replace(",", ".")|>parse_number(),  
+    fuerza_md=fuerza_md|>str_replace(",", ".")|>parse_number(),
+    fuerza_mi=fuerza_mi|>str_replace(",", ".")|>parse_number()
+)
+```
+
 
 
 ## Las dos estaturas 
@@ -363,64 +428,132 @@ summary(df_limpio$imc)
 
 - En caso que ese valor esté correcto debe repetir la medición y si persiste se debe remitir al médico.   
 
+<!--
+## 
+
+```{r}
+#| echo: true
+df_limpio|>select(starts_with('masa'))
+#masa_grasa        masa_muscular       masa_osea  
+```
+
+## Las variables de caracter  
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+df_limpio|> select(where(is.character) ) 
+```
+
+--> 
+
 
 ## Ceros a `NA`  
 
 En estadística, confundir un "cero" con un "valor faltante" (NA) es un error grave que sesgaría totalmente cualquier modelo de regresión o promedio. 
 
 ```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+
 df_limpio <- df_limpio |>
   mutate(
     imc = na_if(imc, 0),
     masa_grasa = na_if(masa_grasa, 0),
     masa_muscular= na_if(masa_muscular, 0),
     masa_osea= na_if(masa_osea, 0), 
-    grasa_vis= na_if(grasa_vis, 0) 
+    grasa_visceral= na_if(grasa_visceral, 0) 
     )
 
-df_limpio|>names()
+
 ```
 
 
 
-<!--
+# Imputación de datos faltantes 
 
+## Imputación básica para una variable
 
-#### B. Anonimización (Ética de Datos)
-Como docente, debe enseñarles que la privacidad es sagrada. Antes de que ellos procesen el archivo grupal, realizaremos una anonimización irreversible.
+Imputaremos `imc` con la mediana. `imc` antes de imputar.
 
-```r
-# Eliminamos nombres y documentos, y creamos un ID aleatorio
-set.seed(123) # Para reproducibilidad
-df_final <- df_limpio |>
-  select(-nombre_completo, -documento, -fecha_nacimiento) |> 
-  mutate(id_estudiante = sample(100:999, n(), replace = FALSE)) |>
-  select(id_estudiante, everything())
+```{r}
+summary(df_limpio$imc)
 ```
 
-#### C. Tratamiento de Datos Faltantes (Imputación)
-Para los menores de 18 años donde la báscula de bioimpedancia no arrojó datos de grasa visceral o masa ósea, enseñaremos la técnica de imputación por la mediana o regresión.
 
-```r
-library(mice)
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
 
-# Imputación simple por la mediana para variables de composición corporal
-df_final <- df_final |>
-  mutate(across(c(masa_grasa, masa_muscular, masa_osea, grasa_visceral), 
-                ~ifelse(is.na(.), median(., na.rm = TRUE), .)))
+
+df_limpio<-df_limpio |> mutate(imc = if_else(
+    is.na(imc),
+    median(imc, na.rm = TRUE), 
+    imc
+  ))
+
+summary(df_limpio$imc)
 ```
 
----
+
+## 
+
+```{r}
+#| echo: true
+vars_a_imputar <- c("imc", "masa_grasa", "masa_muscular", "masa_osea", "grasa_visceral")
+
+df_limpio <- df_limpio |>
+  mutate(across(all_of(vars_a_imputar), 
+                ~ if_else(is.na(.x), median(.x, na.rm = T), .x)))
+```
+
+## 
+
+```{r}
+summary(df_limpio)
+```
 
 
-### Un toque de "Sherlock" para su clase
-Dr. Morales, para que la clase sea inolvidable, plantéeles este dilema: *"Si tenemos un estudiante con mucha masa muscular, su IMC será alto y saldrá clasificado con 'Sobrepeso'. ¿Es el IMC un indicador perfecto? ¿Cómo nos ayudan las otras variables de la báscula a corregir esa interpretación?"*. Esto los obligará a pensar como estadísticos y no solo como digitadores de datos.
-
-¿Le gustaría que preparemos una rúbrica de evaluación específica para este informe de laboratorio?
-
---> 
+# Cálculos por niveles de un factor
 
 
+## 
+
+```{r}
+colnames(df_limpio) 
+```
 
 
+## Agrupamiento por `sexo`
 
+```{r}
+#| echo: true
+df_limpio|>group_by(sexo)
+```
+
+
+## Cuántos hombres y cuántas mujeres 
+
+```{r}
+#| echo: true
+df_limpio|>group_by(sexo)|>summarise(N=n()) 
+```
+
+## Media de hombres y mujeres 
+
+```{r}
+#| echo: true
+df_limpio|>group_by(sexo)|>summarise(N=n(),Media=mean(edad)) 
+```
+
+
+## Min y max de edad hombres y mujeres 
+
+```{r}
+#| echo: true
+df_limpio|>group_by(sexo)|>summarise(N=n(),Media=mean(edad), Min=min(edad), Max=max(edad))  
+```

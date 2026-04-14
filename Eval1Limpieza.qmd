@@ -1,0 +1,30 @@
+---
+title: "Eval1Lab"
+author: "Mario Morales"
+format: pdf
+---
+
+
+```{r}
+setwd("~/Documents/Cursos/Laboratorio")
+df <- read_excel("~/Documents/Cursos/Laboratorio/DatosEstudiantes.xlsx")
+```
+
+
+```{r}
+glimpse(df)
+```
+
+
+```{r}
+df_limpio=df|>mutate(Peso=parse_number(Peso),Estatura=parse_number(Estatura))  
+glimpse(df_limpio)
+```
+
+¿Cuantos estudiantes ingresaron la estatura en centímetros?
+
+```{r}
+
+```
+
+
