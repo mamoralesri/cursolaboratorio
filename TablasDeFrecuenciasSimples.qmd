@@ -11,22 +11,108 @@ author:
       - name: Universidad de Córdoba, Montería
 format: 
   revealjs:
-    theme: "moon"
+    theme: default 
+    css: estilos2.css
+    include-before-body: logo2.html
+    mainfont: "Arial" 
+    slide-level: 2
+    embed-resources: true
+    toc: true
+    toc-depth: 1 
     highlight: "tango"
     center: true
     transition: fade
     lang: es
     code-fold: true
-    slide-level: 2
+    #slide-level: 2
     scrollable: true
   beamer:
-    theme: "CambridgeUS"
+    aspectratio: 169
+    theme: default
+    navigation: horizontal
+    number-sections: false
+    include-in-header:
+      - text: |
+          \setbeamertemplate{headline}{} % Elimina la cabecera del tema Madrid
+          \setbeamertemplate{section in head/foot}{} % Limpia la numeración de secciones
+          \renewcommand{\contentsname}{Índice}
+          \renewcommand{\refname}{Referencias}
+          \renewcommand{\figurename}{Figura}
+          \renewcommand{\tablename}{Tabla}
+          \logo{%
+            \begin{tabular}{c}
+              \includegraphics[height=1.2cm]{EscudoU.png}
+            \end{tabular}%
+          }
+          % --- CONFIGURACIÓN DE COLORES INSTITUCIONALES ---
+          \definecolor{UnicorGreen}{HTML}{024426}
+          \definecolor{UnicorText}{HTML}{F9F9F9}
+          \definecolor{UnicorWhite}{HTML}{FFFFFF}
+          \definecolor{UnicorGold}{HTML}{D1B061}
+          
+          % Aplicación al fondo y texto general
+          \setbeamercolor{background canvas}{bg=UnicorGreen}
+          \setbeamercolor{normal text}{fg=UnicorText}
+          
+          % Aplicación a títulos y cabeceras
+          %\setbeamercolor{title}{fg=UnicorWhite}
+          \setbeamercolor{frametitle}{fg=UnicorWhite}
+          \setbeamercolor{framesubtitle}{fg=UnicorWhite}
+          
+          % Aplicación a viñetas y estructura
+          \setbeamercolor{structure}{fg=UnicorWhite}
+          \setbeamercolor{itemize item}{fg=UnicorWhite}
+          \setbeamercolor{itemize subitem}{fg=UnicorWhite}
+          \setbeamercolor{enumerate item}{fg=UnicorWhite}
+          
+          % Forzar a LaTeX a repintar el texto general al iniciar el documento
+          \AtBeginDocument{\usebeamercolor[fg]{normal text}}
+          
+          % Aplicación a hipervínculos
+          \hypersetup{colorlinks=true, urlcolor=UnicorGold, linkcolor=UnicorWhite} 
+          
+          % --- ACTIVAR ESTILO DE BLOQUES Y SOMBRAS (ESTILO MADRID) ---
+          \useinnertheme[shadow=true]{rounded}
+          
+          % --- COLORES DEL RECUADRO DEL TÍTULO PRINCIPAL ---
+          % Fondo dorado con texto verde
+          \setbeamercolor{title}{bg=UnicorGold, fg=UnicorGreen}
+          \setbeamercolor{frametitle}{fg=UnicorWhite} % Mantiene el título de las diapositivas normal
+          \setbeamercolor{framesubtitle}{fg=UnicorWhite}
+          
+          % --- COLORES PARA TEOREMAS, DEFINICIONES Y BLOQUES ---
+          % Título del bloque (Fondo dorado, texto verde)
+          \setbeamercolor{block title}{bg=UnicorGold, fg=UnicorGreen}
+          % Cuerpo del bloque (Fondo blanco, texto verde)
+          \setbeamercolor{block body}{bg=UnicorWhite, fg=UnicorGreen}
+          
+          \AtBeginDocument{
+            \author{%
+              \begin{tabular}{c}
+                Mario A. Morales Rivera \\
+                \footnotesize \texttt{mamorales@correo.unicordoba.edu.co} \\
+                \footnotesize Universidad de Córdoba
+              \end{tabular}
+            }
+            \institute{} 
+          }
+          % --- LIMPIAR DIAPOSITIVAS DE SECCIÓN (ELIMINAR "SECTION X") ---
+          \setbeamertemplate{section page}{
+            \begin{center}
+              \begin{beamercolorbox}[sep=12pt,center,rounded=true,shadow=true]{title}
+                \usebeamerfont{title}\insertsection\par
+              \end{beamercolorbox}
+            \end{center}
+          }
     slide-level: 2
+    fonttheme: default 
     keep-tex: true
-    fonttheme: "professionalfonts"
+    lang: es
+
 toc: true
 
-editor: source 
+editor: source
+ 
 ---
 
 
@@ -37,14 +123,14 @@ setwd("~/Documents/Cursos/Laboratorio")
 
 ```
 
-# Fecha de la clase: Lunes 2 de marzo de 2026. 
+# Fecha de la clase: Lunes 24 de agosto de 2026. 
 
 
 ## ¿Qué haremos en clase?
 
-Trabajaremos el tema [Distribuciones de Frecuencia Simples]{style="color: #B22222;"} para variables discretas o con pocos valores, usaremos un conjunto de datos clásico de `R` que resultará muy intuitivo y fácil de trabajar a los estudiantes.
+Trabajaremos el tema [Distribuciones de Frecuencia Simples]{style="color: #B22222;"} para variables discretas o con pocos valores, usaremos un conjunto de datos clásico de `R` que resultará muy intuitivo y fácil de trabajar.
 
-# Ejemplo desarrolado por el profesor en clase
+# Ejemplo desarrollado por el profesor en clase
 
 ## El Problema: ¿Qué tan `familiares` son los autos de los 70?
 
@@ -91,7 +177,7 @@ datos_carb <- mtcars$carb
 datos_carb
 ```
 
-## Solución en R (RStudio / Kaggle) II 
+## Solución en R   
 
 #### Crear la Tabla de Frecuencias 
 
@@ -103,7 +189,7 @@ fi <- prop.table(ni) # Frecuencia relativa
 Fi <- cumsum(fi) # Frecuencia relativa acumulada
 ```
 
-## Solución en R (RStudio / Kaggle) III  
+## Solución en R  
 
 ####  Unir todo en un dataframe elegante
 
@@ -120,7 +206,7 @@ print(tabla_frecuencias)
 ```
 
 
-## Solución en R (RStudio / Kaggle) IV  
+## Solución en R 
 
 ####  Visualización
 
@@ -135,15 +221,17 @@ barplot(ni, col=rainbow(6),
         ylab="Frecuencia (n_i)")
 # Gráfico circular 
 pie(ni, labels = paste0(names(ni), " carb: ", tabla_frecuencias$Porcentaje),
-    col=rainbow(6), main="Proporción de Carburadores") 
+    col=topo.colors(6),main="Proporción de Carburadores") 
 ```
 
-## Solución en R (RStudio / Kaggle) V  
+## Solución en R  
 
-####  Visualización gráfico de barras y circular 
+####  Visualización gráfico de barras y circular  
 
 ```{r}
 #| echo: false
+#| fig-width: 10
+#| fig-height: 5 
 par(mfrow=c(1,2)) #Para ver dos gráficos lado a lado
 # Gráfico de Barras
 barplot(ni, col=rainbow(6), 
@@ -152,7 +240,7 @@ barplot(ni, col=rainbow(6),
         ylab="Frecuencia (n_i)")
 # Gráfico circular 
 pie(ni, labels = paste0(names(ni), " carb: ", tabla_frecuencias$Porcentaje),
-    col=rainbow(6), main="Proporción de Carburadores") 
+    col=terrain.colors(6),  main="Proporción de Carburadores") 
 ```
 
 ## Conclusiones  I 
@@ -180,9 +268,10 @@ tabla_frecuencias %>% kbl(caption = "Tabla de Frecuencias con Resaltado de Anál
 
 ## Ejercicio 
 
-::: callout-important 
-**Contexto:** Utilizando el mismo dataset `mtcars`, analicen ahora la variable **`gear` (Número de marchas/cambios hacia adelante)**.
-::: 
+####  Contexto: 
+
+Utilizando el mismo dataset `mtcars`, analicen ahora la variable **`gear` (Número de marchas/cambios hacia adelante)**.
+
 
 
 
@@ -202,23 +291,25 @@ tabla_frecuencias %>% kbl(caption = "Tabla de Frecuencias con Resaltado de Anál
 
 ## Para finalizar 
 
-**Comparar** el gráfico de barras con el de dona o circular.
+**Comparar** el gráfico de barras con el de torta o circular.
 
 * ¿En qué caso es más fácil ver la diferencia entre el grupo de 3 y 4 marchas? 
 
 # Ejercicio para entregar
 
-::: callout-important 
-Se debe entregar formato pdf usando la plantilla proporcionada de Quarto markdown, subiéndolo a Cintia (y solo a Cintia), la próxima clase que es el miércoles 4 de marzo. 
-::: 
+## Instrucciones 
 
+#### Importante 
+
+Se debe entregar formato pdf usando la plantilla proporcionada de Quarto markdown, subiéndolo a Cintia (y solo a Cintia), la próxima clase. 
 
 
 ## Trabajo Independiente: Análisis de Dietas Experimentales
 
-::: callout-important 
-**Contexto:** En un estudio biológico, se probaron 4 tipos de dietas diferentes para observar el crecimiento de sujetos experimentales. Como analista, debes informar sobre la distribución de estas dietas en la muestra total para asegurar que el experimento esté balanceado. 
-::: 
+#### Contexto:
+
+En un estudio biológico, se probaron 4 tipos de dietas diferentes para observar el crecimiento de sujetos experimentales. Como analista, debes informar sobre la distribución de estas dietas en la muestra total para asegurar que el experimento esté balanceado. 
+
 
 
 

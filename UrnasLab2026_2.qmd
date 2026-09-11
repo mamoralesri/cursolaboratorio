@@ -1,0 +1,72 @@
+---
+title: "El Misterio de la Urna"
+author: "Mario Morales"
+format: pdf
+---
+
+# Guía de Laboratorio: El Misterio de la Urna
+
+**Curso:** Laboratorio de Estadística
+
+**Tema:** Muestreo Aleatorio, Estimación de Proporciones y Pruebas de Hipótesis.
+
+## 1. Introducción
+
+En la toma de decisiones profesionales, rara vez conocemos los parámetros exactos de una población. Generalmente, trabajamos con muestras para inferir la realidad. Este laboratorio simula un proceso de control de calidad o un estudio de opinión, donde a través de la observación de una muestra, debemos tomar una decisión estadística sobre la composición de un todo.
+
+## 2. Objetivos
+
+* **General:** Aplicar los conceptos de estadística descriptiva e inferencial para estimar la proporción de una característica en una población finita y comparar muestras independientes.
+* **Específicos:**
+1. Recolectar datos bivariados mediante un muestreo aleatorio con reemplazo.
+2. Calcular estimadores puntuales y de intervalo para proporciones.
+3. Ejecutar pruebas de hipótesis para contrastar la igualdad de proporciones respecto a un valor teórico y entre dos grupos poblacionales.
+
+## 3. Materiales
+
+* Una urna o bolsa opaca (que no permita ver el contenido).
+* $N$ pelotas de igual tamaño y textura ($n_1$ de color verde, $n_2$ de color blanco con $N=n_1+n_2$). *Nota: El docente conoce la proporción $P=\frac{n_2}{n_1+n_2}$ para blancas, pero los estudiantes no.*
+* Formato de registro de datos.
+
+## 4. Procedimiento Experimental
+
+1. **Configuración:** El docente prepara la urna a puerta cerrada.
+2. **Muestreo:** Cada estudiante debe acercarse a la urna, mezclar el contenido sin mirar, extraer una pelota, anotar el color extraído, anotar su propio sexo (Hombre o Mujer) y **devolverla** a la urna (muestreo con reemplazo).
+3. **Repetición:** Para robustecer la muestra, cada estudiante realizará el proceso 2 veces.
+4. **Registro:** Los datos se consolidarán en una tabla cruzada, registrando en cada observación el Color (Blanca / Verde) y el Sexo del estudiante (Hombre / Mujer).
+
+## 5. Análisis Requeridos (El Informe)
+
+El informe escrito debe seguir una estructura científica y responder a lo siguiente:
+
+### A. Caracterización Descriptiva
+
+* Construya la tabla de frecuencias absolutas y relativas para el color extraído.
+* Construya una tabla de contingencia (o tabla cruzada) que muestre la distribución del color de la pelota extraída según el sexo del estudiante.
+* Represente los datos mediante diagramas de barras agrupadas o apiladas.
+* Calcule la proporción muestral general ($\hat{p}$) de bolas blancas y las proporciones específicas por sexo ($\hat{p}_{Mujeres}$ y $\hat{p}_{Hombres}$).
+
+### B. Inferencia Estadística
+
+1. **Estimación por Intervalo:** Construya un intervalo de confianza del 95% para la proporción verdadera de bolas blancas ($p$).
+
+$$IC = \hat{p} \pm Z_{\alpha/2} \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$$
+
+2. **Prueba de Hipótesis General:** Planteamos el siguiente dilema: ¿Es la urna equilibrada o hay una predominancia de un color?
+* **Hipótesis Nula ($H_0$):** $p = 0.5$ (Las proporciones de blancas y verdes son iguales en la urna).
+* **Hipótesis Alternativa ($H_1$):** $p \neq 0.5$ o $p < 0.5$ (Según lo que observen inicialmente).
+* **Nivel de significancia ($\alpha$):** 0.05.
+
+3. **Prueba de Hipótesis para la Diferencia de Proporciones:** ¿Influye el sexo de la persona que extrae en el color obtenido? 
+* **Hipótesis Nula ($H_0$):** $p_{Mujeres} = p_{Hombres}$ (La proporción de bolas blancas extraídas es la misma para mujeres y hombres).
+* **Hipótesis Alternativa ($H_1$):** $p_{Mujeres} \neq p_{Hombres}$ (Existe una diferencia en la proporción de extracción según el sexo).
+* **Nivel de significancia ($\alpha$):** 0.05.
+
+## 6. Sustentación (Preguntas Críticas)
+
+Durante la sustentación, los grupos deberán responder:
+
+* ¿El intervalo de confianza capturó el valor real que el profesor ocultó?
+* Si aumentamos el número de extracciones por estudiante, ¿qué pasaría con el error estándar?
+* ¿Qué decisión tomaron respecto a la primera $H_0$? ¿Existe evidencia suficiente para decir que la urna está "sesgada"?
+* ¿Tenía sentido lógico rechazar la segunda $H_0$ sobre el sexo del estudiante? Discuta qué significaría un falso positivo (Error Tipo I) en el contexto de este experimento. 

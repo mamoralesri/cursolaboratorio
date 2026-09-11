@@ -5,13 +5,15 @@
 %
 \documentclass[
   ignorenonframetext,
+  aspectratio=169,
+  spanish,
 ]{beamer}
 \newif\ifbibliography
 \usepackage{pgfpages}
 \setbeamertemplate{caption}[numbered]
 \setbeamertemplate{caption label separator}{: }
 \setbeamercolor{caption name}{fg=normal text.fg}
-\beamertemplatenavigationsymbolsempty
+\beamertemplatenavigationsymbolshorizontal
 % remove section numbering
 \setbeamertemplate{part page}{
   \centering
@@ -58,8 +60,8 @@
 \fi
 \usepackage{lmodern}
 
-\usetheme[]{CambridgeUS}
-\usefonttheme[]{professionalfonts}
+\usetheme[]{default}
+\usefonttheme[]{default}
 \ifPDFTeX\else
   % xetex/luatex font selection
 \fi
@@ -146,6 +148,14 @@
 
 
 
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
 
 
 \setlength{\emergencystretch}{3em} % prevent overfull lines
@@ -172,6 +182,77 @@
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
+\setbeamertemplate{headline}{} % Elimina la cabecera del tema Madrid
+\setbeamertemplate{section in head/foot}{} % Limpia la numeración de secciones
+\renewcommand{\contentsname}{Índice}
+\renewcommand{\refname}{Referencias}
+\renewcommand{\figurename}{Figura}
+\renewcommand{\tablename}{Tabla}
+\logo{%
+  \begin{tabular}{c}
+    \includegraphics[height=1.2cm]{EscudoU.png}
+  \end{tabular}%
+}
+% --- CONFIGURACIÓN DE COLORES INSTITUCIONALES ---
+\definecolor{UnicorGreen}{HTML}{024426}
+\definecolor{UnicorText}{HTML}{F9F9F9}
+\definecolor{UnicorWhite}{HTML}{FFFFFF}
+\definecolor{UnicorGold}{HTML}{D1B061}
+
+% Aplicación al fondo y texto general
+\setbeamercolor{background canvas}{bg=UnicorGreen}
+\setbeamercolor{normal text}{fg=UnicorText}
+
+% Aplicación a títulos y cabeceras
+%\setbeamercolor{title}{fg=UnicorWhite}
+\setbeamercolor{frametitle}{fg=UnicorWhite}
+\setbeamercolor{framesubtitle}{fg=UnicorWhite}
+
+% Aplicación a viñetas y estructura
+\setbeamercolor{structure}{fg=UnicorWhite}
+\setbeamercolor{itemize item}{fg=UnicorWhite}
+\setbeamercolor{itemize subitem}{fg=UnicorWhite}
+\setbeamercolor{enumerate item}{fg=UnicorWhite}
+
+% Forzar a LaTeX a repintar el texto general al iniciar el documento
+\AtBeginDocument{\usebeamercolor[fg]{normal text}}
+
+% Aplicación a hipervínculos
+\hypersetup{colorlinks=true, urlcolor=UnicorGold, linkcolor=UnicorWhite}
+
+% --- ACTIVAR ESTILO DE BLOQUES Y SOMBRAS (ESTILO MADRID) ---
+\useinnertheme[shadow=true]{rounded}
+
+% --- COLORES DEL RECUADRO DEL TÍTULO PRINCIPAL ---
+% Fondo dorado con texto verde
+\setbeamercolor{title}{bg=UnicorGold, fg=UnicorGreen}
+\setbeamercolor{frametitle}{fg=UnicorWhite} % Mantiene el título de las diapositivas normal
+\setbeamercolor{framesubtitle}{fg=UnicorWhite}
+
+% --- COLORES PARA TEOREMAS, DEFINICIONES Y BLOQUES ---
+% Título del bloque (Fondo dorado, texto verde)
+\setbeamercolor{block title}{bg=UnicorGold, fg=UnicorGreen}
+% Cuerpo del bloque (Fondo blanco, texto verde)
+\setbeamercolor{block body}{bg=UnicorWhite, fg=UnicorGreen}
+
+\AtBeginDocument{
+  \author{%
+    \begin{tabular}{c}
+      Mario A. Morales Rivera \\
+      \footnotesize \texttt{mamorales@correo.unicordoba.edu.co} \\
+      \footnotesize Universidad de Córdoba
+    \end{tabular}
+  }
+  \institute{}
+}
+% --- LIMPIAR DIAPOSITIVAS DE SECCIÓN (ELIMINAR "SECTION X") ---
+\setbeamertemplate{section page}{
+  \begin{center}
+    \begin{beamercolorbox}[sep=12pt,center,rounded=true,shadow=true]{title}
+      \usebeamerfont{title}\insertsection\par
+    \end{beamercolorbox}
+  \end{center}
+}
 \makeatletter
 \@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
 \@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
@@ -192,36 +273,36 @@
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
 \ifdefined\contentsname
-  \renewcommand*\contentsname{Table of contents}
+  \renewcommand*\contentsname{Tabla de contenidos}
 \else
-  \newcommand\contentsname{Table of contents}
+  \newcommand\contentsname{Tabla de contenidos}
 \fi
 \ifdefined\listfigurename
-  \renewcommand*\listfigurename{List of Figures}
+  \renewcommand*\listfigurename{Listado de Figuras}
 \else
-  \newcommand\listfigurename{List of Figures}
+  \newcommand\listfigurename{Listado de Figuras}
 \fi
 \ifdefined\listtablename
-  \renewcommand*\listtablename{List of Tables}
+  \renewcommand*\listtablename{Listado de Tablas}
 \else
-  \newcommand\listtablename{List of Tables}
+  \newcommand\listtablename{Listado de Tablas}
 \fi
 \ifdefined\figurename
-  \renewcommand*\figurename{Figure}
+  \renewcommand*\figurename{Figura}
 \else
-  \newcommand\figurename{Figure}
+  \newcommand\figurename{Figura}
 \fi
 \ifdefined\tablename
-  \renewcommand*\tablename{Table}
+  \renewcommand*\tablename{Tabla}
 \else
-  \newcommand\tablename{Table}
+  \newcommand\tablename{Tabla}
 \fi
 }
 \@ifpackageloaded{float}{}{\usepackage{float}}
 \floatstyle{ruled}
 \@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
-\floatname{codelisting}{Listing}
-\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\floatname{codelisting}{Listado}
+\newcommand*\listoflistings{\listof{codelisting}{Listado de Listados}}
 \makeatother
 \makeatletter
 \makeatother
@@ -236,6 +317,7 @@
 \hypersetup{
   pdftitle={Descubriendo Patrones con Frecuencias Simples},
   pdfauthor={Mario Morales},
+  pdflang={es},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
@@ -243,14 +325,14 @@
 \title{Descubriendo Patrones con Frecuencias Simples}
 \subtitle{Con datos de ejemplos de R}
 \author{Mario Morales}
-\date{2026-03-01}
+\date{2026-08-22}
 
 \begin{document}
 \frame{\titlepage}
 
-\renewcommand*\contentsname{Table of contents}
+\renewcommand*\contentsname{Tabla de contenidos}
 \begin{frame}[allowframebreaks]
-  \frametitle{Table of contents}
+  \frametitle{Tabla de contenidos}
   \setcounter{tocdepth}{3}
   \tableofcontents
 \end{frame}
@@ -258,8 +340,8 @@
 \tableofcontents
 }
 
-\section{Fecha de la clase: Lunes 2 de marzo de
-2026.}\label{fecha-de-la-clase-lunes-2-de-marzo-de-2026.}
+\section{Fecha de la clase: Lunes 24 de agosto de
+2026.}\label{fecha-de-la-clase-lunes-24-de-agosto-de-2026.}
 
 \begin{frame}[fragile]{¿Qué haremos en clase?}
 \phantomsection\label{quuxe9-haremos-en-clase}
@@ -282,7 +364,7 @@ automóviles (modelos 1973-74).
 
 \begin{frame}[fragile]{Planteamiento}
 \phantomsection\label{planteamiento}
-\begin{tcolorbox}[enhanced jigsaw, opacityback=0, titlerule=0mm, bottomtitle=1mm, colbacktitle=quarto-callout-important-color!10!white, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Important}, toptitle=1mm, arc=.35mm, breakable, leftrule=.75mm, coltitle=black, toprule=.15mm, colframe=quarto-callout-important-color-frame, left=2mm, rightrule=.15mm, bottomrule=.15mm, colback=white, opacitybacktitle=0.6]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, colback=white, rightrule=.15mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Importante}, leftrule=.75mm, toptitle=1mm, bottomrule=.15mm, colframe=quarto-callout-important-color-frame, opacityback=0, breakable, left=2mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-important-color!10!white, titlerule=0mm, arc=.35mm, toprule=.15mm]
 
 Imagina que eres un analista de mercado en 1974. Quieres entender la
 configuración de los motores de la época, específicamente el
@@ -475,13 +557,11 @@ profesor.}\label{ejercicio-para-desarrollar-en-clase-con-asistencia-del-profesor
 
 \begin{frame}[fragile]{Ejercicio}
 \phantomsection\label{ejercicio}
-\begin{tcolorbox}[enhanced jigsaw, opacityback=0, titlerule=0mm, bottomtitle=1mm, colbacktitle=quarto-callout-important-color!10!white, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Important}, toptitle=1mm, arc=.35mm, breakable, leftrule=.75mm, coltitle=black, toprule=.15mm, colframe=quarto-callout-important-color-frame, left=2mm, rightrule=.15mm, bottomrule=.15mm, colback=white, opacitybacktitle=0.6]
-
-\textbf{Contexto:} Utilizando el mismo dataset \texttt{mtcars}, analicen
-ahora la variable \textbf{\texttt{gear} (Número de marchas/cambios hacia
-adelante)}.
-
-\end{tcolorbox}
+\begin{block}{Contexto:}
+\phantomsection\label{contexto}
+Utilizando el mismo dataset \texttt{mtcars}, analicen ahora la variable
+\textbf{\texttt{gear} (Número de marchas/cambios hacia adelante)}.
+\end{block}
 \end{frame}
 
 \begin{frame}{Instrucciones}
@@ -509,7 +589,7 @@ adelante)}.
 
 \begin{frame}{Para finalizar}
 \phantomsection\label{para-finalizar}
-\textbf{Comparar} el gráfico de barras con el de dona o circular.
+\textbf{Comparar} el gráfico de barras con el de torta o circular.
 
 \begin{itemize}
 \tightlist
@@ -521,27 +601,25 @@ adelante)}.
 
 \section{Ejercicio para entregar}\label{ejercicio-para-entregar}
 
-\begin{frame}{Ejercicio para entregar}
-\begin{tcolorbox}[enhanced jigsaw, opacityback=0, titlerule=0mm, bottomtitle=1mm, colbacktitle=quarto-callout-important-color!10!white, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Important}, toptitle=1mm, arc=.35mm, breakable, leftrule=.75mm, coltitle=black, toprule=.15mm, colframe=quarto-callout-important-color-frame, left=2mm, rightrule=.15mm, bottomrule=.15mm, colback=white, opacitybacktitle=0.6]
-
+\begin{frame}{Instrucciones}
+\phantomsection\label{instrucciones-1}
+\begin{block}{Importante}
+\phantomsection\label{importante}
 Se debe entregar formato pdf usando la plantilla proporcionada de Quarto
 markdown, subiéndolo a Cintia (y solo a Cintia), la próxima clase que es
 el miércoles 4 de marzo.
-
-\end{tcolorbox}
+\end{block}
 \end{frame}
 
 \begin{frame}{Trabajo Independiente: Análisis de Dietas Experimentales}
 \phantomsection\label{trabajo-independiente-anuxe1lisis-de-dietas-experimentales}
-\begin{tcolorbox}[enhanced jigsaw, opacityback=0, titlerule=0mm, bottomtitle=1mm, colbacktitle=quarto-callout-important-color!10!white, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Important}, toptitle=1mm, arc=.35mm, breakable, leftrule=.75mm, coltitle=black, toprule=.15mm, colframe=quarto-callout-important-color-frame, left=2mm, rightrule=.15mm, bottomrule=.15mm, colback=white, opacitybacktitle=0.6]
-
-\textbf{Contexto:} En un estudio biológico, se probaron 4 tipos de
-dietas diferentes para observar el crecimiento de sujetos
-experimentales. Como analista, debes informar sobre la distribución de
-estas dietas en la muestra total para asegurar que el experimento esté
-balanceado.
-
-\end{tcolorbox}
+\begin{block}{Contexto:}
+\phantomsection\label{contexto-1}
+En un estudio biológico, se probaron 4 tipos de dietas diferentes para
+observar el crecimiento de sujetos experimentales. Como analista, debes
+informar sobre la distribución de estas dietas en la muestra total para
+asegurar que el experimento esté balanceado.
+\end{block}
 \end{frame}
 
 \begin{frame}[fragile]{Preparación de los datos}

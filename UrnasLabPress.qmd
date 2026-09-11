@@ -1,0 +1,112 @@
+---
+title: "Datos del experimento de la urna "
+subtitle: "Pruebas de hipótesis e intervalos de confianza para proporciones"    
+author: 
+  - name: Mario Morales
+    orcid: 0000-0001-8814-0179
+    email: mamorales@correo.unicordoba.edu.co
+    url: https://mariomorales.xyz/
+    affiliations:
+      - name: Universidad de Córdoba, Montería
+format: 
+  revealjs:
+    theme: "moon"
+    highlight: "tango"
+    center: true
+    #transition: fade
+    lang: es
+    code-fold: true
+    slide-level: 2
+    scrollable: true
+  beamer:
+    theme: "CambridgeUS"
+    slide-level: 2
+    keep-tex: false # Cambiado a false para evitar basura de archivos temporales
+    fonttheme: "professionalfonts"
+toc: true
+toc-depth: 1 # <--- ¡CLAVE! Solo nivel 1 para que quepa en la pantalla
+toc-title: "Contenido"
+---
+
+```{r}
+#| echo: false
+setwd("~/Documents/Cursos/Laboratorio")
+```
+
+# Lectura de los datos de Urna
+
+## Objetivo
+
+Leer y resumir los datos del experimento de la urna
+
+## Fijamos el directorio de trabajo
+
+```{r}
+#| echo: true
+setwd("~/Documents/Cursos/Laboratorio")
+```
+
+## Lectura desde Excel
+
+```{r}
+#| echo: true
+library(readxl) 
+datos <- read_excel("UrnasLabDatos.xlsx") 
+```
+
+## Verificación de lectura
+
+```{r}
+#| echo: true
+library(tidyverse)
+glimpse(datos)
+```
+
+## Conversión a factores
+
+::: callout-tip
+No es obligatorio, pero es buena práctica.
+:::
+
+
+
+```{r}
+#| echo: true 
+
+datos$Sexo=factor(datos$Sexo,labels = c("Femenino","Masculino"))
+datos$Color=factor(datos$Color,labels = c("Blanco","Verde"))
+```
+
+## Tabulación
+
+```{r}
+#| echo: true
+with(datos, table(Color,Sexo)) 
+```
+
+
+## Tabulación con marginales
+
+```{r}
+#| echo: true
+tabla=with(datos, table(Color,Sexo)) 
+addmargins(tabla)
+```
+
+## Proporciones (sin sexo) 
+
+
+```{r}
+#| echo: true
+tabla1=with(datos, table(Color)) 
+prop.table(tabla1) 
+```
+
+## Prueba de la hipótesis   
+
+
+```{r}
+#| echo: true
+tabla1=with(datos, table(Color)) 
+prop.test(tabla1[1],sum(tabla1))  
+```

@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>Limpieza/parse_num</text>
+    </category>
+    <info format="html">
+      <text>texto</text>
+    </info>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>Count 1</text>
+    </name>
+    <questiontext format="html">
+      <text>El archivo &lt;code&gt;DatosEstudiantes.xlsx&lt;/code&gt; contiene datos tomados de estudiantes de primer semestre durante un experimento que buscaba evaluar el nivel de satisfacci&#xF3;n de los estudiantes con el servicio prestado por la Universidad. Haga la lectura de los datos y:&lt;br&gt;Complete la siguiente tabla que muestra la distribuci&#xF3;n de Hombres y Mujeres de acuerdo al tipo de colegio&lt;br&gt;&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#aaa;border-spacing:0;}
+.tg td{background-color:#fff;border-color:#aaa;border-style:solid;border-width:1px;color:#333;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#f38630;border-color:#aaa;border-style:solid;border-width:1px;color:#fff;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-0pky"&gt;Tipo Colegio&lt;/th&gt;
+    &lt;th class="tg-0pky"&gt;Hombre &lt;/th&gt;
+    &lt;th class="tg-0pky"&gt;Mujer&lt;/th&gt;
+  &lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0pky"&gt;Privado&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;{1:NM:=2:0}&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;&lt;span style="font-weight:400;font-style:normal"&gt;{1:NM:=4:0}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0pky"&gt;P&#xFA;blico&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;&lt;span style="font-weight:400;font-style:normal"&gt;{1:NM:=26:0}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;&lt;span style="font-weight:400;font-style:normal"&gt;{1:NM:=10:0}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;br&gt;Ayuda: si usa &lt;code&gt;tidyverse&lt;/code&gt;, se pueden obtener los conteos mediante: &lt;br&gt; 
+&lt;pre&gt;
+&lt;code&gt;
+tabla&lt;- df|&gt;count(x,y)|&gt;pivot_wider(names_from = x, values_from = n, values_fill = 0)
+print(tabla)
+&lt;/code&gt;
+&lt;/pre&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text/>
+    </generalfeedback>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>Count 2</text>
+    </name>
+    <questiontext format="html">
+      <text>El archivo &lt;code&gt;DatosEstudiantes.xlsx&lt;/code&gt; contiene datos tomados de estudiantes de primer semestre durante un experimento que buscaba evaluar el nivel de satisfacci&#xF3;n de los estudiantes con el servicio prestado por la Universidad. Haga la lectura de los datos y:&lt;br&gt;Complete la siguiente tabla que muestra la distribuci&#xF3;n de los estudiantes seg&#xFA;n el tipo de colegio y el estrato &lt;br&gt;&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#aaa;border-spacing:0;}
+.tg td{background-color:#fff;border-color:#aaa;border-style:solid;border-width:1px;color:#333;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#f38630;border-color:#aaa;border-style:solid;border-width:1px;color:#fff;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-0pky"&gt;Tipo Colegio&lt;/th&gt;
+    &lt;th class="tg-c3ow"&gt;1&lt;/th&gt;
+    &lt;th class="tg-c3ow"&gt;2&lt;/th&gt;
+    &lt;th class="tg-baqh"&gt;3&lt;/th&gt;
+  &lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0pky"&gt;Privado&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;{1:NM:=2:0}&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;&lt;span style="font-weight:400;font-style:normal"&gt;{1:NM:=4:0}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;{1:NM:=3:0}&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0pky"&gt;P&#xFA;blico&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;&lt;span style="font-weight:400;font-style:normal"&gt;{1:NM:=26:0}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;&lt;span style="font-weight:400;font-style:normal"&gt;{1:NM:=10:0}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;{1:NM:=0:0}&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;br&gt;Ayuda: si usa &lt;code&gt;tidyverse&lt;/code&gt;, se pueden obtener los conteos mediante: &lt;br&gt; 
+&lt;pre&gt;
+&lt;code&gt;
+tabla&lt;- df|&gt;count(x,y)|&gt;pivot_wider(names_from = x, values_from = n, values_fill = 0)
+print(tabla)
+&lt;/code&gt;
+&lt;/pre&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text/>
+    </generalfeedback>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+</quiz>

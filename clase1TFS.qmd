@@ -16,7 +16,7 @@ estudiaremos como resumir datos categóricos o cualitativos, mediante tablas de 
 
 ## Exploración 
 
-Cargar el data y recuerar la columna `carb` 
+Cargar el data y recuperar la columna `carb` 
 
 ```{r}
 #| echo: true

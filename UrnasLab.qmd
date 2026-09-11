@@ -31,7 +31,7 @@ En la toma de decisiones profesionales, rara vez conocemos los parámetros exact
 ## 3. Materiales
 
 * Una urna o bolsa opaca (que no permita ver el contenido).
-* $N$ pelotas de igual tamaño y textura ($n_1$ de color negro,$n_2$ de color blanco con $N=n_1+n_2$). *Nota: El docente conoce la proporción $P=\frac{n_2}{10}$ para blancas, pero los estudiantes no.*
+* $N$ pelotas de igual tamaño y textura ($n_1$ de color verde,$n_2$ de color blanco con $N=n_1+n_2$). *Nota: El docente conoce la proporción $P=\frac{n_2}{n_1+n_2}$ para blancas, pero los estudiantes no.*
 * Formato de registro de datos.
 
 ## 4. Procedimiento Experimental
@@ -39,7 +39,7 @@ En la toma de decisiones profesionales, rara vez conocemos los parámetros exact
 1. **Configuración:** El docente prepara la urna a puerta cerrada.
 2. **Muestreo:** Cada estudiante debe acercarse a la urna, mezclar el contenido sin mirar, extraer una pelota, anotar el color y **devolverla** a la urna (muestreo con reemplazo).
 3. **Repetición:** Para robustecer la muestra, cada estudiante realizará el proceso 2 veces.
-4. **Registro:** Los datos se consolidarán en una tabla de frecuencias simples (Blanca / Negra).
+4. **Registro:** Los datos se consolidarán en una tabla de frecuencias simples (Blanca / Verde).
 
 ## 5. Análisis Requeridos (El Informe)
 
@@ -59,7 +59,7 @@ $$IC = \hat{p} \pm Z_{\alpha/2} \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$$
 
 
 2. **Prueba de Hipótesis:** Planteamos el siguiente dilema: ¿Es la urna equilibrada o hay una predominancia de un color?
-* **Hipótesis Nula ($H_0$):** $p = 0.5$ (Las proporciones de blancas y negras son iguales).
+* **Hipótesis Nula ($H_0$):** $p = 0.5$ (Las proporciones de blancas y verdes son iguales).
 * **Hipótesis Alternativa ($H_1$):** $p \neq 0.5$ o $p < 0.5$ (Según lo que observen inicialmente).
 * **Nivel de significancia ($\alpha$):** 0.05.
 
@@ -77,7 +77,7 @@ Durante la sustentación, los grupos deberán responder:
 
 ### Tips de "Sherlock" para el éxito pedagógico:
 
-1. **El Factor Sorpresa:** No les diga cuántas pelotas hay en total. Solo dígales que hay 10. Al final, cuando usted revele que eran 8 negras y 2 blancas, la cara de sorpresa al ver que sus cálculos de $\hat{p}$ se acercan a 0.20 es el momento donde ocurre el aprendizaje real.
+1. **El Factor Sorpresa:** No les diga cuántas pelotas hay en total. Solo dígales que hay 10. Al final, cuando usted revele que eran 8 verdes y 2 blancas, la cara de sorpresa al ver que sus cálculos de $\hat{p}$ se acercan a 0.20 es el momento donde ocurre el aprendizaje real.
 2. **Uso de R/Quarto:** Pídales que el informe lo entreguen renderizado en **Quarto**. Pueden usar la función `prop.test()` en R para validar sus cálculos manuales:
 ```r
 # Ejemplo en R

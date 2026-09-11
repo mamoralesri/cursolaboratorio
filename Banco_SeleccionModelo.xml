@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>Laboratorio/SeleccionModelos</text>
+    </category>
+    <info format="html">
+      <text>Categor&#xED;a generada autom&#xE1;ticamente</text>
+    </info>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>Lineal_Cuadratico_Yield</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;El archivo de datos &lt;code&gt;PastureYield.csv&lt;/code&gt; contiene datos de la producci&#xF3;n 
+&lt;code&gt;yield&lt;/code&gt; de gram&#xED;neas y leguminosas de un sistema de producci&#xF3;n de pastos a 
+diferentes niveles de un fertilizante fosforado &lt;code&gt;K&lt;/code&gt;. Se desea ajustar un modelo
+que permita explicar la producci&#xF3;n en funci&#xF3;n de la cantidad de fertilizante.
+Deseamos decidir cu&#xE1;l modelo usar entre el modelo $E(Y_i)=\beta_0+\beta_1x_i$ (lineal) y el 
+modelo $E(Y_i)=\beta_0+\beta_1x_i^2$ (cuadr&#xE1;tico). Complete la siguiente tabla 
+de an&#xE1;lisis de varianza que contiene la prueba de la hip&#xF3;tesis: &lt;br&gt; $H_0:$ "El modelo cuadr&#xE1;tico ajusta
+significativamente mejor que el lineal", contra la alternativa  $H_1:$ "El modelo cuadr&#xE1;tico no ajusta
+significativamente mejor que el lineal" &lt;br&gt;, {TABLA_EVALUACION} de acuerdo con los resultados mostrados en la tabla anterior
+decidimos usar el modelo {cloze_modelo} &lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html"/>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+</quiz>

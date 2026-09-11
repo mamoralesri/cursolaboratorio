@@ -518,6 +518,15 @@ summary(df_limpio)
 ```
 
 
+```{r}
+#| echo: false
+#write.csv(df_limpio,"DatosFisioLimpio.csv")
+
+```
+
+
+
+
 # Cálculos por niveles de un factor
 
 

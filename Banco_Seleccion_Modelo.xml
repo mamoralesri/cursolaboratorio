@@ -1,0 +1,382 @@
+<?xml version="1.0"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>Laboratorio/SeleccionModelos</text>
+    </category>
+    <info format="html">
+      <text>Categor&#xED;a generada autom&#xE1;ticamente</text>
+    </info>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>Lineal_Cuadratico_Yield</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;El archivo de datos &lt;code&gt;PastureYield.csv&lt;/code&gt; contiene datos de la producci&#xF3;n 
+&lt;code&gt;yield&lt;/code&gt; de gram&#xED;neas y leguminosas de un sistema de producci&#xF3;n de pastos a 
+diferentes niveles de un fertilizante fosforado &lt;code&gt;K&lt;/code&gt;. Se desea ajustar un modelo
+que permita explicar la producci&#xF3;n en funci&#xF3;n de la cantidad de fertilizante.
+Deseamos decidir cu&#xE1;l modelo usar entre el modelo \(E(Y_i)=\beta_0+\beta_1x_i\) (lineal) y el 
+modelo \(E(Y_i)=\beta_0+\beta_1x_i+\beta_2x_i^2\) (cuadr&#xE1;tico). Complete la siguiente tabla 
+de an&#xE1;lisis de varianza que contiene la prueba de la hip&#xF3;tesis: &lt;br&gt; \(H_0:\) "El modelo cuadr&#xE1;tico no aporta un ajuste significativamente mejor que el lineal", contra la alternativa 
+\(H_1:\) "El modelo cuadr&#xE1;tico ajusta  significativamente mejor que el lineal" &lt;br&gt;, &lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#9ABAD9;border-spacing:0;}
+.tg td{background-color:#EBF5FF;border-color:#9ABAD9;border-style:solid;border-width:1px;color:#444;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#409cff;border-color:#9ABAD9;border-style:solid;border-width:1px;color:#fff;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-0pky"&gt;Res.df&lt;/th&gt;
+    &lt;th class="tg-0pky"&gt;RSS&lt;/th&gt;
+    &lt;th class="tg-0pky"&gt;Df&lt;/th&gt;
+    &lt;th class="tg-0pky"&gt;Sum of Sq&lt;/th&gt;
+    &lt;th class="tg-0pky"&gt;F&lt;/th&gt;
+    &lt;th class="tg-0pky"&gt;Pr(&amp;gt;F)&lt;/th&gt;
+  &lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0pky"&gt;{1:NM:=25:0}&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;{1:NM:=4952793:0}&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0pky"&gt;{1:NM:=24:0}&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;{1:NM:=4616095:0}&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;{1:NM:=1:0}&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;{1:NM:=336698.2354:0.0001}&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;{1:NM:=1.7506:0.0001}&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;{1:NM:=0.1983:0.0001}&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt; de acuerdo con los resultados mostrados en la tabla anterior
+decidimos usar el modelo {1:MULTICHOICE:~=modelo con solo yield~%0%modelo con yield y yield^2~%0%no es posible decidir~%0%cualquier modelo} &lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html"/>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>hipotesis_betas_Yield</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;El archivo de datos &lt;code&gt;PastureYield.csv&lt;/code&gt; contiene datos de la producci&#xF3;n 
+&lt;code&gt;yield&lt;/code&gt; de gram&#xED;neas y leguminosas de un sistema de producci&#xF3;n de pastos a 
+diferentes niveles de un fertilizante fosforado &lt;code&gt;K&lt;/code&gt;. Se desea ajustar un modelo
+que permita explicar la producci&#xF3;n en funci&#xF3;n de la cantidad de fertilizante.
+Ajuste el modelo \(E(Y_i)=\beta_0+\beta_1x_i\) 
+&lt;br&gt; Complete la siguiente tabla que contiene los par&#xE1;metros estimados, sus errores
+est&#xE1;ndar estimados y el valor del estad&#xED;stico  \(t)\ que prueba la hip&#xF3;tesis \(\beta_i=0)\ 
+contra \(\beta_i \neq 0)\  &lt;br&gt;&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#9ABAD9;border-spacing:0;}
+.tg td{background-color:#EBF5FF;border-color:#9ABAD9;border-style:solid;border-width:1px;color:#444;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#409cff;border-color:#9ABAD9;border-style:solid;border-width:1px;color:#fff;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-0lax"&gt;&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;Estimate&lt;/span&gt;&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;Std. Error&lt;/span&gt;&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;t value&lt;/span&gt;&lt;/th&gt;
+  &lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Intercept&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;{1:NM:=2644.2238:0.0001}&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;{1:NM:=148.3658:0.0001}&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;{1:NM:=17.8223:0.0001}&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;K&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;{1:NM:=48.3614:0.0001}&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=5.1917:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=9.3151:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt; &lt;br&gt; De acuerdo con la tabla anterior 
+podemos concluir que \(\beta_0\) es significativamente {1:MULTICHOICE:~%0%igual a~=distinto de~%0%mayor que~%0%menor que}  cero y que \(\beta_1\)
+es significativamente {1:MULTICHOICE:~%0%igual a~=distinto de~%0%mayor que~%0%menor que} cero, adicionalmente podemos afirmar que la variable \(K\)
+{1:MULTICHOICE:~%0%no contribuye a~%0%es indiferente para ~=contribuye a~%0%no es &#xFA;til para} explicar a la variable &lt;code&gt;yield&lt;/code&gt; &lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html"/>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>prediccion1</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;El archivo de datos &lt;code&gt;PastureYield.csv&lt;/code&gt; contiene datos de la producci&#xF3;n 
+&lt;code&gt;yield&lt;/code&gt; de gram&#xED;neas y leguminosas de un sistema de producci&#xF3;n de pastos a 
+diferentes niveles de un fertilizante fosforado &lt;code&gt;K&lt;/code&gt;. Se desea ajustar un modelo
+que permita explicar la producci&#xF3;n en funci&#xF3;n de la cantidad de fertilizante.
+Ajuste el modelo \(E(Y_i)=\beta_0+\beta_1x_i\) 
+&lt;br&gt; Complete la siguiente tabla que contiene las estimaciones y l&#xED;mites
+de confianza al 95% para la producci&#xF3;n  promedio de las poblaciones de cultivos a los que se les 
+aplica la cantidad de K = 3, 15, 23, 34.2, 40 &lt;br&gt;&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#9ABAD9;border-spacing:0;}
+.tg td{background-color:#EBF5FF;border-color:#9ABAD9;border-style:solid;border-width:1px;color:#444;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#409cff;border-color:#9ABAD9;border-style:solid;border-width:1px;color:#fff;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-0lax"&gt;K&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;fit&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;lwr&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;upr&lt;/th&gt;
+  &lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;3&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;{1:NM:=2789.3079:0.0001}&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;{1:NM:=2509.3209:0.0001}&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=3069.2949:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;15&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=3369.6442:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=2509.3209:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=3567.2878:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;23&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=3756.5351:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=2509.3209:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=3932.9892:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;34.2&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=4298.1823:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=2509.3209:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=4509.4263:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;40&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=4578.6782:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=2509.3209:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=4829.4408:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt; &lt;br&gt;
+&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html"/>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>prediccion2</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;El archivo de datos &lt;code&gt;PastureYield.csv&lt;/code&gt; contiene datos de la producci&#xF3;n 
+&lt;code&gt;yield&lt;/code&gt; de gram&#xED;neas y leguminosas de un sistema de producci&#xF3;n de pastos a 
+diferentes niveles de un fertilizante fosforado &lt;code&gt;K&lt;/code&gt;. Se desea ajustar un modelo
+que permita explicar la producci&#xF3;n en funci&#xF3;n de la cantidad de fertilizante.
+Ajuste el modelo \(E(Y_i)=\beta_0+\beta_1x_i\) 
+&lt;br&gt; Complete la siguiente tabla que contiene las estimaciones y l&#xED;mites
+de confianza al 95% para la producci&#xF3;n de un cultivo  al que se le 
+aplica la cantidad de K = 3, 15, 23, 34.2, 40 &lt;br&gt;&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#9ABAD9;border-spacing:0;}
+.tg td{background-color:#EBF5FF;border-color:#9ABAD9;border-style:solid;border-width:1px;color:#444;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#409cff;border-color:#9ABAD9;border-style:solid;border-width:1px;color:#fff;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-0lax"&gt;K&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;fit&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;lwr&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;upr&lt;/th&gt;
+  &lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;3&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;{1:NM:=2789.3079:0.0001}&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;{1:NM:=1830.8074:0.0001}&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=3747.8083:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;15&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=3369.6442:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=1830.8074:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=4307.4040:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;23&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=3756.5351:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=1830.8074:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=4690.0588:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;34.2&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=4298.1823:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=1830.8074:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=5238.9025:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;40&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=4578.6782:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=1830.8074:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=5529.0530:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt; &lt;br&gt;
+&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html"/>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>prediccion3</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;El archivo de datos &lt;code&gt;PastureYield.csv&lt;/code&gt; contiene datos de la producci&#xF3;n 
+&lt;code&gt;yield&lt;/code&gt; de gram&#xED;neas y leguminosas de un sistema de producci&#xF3;n de pastos a 
+diferentes niveles de un fertilizante fosforado &lt;code&gt;K&lt;/code&gt;. Se desea ajustar un modelo
+que permita explicar la producci&#xF3;n en funci&#xF3;n de la cantidad de fertilizante.
+Ajuste el modelo \(E(Y_i)=\beta_0+\beta_1x_i\) 
+&lt;br&gt; Complete la siguiente tabla que contiene las estimaciones y l&#xED;mites
+de confianza al 99% para la producci&#xF3;n  promedio de las poblaciones de cultivos a los que se les 
+aplica la cantidad de K = 3, 15, 23, 34.2, 40 &lt;br&gt;&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#9ABAD9;border-spacing:0;}
+.tg td{background-color:#EBF5FF;border-color:#9ABAD9;border-style:solid;border-width:1px;color:#444;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#409cff;border-color:#9ABAD9;border-style:solid;border-width:1px;color:#fff;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-0lax"&gt;K&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;fit&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;lwr&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;upr&lt;/th&gt;
+  &lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;3&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;{1:NM:=2789.3079:0.0001}&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;{1:NM:=2410.3658:0.0001}&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=3168.2500:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;15&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=3369.6442:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=2410.3658:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=3637.1404:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;23&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=3756.5351:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=2410.3658:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=3995.3529:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;34.2&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=4298.1823:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=2410.3658:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=4584.0857:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;40&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=4578.6782:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=2410.3658:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=4918.0671:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt; &lt;br&gt;
+&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html"/>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>prediccion4</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;El archivo de datos &lt;code&gt;PastureYield.csv&lt;/code&gt; contiene datos de la producci&#xF3;n 
+&lt;code&gt;yield&lt;/code&gt; de gram&#xED;neas y leguminosas de un sistema de producci&#xF3;n de pastos a 
+diferentes niveles de un fertilizante fosforado &lt;code&gt;K&lt;/code&gt;. Se desea ajustar un modelo
+que permita explicar la producci&#xF3;n en funci&#xF3;n de la cantidad de fertilizante.
+Ajuste el modelo \(E(Y_i)=\beta_0+\beta_1x_i\) 
+&lt;br&gt; Complete la siguiente tabla que contiene las estimaciones y l&#xED;mites
+de confianza al 99% para  la producci&#xF3;n  promedio de las poblaciones de cultivos a los que se les 
+aplica la cantidad de K = 3, 15, 23, 34.2, 40 &lt;br&gt;&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#9ABAD9;border-spacing:0;}
+.tg td{background-color:#EBF5FF;border-color:#9ABAD9;border-style:solid;border-width:1px;color:#444;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#409cff;border-color:#9ABAD9;border-style:solid;border-width:1px;color:#fff;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-0lax"&gt;K&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;fit&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;lwr&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;upr&lt;/th&gt;
+  &lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;3&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;{1:NM:=2789.3079:0.0001}&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;{1:NM:=1492.0472:0.0001}&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=4086.5686:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;15&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=3369.6442:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=1492.0472:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=4638.8339:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;23&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=3756.5351:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=1492.0472:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=5019.9916:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;34.2&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=4298.1823:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=1492.0472:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=5571.3787:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;40&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=4578.6782:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=1492.0472:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=5864.9415:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt; &lt;br&gt;
+&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html"/>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+</quiz>

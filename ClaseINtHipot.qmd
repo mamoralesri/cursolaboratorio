@@ -1,0 +1,20 @@
+---
+title: "Clase intervalos hipótesis"
+author: "Mario Morales"
+format: pdf
+---
+
+
+
+```{r}
+#| echo: false 
+
+# fijamos el directorio de trabajo 
+setwd("~/Documents/Cursos/Laboratorio")
+library(tidyverse) 
+options(pillar.sigfig = 5) 
+# lectura de los datos 
+df <- read.csv("~/Documents/Cursos/Laboratorio/DatosFisioLimpio.csv", row.names=1, stringsAsFactors=TRUE)
+
+```
+

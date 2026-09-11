@@ -1,0 +1,106 @@
+---
+title: "Guía de Laboratorio: Relación entre Peso y Estatura"
+subtitle: "Análisis Exploratorio y Modelos de Regresión"
+author: "Mario Morales"
+format: 
+  html:
+    theme: cosmo
+    toc: true
+    code-fold: show
+  pdf:
+    toc: true
+lang: es
+---
+
+# 1. Introducción
+
+En el campo de la antropometría y la salud pública, la relación entre el peso y la estatura de los individuos es fundamental para establecer índices de desarrollo y riesgo. Este laboratorio tiene como propósito utilizar datos reales recolectados en clase para explorar esta relación, aplicando técnicas de estadística descriptiva bivariada y modelos de regresión lineal.
+
+# 2. Objetivos
+
+*   **Exploratorio:** Calcular estadísticas descriptivas y visualizar la distribución del peso y la estatura según el sexo del estudiante.
+*   **Modelamiento:** Ajustar un modelo de regresión lineal simple para predecir el peso a partir de la estatura.
+*   **Inferencia:** Ejecutar pruebas de hipótesis para contrastar si el efecto de la estatura sobre el peso (la pendiente del modelo) difiere significativamente entre hombres y mujeres.
+
+# 3. Descripción de los Datos
+
+Los datos provienen del formato de registro "Laboratorio de estadística Relación entre peso y estatura". Las variables de interés recolectadas para los 30 estudiantes son
+
+*   `Sexo`: Variable categórica (Femenino / Masculino).
+*   `Edad`: Edad del estudiante en años .
+*   `Estatura`: Estatura medida en metros .
+*   `Peso`: Se tomaron tres mediciones independientes de peso en kilogramos (Medición 1, Medición 2, Medición 3) para reducir el error de medición . 
+
+*Nota metodológica:* El formato incluye un espacio para un promedio; el primer paso analítico será calcular el peso promedio exacto a partir de las tres mediciones individuales .
+
+# 4. Procedimiento y Análisis Requeridos
+
+## A. Preparación y Descriptiva por Niveles
+
+1.  **Cálculo del Peso Promedio:** A partir de las tres mediciones, calcule una nueva variable llamada `peso_prom` .
+2.  **Estadísticas de Resumen:** Construya una tabla que muestre la media, desviación estándar, mínimo y máximo para la estatura y el peso promedio, agrupada por la variable `Sexo`.
+3.  **Visualización Bivariada:** Genere un diagrama de dispersión (Scatterplot) donde el eje $X$ sea la estatura y el eje $Y$ sea el peso promedio. Utilice colores o formas distintas para diferenciar entre hombres y mujeres.
+
+## B. Pruebas de Hipótesis Básicas (Diferencia de Medias)
+
+Antes de ajustar el modelo, verifique si existen diferencias basales entre los grupos:
+
+*   **Hipótesis 1:** ¿Difiere la estatura promedio entre hombres y mujeres?
+    $$H_0: \mu_{estatura\_H} = \mu_{estatura\_M}$$
+    $$H_1: \mu_{estatura\_H} \neq \mu_{estatura\_M}$$
+*   Ejecute una prueba $t$ de Student para muestras independientes (verificando previamente los supuestos de normalidad y homogeneidad de varianzas).
+
+## C. Modelamiento Estadístico y Regresión
+
+1.  **Regresión Lineal Simple (Modelo Global):**
+    Ajuste el modelo sin distinguir por sexo para evaluar la tendencia general:
+    $$Peso_i = \beta_0 + \beta_1 Estatura_i + \epsilon_i$$
+    *   Interprete el valor estimado de $\beta_1$ en el contexto del problema.
+    *   Reporte e interprete el coeficiente de determinación $R^2$.
+
+2.  **Modelo de Regresión Múltiple con Interacción (Comparación de Pendientes):**
+    Para responder a la pregunta de si la relación entre peso y estatura es la misma para hombres y mujeres, defina una variable indicadora (dummy) $D$ tal que $D=1$ si es hombre y $D=0$ si es mujer. Ajuste el siguiente modelo con interacción:
+    $$Peso_i = \beta_0 + \beta_1 Estatura_i + \beta_2 D_i + \beta_3 (Estatura_i \times D_i) + \epsilon_i$$
+
+## D. Pruebas de Hipótesis sobre los Coeficientes
+
+A partir del modelo con interacción, evalúe las siguientes hipótesis:
+
+*   **Hipótesis 2 (Efecto Principal del Sexo en el Intercepto):**
+    $$H_0: \beta_2 = 0$$
+    *(¿Tienen hombres y mujeres de la misma estatura un peso esperado diferente?)*
+    
+*   **Hipótesis 3 (Igualdad de Pendientes):**
+    $$H_0: \beta_3 = 0$$
+    *(¿Es el cambio en el peso por cada metro adicional de estatura el mismo para hombres que para mujeres?)*
+
+Concluya formalmente sobre el valor p (p-valor) asociado al coeficiente $\beta_3$. Si se rechaza $H_0$, significa que se requieren ecuaciones de regresión separadas para cada sexo.
+
+# 5. Código de Apoyo en R (Tips para los Estudiantes)
+
+
+
+```r{}
+
+# Cargar librerías necesarias
+library(tidyverse)
+
+# 1. Ejemplo de cómo calcular el promedio de peso por estudiante
+# Asumiendo que el dataframe se llama 'datos'
+# datos <- datos |> 
+#   rowwise() |> 
+#   mutate(peso_prom = mean(c(Medicion_1, Medicion_2, Medicion_3), na.rm = TRUE)) |> 
+#   ungroup()
+
+# 2. Ajuste del modelo con interacción
+# modelo_interaccion <- lm(peso_prom ~ Estatura * Sexo, data = datos)
+# summary(modelo_interaccion)
+
+# 3. Gráfico sugerido
+# ggplot(datos, aes(x = Estatura, y = peso_prom, color = Sexo)) +
+#   geom_point() +
+#   geom_smooth(method = "lm", se = FALSE) +
+#   labs(title = "Relación Peso vs Estatura por Sexo",
+#        x = "Estatura (m)", y = "Peso Promedio (kg)") +
+#   theme_minimal()
+``` 

@@ -1,0 +1,916 @@
+---
+title: "Datos biométricos de Cachama blanca"
+subtitle: "Análisis de regresión lineal"   
+author: 
+  - name: Mario Morales
+    orcid: 0000-0001-8814-0179
+    email: mamorales@correo.unicordoba.edu.co
+    url: https://mariomorales.xyz/
+    affiliations:
+      - name: Universidad de Córdoba, Montería
+format: 
+  revealjs:
+    theme: "moon"
+    highlight: "tango"
+    center: true
+    #transition: fade
+    lang: es
+    code-fold: true
+    slide-level: 2
+    scrollable: true
+  beamer:
+    theme: "CambridgeUS"
+    slide-level: 2
+    keep-tex: false # Cambiado a false para evitar basura de archivos temporales
+    fonttheme: "professionalfonts"
+toc: true
+toc-depth: 1 # <--- ¡CLAVE! Solo nivel 1 para que quepa en la pantalla
+toc-title: "Contenido"
+---
+
+```{r}
+#| echo: false
+setwd("~/Documents/Cursos/Laboratorio")
+```
+
+# Objetivo general
+
+## Objetivo
+
+-   Analizar si hay diferencias significativas en las longitudes y los pesos de las cachamas, dependiendo del estanque de cultivo.
+
+-   Llevar a cabo ajuste de modelos de regresión múltiple, buscando estimar el peso de las cachamas en función de las longitudes
+
+# Lectura de los datos.
+
+## Directorio de trababjo
+
+-   Verificamos cuál es el directorio actual.
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded 
+getwd()
+```
+
+-   Fijamos el directorio de trabajo.
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded 
+setwd("~/Documents/Cursos/Laboratorio")
+```
+
+## Cargamos tidyverse
+
+```{r}
+#| echo: false 
+#| output-location: fragment
+#| column: screen-inset-shaded 
+options(pillar.sigfig = 5) 
+```
+
+## Lectura de los datos
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+library(readxl)
+df <- read_excel("DATOS CACHAMAS.xlsx")
+head(df)
+```
+
+## Verificación de lectura.
+
+### `summary`
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+summary(df)   
+```
+
+## Verificación de lectura.
+
+### `glimpse`
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+library(tidyverse) 
+glimpse(df)
+```
+
+# Análisis exploratorio de los datos.
+
+## Objetivo
+
+::: callout-important
+Observar la relación entre las longitudes y el peso, diferenciados por estanque.
+
+Calcular estadísticas descriptivas de peso y longitudes desagregadas por estanque.
+:::
+
+## Gráfico de `peso` vs `LongEstandar`
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+library(ggplot2) 
+
+ggplot(df, aes(x=LongEstandar,y=peso)) + geom_point() + 
+  labs(title = "Relación entre peso y LongEstandar")
+```
+
+## Quitamos el dato extremo
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+dfn=df|>filter(LongEstandar<40)
+
+dfn|>ggplot(aes(x=LongEstandar,y=peso)) + geom_point() +
+  labs(title = "Relación entre peso y LongEstandar")
+```
+
+## Corregir el dato extremo
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+dfn=df|>mutate(LongEstandar=if_else(LongEstandar>100,
+                LongEstandar/10,
+                LongEstandar)
+              )
+
+dfn|>ggplot(aes(x=LongEstandar,y=peso)) + geom_point() + 
+        labs(title = "Relación entre peso y LongEstandar")
+```
+
+## Gráfico de `peso` vs `LongHorquilla`
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+library(ggplot2) 
+
+
+ggplot(df, aes(x=LongHorquilla,y=peso) ) + 
+      geom_point() + 
+      labs(title = "Relación entre peso y LongHorquilla")
+```
+
+## Gráfico de `peso` vs `LongTotal`
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+library(ggplot2) 
+
+
+ggplot(df, aes(x=LongTotal,y=peso) ) + 
+      geom_point() + 
+      labs(title = "Relación entre peso y LongTotal")
+```
+
+## `peso` vs `LongTotal` con línea suavizada
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+ggplot(df, aes(x=LongTotal,y=peso) ) + 
+      geom_point() + geom_smooth() + 
+      labs(title = "Relación entre peso y LongTotal")
+```
+
+## `peso` vs `LongTotal` con línea de regresion
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+ggplot(df, aes(x=LongTotal,y=peso) ) + 
+      geom_point() + geom_smooth(method='lm') + 
+      labs(title = "Relación entre peso y LongTotal")
+```
+
+## `peso` vs `LongTotal` con línea de regresion sin banda
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+ggplot(df, aes(x=LongTotal,y=peso) ) + 
+      geom_point() + geom_smooth(method='lm', 
+            se=FALSE) +
+            labs(title = "Relación entre peso y LongTotal")
+```
+
+## `peso` vs `LongTotal` diferenciado por estanque
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+ggplot(df, aes(x=LongTotal,y=peso,color=estanque) ) + 
+      geom_point() + geom_smooth(method='lm', se=FALSE) +       labs(title = "Relación entre peso y LongTotal")
+```
+
+## `peso` vs `LongTotal` diferenciado por estanque
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+ggplot(df, aes(x=LongTotal,y=peso) ) + 
+      geom_point(aes(color=estanque)) +
+      geom_smooth(method='lm', se=FALSE) +  
+      labs(title = "Relación entre peso y LongTotal")
+```
+
+## Ejercicios
+
+-   Probar la hipótesis: la media del `peso` del estanque `R2` es igual a la media del peso del estanque `R3` contra la alternativa que son distintas.
+
+-   Probar la hipótesis: la media de la `LongEstandar` del estanque `R2` es igual a la media de `LongEstandar` del estanque `R3` contra la alternativa que son distintas.
+
+-   Probar la hipótesis: la media de la `LongHorquilla` del estanque `R2` es igual a la media de `LongHorquilla` del estanque `R3` contra la alternativa que son distintas.
+
+## Ejercicios
+
+-   Probar la hipótesis: la media de la `LongTotal` del estanque `R2` es igual a la media de `LongTotal` del estanque `R3` contra la alternativa que son distintas.
+
+-   Antes de llevar a cabo las pruebas de medias se debe probar la hipótesis de igualdad de varianzas y proceder con las medias de acuerdo al resultado de la preubas sobre varianzas.
+
+## Las tres longitudes diferenciadas por tipo
+
+### Organización de los datos
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+dfl=dfn|> pivot_longer(
+  cols = starts_with("Long"), 
+  names_to = "Tipo",
+  values_to = "Longitud" ) 
+head(dfl) 
+```
+
+## Las tres longitudes diferenciadas por tipo
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+# Visualización global con diferenciación por estanque
+ggplot(dfl, aes(x=Longitud,y=peso) ) + 
+      geom_point() + 
+      labs(title = "Peso vs las tres longitudes")
+```
+
+## Las tres longitudes diferenciadas por tipo
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+# Visualización global con diferenciación por estanque
+ggplot(dfl, aes(x=Longitud,y=peso,color=Tipo) ) + 
+      geom_point() + 
+      labs(title = "Peso vs las tres longitudes") 
+```
+
+## Las tres longitudes diferenciadas por tipo
+
+-   Con línea suavizada
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+# Visualización global con diferenciación por estanque
+ggplot(dfl, aes(x=Longitud,y=peso,color=Tipo) ) + 
+      geom_point() + geom_smooth() +    
+      labs(title = "Relación entre peso y LongHorquilla")
+```
+
+## Las tres longitudes diferenciadas por tipo
+
+-   Con línea de regresión
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+# Visualización global con diferenciación por estanque
+ggplot(dfl, aes(x=Longitud,y=peso,color=Tipo) ) + 
+      geom_point() + geom_smooth(method ="lm") +    
+      labs(title = "Relación entre peso y LongHorquilla")
+```
+
+## Matriz de correlaciones
+
+```{r}
+#| echo: true
+dfn|>select(where(is.numeric))|> 
+  cor(method = "pearson")
+```
+
+## Matriz de correlaciones (otra forma)
+
+```{r}
+#| echo: true
+
+library(corrr)
+dfn|>select(where(is.numeric))|>
+    correlate() # |>     shave()
+```
+
+## Matriz de Dispersión
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+library(tidyverse)
+library(GGally)
+
+# Visualización global con diferenciación por estanque
+ggpairs(dfn, columns = 2:5, ggplot2::aes(colour = estanque, alpha = 0.5)) +
+  theme_minimal() +
+  labs(title = "Matriz de Dispersión: Biometría de la Cachama")
+
+```
+
+# Ajuste de modelo de regresión
+
+## Modelo con todas las variables
+
+::: callout-note
+Ajustaremos el modelo de regresión lineal múltiple 
+$$
+E(P_i)=\beta_0 + \beta_1L_e + \beta_2L_h+\beta_3L_t  
+$$
+:::
+
+## Modelo con todas las variables
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+modelo_full <- lm(peso ~ LongEstandar + LongHorquilla +
+                    LongTotal, data = dfn)
+summary(modelo_full)
+```
+
+## ¿Qué hipótesis se prueba?
+
+::: callout-tip
+En la salida anterior el `t value` prueba la hipótesis
+
+$$
+H_0: \beta_i = 0 \hbox{ contra }  H_1: \beta_i\neq 0   
+$$
+:::
+
+# Comparación del ajuste de modelos
+
+## Modelos con dos variables
+
+::: callout-note
+Ahora ajustaremos modelos con solo dos variables y compararemos el ajuste con el modelo que tiene todas las variables, por ejemplo, ajustaremos\
+$$
+E(P_i)=\beta_0 + \beta_1L_e + \beta_2L_t  
+$$
+:::
+
+## Modelo con `Estandar + Total`
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+modelo_2a<- lm(peso ~ LongEstandar + LongTotal, data = dfn)
+summary(modelo_2a)
+```
+
+## Enmascaraniento
+
+::: callout-important
+Note que en el modelo con tres variables, el parámetro $\beta$ asociado a la longitud estándar no es significativo, sin embargo, al quitar la longitud de horquilla, este resulta ser significativamente distinto de cero. Este fenómeno se conoce como enmascaramiento
+:::
+
+## Modelo con `Estandar + Horquilla`
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+modelo_2b <- lm(peso ~ LongEstandar + LongHorquilla , data = dfn)
+summary(modelo_2b)
+```
+
+## Observe el enmascaramiento
+
+::: callout-important
+Al quitar la longitud total, los betas de las otras dos resultan significativos. En el modelo con las tres longitudes, solo la longitud de horquilla era significativa.
+:::
+
+## Modelo con `Horquilla + Total`
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+modelo_2c <- lm(peso ~ LongHorquilla + LongTotal, data = dfn)
+summary(modelo_2c)
+```
+
+## Cuál ajusta mejor
+
+::: callout-important
+Llevaremos a cabo una prueba de hipótesis. La hipótesis nula es que el modelo de más variables ajusta significativamente mejor, contra la alternativa que la diferencia de ajuste no es significativa y que por tanto debemos elegir el modelo con menos variables.
+:::
+
+## función `anova`
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+anova( modelo_2a,modelo_full)
+```
+
+## función `anova`
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+anova( modelo_2b,modelo_full)
+```
+
+## Selección automática mediante Stepwise (Basado en AIC)
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+modelo_optimo <- step(modelo_full, direction = "both")
+```
+
+## El modelo seleccionado 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded 
+
+summary(modelo_optimo)
+```
+
+
+## El mejor conjunto de predictores 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded 
+
+library(leaps)
+b<-regsubsets(peso ~ LongEstandar + LongHorquilla +
+                    LongTotal, data = dfn)
+( rs<-summary(b) ) 
+```
+
+
+## El mejor modelo con una variable 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded 
+
+modelo_1a<-lm(peso ~ LongHorquilla, data = dfn)
+ summary(modelo_1a)  
+```
+
+
+## Decidir entre usar una o dos variables
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded 
+
+anova(modelo_1a,modelo_2b)  
+```
+
+
+
+
+
+# Predicciones
+
+## Uso del modelo ajustado
+
+::: callout-important
+Una vez se ha elegido el modelo, lo que sigue es usarlo para hacer predicciones, es decir, dadas las longitudes estándar y de horquilla, podemos estimar el peso. Hay dos tipos de predicciones:
+
+-   Podemos estimar el peso promedio de la población de todos los animales que tengan los valores dados de las longitudes estándar y de horquilla.
+
+-   Dadas las longitudes estándar y de horquilla de un animal en particular,  podemos estimar su peso.
+:::
+
+## Ejemplo usando el modelo de dos variables 
+
+Estimar el peso promedio de la población de cachamas blancas que tengan `LongEstandar=` `r median(dfn$LongEstandar)` y `LongHorquilla=` `r    median(dfn$LongHorquilla) ` 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded 
+
+# Organización de los datos
+df_nuevo<-data.frame(LongEstandar=16.5,LongHorquilla=18.5) 
+df_nuevo
+```
+
+## Estimación de la media 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded 
+
+# intervalo de confianza para la media
+predict(modelo_optimo,newdata=df_nuevo, 
+        interval="confidence") 
+```
+
+
+
+## Predicción 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded 
+
+# intervalo de confianza para la predicción 
+predict(modelo_optimo,newdata=df_nuevo, 
+        interval="predict") 
+```
+
+
+## Estimar más de un peso 
+
+Estimar el peso promedio de la población de cachamas blancas que tengan `LongEstandar=` `r min(dfn$LongEstandar)`, `r quantile(dfn$LongEstandar)[2]`, `r median(dfn$LongEstandar)`,   `r quantile(dfn$LongEstandar)[4]` y `r max(dfn$LongEstandar)` y `LongHorquilla=` `r min(dfn$LongHorquilla) `, `r quantile(dfn$LongHorquilla)[2]`, `r median(dfn$LongHorquilla)` , `r quantile(dfn$LongHorquilla)[4]` y  `r max(dfn$LongHorquilla)` , obtener intervalos de confianza al 99%  
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded 
+
+# Organización de los datos
+df_nuevo<-data.frame(LongEstandar= 
+                       c(14.5, 16, 16.5, 18.5 , 27.5),
+                     LongHorquilla= 
+                       c(16, 18, 18.5 , 20.75, 31.8))  
+df_nuevo
+```
+ 
+## Estimación de la media 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded 
+
+# intervalo de confianza para la media
+predict(modelo_optimo,newdata=df_nuevo, 
+        interval="confidence",level=0.99) 
+```
+
+
+
+## Predicción 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded 
+
+# intervalo de confianza para la predicción 
+predict(modelo_optimo,newdata=df_nuevo, 
+        interval="predict",level=0.99) 
+```
+
+
+# Usando el universo tidyverse
+
+## Estimación de la media 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded 
+
+library(broom)
+
+# augment() añade las predicciones y los intervalos directamente al dataframe
+augment(modelo_optimo, newdata = df_nuevo, interval = "confidence",
+        conf.level = 0.95) %>%
+        select(LongEstandar, LongHorquilla, .fitted, .lower,  .upper) 
+``` 
+
+
+## Predicción 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded 
+
+augment(modelo_optimo, newdata = df_nuevo, interval = "prediction",
+        conf.level = 0.95) %>%
+        select(LongEstandar, LongHorquilla, .fitted, .lower,  .upper) 
+``` 
+
+
+## Gráfico: bandas de confianza (modelo de una variable) 
+
+
+Paso 1: Preparar los datos de predicción
+
+Primero, creamos un vector con una secuencia ordenada de valores para la longitud de horquilla (cubriendo el rango de sus datos) para que las bandas del gráfico queden curvas y suaves.
+
+
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded 
+
+
+# 1. Crear un dataframe con un rango suave de la variable explicativa
+paso_ajuste <- data.frame(
+  LongHorquilla = seq(min(dfn$LongHorquilla, na.rm = TRUE), 
+                      max(dfn$LongHorquilla, na.rm = TRUE), 
+                      length.out = 100)
+)
+paso_ajuste 
+```
+
+
+## Gráfico: bandas de confianza 
+
+Paso 2: Extraer los intervalos usando `broom::augment()` 
+
+Para la media 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded 
+
+banda_confianza <- augment(modelo_1a, newdata = paso_ajuste, 
+                           interval = "confidence", conf.level = 0.95) %>%
+  select(LongHorquilla, .fitted, .lower_conf = .lower, .upper_conf = .upper)
+
+# 3. Extraer intervalo de PREDICCIÓN para un individuo
+banda_prediccion <- augment(modelo_1a, newdata = paso_ajuste, 
+                            interval = "prediction", conf.level = 0.95) %>%
+  select(LongHorquilla, .lower_pred = .lower, .upper_pred = .upper)
+
+# 4. Unir ambas especificaciones en un solo dataframe listo para ggplot
+df_grafico <- left_join(banda_confianza, banda_prediccion, by = "LongHorquilla")
+
+```
+
+
+## Gráfico: bandas de confianza 
+
+Paso 2: Extraer los intervalos usando `broom::augment()` 
+
+Para la predicción
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded 
+
+banda_prediccion <- augment(modelo_1a, newdata = paso_ajuste, 
+                            interval = "prediction", conf.level = 0.95) %>%
+  select(LongHorquilla, .lower_pred = .lower, .upper_pred = .upper)
+
+
+```
+
+
+## Gráfico: bandas de confianza 
+
+Paso 2: Extraer los intervalos usando `broom::augment()` 
+
+Unir en un solo data  
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded 
+
+
+df_grafico <- left_join(banda_confianza, banda_prediccion, by = "LongHorquilla")
+
+```
+
+## El gráfico 
+
+
+```{r}
+#| echo: false
+#| output-location: fragment
+#| column: page
+
+fig=ggplot() +
+  geom_point(data = dfn, aes(x = LongHorquilla, y = peso), 
+             alpha = 0.6, color = "steelblue", size = 2) +
+  
+  # 2. Banda de PREDICCIÓN INDIVIDUAL (Capa externa, más ancha)
+  geom_ribbon(data = df_grafico, aes(x = LongHorquilla, ymin = .lower_pred, ymax = .upper_pred), 
+              fill = "red", alpha = 0.15) +
+  geom_line(data = df_grafico, aes(x = LongHorquilla, y = .lower_pred), color = "red", linetype = "dashed", alpha = 0.5) +
+  geom_line(data = df_grafico, aes(x = LongHorquilla, y = .upper_pred), color = "red", linetype = "dashed", alpha = 0.5) +
+  
+  # 3. Banda de CONFIANZA PARA LA MEDIA (Capa interna, más estrecha)
+  geom_ribbon(data = df_grafico, aes(x = LongHorquilla, ymin = .lower_conf, ymax = .upper_conf), 
+              fill = "gray40", alpha = 0.3) +
+  
+  # 4. Línea de Regresión Estimada
+  geom_line(data = df_grafico, aes(x = LongHorquilla, y = .fitted), 
+            color = "darkblue", size = 1.2) +
+  
+  # Etiquetas y diseño estético profesional
+  labs(
+    title = "Modelo de Regresión Lineal: Peso vs. Longitud de Horquilla",
+    subtitle = "Bandas del 95% de Confianza (Gris) y Predicción Individual (Roja)",
+    x = "Longitud de Horquilla (cm)",
+    y = "Peso (g)"
+  ) +
+  theme_minimal(base_size = 14)
+
+fig
+```
+
+
+## El gráfico 
+
+Puntos observados reales (datos originales)
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: page
+
+fig=ggplot() + 
+  geom_point(data = dfn, aes(x = LongHorquilla, y = peso), 
+             alpha = 0.6, color = "steelblue", size = 2)
+fig 
+```
+
+
+## El gráfico 
+
+Banda de PREDICCIÓN INDIVIDUAL 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: page
+
+fig=fig +  
+    geom_ribbon(data = df_grafico, aes(x = LongHorquilla,
+                  ymin = .lower_pred, ymax = .upper_pred),
+                  fill = "red", alpha = 0.15) +
+    geom_line(data = df_grafico, 
+                            aes(x = LongHorquilla,
+                                y = .lower_pred),
+                            color = "red",
+                            linetype = "dashed",
+                            alpha = 0.5) +
+    geom_line(data = df_grafico, 
+                            aes(x = LongHorquilla,
+                                y = .upper_pred),
+                            color = "red",
+                            linetype = "dashed",
+                            alpha = 0.5) 
+fig  
+```
+
+
+## El gráfico 
+
+Banda  de la media  
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: page
+
+
+fig= fig + geom_ribbon(data = df_grafico, aes( 
+               x = LongHorquilla, 
+            ymin = .lower_conf,
+            ymax = .upper_conf), 
+              fill = "gray40", alpha = 0.3) +
+            geom_line(data = df_grafico, aes(
+              x = LongHorquilla, 
+              y = .fitted), 
+              color = "darkblue",
+              size = 1.2) 
+  
+fig
+```
+
+
+## El gráfico 
+
+Etiquetas y tema 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: page
+
+fig=fig + labs(
+    title = "Modelo de Regresión Lineal: Peso vs. Longitud de Horquilla",
+    subtitle = "Bandas del 95% de Confianza (Gris) y Predicción Individual (Roja)",
+    x = "Longitud de Horquilla (cm)",
+    y = "Peso (g)"
+  ) + 
+  theme_minimal(base_size = 14)
+
+fig 
+```
+
+## El gráfico 
+
+Banda de PREDICCIÓN INDIVIDUAL 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: page
+
+
+ fig=fig+ geom_ribbon(data = df_grafico, aes(x = LongHorquilla, ymin = .lower_conf, ymax = .upper_conf), 
+              fill = "gray40", alpha = 0.3) +
+  
+  # 4. Línea de Regresión Estimada
+  geom_line(data = df_grafico, aes(x = LongHorquilla, y = .fitted), 
+            color = "darkblue", size = 1.2) +
+  
+  # Etiquetas y diseño estético profesional
+  labs(
+    title = "Modelo de Regresión Lineal: Peso vs. Longitud de Horquilla",
+    subtitle = "Bandas del 95% de Confianza (Gris) y Predicción Individual (Roja)",
+    x = "Longitud de Horquilla (cm)",
+    y = "Peso (g)"
+  ) +
+  theme_minimal(base_size = 14)
+```

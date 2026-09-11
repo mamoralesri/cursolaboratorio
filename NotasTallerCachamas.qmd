@@ -1,0 +1,265 @@
+---
+title: "Notas Taller Cachamas"
+format: pdf
+---
+
+## 
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(DT)
+
+# Creación de la base de datos oficial de calificaciones del Laboratorio 2
+notas_biometria <- tibble(
+  `Grupo de Estudiantes` = c(
+    "Josué Ramos Sánchez, Jeison Núñez Garavito, Matías Medrano Causil",
+    "José Alejandro Vergara, Esteban Díaz, Laura Ramírez",
+    "Jesús Estrada Reyes, Juan León Lozano",
+    "Xhiara Maussa Oviedo, María Angélica González Peralta",
+    "Sofia Chaves Contreras, Jesús Daniel Ramírez Barona"
+  ),
+  `Contexto e Intro (15)` = c(15, 15, 15, 14, 14),
+  `Presentación y Quarto (15)` = c(15, 14, 14, 15, 12),
+  `Análisis Gráfico (20)` = c(19, 19, 18, 19, 18),
+  `Inferencia y Pruebas (25)` = c(25, 24, 24, 23, 23),
+  `Modelamiento y VIF (25)` = c(24, 25, 25, 24, 24),
+  `Nota Final (0-100)` = c(98, 97, 96, 95, 91)
+)
+
+# Renderizado de la tabla interactiva con extensión de exportación a Excel
+datatable(
+  notas_biometria,
+  extensions = 'Buttons',
+  options = list(
+    dom = 'Bfrtip',
+    buttons = list(
+      list(
+        extend = 'excel',
+        text = '📥 Descargar Consolidado en Excel',
+        filename = 'Calificaciones_Laboratorio_Biometria_Cachama'
+      )
+    ),
+    pageLength = 5,
+    rownames = FALSE
+  ),
+  rownames = FALSE
+)
+```
+
+
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(DT)
+
+# Creación de la base de datos oficial de calificaciones - Tanda 2
+notas_biometria_tanda2 <- tibble(
+  `Grupo de Estudiantes` = c(
+    "Miguel Sánchez, José Ramos Cantero, Ever Vitola",
+    "María Fernanda López López",
+    "Verónica Causil, Verónica Galeano, Keiver Cárdenas",
+    "Sara Morales Bonolis"
+  ),
+  `Contexto e Intro (15)` = c(15, 14, 14, 13),
+  `Presentación y Quarto (15)` = c(15, 15, 12, 09),
+  `Análisis Gráfico (20)` = c(20, 19, 19, 16),
+  `Inferencia y Pruebas (25)` = c(25, 23, 23, 16),
+  `Modelamiento y VIF (25)` = c(25, 25, 25, 20),
+  `Nota Final (0-100)` = c(100, 96, 93, 74)
+)
+
+# Renderizado de la tabla interactiva de DataTables
+datatable(
+  notas_biometria_tanda2,
+  extensions = 'Buttons',
+  options = list(
+    dom = 'Bfrtip',
+    buttons = list(
+      list(
+        extend = 'excel',
+        text = '📥 Descargar Tanda 2 en Excel',
+        filename = 'Calificaciones_Laboratorio_Cachama_Tanda2'
+      )
+    ),
+    pageLength = 5,
+    rownames = FALSE
+  ),
+  rownames = FALSE
+)
+```
+
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(DT)
+
+# Creación de la base de datos oficial de calificaciones - Tanda 3
+notas_biometria_tanda3 <- tibble(
+  `Grupo de Estudiantes` = c(
+    "Jesús Ortiz González, Ángel Ramos, Santiago Suárez",
+    "Samuel Elías Aleán Berrío, José Jiménez",
+    "Andres Camilo Rivero Pacheco, Juan Ramos, Carla Paredes",
+    "Amalfi Núñez Doria",
+    "Juan Sebastián Guerra Rojas"
+  ),
+  `Contexto e Intro (15)` = c(15, 15, 15, 14, 14),
+  `Presentación y Quarto (15)` = c(15, 15, 14, 14, 12),
+  `Análisis Gráfico (20)` = c(19, 19, 19, 18, 17),
+  `Inferencia y Pruebas (25)` = c(25, 24, 24, 24, 15),
+  `Modelamiento y VIF (25)` = c(24, 24, 24, 24, 22),
+  `Nota Final (0-100)` = c(98, 97, 96, 94, 80)
+)
+
+# Renderizado de la tabla interactiva de DataTables
+datatable(
+  notas_biometria_tanda3,
+  extensions = 'Buttons',
+  options = list(
+    dom = 'Bfrtip',
+    buttons = list(
+      list(
+        extend = 'excel',
+        text = '📥 Descargar Tanda 3 en Excel',
+        filename = 'Calificaciones_Laboratorio_Cachama_Tanda3'
+      )
+    ),
+    pageLength = 5,
+    rownames = FALSE
+  ),
+  rownames = FALSE
+)
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(DT)
+
+# Creación de la base de datos oficial de calificaciones - Tanda Final
+notas_biometria_tanda4 <- tibble(
+  `Grupo de Estudiantes` = c(
+    "Jaceth Del Toro, Deiby Martínez Espinoza, Jose Arroyo",
+    "William Arrieta, Raquel Montilla",
+    "Edwin Jimenez, Luis Regino, Mauricio Díaz"
+  ),
+  `Contexto e Intro (15)` = c(15, 14, 14),
+  `Presentación y Quarto (15)` = c(15, 14, 12),
+  `Análisis Gráfico (20)` = c(19, 19, 18),
+  `Inferencia y Pruebas (25)` = c(25, 24, 21),
+  `Modelamiento y VIF (25)` = c(24, 24, 22),
+  `Nota Final (0-100)` = c(98, 95, 87)
+)
+
+# Renderizado de la tabla interactiva de DataTables
+datatable(
+  notas_biometria_tanda4,
+  extensions = 'Buttons',
+  options = list(
+    dom = 'Bfrtip',
+    buttons = list(
+      list(
+        extend = 'excel',
+        text = '📥 Descargar Tanda 4 en Excel',
+        filename = 'Calificaciones_Laboratorio_Cachama_Tanda4'
+      )
+    ),
+    pageLength = 3,
+    rownames = FALSE
+  ),
+  rownames = FALSE
+)
+```
+
+```{r}
+library(tidyverse)
+library(writexl)
+
+# ==============================================================================
+# 1. CONSOLIDACIÓN DE LOS DATASETS (TIDYVERSE)
+# ==============================================================================
+
+# Usamos bind_rows para unir verticalmente las 4 tandas.
+# Para evitar que R cree columnas duplicadas por tildes o palabras extra,
+# estandarizamos los nombres de los criterios sobre la marcha.
+
+notas_laboratorio_completo <- bind_rows(
+  # Tanda 1 (Se renombran las columnas para que coincidan con el estándar final)
+  notas_biometria %>% 
+    rename(
+      Estudiantes = `Grupo de Estudiantes`,
+      Contexto = `Contexto e Intro (15)`,
+      Quarto_Ortografia = `Presentación y Quarto (15)`,
+      Analisis_Grafico = `Análisis Gráfico (20)`,
+      Inferencia = `Inferencia y Pruebas (25)`,
+      Modelamiento_VIF = `Modelamiento y VIF (25)`
+    ),
+    
+  # Tanda 2
+  notas_biometria_tanda2 %>% 
+    rename(
+      Estudiantes = `Grupo de Estudiantes`,
+      Contexto = `Contexto e Intro (15)`,
+      Quarto_Ortografia = `Presentación y Quarto (15)`,
+      Analisis_Grafico = `Análisis Gráfico (20)`,
+      Inferencia = `Inferencia y Pruebas (25)`,
+      Modelamiento_VIF = `Modelamiento y VIF (25)`
+    ),
+    
+  # Tanda 3
+  notas_biometria_tanda3 %>% 
+    rename(
+      Estudiantes = `Grupo de Estudiantes`,
+      Contexto = `Contexto e Intro (15)`,
+      Quarto_Ortografia = `Presentación y Quarto (15)`,
+      Analisis_Grafico = `Análisis Gráfico (20)`,
+      Inferencia = `Inferencia y Pruebas (25)`,
+      Modelamiento_VIF = `Modelamiento y VIF (25)`
+    ),
+    
+  # Tanda 4 (Última tanda)
+  notas_biometria_tanda4 %>% 
+    rename(
+      Estudiantes = `Grupo de Estudiantes`,
+      Contexto = `Contexto e Intro (15)`,
+      Quarto_Ortografia = `Presentación y Quarto (15)`,
+      Analisis_Grafico = `Análisis Gráfico (20)`,
+      Inferencia = `Inferencia y Pruebas (25)`,
+      Modelamiento_VIF = `Modelamiento y VIF (25)`
+    )
+) %>% 
+  # Nos aseguramos de que sea un tibble purista y ordenamos por nota final de mayor a menor
+  as_tibble() %>% 
+  arrange(desc(`Nota Final (0-100)`))
+
+# ==============================================================================
+# 2. VISUALIZACIÓN EN CONSOLA (OPCIONAL)
+# ==============================================================================
+print(notas_laboratorio_completo)
+
+# ==============================================================================
+# 3. EXPORTACIÓN DIRECTA A EXCEL
+# ==============================================================================
+# writexl::write_xlsx es la forma más limpia porque no depende de Java (rJava)
+write_xlsx(
+  x = notas_laboratorio_completo, 
+  path = "Notas_Finales_Laboratorio_Cachama_Completo.xlsx"
+)
+
+message("¡Proceso completado con éxito, Dr. Morales! Archivo guardado en su directorio de trabajo.")
+```
+

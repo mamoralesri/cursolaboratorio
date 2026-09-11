@@ -1,0 +1,289 @@
+---
+title: "Notas actividad hipótesis"
+format: pdf
+---
+
+## 
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(DT)
+
+
+# Creación del dataset de calificaciones consolidado para la actividad de Hipótesis
+notas_actividad_hipotesis <- tibble(
+  `Estudiante Evaluado` = c(
+    "Miguel Ángel Sánchez Mercado",
+    "Josué David Ramos Sánchez",
+    "Jesús Alberto Estrada Reyes",
+    "María Angélica González Peralta",
+    "Sofía Chaves Contreras",
+    "Jesús Andrés Sierra Jiménez",
+    "José Joaquín Ramos Cantero",
+    "Mario Andrés Martínez Lagares",
+    "María Fernanda López López",
+    "Esteban Díaz Goez"
+  ),
+  `Fidelidad Código (40)` = c(40, 40, 40, 39, 39, 39, 38, 38, 28, 15),
+  `Presentación Quarto (30)` = c(30, 30, 29, 29, 27, 28, 28, 26, 25, 22),
+  `Análisis y Comentarios (30)` = c(30, 29, 29, 29, 29, 27, 27, 26, 22, 18),
+  `Nota Final (0-100)` = c(100, 99, 98, 97, 95, 94, 93, 90, 75, 55)
+) %>% 
+  arrange(desc(`Nota Final (0-100)`))
+
+# Renderizado de la tabla interactiva de control con botón para Excel
+datatable(
+  notas_actividad_hipotesis,
+  extensions = 'Buttons',
+  options = list(
+    dom = 'Bfrtip',
+    buttons = list(
+      list(
+        extend = 'excel',
+        text = '📥 Descargar Registro en Excel',
+        filename = 'Calificaciones_Actividad_Intervalos_Hipotesis'
+      )
+    ),
+    pageLength = 10,
+    language = list(
+      search = "Filtrar por estudiante:",
+      info = "Mostrando _START_ a _END_ de _TOTAL_ alumnos"
+    )
+  ),
+  rownames = FALSE
+)
+```
+
+
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+
+# Creación del dataset de calificaciones para la Tanda 2 de Hipótesis
+notas_hipotesis_tanda2 <- tibble(
+  `Estudiante Evaluado` = c(
+    "Ever Camilo Vitola Blanquiceth",
+    "Amalfi Núñez Doria",
+    "Ángel Josep Ramos Paéz",
+    "Jesús David Ortiz González",
+    "Laura Patricia Ramírez Polo",
+    "Juan Sebastián Guerra Rojas",
+    "Verónica Galeano Martínez",
+    "Sara Morales Bonolis",
+    "Camilo Andrés Martínez Ricardo",
+    "Matías Medrano Causil"
+  ),
+  `Fidelidad Código (40)` = c(40, 40, 40, 38, 38, 38, 38, 37, 36, 30),
+  `Presentación Quarto (30)` = c(30, 29, 27, 28, 28, 27, 25, 25, 25, 27),
+  `Análisis y Comentarios (30)` = c(30, 29, 28, 28, 28, 28, 28, 28, 28, 28),
+  `Nota Final (0-100)` = c(100, 98, 95, 94, 94, 93, 91, 90, 89, 85)
+) %>% 
+  arrange(desc(`Nota Final (0-100)`))
+
+# Renderizado de la tabla interactiva de DataTables con botón de descarga
+datatable(
+  notas_hipotesis_tanda2,
+  extensions = 'Buttons',
+  options = list(
+    dom = 'Bfrtip',
+    buttons = list(
+      list(
+        extend = 'excel',
+        text = '📥 Descargar Tanda 2 en Excel',
+        filename = 'Calificaciones_Actividad_Hipotesis_Tanda2'
+      )
+    ),
+    pageLength = 10,
+    language = list(
+      search = "Filtrar estudiante:",
+      info = "Mostrando _START_ a _END_ de _TOTAL_ alumnos"
+    )
+  ),
+  rownames = FALSE
+) 
+
+```
+
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+
+# Creación del dataset de calificaciones para la Tanda 3 de Hipótesis
+notas_hipotesis_tanda3 <- tibble(
+  `Estudiante Evaluado` = c(
+    "Andres Camilo Rivero Pacheco",
+    "Raquel Alicia Montilla Perez",
+    "Verónica Causil Lozano",
+    "Santiago Andres Suarez Hoyos",
+    "Samuel Elías Aleán Berrío",
+    "Jaceth Del Toro Hernández",
+    "Mauro Hernán López Martinez",
+    "Edwin Camilo Jimenez Morelo",
+    "Yeison Isaac Núñez Garavito",
+    "José Alejandro Vergara Care"
+  ),
+  `Fidelidad Código (40)` = c(40, 40, 40, 40, 39, 38, 36, 37, 36, 15),
+  `Presentación Quarto (30)` = c(29, 28, 27, 26, 26, 27, 26, 24, 25, 22),
+  `Análisis y Comentarios (30)` = c(30, 29, 29, 28, 28, 28, 27, 27, 26, 18),
+  `Nota Final (0-100)` = c(99, 97, 96, 94, 93, 93, 89, 88, 87, 55)
+) %>% 
+  arrange(desc(`Nota Final (0-100)`))
+
+# Renderizado de la tabla con extensión Buttons para exportación a Excel
+datatable(
+  notas_hipotesis_tanda3,
+  extensions = 'Buttons',
+  options = list(
+    dom = 'Bfrtip',
+    buttons = list(
+      list(
+        extend = 'excel',
+        text = '📥 Descargar Tanda 3 en Excel',
+        filename = 'Calificaciones_Actividad_Hipotesis_Tanda3'
+      )
+    ),
+    pageLength = 10,
+    language = list(
+      search = "Filtrar por estudiante:",
+      info = "Mostrando _START_ a _END_ de _TOTAL_ alumnos"
+    )
+  ),
+  rownames = FALSE
+) 
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+
+# Creación del dataset de calificaciones para la Tanda Final de Hipótesis
+notas_hipotesis_tanda4 <- tibble(
+  `Estudiante Evaluado` = c(
+    "Xhiara Elena Maussa Oviedo",
+    "Carla Paredes Díaz",
+    "José Andrés Jiménez Rivas",
+    "Deiby Martínez Espinoza",
+    "Jose Arroyo Arroyo",
+    "Juan David Ramos Miranda",
+    "Mauricio Andrés Díaz Falco",
+    "Luis Estiven Regino De La Rosa",
+    "William Alfredo Arrieta Gómez"
+  ),
+  `Fidelidad Código (40)` = c(40, 40, 39, 38, 38, 36, 36, 36, 25),
+  `Presentación Quarto (30)` = c(30, 26, 26, 26, 26, 25, 25, 24, 27),
+  `Análisis y Comentarios (30)` = c(30, 28, 28, 28, 28, 28, 28, 28, 28),
+  `Nota Final (0-100)` = c(100, 94, 93, 92, 92, 89, 89, 88, 80)
+) %>% 
+  arrange(desc(`Nota Final (0-100)`))
+
+# Renderizado de la tabla con extensión Buttons para exportación a Excel
+datatable(
+  notas_hipotesis_tanda4,
+  extensions = 'Buttons',
+  options = list(
+    dom = 'Bfrtip',
+    buttons = list(
+      list(
+        extend = 'excel',
+        text = '📥 Descargar Tanda Final en Excel',
+        filename = 'Calificaciones_Actividad_Hipotesis_Tanda4'
+      )
+    ),
+    pageLength = 10,
+    language = list(
+      search = "Filtrar por estudiante:",
+      info = "Mostrando _START_ a _END_ de _TOTAL_ alumnos"
+    )
+  ),
+  rownames = FALSE
+)
+```
+
+```{r}
+# ==============================================================================
+# CONSOLIDACIÓN MAESTRA DE CALIFICACIONES: PRUEBAS DE HIPÓTESIS
+# ==============================================================================
+# Desarrollado por: Su Asistente Estadístico
+# Formato de Salida: Único libro de Excel (.xlsx) estructurado con Tidyverse
+# ==============================================================================
+
+library(tidyverse)
+library(writexl)
+
+# 1. Unificación y estandarización de las 4 matrices de datos
+registro_hipotesis_completo <- bind_rows(
+  # Tanda 1 (Primera sección calificada)
+  notas_actividad_hipotesis %>% 
+    rename(
+      Estudiante = `Estudiante Evaluado`,
+      Fidelidad_Codigo = `Fidelidad Código (40)`,
+      Presentacion_Quarto = `Presentación Quarto (30)`,
+      Analisis_Comentarios = `Análisis y Comentarios (30)`
+    ),
+    
+  # Tanda 2 (Segunda sección)
+  notas_hipotesis_tanda2 %>% 
+    rename(
+      Estudiante = `Estudiante Evaluado`,
+      Fidelidad_Codigo = `Fidelidad Código (40)`,
+      Presentacion_Quarto = `Presentación Quarto (30)`,
+      Analisis_Comentarios = `Análisis y Comentarios (30)`
+    ),
+    
+  # Tanda 3 (Tercera sección)
+  notas_hipotesis_tanda3 %>% 
+    rename(
+      Estudiante = `Estudiante Evaluado`,
+      Fidelidad_Codigo = `Fidelidad Código (40)`,
+      Presentacion_Quarto = `Presentación Quarto (30)`,
+      Analisis_Comentarios = `Análisis y Comentarios (30)`
+    ),
+    
+  # Tanda 4 (Cuarta y última sección analizada)
+  notas_hipotesis_tanda4 %>% 
+    rename(
+      Estudiante = `Estudiante Evaluado`,
+      Fidelidad_Codigo = `Fidelidad Código (40)`,
+      Presentacion_Quarto = `Presentación Quarto (30)`,
+      Analisis_Comentarios = `Análisis y Comentarios (30)`
+    )
+) %>% 
+  # 2. Control de calidad y ordenamiento por rendimiento de mayor a menor
+  as_tibble() %>% 
+  arrange(desc(`Nota Final (0-100)`))
+
+# ==============================================================================
+# EXPORTACIÓN DEL ARCHIVO CONSOLIDADO FINAL
+# ==============================================================================
+# 'writexl' escribe de forma nativa a nivel binario, garantizando compatibilidad 
+# absoluta con su entorno de desarrollo bajo Ubuntu y Mac.
+
+write_xlsx(
+  x = registro_hipotesis_completo, 
+  path = "Consolidado_Final_Notas_Pruebas_Hipotesis.xlsx"
+)
+
+# Mensaje de confirmación en consola
+cat("====================================================================\n",
+    "¡Éxito! Las 4 tandas han sido consolidadas de forma segura.\n",
+    "Archivo generado: 'Consolidado_Final_Notas_Pruebas_Hipotesis.xlsx'\n",
+    "Total de alumnos registrados en el acta:", nrow(registro_hipotesis_completo), "\n",
+    "====================================================================\n")
+
+```
+
+
+
+Vamos con otro curso y por tanto tema. este es un curso electivo que se llama visualización de datos con R, es del semestre 7 y por tanto mas avanzado y requiere mas rigor. Le voy a subir el pdf que se llama 'semana4.pdf' , en el encontrará los ejercicios que los estudiantes deben resolver. Los ejercicios están en las páginas 19. El estudiante debe entregar un documento en pdf reenderizado con quarto que contenga la solución de esos ejercicios.     

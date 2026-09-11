@@ -1,0 +1,67 @@
+---
+title: "Guía de Informe de Laboratorio: Biometría de la Cachama Blanca (Piaractus brachypomus)"
+author: "Mario Morales"
+format: pdf 
+---
+
+
+Asignatura: Laboratorio de estadística 
+
+Docente: Mario Alfonso Morales Rivera
+
+Institución: Universidad de Córdoba, Colombia
+
+# Objetivo del Informe: 
+
+Evaluar el estado del cultivo de cachamas mediante el análisis estadístico de variables biométricas, aplicando técnicas de estadística descriptiva, inferencia (pruebas de hipótesis) y modelamiento lineal para la toma de decisiones en producción acuícola.
+
+# Introducción
+
+La biometría es una herramienta fundamental en la piscicultura. El monitoreo constante del peso y las longitudes (Total, Horquilla y Estándar) permite a los productores determinar el factor de condición del animal, ajustar las raciones de alimento y detectar anomalías en el crecimiento.
+
+En este laboratorio, los estudiantes analizarán si existen diferencias significativas entre los estanques muestreados y buscarán el mejor modelo para predecir el peso de los animales.
+
+
+# Instrucciones y Contenido del Informe
+
+Los estudiantes deben presentar su informe en formato PDF generado mediante Quarto, siguiendo el orden que se describe a continuación:
+
+## Marco Teórico y Consultas 
+
+Deben investigar y redactar una síntesis (máximo 2 páginas) sobre:  Características biológicas de la Cachama Blanca. Importancia de la relación peso-longitud en el cultivo de peces. Diferencias anatómicas entre Longitud Total (LT), Longitud de Horquilla (LH) y Longitud Estándar (LE). 
+
+## Análisis Descriptivo y Gráfico 
+
+Presentar un resumen estadístico de todas las variables (media, desviación estándar, coeficiente de variación). Gráficos de dispersión: Realizar una matriz de dispersión (scatter plot matrix) para observar las relaciones entre las tres longitudes y el peso. 
+Análisis de Colinealidad: Observen cuidadosamente la relación entre LT, LH y LE. ¿Qué ocurre si intentamos usar las tres para explicar el peso? Identifiquen la posible redundancia de datos.
+
+## Inferencia Estadística: Pruebas de Hipótesis 
+Este es el núcleo del informe. Deben comparar si el crecimiento ha sido uniforme en ambos estanques:
+
+* Prueba de Homogeneidad de Varianzas: Realizar un F-test para comparar las varianzas del peso y las longitudes entre los dos estanques.
+
+* Prueba de Comparación de Medias: 
+
+  * Si las varianzas son iguales: Aplicar Prueba T clásica. 
+  * Si las varianzas son desiguales: Aplicar Prueba T de Welch. 
+  * Hipótesis a probar: $H_0: \mu_{Estanque 1} = \mu_{Estanque 2}$ frente a $H_1: \mu_{Estanque 1} \neq \mu_{Estanque 2}$.
+
+## Modelamiento: Regresión Lineal Múltiple 
+
+Propongan un modelo que explique el Peso en función de las longitudes medidas: Evalúen qué variables deben entrar en el modelo. 
+
+**Advertencia técnica:** Tengan cuidado con la multicolinealidad. Si dos longitudes están altamente correlacionadas (o una es combinación de otras), el modelo será inestable. Justifiquen qué variables deciden dejar y cuáles eliminar.
+
+# Conclusiones 
+
+Basándose en el valor-p de sus pruebas, ¿recomendarían un manejo diferenciado para los estanques? ¿Qué longitud resultó ser el mejor predictor del peso? 
+
+#  Requisitos de Entrega
+
+El informe debe ser estrictamente reproducible (incluir bloques de código de R). Las tablas deben presentarse con formato elegante (kable y kableExtra). Los gráficos deben seguir la estética de ggplot2 y estar correctamente etiquetados.  
+
+## Sugerencias
+
+Sugerencia para la visualización: Para el punto B, se le sugiere el uso de `GGally::ggpairs(df)` para ver de un solo golpe todas las correlaciones.
+
+Sugerencia para las pruebas: Dado que los peces de la Piscina A son distintos a los de la Piscina B, estamos frente a un caso de prueba T para muestras independientes. 

@@ -1,0 +1,373 @@
+---
+title: "Relación entre Peso y Estatura" 
+subtitle: "Análisis Exploratorio y Modelos de Regresión"   
+author: 
+  - name: Mario Morales
+    orcid: 0000-0001-8814-0179
+    email: mamorales@correo.unicordoba.edu.co
+    url: https://mariomorales.xyz/
+    affiliations:
+      - name: Universidad de Córdoba, Montería
+format: 
+  revealjs:
+    theme: default 
+    css: estilos2.css
+    include-before-body: logo2.html
+    mainfont: "Arial" 
+    slide-level: 2
+    embed-resources: true
+    toc-depth: 1 
+    highlight: "tango"
+    center: true
+    transition: fade
+    lang: es
+    code-fold: true
+    #slide-level: 2
+    scrollable: true
+  beamer:
+    aspectratio: 169
+    theme: default
+    navigation: horizontal
+    number-sections: false
+    include-in-header:
+      - text: |
+          \setbeamertemplate{headline}{} % Elimina la cabecera del tema Madrid
+          \setbeamertemplate{section in head/foot}{} % Limpia la numeración de secciones
+          \renewcommand{\contentsname}{Índice}
+          \renewcommand{\refname}{Referencias}
+          \renewcommand{\figurename}{Figura}
+          \renewcommand{\tablename}{Tabla}
+          \logo{%
+            \begin{tabular}{c}
+              \includegraphics[height=1.2cm]{EscudoU.png}
+            \end{tabular}%
+          }
+          % --- CONFIGURACIÓN DE COLORES INSTITUCIONALES ---
+          \definecolor{UnicorGreen}{HTML}{024426}
+          \definecolor{UnicorText}{HTML}{F9F9F9}
+          \definecolor{UnicorWhite}{HTML}{FFFFFF}
+          \definecolor{UnicorGold}{HTML}{D1B061}
+          
+          % Aplicación al fondo y texto general
+          \setbeamercolor{background canvas}{bg=UnicorGreen}
+          \setbeamercolor{normal text}{fg=UnicorText}
+          
+          % Aplicación a títulos y cabeceras
+          %\setbeamercolor{title}{fg=UnicorWhite}
+          \setbeamercolor{frametitle}{fg=UnicorWhite}
+          \setbeamercolor{framesubtitle}{fg=UnicorWhite}
+          
+          % Aplicación a viñetas y estructura
+          \setbeamercolor{structure}{fg=UnicorWhite}
+          \setbeamercolor{itemize item}{fg=UnicorWhite}
+          \setbeamercolor{itemize subitem}{fg=UnicorWhite}
+          \setbeamercolor{enumerate item}{fg=UnicorWhite}
+          
+          % Forzar a LaTeX a repintar el texto general al iniciar el documento
+          \AtBeginDocument{\usebeamercolor[fg]{normal text}}
+          
+          % Aplicación a hipervínculos
+          \hypersetup{colorlinks=true, urlcolor=UnicorGold, linkcolor=UnicorWhite} 
+          
+          % --- ACTIVAR ESTILO DE BLOQUES Y SOMBRAS (ESTILO MADRID) ---
+          \useinnertheme[shadow=true]{rounded}
+          
+          % --- COLORES DEL RECUADRO DEL TÍTULO PRINCIPAL ---
+          % Fondo dorado con texto verde
+          \setbeamercolor{title}{bg=UnicorGold, fg=UnicorGreen}
+          \setbeamercolor{frametitle}{fg=UnicorWhite} % Mantiene el título de las diapositivas normal
+          \setbeamercolor{framesubtitle}{fg=UnicorWhite}
+          
+          % --- COLORES PARA TEOREMAS, DEFINICIONES Y BLOQUES ---
+          % Título del bloque (Fondo dorado, texto verde)
+          \setbeamercolor{block title}{bg=UnicorGold, fg=UnicorGreen}
+          % Cuerpo del bloque (Fondo blanco, texto verde)
+          \setbeamercolor{block body}{bg=UnicorWhite, fg=UnicorGreen}
+          
+          \AtBeginDocument{
+            \author{%
+              \begin{tabular}{c}
+                Mario A. Morales Rivera \\
+                \footnotesize \texttt{mamorales@correo.unicordoba.edu.co} \\
+                \footnotesize Universidad de Córdoba
+              \end{tabular}
+            }
+            \institute{} 
+          }
+          % --- LIMPIAR DIAPOSITIVAS DE SECCIÓN (ELIMINAR "SECTION X") ---
+          \setbeamertemplate{section page}{
+            \begin{center}
+              \begin{beamercolorbox}[sep=12pt,center,rounded=true,shadow=true]{title}
+                \usebeamerfont{title}\insertsection\par
+              \end{beamercolorbox}
+            \end{center}
+          }
+    slide-level: 2
+    fonttheme: default 
+    keep-tex: true
+    lang: es
+
+toc: true
+toc-title: "Contenido"
+editor: source 
+---
+
+# Obejetivos  
+
+# Lectura y limpieza de los datos 
+
+## Lectura desde Excel 
+
+```{r}
+#| echo: true
+
+# Fijamos el directorio de trabajo 
+setwd("~/Documents/Cursos/Laboratorio")
+# cargamos la librería 
+library(readxl) 
+# 
+datos <- read_excel("DatosEstaturaPesoLab2.xls", skip = 4)
+```
+
+
+La opción `skip=4` le indica a la función `read_excel` que se _salte_ 4 filas, y por tanto, empiece la lectura en la fila 5. 
+
+
+## Limpieza básica inicial 
+
+Nos quedamos solo con las columnas de datos, descartamos las columnas `"No."      "Id"       "Nombre" `. Lo hacemos con la libraría `tidyverse` 
+
+```{r}
+#| echo: true
+
+library(tidyverse)
+datos<- datos|> select(Sexo:peso3)
+head(datos) 
+```
+
+## Sexo como un factor
+
+La columna `sexo` es de caracteres `(chr)` por tanto la convertiremos a un factor
+
+```{r}
+#| echo: true
+datos<-datos|>mutate(Sexo=factor(Sexo,labels
+          =c("Femenino","Masculino") ))
+head(datos)
+```
+
+
+# Cálculos 
+
+
+## Cálculo del peso promedio 
+
+Calculamos el peso promedio de las tres mediciones tomadas de peso. Note el uso de `rowwise` para que el promedio se haga por filas.   
+
+```{r}
+#| echo: true
+datos<-datos|>rowwise()|>mutate(peso
+            =mean(c(peso1,peso2,peso3),
+            na.rm=TRUE))|>ungroup()
+head(datos)
+```
+
+# Cálculos por niveles de sexo 
+
+
+
+## Estatura por niveles de Sexo  
+
+Para calcular estas estadísticas agrupadas por una variable categórica (en este caso, `Sexo`) utilizando el ecosistema `tidyverse`, usamos  `group_by()` seguido de `summarise()` 
+
+```{r}
+#| echo: true 
+
+descrip_est <- datos|> 
+  group_by(Sexo) |> 
+  summarise(
+    No = n(), # Cuenta cuántos hay de cada sexo
+    # Estadísticas para Estatura
+    est_media = mean(Estatura, na.rm = TRUE),
+    est_sd = sd(Estatura, na.rm = TRUE),
+    est_min = min(Estatura, na.rm = TRUE),
+    est_max = max(Estatura, na.rm = TRUE))
+
+```
+
+
+## Resumen de estatura por Sexo
+
+```{r}
+#| echo: true
+library(knitr)
+kable(descrip_est)
+```
+
+
+
+## Estatura por niveles de Sexo, sin `NA`  
+
+
+```{r}
+#| echo: true 
+
+descrip_est <- datos|>filter(!is.na(Sexo))|> 
+  group_by(Sexo) |> 
+  summarise(
+    No = n(), # Cuenta cuántos hay de cada sexo
+    # Estadísticas para Estatura
+    est_media = mean(Estatura, na.rm = TRUE),
+    est_sd = sd(Estatura, na.rm = TRUE),
+    est_min = min(Estatura, na.rm = TRUE),
+    est_max = max(Estatura, na.rm = TRUE))
+```
+
+
+## Resumen de estatura por Sexo
+
+```{r}
+#| echo: true
+library(knitr)
+kable(descrip_est)
+```
+
+
+
+## Edad  por niveles de Sexo  
+
+
+
+```{r}
+#| echo: true 
+
+descrip_edad <- datos|>filter(!is.na(Sexo))|>
+  group_by(Sexo) |> 
+  summarise(
+    No = n(), # Cuenta cuántos hay de cada sexo
+    # Estadísticas para Estatura
+    edad_media = mean(Edad, na.rm = TRUE),
+    edad_sd = sd(Edad, na.rm = TRUE),
+    edad_min = min(Edad, na.rm = TRUE),
+    edad_max = max(Edad, na.rm = TRUE))
+```
+
+
+## Resumen de edad por Sexo
+
+```{r}
+#| echo: true
+library(knitr)
+kable(descrip_edad)
+```
+
+## Peso por niveles de Sexo  
+
+
+
+```{r}
+#| echo: true 
+
+descrip_peso<- datos|>filter(!is.na(Sexo))|>
+  group_by(Sexo) |> 
+  summarise(
+    No = n(), # Cuenta cuántos hay de cada sexo
+    # Estadísticas para Estatura
+    peso_medio = mean(peso, na.rm = TRUE),
+    peso_sd = sd(peso, na.rm = TRUE),
+    peso_min = min(peso, na.rm = TRUE),
+    peso_max = max(peso, na.rm = TRUE))
+```
+
+
+## Resumen de peso por Sexo
+
+```{r}
+#| echo: true
+library(knitr)
+kable(descrip_peso)
+```
+
+
+# Visualización de los datos 
+
+## Boxplot de edad por sexo
+
+Usaremos la librería `ggplot`  
+
+```{r}
+#| echo: true
+#| fig-width: 6
+#| fig-height: 3
+#| out-width: "80%"
+#| fig-align: "center"
+
+library(ggplot2)
+ggplot(data=datos,aes(x=Sexo,y=Edad)) + geom_boxplot() 
+
+
+```
+
+
+## Boxplot de edad por sexo
+
+Sin el dato atípico 
+
+```{r}
+#| echo: true
+#| fig-width: 6
+#| fig-height: 3
+#| out-width: "80%"
+#| fig-align: "center"
+
+datosn<-datos|>filter(Edad<60)
+
+ggplot(data=datosn,aes(x=Sexo,y=Edad)) + geom_boxplot() 
+```
+
+
+## Relación peso y estatura 
+
+```{r}
+#| echo: true
+#| fig-width: 7
+#| fig-height: 3.5
+#| out-width: "95%"
+#| fig-align: "center"
+
+
+ggplot(data=datos,aes(x=Estatura,y=peso)) + geom_point() 
+```
+
+
+## Puntos con linea de regresión 
+
+```{r}
+#| echo: true
+#| fig-width: 7
+#| fig-height: 3.5
+#| out-width: "90%"
+#| fig-align: "center"
+
+
+ggplot(data=datos,aes(x=Estatura,y=peso)) + 
+  geom_point() + 
+  geom_smooth(method = "lm",se=FALSE) 
+```
+
+
+## Puntos diferenciados por sexo 
+
+```{r}
+#| echo: true
+#| fig-width: 7
+#| fig-height: 3.5
+#| out-width: "90%"
+#| fig-align: "center"
+
+
+ggplot(data=datos,aes(x=Estatura,y=peso)) +
+  geom_point(aes(col=Sexo)) + 
+  geom_smooth(method = "lm",se=FALSE) 
+```
+

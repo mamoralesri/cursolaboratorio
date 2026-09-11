@@ -1,0 +1,384 @@
+<?xml version="1.0"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>Laboratorio/SeleccionModelosCachamas2</text>
+    </category>
+    <info format="html">
+      <text>Categor&#xED;a generada autom&#xE1;ticamente</text>
+    </info>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>Todas_Vs_LH</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;El archivo de datos &lt;code&gt;DATOS CACHAMAS.xlsx&lt;/code&gt; contiene datos de biometr&#xED;a de cachama blanca,   
+&lt;code&gt;peso&lt;/code&gt; en gramos y las longitudes de horquilla &lt;code&gt;LH&lt;/code&gt;, est&#xE1;ndar &lt;code&gt;LE&lt;/code&gt; y total &lt;code&gt;LT&lt;/code&gt; 
+en gramos. Adem&#xE1;s, la columna &lt;code&gt;estanque&lt;/code&gt; clasifica a los animales en dos estanques, &lt;code&gt;R02&lt;/code&gt; y &lt;code&gt;R03&lt;/code&gt;.
+&lt;span style="color: red; font-weight: bold;"&gt; Para este ejercicio se deben usar solo los datos del estanque&lt;/span&gt; &lt;code&gt;R03&lt;/code&gt;. Se quiere  ajustar un modelo
+que permita explicar el peso de los animales en funci&#xF3;n de las longitudes. 
+Deseamos decidir cu&#xE1;l modelo usar entre el modelo con las tres longitudes como variables explicativas
+\(E(P_i)=\beta_0+\beta_1LH_i+\beta_2LE_i+\beta_3LT_i\) (lineal) y el 
+modelo \(E(P_i)=\beta_0+\beta_1LH_i\) (que solo incluye la variable LH). Complete la siguiente tabla 
+de an&#xE1;lisis de varianza que contiene la prueba de la hip&#xF3;tesis: &lt;br&gt; \(H_0:\)
+"El modelo con todas las variables no aporta un ajuste significativamente mejor que el modelo con solo LH",
+contra la alternativa  \(H_1:\) "El modelo con todas las variables ajusta  significativamente mejor 
+que el el modelo con solo LH" &lt;br&gt;, &lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#9ABAD9;border-spacing:0;}
+.tg td{background-color:#EBF5FF;border-color:#9ABAD9;border-style:solid;border-width:1px;color:#444;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#409cff;border-color:#9ABAD9;border-style:solid;border-width:1px;color:#fff;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-0pky"&gt;Res.df&lt;/th&gt;
+    &lt;th class="tg-0pky"&gt;RSS&lt;/th&gt;
+    &lt;th class="tg-0pky"&gt;Df&lt;/th&gt;
+    &lt;th class="tg-0pky"&gt;Sum of Sq&lt;/th&gt;
+    &lt;th class="tg-0pky"&gt;F&lt;/th&gt;
+    &lt;th class="tg-0pky"&gt;Pr(&amp;gt;F)&lt;/th&gt;
+  &lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0pky"&gt;{1:NM:=17:0}&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;{1:NM:=3563:0}&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0pky"&gt;{1:NM:=19:0}&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;{1:NM:=5906:0}&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;{1:NM:=-2:0}&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;{1:NM:=-2343.4669:0.0001}&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;{1:NM:=5.5913:0.0001}&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;{1:NM:=0.0136:0.0001}&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt; de acuerdo con los resultados mostrados en la tabla anterior
+decidimos usar el modelo {1:MULTICHOICE:~%0%modelo con las 3 variables~%0%modelo con LH+LT~%0%modelo con LH+LE~%0%modelo con LE+LT~%0%modelo con LT~=modelo con LE~%0%modelo con LH} &lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html"/>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>hipotesis_betas_peso</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;El archivo de datos &lt;code&gt;DATOS CACHAMAS.xlsx&lt;/code&gt; contiene datos de biometr&#xED;a de cachama blanca,   
+&lt;code&gt;peso&lt;/code&gt; en gramos y las longitudes de horquilla &lt;code&gt;LH&lt;/code&gt;, est&#xE1;ndar &lt;code&gt;LE&lt;/code&gt; y total &lt;code&gt;LT&lt;/code&gt; 
+en gramos. Adem&#xE1;s, la columna &lt;code&gt;estanque&lt;/code&gt; clasifica a los animales en dos estanques, &lt;code&gt;R02&lt;/code&gt; y &lt;code&gt;R03&lt;/code&gt;.
+&lt;span style="color: red; font-weight: bold;"&gt; Para este ejercicio se deben usar solo los datos del estanque&lt;/span&gt; &lt;code&gt;R03&lt;/code&gt;.
+Se quiere  ajustar un modelo que permita explicar el &lt;code&gt;peso&lt;/code&gt; de los animales en funci&#xF3;n de las longitudes. 
+Ajuste el modelo \(E(P_i)=\beta_0+\beta_1LH_i\)  
+&lt;br&gt; Complete la siguiente tabla que contiene los par&#xE1;metros estimados, sus errores
+est&#xE1;ndar estimados y el valor del estad&#xED;stico  \(t)\ que prueba la hip&#xF3;tesis \(\beta_i=0)\ 
+contra \(\beta_i \neq 0)\  &lt;br&gt;&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#9ABAD9;border-spacing:0;}
+.tg td{background-color:#EBF5FF;border-color:#9ABAD9;border-style:solid;border-width:1px;color:#444;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#409cff;border-color:#9ABAD9;border-style:solid;border-width:1px;color:#fff;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-0lax"&gt;&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;Estimate&lt;/span&gt;&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;Std. Error&lt;/span&gt;&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;t value&lt;/span&gt;&lt;/th&gt;
+  &lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Intercept&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;{1:NM:=-507.2956:0.0001}&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;{1:NM:=28.3537:0.0001}&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;{1:NM:=-17.8917:0.0001}&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;LH&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;{1:NM:=37.5283:0.0001}&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=1.4897:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=25.1919:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt; &lt;br&gt; De acuerdo con la tabla anterior 
+podemos concluir que \(\beta_0\) es significativamente {1:MULTICHOICE:~%0%igual a~=distinto de~%0%mayor que~%0%menor que}  cero y que \(\beta_1\)
+es significativamente {1:MULTICHOICE:~%0%igual a~=distinto de~%0%mayor que~%0%menor que} cero, adicionalmente podemos afirmar que la variable \(LH\)
+{1:MULTICHOICE:~%0%no contribuye a~%0%es indiferente para ~=contribuye a~%0%no es &#xFA;til para} explicar a la variable &lt;code&gt;peso&lt;/code&gt; &lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html"/>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>prediccion1Cach</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;El archivo de datos &lt;code&gt;DATOS CACHAMAS.xlsx&lt;/code&gt; contiene datos de biometr&#xED;a de cachama blanca,   
+&lt;code&gt;peso&lt;/code&gt; en gramos y las longitudes de horquilla &lt;code&gt;LH&lt;/code&gt;, est&#xE1;ndar &lt;code&gt;LE&lt;/code&gt; y total &lt;code&gt;LT&lt;/code&gt; 
+en gramos. Adem&#xE1;s, la columna &lt;code&gt;estanque&lt;/code&gt; clasifica a los animales en dos estanques, &lt;code&gt;R02&lt;/code&gt; y &lt;code&gt;R03&lt;/code&gt;.
+&lt;span style="color: red; font-weight: bold;"&gt; Para este ejercicio se deben usar solo los datos del estanque&lt;/span&gt; &lt;code&gt;R03&lt;/code&gt;.  Se quiere  ajustar un modelo que permita explicar el &lt;code&gt;peso&lt;/code&gt; de los animales en funci&#xF3;n de las longitudes. 
+Ajuste el modelo \(E(P_i)=\beta_0+\beta_1LH_i\)  
+&lt;br&gt; Complete la siguiente tabla que contiene las estimaciones y l&#xED;mites
+de confianza al 95% para el peso promedio de las poblaciones de cachamas que tienen LH = 17, 18, 18.5, 18.5, 20 &lt;br&gt;&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#9ABAD9;border-spacing:0;}
+.tg td{background-color:#EBF5FF;border-color:#9ABAD9;border-style:solid;border-width:1px;color:#444;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#409cff;border-color:#9ABAD9;border-style:solid;border-width:1px;color:#fff;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-0lax"&gt;LH&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;fit&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;lwr&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;upr&lt;/th&gt;
+  &lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;17&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;{1:NM:=130.6855:0.0001}&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;{1:NM:=120.7671:0.0001}&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=140.6039:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;18&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=168.2138:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=120.7671:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=176.6984:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;18.5&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=186.9780:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=120.7671:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=195.1072:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;18.5&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=186.9780:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=120.7671:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=195.1072:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;20&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=243.2704:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=120.7671:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=252.0763:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt; &lt;br&gt;
+&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html"/>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>prediccion2Cach</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;El archivo de datos &lt;code&gt;DATOS CACHAMAS.xlsx&lt;/code&gt; contiene datos de biometr&#xED;a de cachama blanca,   
+&lt;code&gt;peso&lt;/code&gt; en gramos y las longitudes de horquilla &lt;code&gt;LH&lt;/code&gt;, est&#xE1;ndar &lt;code&gt;LE&lt;/code&gt; y total &lt;code&gt;LT&lt;/code&gt; 
+en gramos. Adem&#xE1;s, la columna &lt;code&gt;estanque&lt;/code&gt; clasifica a los animales en dos estanques, &lt;code&gt;R02&lt;/code&gt; y &lt;code&gt;R03&lt;/code&gt;.
+&lt;span style="color: red; font-weight: bold;"&gt; Para este ejercicio se deben usar solo los datos del estanque&lt;/span&gt; &lt;code&gt;R03&lt;/code&gt;. Se quiere  ajustar un modelo que permita explicar el &lt;code&gt;peso&lt;/code&gt; de los animales en funci&#xF3;n de las longitudes. 
+Ajuste el modelo \(E(P_i)=\beta_0+\beta_1LH_i\)   
+&lt;br&gt; Complete la siguiente tabla que contiene las estimaciones y l&#xED;mites
+de confianza al 95% para  una cachama que tiene LH = 17, 18, 18.5, 18.5, 20 &lt;br&gt;&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#9ABAD9;border-spacing:0;}
+.tg td{background-color:#EBF5FF;border-color:#9ABAD9;border-style:solid;border-width:1px;color:#444;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#409cff;border-color:#9ABAD9;border-style:solid;border-width:1px;color:#fff;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-0lax"&gt;LH&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;fit&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;lwr&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;upr&lt;/th&gt;
+  &lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;17&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;{1:NM:=130.6855:0.0001}&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;{1:NM:=92.4741:0.0001}&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=168.8970:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;18&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=168.2138:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=92.4741:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=206.0784:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;18.5&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=186.9780:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=92.4741:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=224.7645:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;18.5&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=186.9780:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=92.4741:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=224.7645:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;20&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=243.2704:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=92.4741:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=281.2083:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt; &lt;br&gt;
+&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html"/>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>prediccion3Cach</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;El archivo de datos &lt;code&gt;DATOS CACHAMAS.xlsx&lt;/code&gt; contiene datos de biometr&#xED;a de cachama blanca,   
+&lt;code&gt;peso&lt;/code&gt; en gramos y las longitudes de horquilla &lt;code&gt;LH&lt;/code&gt;, est&#xE1;ndar &lt;code&gt;LE&lt;/code&gt; y total &lt;code&gt;LT&lt;/code&gt; 
+en gramos. Adem&#xE1;s, la columna &lt;code&gt;estanque&lt;/code&gt; clasifica a los animales en dos estanques, &lt;code&gt;R02&lt;/code&gt; y &lt;code&gt;R03&lt;/code&gt;.
+&lt;span style="color: red; font-weight: bold;"&gt; Para este ejercicio se deben usar solo los datos del estanque&lt;/span&gt; &lt;code&gt;R03&lt;/code&gt;.  Se quiere  ajustar un modelo que permita explicar el &lt;code&gt;peso&lt;/code&gt; de los animales en funci&#xF3;n de las longitudes. 
+Ajuste el modelo \(E(P_i)=\beta_0+\beta_1LH_i\)  
+&lt;br&gt; Complete la siguiente tabla que contiene las estimaciones y l&#xED;mites
+de confianza al 99% para el peso promedio de las poblaciones de cachamas  que tienen LH = 17, 18, 18.5, 18.5, 20 &lt;br&gt;&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#9ABAD9;border-spacing:0;}
+.tg td{background-color:#EBF5FF;border-color:#9ABAD9;border-style:solid;border-width:1px;color:#444;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#409cff;border-color:#9ABAD9;border-style:solid;border-width:1px;color:#fff;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-0lax"&gt;LH&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;fit&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;lwr&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;upr&lt;/th&gt;
+  &lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;17&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;{1:NM:=130.6855:0.0001}&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;{1:NM:=117.1282:0.0001}&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=144.2429:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;18&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=168.2138:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=117.1282:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=179.8113:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;18.5&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=186.9780:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=117.1282:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=198.0898:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;18.5&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=186.9780:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=117.1282:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=198.0898:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;20&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=243.2704:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=117.1282:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=255.3070:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt; &lt;br&gt;
+&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html"/>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>prediccion4Cach</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;El archivo de datos &lt;code&gt;DATOS CACHAMAS.xlsx&lt;/code&gt; contiene datos de biometr&#xED;a de cachama blanca,   
+&lt;code&gt;peso&lt;/code&gt; en gramos y las longitudes de horquilla &lt;code&gt;LH&lt;/code&gt;, est&#xE1;ndar &lt;code&gt;LE&lt;/code&gt; y total &lt;code&gt;LT&lt;/code&gt; 
+en gramos. Adem&#xE1;s, la columna &lt;code&gt;estanque&lt;/code&gt; clasifica a los animales en dos estanques, &lt;code&gt;R02&lt;/code&gt; y &lt;code&gt;R03&lt;/code&gt;.
+&lt;span style="color: red; font-weight: bold;"&gt; Para este ejercicio se deben usar solo los datos del estanque&lt;/span&gt; &lt;code&gt;R03&lt;/code&gt;.  Se quiere  ajustar un modelo que permita explicar el &lt;code&gt;peso&lt;/code&gt; de los animales en funci&#xF3;n de las longitudes. 
+Ajuste el modelo \(E(P_i)=\beta_0+\beta_1LH_i\)   
+&lt;br&gt; Complete la siguiente tabla que contiene las estimaciones y l&#xED;mites
+de confianza al 99% para el peso promedio de las poblaciones de cachamas que tienen una longitud de horquilla
+LH = 17, 18, 18.5, 18.5, 20 &lt;br&gt;&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#9ABAD9;border-spacing:0;}
+.tg td{background-color:#EBF5FF;border-color:#9ABAD9;border-style:solid;border-width:1px;color:#444;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#409cff;border-color:#9ABAD9;border-style:solid;border-width:1px;color:#fff;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-0lax"&gt;LH&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;fit&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;lwr&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;upr&lt;/th&gt;
+  &lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;17&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;{1:NM:=130.6855:0.0001}&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;{1:NM:=78.4547:0.0001}&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=182.9164:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;18&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=168.2138:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=78.4547:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=219.9705:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;18.5&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=186.9780:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=78.4547:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=238.6281:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;18.5&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=186.9780:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=78.4547:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=238.6281:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;20&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=243.2704:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=78.4547:0.0001}&lt;/span&gt;&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;&lt;span style="font-weight:400;font-style:normal;text-decoration:none"&gt;{1:NM:=295.1273:0.0001}&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt; &lt;br&gt;
+&lt;/p&gt;</text>
+    </questiontext>
+    <generalfeedback format="html"/>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+</quiz>

@@ -1,0 +1,22 @@
+---
+title: "EvalRegresion"
+author: "Mario Morales"
+format: pdf
+---
+
+
+```{r}
+setwd("~/Documents/Cursos/Laboratorio")
+df <- read.csv("PastureYield.csv", dec=",")
+```
+
+
+## Ajuste de modelos, simple y cuadratico
+
+```{r}
+mod1=lm(yield~K, data=df)
+mod2=lm(yield~K+I(K^2),data=df) 
+anova(mod1,mod2)
+```
+
+

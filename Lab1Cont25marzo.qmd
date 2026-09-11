@@ -184,3 +184,7 @@ str(df[,nombres2])
 df[df$presion_sis==162,c("nombre","presion_sis")]
 ```
 
+
+
+
+
