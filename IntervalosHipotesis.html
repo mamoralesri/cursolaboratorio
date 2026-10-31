@@ -288,8 +288,7 @@
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy"><code class="sourceCode r"><span id="annotated-cell-4-1"><a href="#annotated-cell-4-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="annotated-cell-4-2"><a href="#annotated-cell-4-2"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"DatosFisioLimpio.csv"</span>,<span class="at">row.names=</span><span class="dv">1</span>, <span class="at">stringsAsFactors=</span><span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"DatosFisioLimpio.csv"</span>,<span class="at">row.names=</span><span class="dv">1</span>, <span class="at">stringsAsFactors=</span><span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -302,7 +301,7 @@
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">summary</span>(df)   </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">summary</span>(df)   </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -344,7 +343,7 @@
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="fu">glimpse</span>(df)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="fu">glimpse</span>(df)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -390,12 +389,12 @@ $ fuerza_mi      &lt;int&gt; 26, 34, 28, 40, 24, 22, 36, 34, 42, 48, 38, 20, 38,
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb9-2"><a href=""></a><span class="fu">library</span>(broom)</span>
-<span id="cb9-3"><a href=""></a>df <span class="sc">|&gt;</span> </span>
-<span id="cb9-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sexo, <span class="at">y =</span> fuerza_md, <span class="at">fill =</span> sexo)) <span class="sc">+</span></span>
-<span id="cb9-5"><a href=""></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb9-6"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Dispersión de fuerza de mano derecha por Sexo"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb10-2"><a href=""></a><span class="fu">library</span>(broom)</span>
+<span id="cb10-3"><a href=""></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb10-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sexo, <span class="at">y =</span> fuerza_md, <span class="at">fill =</span> sexo)) <span class="sc">+</span></span>
+<span id="cb10-5"><a href=""></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb10-6"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Dispersión de fuerza de mano derecha por Sexo"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
@@ -414,7 +413,7 @@ $ fuerza_mi      &lt;int&gt; 26, 34, 28, 40, 24, 22, 36, 34, 42, 48, 38, 20, 38,
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>df<span class="sc">|&gt;</span><span class="fu">group_by</span>(sexo)<span class="sc">|&gt;</span><span class="fu">summarise</span>(<span class="at">N=</span><span class="fu">n</span>(),<span class="at">Media=</span><span class="fu">mean</span>(fuerza_md),<span class="at">Var=</span><span class="fu">var</span>(fuerza_md))  </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a>df<span class="sc">|&gt;</span><span class="fu">group_by</span>(sexo)<span class="sc">|&gt;</span><span class="fu">summarise</span>(<span class="at">N=</span><span class="fu">n</span>(),<span class="at">Media=</span><span class="fu">mean</span>(fuerza_md),<span class="at">Var=</span><span class="fu">var</span>(fuerza_md))  </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -433,9 +432,9 @@ $ fuerza_mi      &lt;int&gt; 26, 34, 28, 40, 24, 22, 36, 34, 42, 48, 38, 20, 38,
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>eemedia<span class="ot">=</span><span class="cf">function</span>(x){</span>
-<span id="cb12-2"><a href=""></a>  <span class="fu">sd</span>(x,<span class="at">na.rm =</span> <span class="cn">TRUE</span>)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(<span class="fu">na.omit</span>(x))) </span>
-<span id="cb12-3"><a href=""></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>eemedia<span class="ot">=</span><span class="cf">function</span>(x){</span>
+<span id="cb13-2"><a href=""></a>  <span class="fu">sd</span>(x,<span class="at">na.rm =</span> <span class="cn">TRUE</span>)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(<span class="fu">na.omit</span>(x))) </span>
+<span id="cb13-3"><a href=""></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -444,7 +443,7 @@ $ fuerza_mi      &lt;int&gt; 26, 34, 28, 40, 24, 22, 36, 34, 42, 48, 38, 20, 38,
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>df<span class="sc">|&gt;</span><span class="fu">group_by</span>(sexo)<span class="sc">|&gt;</span><span class="fu">summarise</span>(<span class="at">N=</span><span class="fu">n</span>(),<span class="at">Media=</span><span class="fu">mean</span>(fuerza_md),<span class="at">Var=</span><span class="fu">var</span>(fuerza_md),<span class="at">Ee=</span><span class="fu">eemedia</span>(fuerza_md))  </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a>df<span class="sc">|&gt;</span><span class="fu">group_by</span>(sexo)<span class="sc">|&gt;</span><span class="fu">summarise</span>(<span class="at">N=</span><span class="fu">n</span>(),<span class="at">Media=</span><span class="fu">mean</span>(fuerza_md),<span class="at">Var=</span><span class="fu">var</span>(fuerza_md),<span class="at">Ee=</span><span class="fu">eemedia</span>(fuerza_md))  </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -463,7 +462,7 @@ $ fuerza_mi      &lt;int&gt; 26, 34, 28, 40, 24, 22, 36, 34, 42, 48, 38, 20, 38,
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>df<span class="sc">|&gt;</span><span class="fu">group_by</span>(sexo)<span class="sc">|&gt;</span><span class="fu">summarise</span>(<span class="at">N=</span><span class="fu">n</span>(),<span class="at">Media=</span><span class="fu">mean</span>(fuerza_md),<span class="at">Sd=</span><span class="fu">sd</span>(fuerza_md)) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">ee=</span>Sd<span class="sc">/</span><span class="fu">sqrt</span>(N))   </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a>df<span class="sc">|&gt;</span><span class="fu">group_by</span>(sexo)<span class="sc">|&gt;</span><span class="fu">summarise</span>(<span class="at">N=</span><span class="fu">n</span>(),<span class="at">Media=</span><span class="fu">mean</span>(fuerza_md),<span class="at">Sd=</span><span class="fu">sd</span>(fuerza_md)) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">ee=</span>Sd<span class="sc">/</span><span class="fu">sqrt</span>(N))   </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -503,7 +502,7 @@ $ fuerza_mi      &lt;int&gt; 26, 34, 28, 40, 24, 22, 36, 34, 42, 48, 38, 20, 38,
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>df <span class="sc">|&gt;</span><span class="fu">with</span>(<span class="fu">var.test</span>(fuerza_md<span class="sc">~</span>sexo)) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a>df <span class="sc">|&gt;</span><span class="fu">with</span>(<span class="fu">var.test</span>(fuerza_md<span class="sc">~</span>sexo)) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -521,10 +520,13 @@ ratio of variances
          0.1987101 </code></pre>
 </div>
 </div>
+</section>
+<section id="organizar-la-salida-en-un-df" class="slide level2 center">
+<h2>Organizar la salida en un <code>df</code></h2>
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>resultados_f <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span><span class="fu">with</span>(<span class="fu">var.test</span>(fuerza_md<span class="sc">~</span>sexo))<span class="sc">|&gt;</span><span class="fu">tidy</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a>resultados_f <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span><span class="fu">with</span>(<span class="fu">var.test</span>(fuerza_md<span class="sc">~</span>sexo))<span class="sc">|&gt;</span><span class="fu">tidy</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -533,7 +535,7 @@ ratio of variances
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="fu">print</span>(resultados_f ) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="fu">print</span>(resultados_f ) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -553,7 +555,7 @@ ratio of variances
 </section>
 <section id="prueba-de-la-hipótesis" class="slide level2 center">
 <h2>Prueba de la hipótesis</h2>
-<p>Prueba T de Welch <code>Var.equal = FALSE</code> por defecto en R</p>
+<p>Prueba T de Welch <code>var.equal = FALSE</code> por defecto en R, cuando se usa <code>t.test</code></p>
 <p>Probaremos la hipótesis <span class="math display">\[H_0: \mu_m=\mu_f \\
 H_1: \mu_m&gt;\mu_f\]</span></p>
 </section>
@@ -562,7 +564,7 @@ H_1: \mu_m&gt;\mu_f\]</span></p>
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a>df <span class="sc">|&gt;</span><span class="fu">with</span>(<span class="fu">t.test</span>(fuerza_md<span class="sc">~</span>sexo,<span class="at">alternative=</span><span class="st">'greater'</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>df <span class="sc">|&gt;</span><span class="fu">with</span>(<span class="fu">t.test</span>(fuerza_md<span class="sc">~</span>sexo,<span class="at">alternative=</span><span class="st">'greater'</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -581,37 +583,13 @@ sample estimates:
 </div>
 </div>
 </section>
-<section id="prueba-de-la-hipótesis-alternativa-correcta" class="slide level2 center">
-<h2>Prueba de la hipótesis, alternativa correcta</h2>
-<div class="cell column-screen-inset-shaded">
-<details class="code-fold">
-<summary>Código</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a>df <span class="sc">|&gt;</span><span class="fu">with</span>(<span class="fu">t.test</span>(fuerza_md<span class="sc">~</span>sexo,<span class="at">alternative=</span><span class="st">'less'</span>)) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div class="cell column-screen-inset-shaded fragment">
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Welch Two Sample t-test
-
-data:  fuerza_md by sexo
-t = -6.3516, df = 34.804, p-value = 1.365e-07
-alternative hypothesis: true difference in means between group Femenino and group Masculino is less than 0
-95 percent confidence interval:
-      -Inf -9.387426
-sample estimates:
- mean in group Femenino mean in group Masculino 
-               24.36364                37.15385 </code></pre>
-</div>
-</div>
-</section>
 <section id="guardando-resultados-como-tabla" class="slide level2 center">
 <h2>Guardando resultados como tabla</h2>
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a>resultados_t <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span><span class="fu">with</span>(<span class="fu">t.test</span>(fuerza_md<span class="sc">~</span>sexo,<span class="at">alternative=</span><span class="st">'greater'</span>))<span class="sc">|&gt;</span><span class="fu">tidy</span>()</span>
-<span id="cb26-2"><a href=""></a><span class="fu">print</span>(resultados_t)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>resultados_t <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span><span class="fu">with</span>(<span class="fu">t.test</span>(fuerza_md<span class="sc">~</span>sexo,<span class="at">alternative=</span><span class="st">'greater'</span>))<span class="sc">|&gt;</span><span class="fu">tidy</span>()</span>
+<span id="cb25-2"><a href=""></a><span class="fu">print</span>(resultados_t)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -655,6 +633,30 @@ sample estimates:
 </div>
 </div>
 </div>
+</section>
+<section id="prueba-de-la-hipótesis-alternativa-correcta" class="slide level2 center">
+<h2>Prueba de la hipótesis, alternativa correcta</h2>
+<div class="cell column-screen-inset-shaded">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a>df <span class="sc">|&gt;</span><span class="fu">with</span>(<span class="fu">t.test</span>(fuerza_md<span class="sc">~</span>sexo,<span class="at">alternative=</span><span class="st">'less'</span>)) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell column-screen-inset-shaded fragment">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  fuerza_md by sexo
+t = -6.3516, df = 34.804, p-value = 1.365e-07
+alternative hypothesis: true difference in means between group Femenino and group Masculino is less than 0
+95 percent confidence interval:
+      -Inf -9.387426
+sample estimates:
+ mean in group Femenino mean in group Masculino 
+               24.36364                37.15385 </code></pre>
+</div>
+</div>
 </section></section>
 <section>
 <section id="nivel-de-referencia-de-un-factor." class="title-slide slide level1 center">
@@ -666,8 +668,8 @@ sample estimates:
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a>df<span class="sc">$</span>sexo<span class="ot">=</span><span class="fu">factor</span>(df<span class="sc">$</span>sexo)</span>
-<span id="cb28-2"><a href=""></a><span class="fu">levels</span>(df<span class="sc">$</span>sexo) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>df<span class="sc">$</span>sexo<span class="ot">=</span><span class="fu">factor</span>(df<span class="sc">$</span>sexo)</span>
+<span id="cb29-2"><a href=""></a><span class="fu">levels</span>(df<span class="sc">$</span>sexo) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -678,8 +680,8 @@ sample estimates:
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a>df<span class="sc">$</span>sexo<span class="ot">=</span><span class="fu">relevel</span>(df<span class="sc">$</span>sexo,<span class="at">ref=</span><span class="st">"Masculino"</span>) </span>
-<span id="cb30-2"><a href=""></a><span class="fu">levels</span>(df<span class="sc">$</span>sexo) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a>df<span class="sc">$</span>sexo<span class="ot">=</span><span class="fu">relevel</span>(df<span class="sc">$</span>sexo,<span class="at">ref=</span><span class="st">"Masculino"</span>) </span>
+<span id="cb31-2"><a href=""></a><span class="fu">levels</span>(df<span class="sc">$</span>sexo) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -693,7 +695,7 @@ sample estimates:
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a>df <span class="sc">|&gt;</span><span class="fu">with</span>(<span class="fu">t.test</span>(fuerza_md<span class="sc">~</span>sexo,<span class="at">alternative=</span><span class="st">'greater'</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a>df <span class="sc">|&gt;</span><span class="fu">with</span>(<span class="fu">t.test</span>(fuerza_md<span class="sc">~</span>sexo,<span class="at">alternative=</span><span class="st">'greater'</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -717,8 +719,8 @@ mean in group Masculino  mean in group Femenino
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a>resultados_t <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span><span class="fu">with</span>(<span class="fu">t.test</span>(fuerza_md<span class="sc">~</span>sexo,<span class="at">alternative=</span><span class="st">'greater'</span>))<span class="sc">|&gt;</span><span class="fu">tidy</span>()</span>
-<span id="cb34-2"><a href=""></a><span class="fu">print</span>(resultados_t)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href=""></a>resultados_t <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span><span class="fu">with</span>(<span class="fu">t.test</span>(fuerza_md<span class="sc">~</span>sexo,<span class="at">alternative=</span><span class="st">'greater'</span>))<span class="sc">|&gt;</span><span class="fu">tidy</span>()</span>
+<span id="cb35-2"><a href=""></a><span class="fu">print</span>(resultados_t)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -757,10 +759,10 @@ mean in group Masculino  mean in group Femenino
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a>df <span class="sc">|&gt;</span> </span>
-<span id="cb36-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sexo, <span class="at">y =</span> masa_muscular, <span class="at">fill =</span> sexo)) <span class="sc">+</span></span>
-<span id="cb36-3"><a href=""></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb36-4"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Dispersión de Masa Muscular por Sexo"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb37-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sexo, <span class="at">y =</span> masa_muscular, <span class="at">fill =</span> sexo)) <span class="sc">+</span></span>
+<span id="cb37-3"><a href=""></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb37-4"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Dispersión de Masa Muscular por Sexo"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
@@ -780,7 +782,7 @@ mean in group Masculino  mean in group Femenino
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a>df<span class="sc">|&gt;</span><span class="fu">group_by</span>(sexo)<span class="sc">|&gt;</span><span class="fu">summarise</span>(<span class="at">N=</span><span class="fu">n</span>(),<span class="at">Media=</span><span class="fu">mean</span>(masa_muscular),<span class="at">Var=</span><span class="fu">var</span>(masa_muscular))  </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a>df<span class="sc">|&gt;</span><span class="fu">group_by</span>(sexo)<span class="sc">|&gt;</span><span class="fu">summarise</span>(<span class="at">N=</span><span class="fu">n</span>(),<span class="at">Media=</span><span class="fu">mean</span>(masa_muscular),<span class="at">Var=</span><span class="fu">var</span>(masa_muscular))  </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -799,9 +801,9 @@ mean in group Masculino  mean in group Femenino
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a>eemedia<span class="ot">=</span><span class="cf">function</span>(x){</span>
-<span id="cb39-2"><a href=""></a>  <span class="fu">sd</span>(x,<span class="at">na.rm =</span> <span class="cn">TRUE</span>)<span class="sc">/</span><span class="fu">length</span>(<span class="fu">na.omit</span>(x)) </span>
-<span id="cb39-3"><a href=""></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href=""></a>eemedia<span class="ot">=</span><span class="cf">function</span>(x){</span>
+<span id="cb40-2"><a href=""></a>  <span class="fu">sd</span>(x,<span class="at">na.rm =</span> <span class="cn">TRUE</span>)<span class="sc">/</span><span class="fu">length</span>(<span class="fu">na.omit</span>(x)) </span>
+<span id="cb40-3"><a href=""></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -810,7 +812,7 @@ mean in group Masculino  mean in group Femenino
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href=""></a>df<span class="sc">|&gt;</span><span class="fu">group_by</span>(sexo)<span class="sc">|&gt;</span><span class="fu">summarise</span>(<span class="at">N=</span><span class="fu">n</span>(),<span class="at">Media=</span><span class="fu">mean</span>(masa_muscular),<span class="at">Var=</span><span class="fu">var</span>(masa_muscular),<span class="at">Ee=</span><span class="fu">eemedia</span>(masa_muscular))  </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href=""></a>df<span class="sc">|&gt;</span><span class="fu">group_by</span>(sexo)<span class="sc">|&gt;</span><span class="fu">summarise</span>(<span class="at">N=</span><span class="fu">n</span>(),<span class="at">Media=</span><span class="fu">mean</span>(masa_muscular),<span class="at">Var=</span><span class="fu">var</span>(masa_muscular),<span class="at">Ee=</span><span class="fu">eemedia</span>(masa_muscular))  </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -845,7 +847,7 @@ mean in group Masculino  mean in group Femenino
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a>resultados_f <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span><span class="fu">with</span>(<span class="fu">var.test</span>(masa_muscular<span class="sc">~</span>sexo))<span class="sc">|&gt;</span><span class="fu">tidy</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href=""></a>resultados_f <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span><span class="fu">with</span>(<span class="fu">var.test</span>(masa_muscular<span class="sc">~</span>sexo))<span class="sc">|&gt;</span><span class="fu">tidy</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -854,7 +856,7 @@ mean in group Masculino  mean in group Femenino
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href=""></a><span class="fu">print</span>(resultados_f ) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href=""></a><span class="fu">print</span>(resultados_f ) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -885,11 +887,11 @@ mean in group Masculino  mean in group Femenino
 </section>
 <section id="prueba-de-la-hipótesis-2" class="slide level2 center">
 <h2>Prueba de la hipótesis</h2>
-<p>Prueba T con varianzas iguales, debemos indicar: <code>Var.equal =TRUE</code> en la función <code>t.test</code></p>
+<p>Prueba T con varianzas iguales, debemos indicar: <code>var.equal =TRUE</code> en la función <code>t.test</code></p>
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href=""></a>df<span class="sc">|&gt;</span><span class="fu">with</span>(<span class="fu">t.test</span>(masa_muscular <span class="sc">~</span> sexo, <span class="at">var.equal =</span> <span class="cn">TRUE</span>,<span class="at">alternative=</span><span class="st">"greater"</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href=""></a>df<span class="sc">|&gt;</span><span class="fu">with</span>(<span class="fu">t.test</span>(masa_muscular <span class="sc">~</span> sexo, <span class="at">var.equal =</span> <span class="cn">TRUE</span>,<span class="at">alternative=</span><span class="st">"greater"</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -910,12 +912,12 @@ mean in group Masculino  mean in group Femenino
 </section>
 <section id="prueba-de-la-hipótesis-3" class="slide level2 center">
 <h2>Prueba de la hipótesis</h2>
-<p>Prueba T con varianzas iguales, debemos indicar: <code>Var.equal =TRUE</code> en la función <code>t.test</code></p>
+<p>Prueba T con varianzas iguales, debemos indicar: <code>var.equal =TRUE</code> en la función <code>t.test</code></p>
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href=""></a>prueba_t<span class="ot">&lt;-</span> df<span class="sc">|&gt;</span><span class="fu">with</span>(<span class="fu">t.test</span>(masa_muscular <span class="sc">~</span> sexo, <span class="at">var.equal =</span> <span class="cn">TRUE</span>,<span class="at">alternative=</span><span class="st">"greater"</span>))<span class="sc">|&gt;</span><span class="fu">tidy</span>()</span>
-<span id="cb47-2"><a href=""></a><span class="fu">print</span>(prueba_t) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href=""></a>prueba_t<span class="ot">&lt;-</span> df<span class="sc">|&gt;</span><span class="fu">with</span>(<span class="fu">t.test</span>(masa_muscular <span class="sc">~</span> sexo, <span class="at">var.equal =</span> <span class="cn">TRUE</span>,<span class="at">alternative=</span><span class="st">"greater"</span>))<span class="sc">|&gt;</span><span class="fu">tidy</span>()</span>
+<span id="cb48-2"><a href=""></a><span class="fu">print</span>(prueba_t) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -965,7 +967,7 @@ mean in group Masculino  mean in group Femenino
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href=""></a><span class="fu">ggplot</span>(df,<span class="fu">aes</span>(<span class="at">x=</span>fuerza_md, <span class="at">y=</span>fuerza_mi)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href=""></a><span class="fu">ggplot</span>(df,<span class="fu">aes</span>(<span class="at">x=</span>fuerza_md, <span class="at">y=</span>fuerza_mi)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell fragment">
@@ -983,7 +985,7 @@ mean in group Masculino  mean in group Femenino
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href=""></a><span class="fu">ggplot</span>(df,<span class="fu">aes</span>(<span class="at">x=</span>fuerza_md, <span class="at">y=</span>fuerza_mi,<span class="at">col=</span>sexo)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href=""></a><span class="fu">ggplot</span>(df,<span class="fu">aes</span>(<span class="at">x=</span>fuerza_md, <span class="at">y=</span>fuerza_mi,<span class="at">col=</span>sexo)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell fragment">
@@ -1006,12 +1008,12 @@ mean in group Masculino  mean in group Femenino
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href=""></a>fuerza<span class="ot">=</span>df<span class="sc">|&gt;</span><span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">"fuerza"</span>),sexo)</span>
-<span id="cb51-2"><a href=""></a></span>
-<span id="cb51-3"><a href=""></a>fuerzal<span class="ot">=</span>fuerza<span class="sc">|&gt;</span><span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">starts_with</span>(<span class="st">"fuerza"</span>), </span>
-<span id="cb51-4"><a href=""></a>                <span class="at">values_to =</span> <span class="st">'fuerza'</span>,<span class="at">names_to =</span><span class="st">'mano'</span>)</span>
-<span id="cb51-5"><a href=""></a></span>
-<span id="cb51-6"><a href=""></a>fuerzal<span class="ot">=</span> fuerzal <span class="sc">|&gt;</span><span class="fu">mutate</span>(<span class="at">mano=</span><span class="fu">factor</span>(mano,<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Der"</span>,<span class="st">"Izq"</span>)))   </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href=""></a>fuerza<span class="ot">=</span>df<span class="sc">|&gt;</span><span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">"fuerza"</span>),sexo)</span>
+<span id="cb52-2"><a href=""></a></span>
+<span id="cb52-3"><a href=""></a>fuerzal<span class="ot">=</span>fuerza<span class="sc">|&gt;</span><span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">starts_with</span>(<span class="st">"fuerza"</span>), </span>
+<span id="cb52-4"><a href=""></a>                <span class="at">values_to =</span> <span class="st">'fuerza'</span>,<span class="at">names_to =</span><span class="st">'mano'</span>)</span>
+<span id="cb52-5"><a href=""></a></span>
+<span id="cb52-6"><a href=""></a>fuerzal<span class="ot">=</span> fuerzal <span class="sc">|&gt;</span><span class="fu">mutate</span>(<span class="at">mano=</span><span class="fu">factor</span>(mano,<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Der"</span>,<span class="st">"Izq"</span>)))   </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -1023,7 +1025,7 @@ mean in group Masculino  mean in group Femenino
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href=""></a><span class="fu">print</span>(fuerzal) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href=""></a><span class="fu">print</span>(fuerzal) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -1054,7 +1056,7 @@ mean in group Masculino  mean in group Femenino
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href=""></a>fuerzal<span class="sc">|&gt;</span><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>mano,<span class="at">y=</span>fuerza,<span class="at">fill =</span> mano))<span class="sc">+</span><span class="fu">geom_boxplot</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href=""></a>fuerzal<span class="sc">|&gt;</span><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>mano,<span class="at">y=</span>fuerza,<span class="at">fill =</span> mano))<span class="sc">+</span><span class="fu">geom_boxplot</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell fragment">
@@ -1072,10 +1074,10 @@ mean in group Masculino  mean in group Femenino
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href=""></a>fuerzal<span class="sc">|&gt;</span><span class="fu">group_by</span>(mano)<span class="sc">|&gt;</span><span class="fu">summarise</span>(<span class="at">n=</span><span class="fu">n</span>(),</span>
-<span id="cb55-2"><a href=""></a>          <span class="at">Media=</span><span class="fu">mean</span>(fuerza),</span>
-<span id="cb55-3"><a href=""></a>          <span class="at">Mediana=</span><span class="fu">median</span>(fuerza), </span>
-<span id="cb55-4"><a href=""></a>          <span class="at">Var=</span><span class="fu">var</span>(fuerza))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href=""></a>fuerzal<span class="sc">|&gt;</span><span class="fu">group_by</span>(mano)<span class="sc">|&gt;</span><span class="fu">summarise</span>(<span class="at">n=</span><span class="fu">n</span>(),</span>
+<span id="cb56-2"><a href=""></a>          <span class="at">Media=</span><span class="fu">mean</span>(fuerza),</span>
+<span id="cb56-3"><a href=""></a>          <span class="at">Mediana=</span><span class="fu">median</span>(fuerza), </span>
+<span id="cb56-4"><a href=""></a>          <span class="at">Var=</span><span class="fu">var</span>(fuerza))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -1093,10 +1095,10 @@ mean in group Masculino  mean in group Femenino
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href=""></a>fuerzal<span class="sc">|&gt;</span><span class="fu">group_by</span>(sexo,mano)<span class="sc">|&gt;</span><span class="fu">summarise</span>(<span class="at">N=</span><span class="fu">n</span>(),  </span>
-<span id="cb57-2"><a href=""></a>              <span class="at">Media=</span><span class="fu">mean</span>(fuerza),</span>
-<span id="cb57-3"><a href=""></a>              <span class="at">Var=</span><span class="fu">var</span>(fuerza),</span>
-<span id="cb57-4"><a href=""></a>              <span class="at">Sd=</span><span class="fu">sd</span>(fuerza))  </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href=""></a>fuerzal<span class="sc">|&gt;</span><span class="fu">group_by</span>(sexo,mano)<span class="sc">|&gt;</span><span class="fu">summarise</span>(<span class="at">N=</span><span class="fu">n</span>(),  </span>
+<span id="cb58-2"><a href=""></a>              <span class="at">Media=</span><span class="fu">mean</span>(fuerza),</span>
+<span id="cb58-3"><a href=""></a>              <span class="at">Var=</span><span class="fu">var</span>(fuerza),</span>
+<span id="cb58-4"><a href=""></a>              <span class="at">Sd=</span><span class="fu">sd</span>(fuerza))  </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -1144,11 +1146,11 @@ df|>group_by(sexo)|>summarise(N=n(),MediaI=mean(fuerza_mi),MediaD=mean(fuerza_md
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href=""></a><span class="fu">library</span>(broom)</span>
-<span id="cb59-2"><a href=""></a><span class="fu">library</span>(knitr) </span>
-<span id="cb59-3"><a href=""></a>df <span class="sc">|&gt;</span><span class="fu">with</span>(<span class="fu">t.test</span>(fuerza_md, fuerza_mi, </span>
-<span id="cb59-4"><a href=""></a>                 <span class="at">paired =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb59-5"><a href=""></a>                 <span class="at">alternative=</span><span class="st">"greater"</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href=""></a><span class="fu">library</span>(broom)</span>
+<span id="cb60-2"><a href=""></a><span class="fu">library</span>(knitr) </span>
+<span id="cb60-3"><a href=""></a>df <span class="sc">|&gt;</span><span class="fu">with</span>(<span class="fu">t.test</span>(fuerza_md, fuerza_mi, </span>
+<span id="cb60-4"><a href=""></a>                 <span class="at">paired =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb60-5"><a href=""></a>                 <span class="at">alternative=</span><span class="st">"greater"</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -1172,9 +1174,9 @@ mean difference
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href=""></a><span class="fu">library</span>(broom)</span>
-<span id="cb61-2"><a href=""></a><span class="fu">library</span>(knitr) </span>
-<span id="cb61-3"><a href=""></a>df <span class="sc">|&gt;</span> <span class="fu">filter</span>(sexo<span class="sc">==</span><span class="st">"Masculino"</span>) <span class="sc">|&gt;</span><span class="fu">with</span>(<span class="fu">t.test</span>(fuerza_md, fuerza_mi, <span class="at">paired =</span> <span class="cn">TRUE</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href=""></a><span class="fu">library</span>(broom)</span>
+<span id="cb62-2"><a href=""></a><span class="fu">library</span>(knitr) </span>
+<span id="cb62-3"><a href=""></a>df <span class="sc">|&gt;</span> <span class="fu">filter</span>(sexo<span class="sc">==</span><span class="st">"Masculino"</span>) <span class="sc">|&gt;</span><span class="fu">with</span>(<span class="fu">t.test</span>(fuerza_md, fuerza_mi, <span class="at">paired =</span> <span class="cn">TRUE</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -1198,9 +1200,9 @@ mean difference
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href=""></a><span class="fu">library</span>(broom)</span>
-<span id="cb63-2"><a href=""></a><span class="fu">library</span>(knitr) </span>
-<span id="cb63-3"><a href=""></a>df <span class="sc">|&gt;</span> <span class="fu">filter</span>(sexo<span class="sc">==</span><span class="st">"Femenino"</span>) <span class="sc">|&gt;</span><span class="fu">with</span>(<span class="fu">t.test</span>(fuerza_md, fuerza_mi, <span class="at">paired =</span> <span class="cn">TRUE</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href=""></a><span class="fu">library</span>(broom)</span>
+<span id="cb64-2"><a href=""></a><span class="fu">library</span>(knitr) </span>
+<span id="cb64-3"><a href=""></a>df <span class="sc">|&gt;</span> <span class="fu">filter</span>(sexo<span class="sc">==</span><span class="st">"Femenino"</span>) <span class="sc">|&gt;</span><span class="fu">with</span>(<span class="fu">t.test</span>(fuerza_md, fuerza_mi, <span class="at">paired =</span> <span class="cn">TRUE</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -1224,15 +1226,15 @@ mean difference
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href=""></a><span class="fu">library</span>(broom)</span>
-<span id="cb65-2"><a href=""></a><span class="fu">library</span>(knitr) </span>
-<span id="cb65-3"><a href=""></a></span>
-<span id="cb65-4"><a href=""></a>resultados_t <span class="ot">&lt;-</span> df<span class="sc">|&gt;</span></span>
-<span id="cb65-5"><a href=""></a>  <span class="fu">with</span>(<span class="fu">t.test</span>(fuerza_md, fuerza_mi, </span>
-<span id="cb65-6"><a href=""></a>              <span class="at">paired =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb65-7"><a href=""></a>              <span class="at">alternative=</span><span class="st">"greater"</span>)) <span class="sc">|&gt;</span> <span class="fu">tidy</span>()</span>
-<span id="cb65-8"><a href=""></a></span>
-<span id="cb65-9"><a href=""></a><span class="fu">print</span>(resultados_t)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href=""></a><span class="fu">library</span>(broom)</span>
+<span id="cb66-2"><a href=""></a><span class="fu">library</span>(knitr) </span>
+<span id="cb66-3"><a href=""></a></span>
+<span id="cb66-4"><a href=""></a>resultados_t <span class="ot">&lt;-</span> df<span class="sc">|&gt;</span></span>
+<span id="cb66-5"><a href=""></a>  <span class="fu">with</span>(<span class="fu">t.test</span>(fuerza_md, fuerza_mi, </span>
+<span id="cb66-6"><a href=""></a>              <span class="at">paired =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb66-7"><a href=""></a>              <span class="at">alternative=</span><span class="st">"greater"</span>)) <span class="sc">|&gt;</span> <span class="fu">tidy</span>()</span>
+<span id="cb66-8"><a href=""></a></span>
+<span id="cb66-9"><a href=""></a><span class="fu">print</span>(resultados_t)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -1249,11 +1251,11 @@ mean difference
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href=""></a><span class="fu">library</span>(broom)</span>
-<span id="cb67-2"><a href=""></a><span class="fu">library</span>(knitr) </span>
-<span id="cb67-3"><a href=""></a>resultados_tm<span class="ot">=</span>df <span class="sc">|&gt;</span> <span class="fu">filter</span>(sexo<span class="sc">==</span><span class="st">"Masculino"</span>)<span class="sc">|&gt;</span></span>
-<span id="cb67-4"><a href=""></a>          <span class="fu">with</span>(<span class="fu">t.test</span>(fuerza_md, fuerza_mi,</span>
-<span id="cb67-5"><a href=""></a>            <span class="at">paired =</span> <span class="cn">TRUE</span>))<span class="sc">|&gt;</span> <span class="fu">tidy</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href=""></a><span class="fu">library</span>(broom)</span>
+<span id="cb68-2"><a href=""></a><span class="fu">library</span>(knitr) </span>
+<span id="cb68-3"><a href=""></a>resultados_tm<span class="ot">=</span>df <span class="sc">|&gt;</span> <span class="fu">filter</span>(sexo<span class="sc">==</span><span class="st">"Masculino"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb68-4"><a href=""></a>          <span class="fu">with</span>(<span class="fu">t.test</span>(fuerza_md, fuerza_mi,</span>
+<span id="cb68-5"><a href=""></a>            <span class="at">paired =</span> <span class="cn">TRUE</span>))<span class="sc">|&gt;</span> <span class="fu">tidy</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -1265,11 +1267,11 @@ mean difference
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href=""></a><span class="fu">library</span>(broom)</span>
-<span id="cb68-2"><a href=""></a><span class="fu">library</span>(knitr) </span>
-<span id="cb68-3"><a href=""></a>resultados_tf<span class="ot">=</span>df <span class="sc">|&gt;</span> <span class="fu">filter</span>(sexo<span class="sc">==</span><span class="st">"Femenino"</span>)<span class="sc">|&gt;</span></span>
-<span id="cb68-4"><a href=""></a>  <span class="fu">with</span>(<span class="fu">t.test</span>(fuerza_md, fuerza_mi,</span>
-<span id="cb68-5"><a href=""></a>      <span class="at">paired =</span> <span class="cn">TRUE</span>))<span class="sc">|&gt;</span> <span class="fu">tidy</span>() </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href=""></a><span class="fu">library</span>(broom)</span>
+<span id="cb69-2"><a href=""></a><span class="fu">library</span>(knitr) </span>
+<span id="cb69-3"><a href=""></a>resultados_tf<span class="ot">=</span>df <span class="sc">|&gt;</span> <span class="fu">filter</span>(sexo<span class="sc">==</span><span class="st">"Femenino"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb69-4"><a href=""></a>  <span class="fu">with</span>(<span class="fu">t.test</span>(fuerza_md, fuerza_mi,</span>
+<span id="cb69-5"><a href=""></a>      <span class="at">paired =</span> <span class="cn">TRUE</span>))<span class="sc">|&gt;</span> <span class="fu">tidy</span>() </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -1281,9 +1283,9 @@ mean difference
 <div class="cell column-screen-inset-shaded">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href=""></a>res<span class="ot">=</span><span class="fu">rbind</span>(resultados_t,resultados_tm,resultados_tf) </span>
-<span id="cb69-2"><a href=""></a></span>
-<span id="cb69-3"><a href=""></a>res </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href=""></a>res<span class="ot">=</span><span class="fu">rbind</span>(resultados_t,resultados_tm,resultados_tf) </span>
+<span id="cb70-2"><a href=""></a></span>
+<span id="cb70-3"><a href=""></a>res </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell column-screen-inset-shaded fragment">
@@ -1302,26 +1304,26 @@ mean difference
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href=""></a><span class="fu">library</span>(knitr)</span>
-<span id="cb71-2"><a href=""></a><span class="fu">library</span>(kableExtra) <span class="co"># Este es el paquete clave</span></span>
-<span id="cb71-3"><a href=""></a></span>
-<span id="cb71-4"><a href=""></a><span class="co"># Presentación elegante para HTML</span></span>
-<span id="cb71-5"><a href=""></a>res <span class="sc">|&gt;</span></span>
-<span id="cb71-6"><a href=""></a>  <span class="fu">kable</span>(</span>
-<span id="cb71-7"><a href=""></a>    <span class="at">digits =</span> <span class="dv">4</span>, </span>
-<span id="cb71-8"><a href=""></a>    <span class="at">caption =</span> <span class="st">"Resultados de la Prueba t </span></span>
-<span id="cb71-9"><a href=""></a><span class="st">              para Muestras Pareadas: Fuerza MD vs MI"</span>,</span>
-<span id="cb71-10"><a href=""></a>    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Estimación"</span>, <span class="st">"Estadístico t"</span>, <span class="st">"p-valor"</span>,</span>
-<span id="cb71-11"><a href=""></a>                  <span class="st">"gl"</span>, <span class="st">"Lím. Inf. (95%)"</span>, <span class="st">"Lím. Sup. (95%)"</span>,</span>
-<span id="cb71-12"><a href=""></a>                  <span class="st">"Método"</span>, <span class="st">"Alternativa"</span>)</span>
-<span id="cb71-13"><a href=""></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb71-14"><a href=""></a>  <span class="fu">kable_styling</span>(</span>
-<span id="cb71-15"><a href=""></a>    <span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, </span>
-<span id="cb71-16"><a href=""></a>                          <span class="st">"condensed"</span>, <span class="st">"responsive"</span>),</span>
-<span id="cb71-17"><a href=""></a>    <span class="at">full_width =</span> <span class="cn">FALSE</span>, <span class="at">position =</span> <span class="st">"center"</span></span>
-<span id="cb71-18"><a href=""></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb71-19"><a href=""></a>  <span class="fu">column_spec</span>(<span class="dv">3</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>,</span>
-<span id="cb71-20"><a href=""></a>              <span class="at">background =</span> <span class="st">"#D7261E"</span>) <span class="co"># Resalta el p-valor</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href=""></a><span class="fu">library</span>(knitr)</span>
+<span id="cb72-2"><a href=""></a><span class="fu">library</span>(kableExtra) <span class="co"># Este es el paquete clave</span></span>
+<span id="cb72-3"><a href=""></a></span>
+<span id="cb72-4"><a href=""></a><span class="co"># Presentación elegante para HTML</span></span>
+<span id="cb72-5"><a href=""></a>res <span class="sc">|&gt;</span></span>
+<span id="cb72-6"><a href=""></a>  <span class="fu">kable</span>(</span>
+<span id="cb72-7"><a href=""></a>    <span class="at">digits =</span> <span class="dv">4</span>, </span>
+<span id="cb72-8"><a href=""></a>    <span class="at">caption =</span> <span class="st">"Resultados de la Prueba t </span></span>
+<span id="cb72-9"><a href=""></a><span class="st">              para Muestras Pareadas: Fuerza MD vs MI"</span>,</span>
+<span id="cb72-10"><a href=""></a>    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Estimación"</span>, <span class="st">"Estadístico t"</span>, <span class="st">"p-valor"</span>,</span>
+<span id="cb72-11"><a href=""></a>                  <span class="st">"gl"</span>, <span class="st">"Lím. Inf. (95%)"</span>, <span class="st">"Lím. Sup. (95%)"</span>,</span>
+<span id="cb72-12"><a href=""></a>                  <span class="st">"Método"</span>, <span class="st">"Alternativa"</span>)</span>
+<span id="cb72-13"><a href=""></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb72-14"><a href=""></a>  <span class="fu">kable_styling</span>(</span>
+<span id="cb72-15"><a href=""></a>    <span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, </span>
+<span id="cb72-16"><a href=""></a>                          <span class="st">"condensed"</span>, <span class="st">"responsive"</span>),</span>
+<span id="cb72-17"><a href=""></a>    <span class="at">full_width =</span> <span class="cn">FALSE</span>, <span class="at">position =</span> <span class="st">"center"</span></span>
+<span id="cb72-18"><a href=""></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb72-19"><a href=""></a>  <span class="fu">column_spec</span>(<span class="dv">3</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>,</span>
+<span id="cb72-20"><a href=""></a>              <span class="at">background =</span> <span class="st">"#D7261E"</span>) <span class="co"># Resalta el p-valor</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="table-responsive">

@@ -1,0 +1,93 @@
+---
+title: "Guía de Instalación y Configuración de Quarto"
+subtitle: "Generación de Documentos PDF con RStudio y 
+\\LaTeX{} en Windows"
+author: "Prof. Mario Alfonso Morales Rivera"
+format: 
+  pdf:
+    toc: true
+    number-sections: true
+    colorlinks: true
+  html:
+    theme: cosmo
+    toc: true
+lang: es
+---
+
+# Introducción
+
+Esta guía detalla los pasos exactos para configurar su equipo Windows y dejarlo listo para compilar documentos de Quarto en formato PDF con calidad tipográfica. Es fundamental seguir el orden estricto de estas instrucciones para evitar conflictos con las dependencias de los programas.
+
+#  Instalación del entorno base
+
+Si aún no lo tienen, deben descargar e instalar el lenguaje R y su entorno de desarrollo integrado:
+
+1. Descargue e instale **R** desde la página oficial de CRAN <https://cran.r-project.org/>.
+2. Descargue e instale **RStudio Desktop** <https://posit.co/download/rstudio-desktop/>. RStudio tiene una integración nativa y muy pulida con Quarto que facilita el flujo de trabajo estadístico.
+
+#   Instalación del motor Quarto
+
+Quarto es el sistema de publicación científica y técnica de código abierto que utilizaremos para nuestros informes.
+
+1. Diríjase a la página oficial de descargas: <https://quarto.org/docs/get-started/> 
+2. Descargue el instalador para Windows (el archivo `.msi`).
+3. Ejecútelo y siga las instrucciones dejando las opciones por defecto (se recomienda instalar para todos los usuarios).
+
+#   Instalación de la distribución \LaTeX{} (Paso Crítico)
+
+Para generar archivos PDF, Windows necesita compilar código de tipografía mediante \LaTeX{}. **Evite a toda costa instalar distribuciones pesadas como MiK\TeX{} o \TeX{} Live completo**, ya que son propensas a generar errores de ruta. Utilizaremos **Tiny\TeX{}**, la alternativa recomendada directamente por los creadores de Quarto.
+
+1. Abra **RStudio**.
+2. Diríjase a la pestaña **Terminal** (se encuentra en el panel inferior, generalmente junto a la *Console*).
+3. Escriba el siguiente comando exacto y presione *Enter*:
+
+```bash
+quarto install tool tinytex
+``` 
+
+
+Quarto se encargará de descargar y configurar esta distribución ligera. Su enorme ventaja es que instalará automáticamente cualquier paquete de \LaTeX{} que falte durante la compilación de sus documentos, de forma totalmente invisible para el usuario.
+
+# Preparación de las librerías en R
+
+Para que el código R incrustado en los documentos se ejecute correctamente en el momento de la compilación, necesitamos instalar los paquetes que actúan como motor.
+
+En RStudio, vaya a la pestaña Console.
+
+Ejecute el siguiente comando y espere a que finalice la instalación:
+
+```{r}
+#| eval: false
+#| echo: true
+
+install.packages(c("knitr", "rmarkdown"))
+```
+
+
+
+# La prueba de fuego
+
+Para verificar que la instalación quedó perfecta y lista para el trabajo pesado del curso, crearemos un documento de prueba:
+
+En RStudio, vaya al menú superior: `File > New File > Quarto Document...` 
+
+Ingrese un título de prueba, seleccione PDF como el formato de salida y presione `Create`.
+
+Guarde el archivo con un nombre sin espacios, por ejemplo `prueba_configuracion.qmd`.
+
+Borre el contenido de ejemplo que aparece por defecto en el documento y copie la siguiente ecuación matemática para forzar al motor \LaTeX{} a trabajar:
+
+```latex
+$$\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i$$
+``` 
+
+Código que debe producir la siguiente fórmula en el documento pdf resultante.  
+
+
+$$
+\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i
+$$
+
+Haga clic en el botón azul Render (ubicado en la barra superior del editor) o use el atajo de teclado `Ctrl + Shift + K`. 
+
+

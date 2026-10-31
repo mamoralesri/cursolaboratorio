@@ -25,7 +25,7 @@ Los estudiantes deben investigar y profundizar en la naturaleza de las variables
 
 * Descripción de los instrumentos (Tensiómetro, Dinamómetro, Báscula de Bioimpedancia).
 
-* Descripción del proceso de limpieza de datos realizado en R.
+* Descripción del proceso de limpieza e integración de datos realizado en R, detallando cómo se unieron las bases de datos de los semestres 2026-1 y 2026-2 y la creación de la variable indicadora de "Semestre". 
 
 ### Resultados y Análisis Estadístico
 

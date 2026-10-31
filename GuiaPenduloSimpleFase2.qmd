@@ -1,0 +1,97 @@
+---
+title: "Guía para el Informe de Laboratorio de Estadística: Análisis Experimental del Péndulo Simple"
+subtitle: "Fase 2. Diseño Experimental, ANOVA con R"
+author: "Mario Alfonso Morales / Departamento de Matemáticas y Estadística"
+date: today
+format: pdf
+---
+
+## Introducción y Contexto Físico-Estadístico
+
+En la física clásica, el **péndulo simple** se define como una partícula de masa $m$ suspendida de un punto fijo mediante un hilo inextensible de longitud $L$ y masa despreciable. Cuando el péndulo se desplaza de su posición de equilibrio y se suelta, oscila bajo la acción de la gravedad $g$. Para oscilaciones de pequeña amplitud ($\theta < 15^\circ$), el movimiento se aproxima a un Movimiento Armónico Simple (MAS), cuyo período de oscilación $T$ (en segundos) está gobernado por la ecuación teórica:
+
+$$T = 2\pi\sqrt{\frac{L}{g}}$$
+
+Desde una perspectiva estadística, la ecuación teórica anterior es un **modelo determinista**. Sin embargo, en el laboratorio nos enfrentamos a la **variabilidad experimental** (errores de reacción humana al accionar el cronómetro, fricción del aire, elasticidad del sedal, imprecisiones al medir la longitud). Por lo tanto, el período observado $T_{ij}$ se modela como una variable aleatoria compuesta por una señal sistemática y un ruido aleatorio ($\varepsilon_{ij}$).
+
+### Objetivos del informe estadístico
+
+El objetivo de este informe no es únicamente presentar los resultados físicos, sino demostrar rigurosidad en el **análisis estadístico de datos experimentales** empleando el lenguaje de programación **R**. Específicamente, ustedes deberán:
+
+1. Estructurar, limpiar y resumir datos experimentales reduciendo la varianza del error de medición mediante el promedio de submuestras.
+2. Contrastar estadísticamente mediante un **Análisis de Varianza (ANOVA)** la hipótesis física de que el período de oscilación es independiente de la masa ($m$).
+3. Contrastar mediante **ANOVA** y pruebas de comparaciones múltiples el efecto del cambio de longitud ($L$) sobre el período medio de oscilación.
+4. Ajustar **modelos de regresión lineal** (mediante transformaciones de linealización y modelos log-log) para descubrir empíricamente la relación funcional entre $T$ y $L$, y estimar puntualmente y por intervalo la aceleración de la gravedad ($g$) en el laboratorio.
+
+---
+
+## Diseño experimental y preprocesamiento de datos
+
+Durante la sesión de laboratorio se llevaron a cabo dos experimentos independientes:
+
+* **Experimento 1 (efecto de la masa):** Se fijó una longitud constante ($L_0$, por ejemplo $0.60\text{ m}$) y se evaluaron $k = 4$ niveles de masa ($m_1, m_2, m_3, m_4$). Para cada masa se registraron 18 observaciones del período. 
+* **Experimento 2 (efecto de la longitud):** Se fijó una masa constante ($m_0$, por ejemplo $0.05\text{ kg}$) y se evaluaron $k = 4$ niveles de longitud ($L_1, L_2, L_3, L_4$). De igual manera, se tomaron 18 observaciones del período para cada longitud.
+
+### Reducción de varianza por submuestreo (Promedios de 3 en 3)
+
+Dado que la medición con cronómetro manual introduce un error aleatorio considerable, las 18 observaciones crudas por tratamiento se agruparán en bloques de 3 mediciones consecutivas. Al promediar cada triada de datos, obtendremos $n = 6$ réplicas (unidades experimentales consolidadas) para cada uno de los 4 niveles de tratamiento, logrando un total de $N = 24$ observaciones por experimento.
+
+
+### Lectura y estructuración de datos en R
+
+Realice la lectura de los datos usando R y promedie las tres replicas para obtener de esa forma  las $n=6$ réplicas por nivel de tratamiento, tanto para masa variable, como para longitud variable. 
+
+
+
+
+
+## Fase 2: pruebas de hipótesis mediante ANOVA
+
+### Experimento 1: independencia de la masa
+
+Según la teoría física, la masa se cancela en la ecuación diferencial del movimiento del péndulo. Para verificar esto estadísticamente, planteamos un modelo de **Diseño Completamente al Azar (DCA)** de un factor:
+
+$$T_{ij} = \mu + \tau_i + \varepsilon_{ij}, \quad i = 1, 2, 3, 4; \quad j = 1, \dots, 6$$
+
+Donde $\tau_i$ representa el efecto de la $i$-ésima masa y $\varepsilon_{ij} \sim \mathcal{N}(0, \sigma^2)$.
+
+* **Hipótesis a contrastar:**
+  $$H_0: \mu_{m_1} = \mu_{m_2} = \mu_{m_3} = \mu_{m_4} \quad \text{(El período medio no depende de la masa)}$$
+  $$H_1: \text{Al menos una masa tiene un período medio diferente}$$
+
+#### Actividades requeridas en el informe:
+1. Ajustar el modelo ANOVA en R usando `aov(Periodo ~ Masa_factor, data = datos_masa)`.
+2. Reportar la tabla ANOVA e interpretar el estadístico $F$ y su valor-$p$ asociado a un nivel de significancia $\alpha = 0.05$. *(Nota: Se espera no rechazar $H_0$. Si llegan a rechazar $H_0$, deberán discutir en el informe qué factores físicos como el cambio en el centro de masa de las pesas o la resistencia aerodinámica alteraron el experimento).*
+3. **Verificación de supuestos:** Validar obligatoriamente los supuestos sobre los residuales del modelo:
+   * **Normalidad:** Gráfico Q-Q normal y prueba de Shapiro-Wilk (`shapiro.test()`).
+   * **Homocedasticidad (igualdad de varianzas):** Gráfico de residuales vs. valores ajustados y prueba de Bartlett (`bartlett.test()`) o Levene (`car::leveneTest()`).
+   * **Independencia:** Gráfico de residuales en función del orden de recolección.
+4. **Verificación adicional de exactitud física:** Dado que la masa no afecta el período, agrupen los 24 datos del Experimento 1 y realicen una **prueba $t$ de una muestra** (`t.test()`) para contrastar si el promedio general coincide con el valor teórico esperado $T_{\text{teórico}} = 2\pi\sqrt{L_0 / 9.78}$ (considerando la gravedad local aproximada de Montería, $g \approx 9.78\text{ m/s}^2$).
+
+
+
+## Estructura requerida para el documento final
+
+El informe debe ser redactado en un documento **Quarto (`.qmd`)** y entregado tanto el archivo fuente como el documento compilado en formato **PDF**. Debe contener estrictamente las siguientes secciones:
+
+1. **Resumen ejecutivo:** Síntesis de máximo 250 palabras detallando el objetivo, la metodología estadística empleada y los principales hallazgos numéricos ($p$-valores de los ANOVA, $R^2$ de las regresiones y valor estimado de $g$).
+2. **Introducción y marco teórico:** Breve conexión entre la formulación física del péndulo simple y la necesidad del modelado estadístico para tratar el error experimental.
+
+3. **Metodología y procesamiento de datos:** Explicación del diseño experimental ($4 \times 6$), justificación matemática del promedio de las 18 observaciones en bloques de 3, y descripción de las variables.
+4. **Resultados del experimento 1 (variación de masa):** Tabla ANOVA, verificación de supuestos (con sus respectivos gráficos y pruebas formales) y prueba $t$ frente al período teórico.
+
+7. **Discusión de errores y conclusiones:** Respuesta razonada a las preguntas del cuestionario físico desde la óptica estadística (fuentes de variación, limitaciones de la aproximación de ángulo pequeño $\sin\theta \approx \theta$, efecto de la masa distribuida frente a la masa puntual).
+
+---
+
+## Rúbrica de evaluación
+
+Se usarán los siguientes criterios al momento de asignar la nota al informe. 
+
+
+
+| Criterio | Excelente (4.5 - 5.0) | Bueno (3.5 - 4.4) | Por Mejorar (< 3.5) | Peso |
+| :--- | :--- | :--- | :--- | :---: |
+| **Análisis de Varianza (ANOVA)** | Plantea modelos e hipótesis correctamente; interpreta $p$-valores en contexto; verifica rigurosamente normalidad y homocedasticidad; aplica Tukey en Exp. 2. | Ejecuta el ANOVA pero omite la validación de supuestos o no interpreta físicamente el no rechazo en Exp. 1. | Confunde los factores, no realiza ANOVA o interpreta erróneamente los $p$-valores. | **30%** |
+| **Comunicación y Formato Quarto** | Documento bien estructurado, ecuaciones en \LaTeX{} impecables, discusión crítica de errores físicos y estadísticos. | Formato adecuado pero redacción meramente mecánica sin conectar la estadística con la física. | Documento desordenado, código con errores de compilación o sin conclusiones claras. | **20%** |
+`

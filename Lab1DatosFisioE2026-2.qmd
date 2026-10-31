@@ -1,0 +1,877 @@
+---
+title: "Datos de fisiología del ejercicio"
+subtitle: "Curso: Laboratorio de estadística"   
+author: 
+  - name: Mario Morales
+    orcid: 0000-0001-8814-0179
+    email: mamorales@correo.unicordoba.edu.co
+    url: https://mariomorales.xyz/
+    affiliations:
+      - name: Universidad de Córdoba, Montería
+format: 
+  revealjs:
+    theme: default 
+    css: estilos2.css
+    include-before-body: logo2.html
+    mainfont: "Arial" 
+    slide-level: 2
+    embed-resources: true
+    toc-depth: 1 
+    highlight: "tango"
+    center: true
+    transition: fade
+    lang: es
+    code-fold: true
+    #slide-level: 3
+    scrollable: true
+  beamer:
+    aspectratio: 169
+    theme: default
+    navigation: horizontal
+    number-sections: false
+    include-in-header:
+      - text: |
+          \setbeamertemplate{headline}{} % Elimina la cabecera del tema Madrid
+          \setbeamertemplate{section in head/foot}{} % Limpia la numeración de secciones
+          \renewcommand{\contentsname}{Índice}
+          \renewcommand{\refname}{Referencias}
+          \renewcommand{\figurename}{Figura}
+          \renewcommand{\tablename}{Tabla}
+          \logo{%
+            \begin{tabular}{c}
+              \includegraphics[height=1.2cm]{EscudoU.png}
+            \end{tabular}%
+          }
+          % --- CONFIGURACIÓN DE COLORES INSTITUCIONALES ---
+          \definecolor{UnicorGreen}{HTML}{024426}
+          \definecolor{UnicorText}{HTML}{F9F9F9}
+          \definecolor{UnicorWhite}{HTML}{FFFFFF}
+          \definecolor{UnicorGold}{HTML}{D1B061}
+          
+          % Aplicación al fondo y texto general
+          \setbeamercolor{background canvas}{bg=UnicorGreen}
+          \setbeamercolor{normal text}{fg=UnicorText}
+          
+          % Aplicación a títulos y cabeceras
+          %\setbeamercolor{title}{fg=UnicorWhite}
+          \setbeamercolor{frametitle}{fg=UnicorWhite}
+          \setbeamercolor{framesubtitle}{fg=UnicorWhite}
+          
+          % Aplicación a viñetas y estructura
+          \setbeamercolor{structure}{fg=UnicorWhite}
+          \setbeamercolor{itemize item}{fg=UnicorWhite}
+          \setbeamercolor{itemize subitem}{fg=UnicorWhite}
+          \setbeamercolor{enumerate item}{fg=UnicorWhite}
+          
+          % Forzar a LaTeX a repintar el texto general al iniciar el documento
+          \AtBeginDocument{\usebeamercolor[fg]{normal text}}
+          
+          % Aplicación a hipervínculos
+          \hypersetup{colorlinks=true, urlcolor=UnicorGold, linkcolor=UnicorWhite} 
+          
+          % --- ACTIVAR ESTILO DE BLOQUES Y SOMBRAS (ESTILO MADRID) ---
+          \useinnertheme[shadow=true]{rounded}
+          
+          % --- COLORES DEL RECUADRO DEL TÍTULO PRINCIPAL ---
+          % Fondo dorado con texto verde
+          \setbeamercolor{title}{bg=UnicorGold, fg=UnicorGreen}
+          \setbeamercolor{frametitle}{fg=UnicorWhite} % Mantiene el título de las diapositivas normal
+          \setbeamercolor{framesubtitle}{fg=UnicorWhite}
+          
+          % --- COLORES PARA TEOREMAS, DEFINICIONES Y BLOQUES ---
+          % Título del bloque (Fondo dorado, texto verde)
+          \setbeamercolor{block title}{bg=UnicorGold, fg=UnicorGreen}
+          % Cuerpo del bloque (Fondo blanco, texto verde)
+          \setbeamercolor{block body}{bg=UnicorWhite, fg=UnicorGreen}
+          
+          \AtBeginDocument{
+            \author{%
+              \begin{tabular}{c}
+                Mario A. Morales Rivera \\
+                \footnotesize \texttt{mamorales@correo.unicordoba.edu.co} \\
+                \footnotesize Universidad de Córdoba
+              \end{tabular}
+            }
+            \institute{} 
+          }
+          % --- LIMPIAR DIAPOSITIVAS DE SECCIÓN (ELIMINAR "SECTION X") ---
+          \setbeamertemplate{section page}{
+            \begin{center}
+              \begin{beamercolorbox}[sep=12pt,center,rounded=true,shadow=true]{title}
+                \usebeamerfont{title}\insertsection\par
+              \end{beamercolorbox}
+            \end{center}
+          }
+    slide-level: 2
+    fonttheme: default 
+    keep-tex: true
+    lang: es
+
+toc: true
+editor: source 
+---
+
+
+
+```{r}
+#| echo: false
+setwd("~/Documents/Cursos/Laboratorio") 
+```
+
+
+
+# Introducción 
+
+## Contexto: El reto de los datos reales
+
+- **Origen de la información:** Datos recolectados presencialmente en el Laboratorio de Fisiología del Ejercicio.
+- **La situación:** Contamos con dos lotes de datos correspondientes a dos semestres distintos (2026-1 y 2026-2). Por restricciones de tiempo y disponibilidad del laboratorio, el segundo lote tiene una cantidad reducida de evaluaciones.
+- **La decisión metodológica:** Para asegurar un tamaño de muestra estadísticamente robusto, es necesario **unir** ambos archivos en una sola base de datos antes de iniciar el procesamiento.
+
+## El desafío del estadístico
+
+- Juntar datos recolectados en diferentes momentos y por diferentes personas rara vez resulta en un archivo perfecto. 
+- Al unir las bases de datos de ambos semestres, nos enfrentaremos a una mayor diversidad de errores de digitación y formatos inconsistentes.
+- **Nuestro reto de hoy:** Construir un código de limpieza e imputación que sea lo suficientemente general y robusto para manejar las anomalías de ambos grupos de forma simultánea.
+
+## Objetivo general  
+
+Enfrentar al estudiante al "dato sucio" y real.
+
+## Objetivos específicos  
+
+Realizar la preparación integral de los datos tomados en el laboratorio para que queden listos para el informe final. El flujo de trabajo incluye:
+
+- **Lectura:** Importación de múltiples archivos.
+- **Unión:** Integración estructurada de bases de datos.
+- **Limpieza:** Uso de expresiones regulares para anomalías. 
+- **Imputación:** Tratamiento estadístico de datos faltantes. 
+- **Anonimización:** Custodia y protección de la información sensible. 
+
+
+
+
+# Lectura e inspección visual de los datos 
+
+
+## Lectura de los datos de 2026-2   
+
+Para esta tarea usaremos el sistema R base. 
+
+```{r} 
+#| echo: true
+library(readxl) #<1> 
+df2 <- read_excel("DatosLab2.xlsx") #<2>
+df2 <- as.data.frame(df2) #<3>
+``` 
+1. Librería para leer archivos de Excel
+2. Lectura 
+3. Convertimos a `data.frame` puro de R Base para evitar el formato tibble 
+
+## Inspección visual de los datos 
+
+```{r} 
+#| echo: true
+head(df2)
+```
+
+
+## Inspección visual de los datos: Columnas 6 hasta el final 
+
+```{r} 
+#| echo: true
+head(df2[,6:ncol(df2)])
+```
+
+
+## Inspección visual de los datos `str` 
+
+
+```{r} 
+#| echo: true
+str(df2[,6:ncol(df2)]) 
+```
+
+
+## Renombrar columnas 
+
+En el Formato de registro de variables, hay nombres largos como `Frecuencia cardíaca en reposo`. En R base es una buena práctica:
+
+- Evitar espacios: Usar guiones bajos (_).
+- Evitar tildes y eñes: Para prevenir problemas de codificación (encoding).
+- Minúsculas: R es sensible a mayúsculas (case-sensitive), y escribir todo en minúsculas evita errores comunes de digitación.
+
+## Recuperar los nombres actuales 
+
+
+```{r} 
+#| echo: true
+colnames(df2)
+```
+
+
+## Asignar nuevos nombres 
+
+Creamos un vector con los nuevos nombres
+
+```{r} 
+#| echo: true
+nombres=c("marca_temp","email","nombre","documento","f_nac", "edad","sexo","tel","periodo","consentimiento", "par_q","apto","restriccion","fcr","presion_sis","presion_dia","estatura","masa_corporal","cintura","imc","masa_grasa","masa_muscular","masa_osea","grasa_vis", "fuerza_md","fuerza_mi")
+```
+
+
+## Asignar nuevos nombres 
+
+```{r} 
+#| echo: true
+colnames(df2)=nombres
+```
+
+
+## Imprimir los  nuevos nombres 
+
+```{r} 
+#| echo: true
+colnames(df2)
+```
+
+
+
+
+
+```{r}
+#| echo: false
+nombres2=c("edad","fcr","presion_sis","presion_dia","estatura","masa_corporal","cintura","imc","masa_grasa","masa_muscular","masa_osea","grasa_vis", "fuerza_md","fuerza_mi")
+```
+
+
+
+## Lectura, datos de 2026-1  
+
+::: callout-note
+Inténtelo usted  
+:::
+
+```{r} 
+#| echo: true
+library(readxl) #<1> 
+df <- read_excel("DatosLab1.xlsx") #<2>
+df <- as.data.frame(df) #<3>
+``` 
+1. Librería para leer archivos de Excel
+2. Lectura 
+3. Convertimos a `data.frame` puro de R Base para evitar el formato tibble 
+
+
+
+## Inspección visual de los datos 
+
+```{r} 
+#| echo: true
+head(df)
+```
+
+
+## Inspección visual de los datos: Columnas 6 hasta el final 
+
+```{r} 
+#| echo: true
+head(df[,6:ncol(df)])
+```
+
+
+## Inspección visual de los datos `str` 
+
+
+```{r} 
+#| echo: true
+str(df[,6:ncol(df)]) 
+```
+
+# Renombrar columnas 
+
+## Renombrar columnas 
+
+En el Formato de registro de variables, hay nombres largos como `Frecuencia cardíaca en reposo`. En R base es una buena práctica:
+
+- Evitar espacios: Usar guiones bajos (_).
+- Evitar tildes y eñes: Para prevenir problemas de codificación (encoding).
+- Minúsculas: R es sensible a mayúsculas (case-sensitive), y escribir todo en minúsculas evita errores comunes de digitación.
+
+## Recuperar los nombres actuales 
+
+
+```{r} 
+#| echo: true
+colnames(df)
+```
+
+
+## Asignar nuevos nombres 
+
+Creamos un vector con los nuevos nombres
+
+```{r} 
+#| echo: true
+nombres=c("marca_temp","email","nombre","documento","f_nac", "edad","sexo","tel", "consentimiento", "par_q","apto","restriccion","fcr","presion_sis","presion_dia","estatura","masa_corporal","cintura","imc","masa_grasa","masa_muscular","masa_osea","grasa_vis", "fuerza_md","fuerza_mi")
+```
+
+
+## Asignar nuevos nombres 
+
+```{r} 
+#| echo: true
+colnames(df)=nombres
+```
+
+
+## Imprimir los  nuevos nombres 
+
+```{r} 
+#| echo: true
+colnames(df)
+```
+
+
+## Agregar la columna del semestre académico 
+
+```{r} 
+#| echo: true
+
+df[["periodo"]]='2026-1'
+``` 
+
+
+
+
+
+```{r}
+#| echo: false
+nombres2=c("edad","fcr","presion_sis","presion_dia","estatura","masa_corporal","cintura","imc","masa_grasa","masa_muscular","masa_osea","grasa_vis", "fuerza_md","fuerza_mi")
+```
+
+# Consolidación de los datos 
+
+## Unir los dos datas 
+
+```{r}
+#| echo: true
+
+# Unir los dos data frames verticalmente
+dfu<- rbind(df, df2)
+```
+
+
+## Estructura del data unido 
+
+```{r}
+#| echo: true
+
+# Unir los dos data frames verticalmente
+str(dfu)
+```
+
+# Limpieza de los datos
+
+
+## Un vistazo a estatura 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+estat_sucio=dfu$estatura 
+estat_sucio
+```
+
+
+
+
+
+
+## Limpieza de "Datos Contaminados" (Uso de Expresiones Regulares)
+
+Para limpiar el "60.3 kg" usaremos `gsub` para eliminar texto y `as.numeric` para transformar.
+
+```{r} 
+#| echo: true
+# Limpieza de la columna Edad
+# gsub("[^0-9.]", "", x) elimina todo lo que NO sea número o punto
+dfu$edad <- gsub("[^0-9.]", "", dfu$edad)
+dfu$edad <- as.numeric(dfu$edad)
+# Aplicamos lo mismo a estatura y masa corporal
+dfu$estatura <- as.numeric(gsub("[^0-9.]", "", dfu$estatura))
+dfu$masa_corporal <- as.numeric(gsub("[^0-9.]", "", dfu$masa_corporal))
+```
+
+## Continue usted
+
+Haga lo mismo con las columnas que faltan 
+
+```{r}
+#| echo: false
+dfu$cintura<- as.numeric(gsub("[^0-9.]", "", dfu$cintura))
+dfu$imcn<- as.numeric(gsub("[^0-9.,]", "", dfu$imc))
+dfu$masa_grasa<- as.numeric(gsub("[^0-9.]", "", dfu$masa_grasa))
+dfu$masa_muscular<- as.numeric(gsub("[^0-9.]", "", dfu$masa_muscular))
+dfu$masa_osea<- as.numeric(gsub("[^0-9.]", "", dfu$masa_osea)) 
+dfu$grasa_vis<- as.numeric(gsub("[^0-9.]", "", dfu$grasa_vis))
+dfu$fuerza_md<- as.numeric(gsub("[^0-9.]", "", dfu$fuerza_md))
+dfu$fuerza_mi<- as.numeric(gsub("[^0-9.]", "", dfu$fuerza_mi))
+```
+
+
+```{r}
+#| echo: false
+#| output-location: fragment
+str(dfu[,nombres2])
+```
+
+## Estatura luego de la limpieza 
+
+```{r}
+#| echo: false
+#| output-location: fragment
+df_est=data.frame(EstSucia=estat_sucio, EstLimpia=dfu$estatura)
+df_est[10:15,]
+```
+
+- Observe, en la fila 12, que `163,2` se transformó en `1632`, lo cual está mal. Algo similar ocurre en la fila 13, con `175,5`, el cual se transforma en `1755`. 
+
+- Ese error es debido a la coma `(,)`
+
+## Comas por puntos 
+
+- Primero hay que reemplazar las comas por punto
+
+```{r}
+#| echo: true 
+#| output-location: fragment
+estat_sucio2 <- gsub(",", ".", estat_sucio) 
+df_est=data.frame(EstSucia1=estat_sucio, EstSucia2=estat_sucio2)
+df_est[10:15,]
+```
+
+- Observe que ya no hay comas `(,)`
+
+## Ahora si usamos la expresion regular 
+
+```{r}
+#| echo: true 
+#| output-location: fragment
+
+estat_fin <- as.numeric(gsub("[^0-9.]", "", estat_sucio2)) 
+df_est=data.frame(EstSucia1=estat_sucio2, EstFinal=estat_fin)
+df_est[10:15,]
+```
+
+- Observe que ya no aparecen las unidades.  
+
+## Agregamos `estatura` limpia al data 
+
+```{r}
+#| echo: true 
+#| output-location: fragment
+dfu$estatura=estat_fin
+```
+
+
+
+
+## Un vistazo a las columnas 
+
+```{r}
+#| echo: false
+#| output-location: fragment
+summary(dfu[,nombres2])
+```
+
+
+## Identificar filas con datos erróneos
+
+- Quién escribió `estatura=`r min(dfu$estatura)` ` ? 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+dfu[dfu$estatura==min(dfu$estatura),c("nombre","estatura")] 
+```
+
+
+
+## Corregir  datos erróneos  
+
+- La estatura 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+dfu$estatura[dfu$estatura==min(dfu$estatura)]=157 
+summary(dfu$estatura) 
+```
+
+
+## Visualizar todas las estaturas
+
+```{r}
+#| echo: true
+#| output-location: fragment
+dfu$estatura
+```
+
+
+
+
+## Una forma más eficiente para estatura  
+
+::: callout-important
+Al parecer lo que ocurre es que esas personas ingresaron la estatura en metro, entonces una forma de corregir este problema de manera  rápida y automática es multiplicando esos valores por 100.  
+:::
+
+
+```{r}
+#| echo: true
+#| output-location: fragment
+dfu$estatura[dfu$estatura<2.2]=dfu$estatura[dfu$estatura<2.2]*100  
+summary(dfu$estatura) 
+```
+
+
+
+
+
+## Un detalle con `imc` 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+
+cbind(dfu$imc,dfu$imcn) 
+
+```
+
+
+## Corregimos `imc` 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+
+# 1. Cambiamos la coma por punto (para que R entienda decimales)
+imcn <- gsub(",", ".", dfu$imc)
+
+cbind(dfu$imc,imcn) 
+
+```
+
+
+## Corregimos `imc`  II 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+
+# 2. Usamos sub() con una expresión que busca el primer bloque numérico
+# Explicación del patrón:
+# ^[^0-9]* -> Ignora todo al inicio que NO sea un número
+# ([0-9]+\\.?[0-9]*) -> CAPTURA el primer número (con su decimal opcional)
+# .*$       -> Ignora todo lo que venga después (como " kg/m^2")
+imcn <- sub("^[^0-9]*([0-9]+\\.?[0-9]*).*$", "\\1", imcn)
+
+#  3. Finalmente convertimos a numérico
+imcn <- as.numeric(imcn)
+data.frame(dfu$imc,imcn)
+```
+
+
+## Agregamos `imc` a dfu 
+
+```{r}
+#| echo: true 
+#| output-location: fragment
+dfu$imc=imcn 
+```
+
+
+
+
+
+## Inspección rápida de las variables 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+summary(dfu[,nombres2]) 
+```
+
+
+## Identificar filas con datos erróneos
+
+- Quién escribió `imc=`r max(dfu$imc,na.rm=TRUE)` ` ? 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+dfu[dfu$imc==max(dfu$imc,na.rm=TRUE),c("nombre","imc")] 
+```
+
+
+
+
+## Corregir `imc` 
+
+```{r}
+# las comas 
+dfu$imcn2<- as.numeric(gsub(",", "", dfu$imc))
+```
+
+
+## Corregir  datos erróneos `imc`  
+
+
+- El imc 
+
+
+```{r}
+#| echo: true
+#| output-location: fragment
+dfu$imc[dfu$imc==max(dfu$imc,na.rm=TRUE)]=25 
+summary(dfu$imc) 
+```
+
+
+
+
+## Reemplazar los ceros por `NA` 
+
+::: callout-important
+Sabemos que los ceros son de los estudiantes menores de edad que el instrumento de medición no entregó el dato, por lo tanto es un dato faltante. Reemplazaremos los ceros por `NA` porque luego haremos imputación de datos faltantes.    
+:::
+
+```{r}
+#| echo: true
+#| output-location: fragment
+
+dfu$imc[dfu$imc==0]=NA 
+summary(dfu$imc)
+```
+
+## Reemplazar los ceros por `NA` 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+
+dfu$masa_grasa[dfu$masa_grasa==0]=NA
+dfu$masa_muscular[dfu$masa_muscular==0]=NA
+dfu$masa_osea[dfu$masa_osea==0]=NA
+dfu$grasa_vis[dfu$grasa_vis==0]=NA
+```
+
+## Inspección rápida de las variables 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+summary(dfu[,nombres2]) 
+```
+
+
+## Ejercicios  
+
+- Identifique a la persona que escribió `cintura=`r max(dfu$cintura)` ` . 
+
+- Corrija  de acuerdo con el dato real que debe tener el estudiante en su formulario en papel.
+
+- Identifique a la persona que escribió `presion_sis=`r max(dfu$presion_sis)` ` . 
+
+- Corrija  de acuerdo con el dato real que debe tener el estudiante en su formulario en papel.
+
+- En caso que ese valor esté correcto debe repetir la medición y si persiste se debe remitir al médico.   
+
+## Anonimización de Datos
+
+Manipularemos las columnas por índice o nombre y a generar identificadores únicos.
+
+```{r}
+#| echo: true
+# 1. Identificar columnas sensibles por nombre
+columnas_sensibles <- c("marca_temp", "email", "nombre","documento","f_nac", "sexo", "tel")   
+
+# 2. Crear un ID aleatorio único para cada fila
+set.seed(123)
+dfu$id_estudiante <- sample(1000:9999, nrow(dfu), replace = FALSE)
+```
+
+
+## Anonimización de Datos
+
+Manipularemos las columnas por índice o nombre y a generar identificadores únicos.
+
+```{r} 
+#| echo: true
+# 3. Crear el nuevo dataframe omitiendo las sensibles
+# Usamos la indexación negativa o selección por nombre
+df_anonimo <- subset(dfu, select= !(names(dfu) %in% columnas_sensibles)) 
+
+# 4. Reordenar para que el ID sea la primera columna
+df_anonimo <- df_anonimo[, c(ncol(df_anonimo), 1:(ncol(df_anonimo)-1))]
+```
+
+
+## Columnas del df anónimo  
+
+```{r} 
+#| echo: true
+colnames(df_anonimo)
+```
+
+## Volver a unir las columnas sensibles 
+
+Para eso hay que dejar un `data frame` con las columnas sensibles y la columna `id_estudiante` que sirve como `llave` 
+
+```{r} 
+#| echo: true
+# Creamos un dataframe aparte que SOLO tenga la llave y los nombres
+df_llave_maestra <- dfu[, c("id_estudiante","marca_temp", "email", "nombre","documento","f_nac", "sexo", "tel")]
+```
+
+
+## Datos desordenados 
+
+Simulemos que alguien desordena las filas del `data frame`  anónimo por completo:
+
+```{r} 
+#| echo: true
+# Desordenamos las filas aleatoriamente
+df_anonimo_desordenado <- df_anonimo[sample(nrow(df_anonimo)), ]
+```
+
+
+## Juntemos 
+
+Ahora juntamos  la información sensible al data después de desordenado  
+
+```{r} 
+#| echo: true
+# Unimos los nombres de vuelta al archivo desordenado usando la llave
+df_recuperado <- merge(x = df_anonimo_desordenado, 
+                       y = df_llave_maestra, 
+                       by = "id_estudiante")
+```
+
+
+##  Custodia de datos 
+
+- El archivo que usarán para el informe no tendrá los nombres, solo el `id_estudiante`.
+
+- Si alguno quiere saber de quién es un dato  (por ejemplo, quién tiene la mayor fuerza prensil), tendrá que pedírselo al "dueño de la llave"
+
+- Este es el concepto de custodia de datos.
+
+# Tratamiento de Datos Faltantes
+
+
+
+## Identificación  de Datos Faltantes
+
+- Los estudiantes menores de 18 años, no tienen los datos arrojados por la balanza. 
+
+- Primero identificaremos las columnas que tienen datos faltantes, y contaremos cuántos hay 
+
+```{r} 
+#| echo: true
+
+# Retorna TRUE si hay al menos un dato faltante en cualquier parte
+any(is.na(df_anonimo))
+
+# Cuenta el total de datos faltantes en toda la matriz
+sum(is.na(df_anonimo))
+```
+
+## Identificación por columnas
+
+Es más  útil identificar los faltantes por columnas
+
+Podemos usar la función `colSums()` combinada con `is.na()`. Esto nos dará una lista clara de qué variables necesitan atención (como la grasa visceral o la masa ósea en los menores de 18 años).
+
+```{r} 
+#| echo: true
+# Retorna el número de NAs por cada columna
+conteo_nas <- colSums(is.na(df_anonimo))
+print(conteo_nas)
+
+# Para verlo como porcentaje (útil para decidir si imputar o descartar)
+porcentaje_nas <- colSums(is.na(df_anonimo)) / nrow(df_anonimo) * 100
+print(porcentaje_nas)
+```
+
+
+## Qué columnas tienen NA's
+
+La siguiente función nos dice qué columnas tienen datos faltantes 
+
+```{r}
+#| echo: true
+cual_na=function(df){
+  cual=apply(apply(df,2,is.na),2,any)
+  colnames(df)[cual] 
+} 
+vars_na=cual_na(df_anonimo)
+vars_na
+```
+
+
+
+## Cuántos NA's hay por columna 
+
+```{r}
+#| echo: true
+cols=cual_na(df_anonimo)
+apply(apply(dfu[,cols],2,is.na),2,sum)
+```
+
+
+<!--
+## 
+
+```{r}
+#| echo: true
+# Crea una imagen donde lo negro es dato presente y lo blanco es NA
+image(is.na(df_anonimo), main = "Mapa de Datos Faltantes", 
+      col = c("black", "white"), xaxt = "n", yaxt = "n") 
+```
+
+--> 
+
+## Imputación de faltantes 
+
+Luego de identificar las variables de composición con `NA's`, procedemos a imputar, estimando el dato faltante usando la mediana. 
+
+```{r}
+#| echo: true
+for(v in vars_na) {
+  # Calcular la mediana ignorando los NAs
+  mediana_v <- median(df_anonimo[, v], na.rm = TRUE)
+  
+# Reemplazar solo donde hay NA
+df_anonimo[is.na(df_anonimo[, v]), v] <- mediana_v
+}
+```
+
+
+```{r}
+estat_sucio2 <- gsub(",", ".", estat_sucio) 
+```
+
+
+```{r}
+estat_fin <- as.numeric(gsub("[^0-9.]", "", estat_sucio2)) 
+```
+
+
+```{r}
+dfu$estatura=estat_fin
+```
+
+
+

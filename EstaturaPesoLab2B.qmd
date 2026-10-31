@@ -1,0 +1,143 @@
+---
+title: "Guía de Laboratorio: Relación entre Peso y Estatura"
+subtitle: "Análisis Exploratorio, Regresión y Selección de Variables"
+author: "Profesor: Mario Morales"
+format: 
+  html:
+    theme: cosmo
+    toc: true
+    code-fold: show
+  pdf:
+    toc: true
+lang: es
+---
+
+# 1. Introducción
+
+En el campo de la antropometría y la salud pública, la relación entre el peso y la estatura de los individuos es fundamental para establecer índices de desarrollo y riesgo. Este laboratorio tiene como propósito utilizar datos reales recolectados en clase para explorar esta relación, aplicando técnicas de estadística descriptiva bivariada, modelos de regresión lineal y métodos de selección de variables para determinar el modelo más adecuado y parsimonioso.
+
+# 2. Objetivos
+
+*   **Exploratorio:** Calcular estadísticas descriptivas y visualizar la distribución del peso y la estatura según el sexo del estudiante.
+*   **Modelamiento:** Ajustar modelos de regresión lineal (simples y múltiples) para predecir el peso a partir de la estatura, el sexo y la edad.
+*   **Inferencia:** Ejecutar pruebas de hipótesis para contrastar si el efecto de la estatura sobre el peso difiere significativamente entre hombres y mujeres.
+*   **Selección de Variables:** Utilizar criterios estadísticos (ANOVA, AIC, BIC) y algoritmos de selección (Forward, Backward, Stepwise y Mejores Subconjuntos) para identificar el modelo óptimo.
+
+# 3. Descripción de los Datos
+
+Los datos provienen del formato de registro "Laboratorio de estadística Relación entre peso y estatura". Las variables de interés recolectadas para los 30 estudiantes son:
+
+*   `Sexo`: Variable categórica (Femenino / Masculino).
+*   `Edad`: Edad del estudiante en años.
+*   `Estatura`: Estatura medida en metros.
+*   `Peso`: Se tomaron tres mediciones independientes de peso en kilogramos (Medición 1, Medición 2, Medición 3) para reducir el error de medición. 
+
+*Nota metodológica:* El formato incluye un espacio para un promedio; el primer paso analítico será calcular el peso promedio exacto a partir de las tres mediciones individuales.
+
+# 4. Procedimiento y Análisis Requeridos
+
+## A. Preparación y Descriptiva por Niveles
+
+1.  **Cálculo del Peso Promedio:** A partir de las tres mediciones, calcule una nueva variable llamada `peso_prom`.
+2.  **Estadísticas de Resumen:** Construya una tabla que muestre la media, desviación estándar, mínimo y máximo para la estatura, la edad y el peso promedio, agrupada por la variable `Sexo`.
+3.  **Visualización Bivariada:** Genere un diagrama de dispersión (Scatterplot) donde el eje $X$ sea la estatura y el eje $Y$ sea el peso promedio. Utilice colores o formas distintas para diferenciar entre hombres y mujeres.
+
+## B. Pruebas de Hipótesis Básicas (Diferencia de Medias)
+
+Antes de ajustar el modelo, verifique si existen diferencias basales entre los grupos:
+
+*   **Hipótesis 1:** ¿Difiere la estatura promedio entre hombres y mujeres?
+    $$H_0: \mu_{estatura\_H} = \mu_{estatura\_M}$$
+    $$H_1: \mu_{estatura\_H} \neq \mu_{estatura\_M}$$
+*   Ejecute una prueba $t$ de Student para muestras independientes (verificando previamente los supuestos de normalidad y homogeneidad de varianzas).
+
+## C. Modelamiento Estadístico y Regresión
+
+1.  **Regresión Lineal Simple (Modelo Global):**
+    Ajuste el modelo sin distinguir por sexo para evaluar la tendencia general:
+    $$Peso_i = \beta_0 + \beta_1 Estatura_i + \epsilon_i$$
+    *   Interprete el valor estimado de $\beta_1$ en el contexto del problema.
+    *   Reporte e interprete el coeficiente de determinación $R^2$.
+
+2.  **Modelo de Regresión Múltiple con Interacción:**
+    Para responder a la pregunta de si la relación entre peso y estatura es la misma para hombres y mujeres, defina una variable indicadora (dummy) $D$ tal que $D=1$ si es hombre y $D=0$ si es mujer. Ajuste el siguiente modelo con interacción:
+    $$Peso_i = \beta_0 + \beta_1 Estatura_i + \beta_2 D_i + \beta_3 (Estatura_i \times D_i) + \epsilon_i$$
+
+## D. Pruebas de Hipótesis sobre los Coeficientes
+
+A partir del modelo con interacción, evalúe las siguientes hipótesis:
+
+*   **Hipótesis 2 (Efecto Principal del Sexo en el Intercepto):**
+    $$H_0: \beta_2 = 0$$
+    *(¿Tienen hombres y mujeres de la misma estatura un peso esperado diferente?)*
+    
+*   **Hipótesis 3 (Igualdad de Pendientes):**
+    $$H_0: \beta_3 = 0$$
+    *(¿Es el cambio en el peso por cada metro adicional de estatura el mismo para hombres que para mujeres?)*
+
+Concluya formalmente sobre el valor p asociado al coeficiente $\beta_3$. Si se rechaza $H_0$, significa que se requieren ecuaciones de regresión separadas para cada sexo.
+
+## E. Selección de Variables y Modelos
+
+¿Es necesario incluir la variable `Edad` para predecir el peso de los estudiantes, o basta con la estatura y el sexo? Responda a esta pregunta aplicando los siguientes métodos:
+
+1.  **Comparación de Modelos Anidados (ANOVA):**
+    Ajuste un modelo reducido (sin edad) y un modelo completo (con edad) y compárelos mediante un análisis de varianza.
+    $$H_0: \beta_{Edad} = 0 \quad (\text{El modelo reducido es suficiente})$$
+    $$H_1: \beta_{Edad} \neq 0 \quad (\text{El modelo completo es significativamente mejor})$$
+    
+2.  **Procedimientos de Selección Automática:**
+    A partir de un modelo completo que incluya todas las variables (`Estatura`, `Sexo`, `Edad` y sus posibles interacciones), utilice la función `step()` para ejecutar las siguientes estrategias basadas en el Criterio de Información de Akaike (AIC):
+    *   Selección hacia adelante (*Forward*).
+    *   Eliminación hacia atrás (*Backward*).
+    *   Selección por pasos (*Stepwise* - Both).
+    *   *Discuta:* ¿Llegan los tres métodos al mismo modelo final?
+
+3.  **Mejores Subconjuntos (Best Subsets):**
+    Utilice la función `regsubsets()` del paquete `leaps` para evaluar todas las combinaciones posibles de variables. 
+    *   Identifique el mejor modelo según el $R^2$ ajustado.
+    *   Identifique el mejor modelo según el Criterio de Información Bayesiano (BIC).
+    *   *Conclusión Final:* Sintetice los resultados de todas las pruebas y declare cuál es, a su juicio, el modelo predictivo óptimo para estos datos.
+
+# 5. Código de Apoyo en R (Tips para los Estudiantes)
+
+```{r}
+#| eval: false
+
+# Cargar librerías necesarias
+library(tidyverse)
+library(leaps) # Necesaria para la selección de mejores subconjuntos
+
+# 1. Ejemplo de cómo calcular el promedio de peso por estudiante
+# datos <- datos |> 
+#   rowwise() |> 
+#   mutate(peso_prom = mean(c(Medicion_1, Medicion_2, Medicion_3), na.rm = TRUE)) |> 
+#   ungroup()
+
+# 2. Ajuste del modelo con interacción
+# modelo_interaccion <- lm(peso_prom ~ Estatura * Sexo, data = datos)
+# summary(modelo_interaccion)
+
+# 3. Gráfico sugerido
+# ggplot(datos, aes(x = Estatura, y = peso_prom, color = Sexo)) +
+#   geom_point() +
+#   geom_smooth(method = "lm", se = FALSE) +
+#   labs(title = "Relación Peso vs Estatura por Sexo",
+#        x = "Estatura (m)", y = "Peso Promedio (kg)") +
+#   theme_minimal()
+
+# 4. Comparación de modelos con ANOVA
+# modelo_reducido <- lm(peso_prom ~ Estatura + Sexo, data = datos)
+# modelo_completo <- lm(peso_prom ~ Estatura + Sexo + Edad, data = datos)
+# anova(modelo_reducido, modelo_completo)
+
+# 5. Selección Stepwise (Ejemplo Backward)
+# modelo_full <- lm(peso_prom ~ Estatura * Sexo * Edad, data = datos)
+# modelo_back <- step(modelo_full, direction = "backward")
+
+# 6. Selección por Mejores Subconjuntos
+# subconjuntos <- regsubsets(peso_prom ~ Estatura * Sexo * Edad, data = datos, nvmax = 5)
+# summary(subconjuntos)
+# plot(subconjuntos, scale = "bic") # Gráfico útil para decidir con BIC
+```
+

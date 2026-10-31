@@ -78,7 +78,7 @@ options(pillar.sigfig = 5)
 #| output-location: fragment
 #| column: screen-inset-shaded
 
-library(readxl) #<1> 
+
 df <- read.csv("DatosFisioLimpio.csv",row.names=1, stringsAsFactors=TRUE)
 ```
 
@@ -202,6 +202,7 @@ df |>with(var.test(fuerza_md~sexo))
 ```
 
 
+## Organizar la salida en un `df`  
 
 
 ```{r}
@@ -223,7 +224,7 @@ print(resultados_f )
 
 ## Prueba de la hipótesis
 
-Prueba T de Welch `Var.equal = FALSE` por defecto en R
+Prueba T de Welch `var.equal = FALSE` por defecto en R, cuando se usa `t.test` 
 
 Probaremos la hipótesis 
 $$H_0: \mu_m=\mu_f \\
@@ -240,15 +241,7 @@ df |>with(t.test(fuerza_md~sexo,alternative='greater'))
 ```
 
 
-## Prueba de la hipótesis, alternativa correcta 
 
-```{r}
-#| echo: true
-#| output-location: fragment
-#| column: screen-inset-shaded
-
-df |>with(t.test(fuerza_md~sexo,alternative='less')) 
-```
 
 
 ## Guardando resultados como tabla 
@@ -275,6 +268,19 @@ No se rechaza la hipótesis nula porque el valor p es mayor que 0.05
 ::: callout-warning
 La conclusión anterior no es correcta, porque la diferencia de media se está calculando al revés  
 :::
+
+
+
+## Prueba de la hipótesis, alternativa correcta 
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| column: screen-inset-shaded
+
+df |>with(t.test(fuerza_md~sexo,alternative='less')) 
+```
+
 
 
 # Nivel de referencia de un factor. 
@@ -424,7 +430,7 @@ a un nivel de significancia del 5% no se rechaza la hipótesis de igualdad de va
 
 ## Prueba de la hipótesis
 
-Prueba T con varianzas iguales, debemos indicar: `Var.equal =TRUE`  en la función `t.test` 
+Prueba T con varianzas iguales, debemos indicar: `var.equal =TRUE`  en la función `t.test` 
 
 ```{r}
 #| echo: true
@@ -435,7 +441,7 @@ df|>with(t.test(masa_muscular ~ sexo, var.equal = TRUE,alternative="greater"))
 
 ## Prueba de la hipótesis
 
-Prueba T con varianzas iguales, debemos indicar: `Var.equal =TRUE`  en la función `t.test` 
+Prueba T con varianzas iguales, debemos indicar: `var.equal =TRUE`  en la función `t.test` 
 
 ```{r}
 #| echo: true

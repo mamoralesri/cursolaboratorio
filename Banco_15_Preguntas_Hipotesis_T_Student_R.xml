@@ -1,0 +1,1507 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>CursoR/Pruebas_Hipotesis_Dos_Muestras_T</text>
+    </category>
+    <info format="html">
+      <text>Banco de preguntas Prueba T generado automáticamente desde R</text>
+    </info>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>PH_DosMuestrasT_Deflexion_v01_df21</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Se investigan las temperaturas de deflexión bajo carga (en °C) para dos tipos de tubería de plástico (Solución 1 y Solución 2). Para ello se toman dos muestras aleatorias independientes, anotando las temperaturas observadas:&lt;/p&gt;
+
+&lt;style type="text/css"&gt;
+.tg-datos {border-collapse:collapse; border-color:#9ABAD9; border-spacing:0; margin: 12px 0;}
+.tg-datos th {background-color:#2e7d32; border:1px solid #9ABAD9; color:#fff; font-family:Arial, sans-serif; font-size:14px; padding:8px 15px; text-align:center;}
+.tg-datos .tg-celda {background-color:#e8f5e9; border:1px solid #9ABAD9; color:#333; font-family:monospace; font-size:14px; padding:6px 15px; text-align:center;}
+&lt;/style&gt;
+&lt;table class="tg-datos"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Espécimen&lt;/th&gt;
+    &lt;th&gt;Solución 1 (°C)&lt;/th&gt;
+    &lt;th&gt;Solución 2 (°C)&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;1&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;201.0&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;196.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;197.8&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;191.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;3&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;198.8&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;4&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;202.6&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;199.3&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;6&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;200.8&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;191.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;199.6&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;196.8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;8&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;199.3&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;197.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;9&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;199.6&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;10&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;201.3&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;194.7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;11&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;198.2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;194.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;12&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;pre style="background-color:#f4f6f9; border-left:4px solid #2e7d32; padding:10px; font-family:monospace; font-size:13px; color:#222;"&gt;&lt;code&gt;solucion1 &amp;lt;- c(201.0, 197.8, 198.8, 202.6, 199.3, 200.8, 199.6, 199.3, 199.6, 201.3, 198.2)
+solucion2 &amp;lt;- c(196.5, 191.5, 195.4, 193.3, 195.5, 191.2, 196.8, 197.2, 193.1, 194.7, 194.4, 193.4)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Asuma que las poblaciones se distribuyen de manera normal y que las varianzas son desconocidas pero iguales \((\sigma_1^2 = \sigma_2^2)\). Se desea contrastar la hipótesis nula \(H_0: \mu_1 - \mu_2 = 4\) frente a la alternativa \(H_1: \mu_1 - \mu_2 \neq 4\) usando un nivel de significancia \(\alpha = 0.05\).&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;b&gt;Estimador de la varianza común:&lt;/b&gt; Usando las muestras, calcule un estimador insesgado de la varianza común \(s_p^2\): {2:NM:=3.0240:0.0500} (a 4 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Estadístico de prueba:&lt;/b&gt; El valor del estadístico \(t_0\) para esta prueba es: {2:NM:=1.968:0.050} (a 3 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Valor Crítico:&lt;/b&gt; El valor crítico de la distribución \(t\) de Student con \(df = 21\) grados de libertad (para una prueba bilateral al nivel \(\alpha = 0.05\)) es: {1:NM:=2.080:0.050} (a 3 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Decisión estadística:&lt;/b&gt; Comparando el valor absoluto del estadístico con el valor crítico, se concluye que: {1:MULTICHOICE:~%0%se rechaza la hipótesis nula (existe diferencia significativa)~=no se rechaza la hipótesis nula (no hay evidencia suficiente de diferencia)}&lt;/li&gt;
+&lt;/ol&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>PH_DosMuestrasT_Deflexion_v02_df16</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Se investigan las temperaturas de deflexión bajo carga (en °C) para dos tipos de tubería de plástico (Solución 1 y Solución 2). Para ello se toman dos muestras aleatorias independientes, anotando las temperaturas observadas:&lt;/p&gt;
+
+&lt;style type="text/css"&gt;
+.tg-datos {border-collapse:collapse; border-color:#9ABAD9; border-spacing:0; margin: 12px 0;}
+.tg-datos th {background-color:#2e7d32; border:1px solid #9ABAD9; color:#fff; font-family:Arial, sans-serif; font-size:14px; padding:8px 15px; text-align:center;}
+.tg-datos .tg-celda {background-color:#e8f5e9; border:1px solid #9ABAD9; color:#333; font-family:monospace; font-size:14px; padding:6px 15px; text-align:center;}
+&lt;/style&gt;
+&lt;table class="tg-datos"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Espécimen&lt;/th&gt;
+    &lt;th&gt;Solución 1 (°C)&lt;/th&gt;
+    &lt;th&gt;Solución 2 (°C)&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;1&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;200.6&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;199.5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;196.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;3&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;198.7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;198.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;4&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;198.3&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;201.9&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;197.7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;6&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;196.3&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;190.9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;197.1&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;8&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;199.9&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;197.9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;9&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.6&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;10&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;196.4&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;pre style="background-color:#f4f6f9; border-left:4px solid #2e7d32; padding:10px; font-family:monospace; font-size:13px; color:#222;"&gt;&lt;code&gt;solucion1 &amp;lt;- c(200.6, 199.5, 198.7, 198.3, 201.9, 196.3, 197.1, 199.9, 195.6, 196.4)
+solucion2 &amp;lt;- c(193.9, 196.4, 198.0, 195.8, 197.7, 190.9, 195.8, 197.9)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Asuma que las poblaciones se distribuyen de manera normal y que las varianzas son desconocidas pero iguales \((\sigma_1^2 = \sigma_2^2)\). Se desea contrastar la hipótesis nula \(H_0: \mu_1 - \mu_2 = 2\) frente a la alternativa \(H_1: \mu_1 - \mu_2 \neq 2\) usando un nivel de significancia \(\alpha = 0.05\).&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;b&gt;Estimador de la varianza común:&lt;/b&gt; Usando las muestras, calcule un estimador insesgado de la varianza común \(s_p^2\): {2:NM:=4.9638:0.0500} (a 4 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Estadístico de prueba:&lt;/b&gt; El valor del estadístico \(t_0\) para esta prueba es: {2:NM:=0.596:0.050} (a 3 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Valor Crítico:&lt;/b&gt; El valor crítico de la distribución \(t\) de Student con \(df = 16\) grados de libertad (para una prueba bilateral al nivel \(\alpha = 0.05\)) es: {1:NM:=2.120:0.050} (a 3 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Decisión estadística:&lt;/b&gt; Comparando el valor absoluto del estadístico con el valor crítico, se concluye que: {1:MULTICHOICE:~%0%se rechaza la hipótesis nula (existe diferencia significativa)~=no se rechaza la hipótesis nula (no hay evidencia suficiente de diferencia)}&lt;/li&gt;
+&lt;/ol&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>PH_DosMuestrasT_Deflexion_v03_df17</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Se investigan las temperaturas de deflexión bajo carga (en °C) para dos tipos de tubería de plástico (Solución 1 y Solución 2). Para ello se toman dos muestras aleatorias independientes, anotando las temperaturas observadas:&lt;/p&gt;
+
+&lt;style type="text/css"&gt;
+.tg-datos {border-collapse:collapse; border-color:#9ABAD9; border-spacing:0; margin: 12px 0;}
+.tg-datos th {background-color:#2e7d32; border:1px solid #9ABAD9; color:#fff; font-family:Arial, sans-serif; font-size:14px; padding:8px 15px; text-align:center;}
+.tg-datos .tg-celda {background-color:#e8f5e9; border:1px solid #9ABAD9; color:#333; font-family:monospace; font-size:14px; padding:6px 15px; text-align:center;}
+&lt;/style&gt;
+&lt;table class="tg-datos"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Espécimen&lt;/th&gt;
+    &lt;th&gt;Solución 1 (°C)&lt;/th&gt;
+    &lt;th&gt;Solución 2 (°C)&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;1&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;192.9&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;190.6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.3&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;191.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;3&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;191.7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;191.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;4&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;192.6&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;190.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;194.7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;188.6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;6&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;197.2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;188.7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;190.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;8&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;194.4&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;189.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;9&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;190.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;10&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;189.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;11&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;187.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;pre style="background-color:#f4f6f9; border-left:4px solid #2e7d32; padding:10px; font-family:monospace; font-size:13px; color:#222;"&gt;&lt;code&gt;solucion1 &amp;lt;- c(192.9, 195.3, 191.7, 192.6, 194.7, 197.2, 195.7, 194.4)
+solucion2 &amp;lt;- c(190.6, 191.2, 191.5, 190.5, 188.6, 188.7, 190.0, 189.2, 190.4, 189.4, 187.5)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Asuma que las poblaciones se distribuyen de manera normal y que las varianzas son desconocidas pero iguales \((\sigma_1^2 = \sigma_2^2)\). Se desea contrastar la hipótesis nula \(H_0: \mu_1 - \mu_2 = 2\) frente a la alternativa \(H_1: \mu_1 - \mu_2 \neq 2\) usando un nivel de significancia \(\alpha = 0.01\).&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;b&gt;Estimador de la varianza común:&lt;/b&gt; Usando las muestras, calcule un estimador insesgado de la varianza común \(s_p^2\): {2:NM:=2.2344:0.0500} (a 4 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Estadístico de prueba:&lt;/b&gt; El valor del estadístico \(t_0\) para esta prueba es: {2:NM:=3.644:0.050} (a 3 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Valor Crítico:&lt;/b&gt; El valor crítico de la distribución \(t\) de Student con \(df = 17\) grados de libertad (para una prueba bilateral al nivel \(\alpha = 0.01\)) es: {1:NM:=2.898:0.050} (a 3 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Decisión estadística:&lt;/b&gt; Comparando el valor absoluto del estadístico con el valor crítico, se concluye que: {1:MULTICHOICE:~=se rechaza la hipótesis nula (existe diferencia significativa)~%0%no se rechaza la hipótesis nula (no hay evidencia suficiente de diferencia)}&lt;/li&gt;
+&lt;/ol&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>PH_DosMuestrasT_Deflexion_v04_df18</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Se investigan las temperaturas de deflexión bajo carga (en °C) para dos tipos de tubería de plástico (Solución 1 y Solución 2). Para ello se toman dos muestras aleatorias independientes, anotando las temperaturas observadas:&lt;/p&gt;
+
+&lt;style type="text/css"&gt;
+.tg-datos {border-collapse:collapse; border-color:#9ABAD9; border-spacing:0; margin: 12px 0;}
+.tg-datos th {background-color:#2e7d32; border:1px solid #9ABAD9; color:#fff; font-family:Arial, sans-serif; font-size:14px; padding:8px 15px; text-align:center;}
+.tg-datos .tg-celda {background-color:#e8f5e9; border:1px solid #9ABAD9; color:#333; font-family:monospace; font-size:14px; padding:6px 15px; text-align:center;}
+&lt;/style&gt;
+&lt;table class="tg-datos"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Espécimen&lt;/th&gt;
+    &lt;th&gt;Solución 1 (°C)&lt;/th&gt;
+    &lt;th&gt;Solución 2 (°C)&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;1&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;190.8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;192.2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;189.6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;3&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;196.9&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;189.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;4&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.4&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;192.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;194.6&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;6&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.4&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;189.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;192.5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;189.3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;8&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;194.0&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;187.8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;9&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;192.0&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;190.7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;10&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;pre style="background-color:#f4f6f9; border-left:4px solid #2e7d32; padding:10px; font-family:monospace; font-size:13px; color:#222;"&gt;&lt;code&gt;solucion1 &amp;lt;- c(195.5, 192.2, 196.9, 195.4, 194.6, 193.4, 192.5, 194.0, 192.0, 195.5)
+solucion2 &amp;lt;- c(190.8, 189.6, 189.5, 192.5, 193.6, 189.5, 189.3, 187.8, 190.7, 193.1)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Asuma que las poblaciones se distribuyen de manera normal y que las varianzas son desconocidas pero iguales \((\sigma_1^2 = \sigma_2^2)\). Se desea contrastar la hipótesis nula \(H_0: \mu_1 - \mu_2 = 4\) frente a la alternativa \(H_1: \mu_1 - \mu_2 \neq 4\) usando un nivel de significancia \(\alpha = 0.01\).&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;b&gt;Estimador de la varianza común:&lt;/b&gt; Usando las muestras, calcule un estimador insesgado de la varianza común \(s_p^2\): {2:NM:=3.1402:0.0500} (a 4 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Estadístico de prueba:&lt;/b&gt; El valor del estadístico \(t_0\) para esta prueba es: {2:NM:=-0.555:0.050} (a 3 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Valor Crítico:&lt;/b&gt; El valor crítico de la distribución \(t\) de Student con \(df = 18\) grados de libertad (para una prueba bilateral al nivel \(\alpha = 0.01\)) es: {1:NM:=2.878:0.050} (a 3 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Decisión estadística:&lt;/b&gt; Comparando el valor absoluto del estadístico con el valor crítico, se concluye que: {1:MULTICHOICE:~%0%se rechaza la hipótesis nula (existe diferencia significativa)~=no se rechaza la hipótesis nula (no hay evidencia suficiente de diferencia)}&lt;/li&gt;
+&lt;/ol&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>PH_DosMuestrasT_Deflexion_v05_df20</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Se investigan las temperaturas de deflexión bajo carga (en °C) para dos tipos de tubería de plástico (Solución 1 y Solución 2). Para ello se toman dos muestras aleatorias independientes, anotando las temperaturas observadas:&lt;/p&gt;
+
+&lt;style type="text/css"&gt;
+.tg-datos {border-collapse:collapse; border-color:#9ABAD9; border-spacing:0; margin: 12px 0;}
+.tg-datos th {background-color:#2e7d32; border:1px solid #9ABAD9; color:#fff; font-family:Arial, sans-serif; font-size:14px; padding:8px 15px; text-align:center;}
+.tg-datos .tg-celda {background-color:#e8f5e9; border:1px solid #9ABAD9; color:#333; font-family:monospace; font-size:14px; padding:6px 15px; text-align:center;}
+&lt;/style&gt;
+&lt;table class="tg-datos"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Espécimen&lt;/th&gt;
+    &lt;th&gt;Solución 1 (°C)&lt;/th&gt;
+    &lt;th&gt;Solución 2 (°C)&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;1&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.3&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.1&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;191.9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;3&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;197.2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;192.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;4&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;197.8&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;192.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;194.3&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;192.6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;6&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.9&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;8&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.6&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;191.7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;9&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.1&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;196.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;10&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.3&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;194.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;11&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;12&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;194.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;pre style="background-color:#f4f6f9; border-left:4px solid #2e7d32; padding:10px; font-family:monospace; font-size:13px; color:#222;"&gt;&lt;code&gt;solucion1 &amp;lt;- c(193.3, 193.1, 197.2, 197.8, 194.3, 195.5, 193.9, 193.6, 195.1, 195.3)
+solucion2 &amp;lt;- c(193.9, 191.9, 192.5, 192.5, 192.6, 193.8, 193.1, 191.7, 196.0, 194.0, 193.7, 194.4)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Asuma que las poblaciones se distribuyen de manera normal y que las varianzas son desconocidas pero iguales \((\sigma_1^2 = \sigma_2^2)\). Se desea contrastar la hipótesis nula \(H_0: \mu_1 - \mu_2 = 0\) frente a la alternativa \(H_1: \mu_1 - \mu_2 \neq 0\) usando un nivel de significancia \(\alpha = 0.05\).&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;b&gt;Estimador de la varianza común:&lt;/b&gt; Usando las muestras, calcule un estimador insesgado de la varianza común \(s_p^2\): {2:NM:=1.9589:0.0500} (a 4 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Estadístico de prueba:&lt;/b&gt; El valor del estadístico \(t_0\) para esta prueba es: {2:NM:=2.617:0.050} (a 3 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Valor Crítico:&lt;/b&gt; El valor crítico de la distribución \(t\) de Student con \(df = 20\) grados de libertad (para una prueba bilateral al nivel \(\alpha = 0.05\)) es: {1:NM:=2.086:0.050} (a 3 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Decisión estadística:&lt;/b&gt; Comparando el valor absoluto del estadístico con el valor crítico, se concluye que: {1:MULTICHOICE:~=se rechaza la hipótesis nula (existe diferencia significativa)~%0%no se rechaza la hipótesis nula (no hay evidencia suficiente de diferencia)}&lt;/li&gt;
+&lt;/ol&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>PH_DosMuestrasT_Deflexion_v06_df17</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Se investigan las temperaturas de deflexión bajo carga (en °C) para dos tipos de tubería de plástico (Solución 1 y Solución 2). Para ello se toman dos muestras aleatorias independientes, anotando las temperaturas observadas:&lt;/p&gt;
+
+&lt;style type="text/css"&gt;
+.tg-datos {border-collapse:collapse; border-color:#9ABAD9; border-spacing:0; margin: 12px 0;}
+.tg-datos th {background-color:#2e7d32; border:1px solid #9ABAD9; color:#fff; font-family:Arial, sans-serif; font-size:14px; padding:8px 15px; text-align:center;}
+.tg-datos .tg-celda {background-color:#e8f5e9; border:1px solid #9ABAD9; color:#333; font-family:monospace; font-size:14px; padding:6px 15px; text-align:center;}
+&lt;/style&gt;
+&lt;table class="tg-datos"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Espécimen&lt;/th&gt;
+    &lt;th&gt;Solución 1 (°C)&lt;/th&gt;
+    &lt;th&gt;Solución 2 (°C)&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;1&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.1&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.3&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;188.3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;3&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;194.2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;197.7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;4&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;191.6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;194.8&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;189.8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;6&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;198.5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;194.9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;190.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;8&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.1&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;191.3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;9&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;196.0&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;10&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;197.9&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;11&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;199.2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;pre style="background-color:#f4f6f9; border-left:4px solid #2e7d32; padding:10px; font-family:monospace; font-size:13px; color:#222;"&gt;&lt;code&gt;solucion1 &amp;lt;- c(193.1, 195.3, 194.2, 193.7, 194.8, 198.5, 193.7, 193.1, 196.0, 197.9, 199.2)
+solucion2 &amp;lt;- c(193.5, 188.3, 197.7, 191.6, 189.8, 194.9, 190.5, 191.3)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Asuma que las poblaciones se distribuyen de manera normal y que las varianzas son desconocidas pero iguales \((\sigma_1^2 = \sigma_2^2)\). Se desea contrastar la hipótesis nula \(H_0: \mu_1 - \mu_2 = 2\) frente a la alternativa \(H_1: \mu_1 - \mu_2 \neq 2\) usando un nivel de significancia \(\alpha = 0.05\).&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;b&gt;Estimador de la varianza común:&lt;/b&gt; Usando las muestras, calcule un estimador insesgado de la varianza común \(s_p^2\): {2:NM:=6.6523:0.0500} (a 4 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Estadístico de prueba:&lt;/b&gt; El valor del estadístico \(t_0\) para esta prueba es: {2:NM:=1.009:0.050} (a 3 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Valor Crítico:&lt;/b&gt; El valor crítico de la distribución \(t\) de Student con \(df = 17\) grados de libertad (para una prueba bilateral al nivel \(\alpha = 0.05\)) es: {1:NM:=2.110:0.050} (a 3 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Decisión estadística:&lt;/b&gt; Comparando el valor absoluto del estadístico con el valor crítico, se concluye que: {1:MULTICHOICE:~%0%se rechaza la hipótesis nula (existe diferencia significativa)~=no se rechaza la hipótesis nula (no hay evidencia suficiente de diferencia)}&lt;/li&gt;
+&lt;/ol&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>PH_DosMuestrasT_Deflexion_v07_df16</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Se investigan las temperaturas de deflexión bajo carga (en °C) para dos tipos de tubería de plástico (Solución 1 y Solución 2). Para ello se toman dos muestras aleatorias independientes, anotando las temperaturas observadas:&lt;/p&gt;
+
+&lt;style type="text/css"&gt;
+.tg-datos {border-collapse:collapse; border-color:#9ABAD9; border-spacing:0; margin: 12px 0;}
+.tg-datos th {background-color:#2e7d32; border:1px solid #9ABAD9; color:#fff; font-family:Arial, sans-serif; font-size:14px; padding:8px 15px; text-align:center;}
+.tg-datos .tg-celda {background-color:#e8f5e9; border:1px solid #9ABAD9; color:#333; font-family:monospace; font-size:14px; padding:6px 15px; text-align:center;}
+&lt;/style&gt;
+&lt;table class="tg-datos"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Espécimen&lt;/th&gt;
+    &lt;th&gt;Solución 1 (°C)&lt;/th&gt;
+    &lt;th&gt;Solución 2 (°C)&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;1&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.6&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;196.5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;191.6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;3&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;194.8&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;194.7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;4&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;194.3&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;192.8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;197.9&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;6&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;198.2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;192.9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;200.0&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;194.6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;8&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;196.2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;192.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;9&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;200.0&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;pre style="background-color:#f4f6f9; border-left:4px solid #2e7d32; padding:10px; font-family:monospace; font-size:13px; color:#222;"&gt;&lt;code&gt;solucion1 &amp;lt;- c(193.6, 196.5, 194.8, 194.3, 197.9, 198.2, 200.0, 196.2, 200.0)
+solucion2 &amp;lt;- c(193.8, 191.6, 194.7, 192.8, 193.8, 192.9, 194.6, 192.4, 195.7)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Asuma que las poblaciones se distribuyen de manera normal y que las varianzas son desconocidas pero iguales \((\sigma_1^2 = \sigma_2^2)\). Se desea contrastar la hipótesis nula \(H_0: \mu_1 - \mu_2 = 0\) frente a la alternativa \(H_1: \mu_1 - \mu_2 \neq 0\) usando un nivel de significancia \(\alpha = 0.05\).&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;b&gt;Estimador de la varianza común:&lt;/b&gt; Usando las muestras, calcule un estimador insesgado de la varianza común \(s_p^2\): {2:NM:=3.6156:0.0500} (a 4 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Estadístico de prueba:&lt;/b&gt; El valor del estadístico \(t_0\) para esta prueba es: {2:NM:=3.620:0.050} (a 3 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Valor Crítico:&lt;/b&gt; El valor crítico de la distribución \(t\) de Student con \(df = 16\) grados de libertad (para una prueba bilateral al nivel \(\alpha = 0.05\)) es: {1:NM:=2.120:0.050} (a 3 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Decisión estadística:&lt;/b&gt; Comparando el valor absoluto del estadístico con el valor crítico, se concluye que: {1:MULTICHOICE:~=se rechaza la hipótesis nula (existe diferencia significativa)~%0%no se rechaza la hipótesis nula (no hay evidencia suficiente de diferencia)}&lt;/li&gt;
+&lt;/ol&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>PH_DosMuestrasT_Deflexion_v08_df18</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Se investigan las temperaturas de deflexión bajo carga (en °C) para dos tipos de tubería de plástico (Solución 1 y Solución 2). Para ello se toman dos muestras aleatorias independientes, anotando las temperaturas observadas:&lt;/p&gt;
+
+&lt;style type="text/css"&gt;
+.tg-datos {border-collapse:collapse; border-color:#9ABAD9; border-spacing:0; margin: 12px 0;}
+.tg-datos th {background-color:#2e7d32; border:1px solid #9ABAD9; color:#fff; font-family:Arial, sans-serif; font-size:14px; padding:8px 15px; text-align:center;}
+.tg-datos .tg-celda {background-color:#e8f5e9; border:1px solid #9ABAD9; color:#333; font-family:monospace; font-size:14px; padding:6px 15px; text-align:center;}
+&lt;/style&gt;
+&lt;table class="tg-datos"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Espécimen&lt;/th&gt;
+    &lt;th&gt;Solución 1 (°C)&lt;/th&gt;
+    &lt;th&gt;Solución 2 (°C)&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;1&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.4&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;194.9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;196.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;3&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;197.7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;4&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;197.0&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;196.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;197.3&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;6&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.8&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;191.6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;8&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.3&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;9&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;10&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;197.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;11&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;12&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;pre style="background-color:#f4f6f9; border-left:4px solid #2e7d32; padding:10px; font-family:monospace; font-size:13px; color:#222;"&gt;&lt;code&gt;solucion1 &amp;lt;- c(193.4, 195.2, 197.7, 197.0, 197.3, 195.8, 195.7, 195.3)
+solucion2 &amp;lt;- c(194.9, 196.4, 193.9, 196.5, 195.2, 191.6, 193.8, 193.1, 193.0, 197.1, 193.9, 195.0)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Asuma que las poblaciones se distribuyen de manera normal y que las varianzas son desconocidas pero iguales \((\sigma_1^2 = \sigma_2^2)\). Se desea contrastar la hipótesis nula \(H_0: \mu_1 - \mu_2 = 0\) frente a la alternativa \(H_1: \mu_1 - \mu_2 \neq 0\) usando un nivel de significancia \(\alpha = 0.05\).&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;b&gt;Estimador de la varianza común:&lt;/b&gt; Usando las muestras, calcule un estimador insesgado de la varianza común \(s_p^2\): {2:NM:=2.3690:0.0500} (a 4 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Estadístico de prueba:&lt;/b&gt; El valor del estadístico \(t_0\) para esta prueba es: {2:NM:=1.981:0.050} (a 3 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Valor Crítico:&lt;/b&gt; El valor crítico de la distribución \(t\) de Student con \(df = 18\) grados de libertad (para una prueba bilateral al nivel \(\alpha = 0.05\)) es: {1:NM:=2.101:0.050} (a 3 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Decisión estadística:&lt;/b&gt; Comparando el valor absoluto del estadístico con el valor crítico, se concluye que: {1:MULTICHOICE:~%0%se rechaza la hipótesis nula (existe diferencia significativa)~=no se rechaza la hipótesis nula (no hay evidencia suficiente de diferencia)}&lt;/li&gt;
+&lt;/ol&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>PH_DosMuestrasT_Deflexion_v09_df16</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Se investigan las temperaturas de deflexión bajo carga (en °C) para dos tipos de tubería de plástico (Solución 1 y Solución 2). Para ello se toman dos muestras aleatorias independientes, anotando las temperaturas observadas:&lt;/p&gt;
+
+&lt;style type="text/css"&gt;
+.tg-datos {border-collapse:collapse; border-color:#9ABAD9; border-spacing:0; margin: 12px 0;}
+.tg-datos th {background-color:#2e7d32; border:1px solid #9ABAD9; color:#fff; font-family:Arial, sans-serif; font-size:14px; padding:8px 15px; text-align:center;}
+.tg-datos .tg-celda {background-color:#e8f5e9; border:1px solid #9ABAD9; color:#333; font-family:monospace; font-size:14px; padding:6px 15px; text-align:center;}
+&lt;/style&gt;
+&lt;table class="tg-datos"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Espécimen&lt;/th&gt;
+    &lt;th&gt;Solución 1 (°C)&lt;/th&gt;
+    &lt;th&gt;Solución 2 (°C)&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;1&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;200.9&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;201.0&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;3&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;197.5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;4&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;200.6&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;194.7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;198.9&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;6&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;200.7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;198.7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;8&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;201.4&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;9&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;202.5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;197.9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;pre style="background-color:#f4f6f9; border-left:4px solid #2e7d32; padding:10px; font-family:monospace; font-size:13px; color:#222;"&gt;&lt;code&gt;solucion1 &amp;lt;- c(200.9, 201.0, 197.5, 200.6, 198.9, 200.7, 198.7, 201.4, 202.5)
+solucion2 &amp;lt;- c(195.3, 195.2, 195.1, 194.7, 193.8, 195.5, 193.2, 195.4, 197.9)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Asuma que las poblaciones se distribuyen de manera normal y que las varianzas son desconocidas pero iguales \((\sigma_1^2 = \sigma_2^2)\). Se desea contrastar la hipótesis nula \(H_0: \mu_1 - \mu_2 = 4\) frente a la alternativa \(H_1: \mu_1 - \mu_2 \neq 4\) usando un nivel de significancia \(\alpha = 0.05\).&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;b&gt;Estimador de la varianza común:&lt;/b&gt; Usando las muestras, calcule un estimador insesgado de la varianza común \(s_p^2\): {2:NM:=2.0674:0.0500} (a 4 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Estadístico de prueba:&lt;/b&gt; El valor del estadístico \(t_0\) para esta prueba es: {2:NM:=1.656:0.050} (a 3 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Valor Crítico:&lt;/b&gt; El valor crítico de la distribución \(t\) de Student con \(df = 16\) grados de libertad (para una prueba bilateral al nivel \(\alpha = 0.05\)) es: {1:NM:=2.120:0.050} (a 3 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Decisión estadística:&lt;/b&gt; Comparando el valor absoluto del estadístico con el valor crítico, se concluye que: {1:MULTICHOICE:~%0%se rechaza la hipótesis nula (existe diferencia significativa)~=no se rechaza la hipótesis nula (no hay evidencia suficiente de diferencia)}&lt;/li&gt;
+&lt;/ol&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>PH_DosMuestrasT_Deflexion_v10_df17</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Se investigan las temperaturas de deflexión bajo carga (en °C) para dos tipos de tubería de plástico (Solución 1 y Solución 2). Para ello se toman dos muestras aleatorias independientes, anotando las temperaturas observadas:&lt;/p&gt;
+
+&lt;style type="text/css"&gt;
+.tg-datos {border-collapse:collapse; border-color:#9ABAD9; border-spacing:0; margin: 12px 0;}
+.tg-datos th {background-color:#2e7d32; border:1px solid #9ABAD9; color:#fff; font-family:Arial, sans-serif; font-size:14px; padding:8px 15px; text-align:center;}
+.tg-datos .tg-celda {background-color:#e8f5e9; border:1px solid #9ABAD9; color:#333; font-family:monospace; font-size:14px; padding:6px 15px; text-align:center;}
+&lt;/style&gt;
+&lt;table class="tg-datos"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Espécimen&lt;/th&gt;
+    &lt;th&gt;Solución 1 (°C)&lt;/th&gt;
+    &lt;th&gt;Solución 2 (°C)&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;1&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;196.8&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;194.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;198.0&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;3&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;196.2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;4&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;196.6&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;191.8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;199.9&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;189.8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;6&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;196.4&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;191.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;198.7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;192.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;8&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;201.1&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;192.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;9&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;192.3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;10&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;191.8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;11&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;188.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;pre style="background-color:#f4f6f9; border-left:4px solid #2e7d32; padding:10px; font-family:monospace; font-size:13px; color:#222;"&gt;&lt;code&gt;solucion1 &amp;lt;- c(196.8, 198.0, 196.2, 196.6, 199.9, 196.4, 198.7, 201.1)
+solucion2 &amp;lt;- c(194.4, 195.3, 193.9, 191.8, 189.8, 191.4, 192.2, 192.5, 192.3, 191.8, 188.1)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Asuma que las poblaciones se distribuyen de manera normal y que las varianzas son desconocidas pero iguales \((\sigma_1^2 = \sigma_2^2)\). Se desea contrastar la hipótesis nula \(H_0: \mu_1 - \mu_2 = 4\) frente a la alternativa \(H_1: \mu_1 - \mu_2 \neq 4\) usando un nivel de significancia \(\alpha = 0.01\).&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;b&gt;Estimador de la varianza común:&lt;/b&gt; Usando las muestras, calcule un estimador insesgado de la varianza común \(s_p^2\): {2:NM:=3.7544:0.0500} (a 4 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Estadístico de prueba:&lt;/b&gt; El valor del estadístico \(t_0\) para esta prueba es: {2:NM:=2.028:0.050} (a 3 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Valor Crítico:&lt;/b&gt; El valor crítico de la distribución \(t\) de Student con \(df = 17\) grados de libertad (para una prueba bilateral al nivel \(\alpha = 0.01\)) es: {1:NM:=2.898:0.050} (a 3 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Decisión estadística:&lt;/b&gt; Comparando el valor absoluto del estadístico con el valor crítico, se concluye que: {1:MULTICHOICE:~%0%se rechaza la hipótesis nula (existe diferencia significativa)~=no se rechaza la hipótesis nula (no hay evidencia suficiente de diferencia)}&lt;/li&gt;
+&lt;/ol&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>PH_DosMuestrasT_Deflexion_v11_df20</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Se investigan las temperaturas de deflexión bajo carga (en °C) para dos tipos de tubería de plástico (Solución 1 y Solución 2). Para ello se toman dos muestras aleatorias independientes, anotando las temperaturas observadas:&lt;/p&gt;
+
+&lt;style type="text/css"&gt;
+.tg-datos {border-collapse:collapse; border-color:#9ABAD9; border-spacing:0; margin: 12px 0;}
+.tg-datos th {background-color:#2e7d32; border:1px solid #9ABAD9; color:#fff; font-family:Arial, sans-serif; font-size:14px; padding:8px 15px; text-align:center;}
+.tg-datos .tg-celda {background-color:#e8f5e9; border:1px solid #9ABAD9; color:#333; font-family:monospace; font-size:14px; padding:6px 15px; text-align:center;}
+&lt;/style&gt;
+&lt;table class="tg-datos"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Espécimen&lt;/th&gt;
+    &lt;th&gt;Solución 1 (°C)&lt;/th&gt;
+    &lt;th&gt;Solución 2 (°C)&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;1&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;198.1&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;196.5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;3&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;198.2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;4&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;197.2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;194.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;197.2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;6&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;196.6&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;196.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.9&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;8&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;196.4&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;194.9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;9&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;192.8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;10&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;194.6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;11&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;12&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;194.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;pre style="background-color:#f4f6f9; border-left:4px solid #2e7d32; padding:10px; font-family:monospace; font-size:13px; color:#222;"&gt;&lt;code&gt;solucion1 &amp;lt;- c(198.1, 196.5, 198.2, 197.2, 197.2, 196.6, 195.9, 196.4, 195.7, 195.5)
+solucion2 &amp;lt;- c(193.4, 193.2, 193.5, 194.4, 193.7, 196.5, 195.1, 194.9, 192.8, 194.6, 195.2, 194.1)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Asuma que las poblaciones se distribuyen de manera normal y que las varianzas son desconocidas pero iguales \((\sigma_1^2 = \sigma_2^2)\). Se desea contrastar la hipótesis nula \(H_0: \mu_1 - \mu_2 = 0\) frente a la alternativa \(H_1: \mu_1 - \mu_2 \neq 0\) usando un nivel de significancia \(\alpha = 0.01\).&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;b&gt;Estimador de la varianza común:&lt;/b&gt; Usando las muestras, calcule un estimador insesgado de la varianza común \(s_p^2\): {2:NM:=0.9989:0.0500} (a 4 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Estadístico de prueba:&lt;/b&gt; El valor del estadístico \(t_0\) para esta prueba es: {2:NM:=5.717:0.050} (a 3 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Valor Crítico:&lt;/b&gt; El valor crítico de la distribución \(t\) de Student con \(df = 20\) grados de libertad (para una prueba bilateral al nivel \(\alpha = 0.01\)) es: {1:NM:=2.845:0.050} (a 3 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Decisión estadística:&lt;/b&gt; Comparando el valor absoluto del estadístico con el valor crítico, se concluye que: {1:MULTICHOICE:~=se rechaza la hipótesis nula (existe diferencia significativa)~%0%no se rechaza la hipótesis nula (no hay evidencia suficiente de diferencia)}&lt;/li&gt;
+&lt;/ol&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>PH_DosMuestrasT_Deflexion_v12_df16</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Se investigan las temperaturas de deflexión bajo carga (en °C) para dos tipos de tubería de plástico (Solución 1 y Solución 2). Para ello se toman dos muestras aleatorias independientes, anotando las temperaturas observadas:&lt;/p&gt;
+
+&lt;style type="text/css"&gt;
+.tg-datos {border-collapse:collapse; border-color:#9ABAD9; border-spacing:0; margin: 12px 0;}
+.tg-datos th {background-color:#2e7d32; border:1px solid #9ABAD9; color:#fff; font-family:Arial, sans-serif; font-size:14px; padding:8px 15px; text-align:center;}
+.tg-datos .tg-celda {background-color:#e8f5e9; border:1px solid #9ABAD9; color:#333; font-family:monospace; font-size:14px; padding:6px 15px; text-align:center;}
+&lt;/style&gt;
+&lt;table class="tg-datos"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Espécimen&lt;/th&gt;
+    &lt;th&gt;Solución 1 (°C)&lt;/th&gt;
+    &lt;th&gt;Solución 2 (°C)&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;1&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;196.8&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;190.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;191.3&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;188.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;3&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;194.2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;191.9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;4&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;198.1&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;188.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;187.7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;6&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.8&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;188.8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;197.2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;8&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;189.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;9&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;187.9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;10&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;190.3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;pre style="background-color:#f4f6f9; border-left:4px solid #2e7d32; padding:10px; font-family:monospace; font-size:13px; color:#222;"&gt;&lt;code&gt;solucion1 &amp;lt;- c(196.8, 191.3, 194.2, 198.1, 193.5, 195.8, 197.2, 195.5)
+solucion2 &amp;lt;- c(190.4, 188.5, 191.9, 188.1, 187.7, 188.8, 193.5, 189.5, 187.9, 190.3)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Asuma que las poblaciones se distribuyen de manera normal y que las varianzas son desconocidas pero iguales \((\sigma_1^2 = \sigma_2^2)\). Se desea contrastar la hipótesis nula \(H_0: \mu_1 - \mu_2 = 4\) frente a la alternativa \(H_1: \mu_1 - \mu_2 \neq 4\) usando un nivel de significancia \(\alpha = 0.01\).&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;b&gt;Estimador de la varianza común:&lt;/b&gt; Usando las muestras, calcule un estimador insesgado de la varianza común \(s_p^2\): {2:NM:=4.1652:0.0500} (a 4 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Estadístico de prueba:&lt;/b&gt; El valor del estadístico \(t_0\) para esta prueba es: {2:NM:=1.694:0.050} (a 3 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Valor Crítico:&lt;/b&gt; El valor crítico de la distribución \(t\) de Student con \(df = 16\) grados de libertad (para una prueba bilateral al nivel \(\alpha = 0.01\)) es: {1:NM:=2.921:0.050} (a 3 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Decisión estadística:&lt;/b&gt; Comparando el valor absoluto del estadístico con el valor crítico, se concluye que: {1:MULTICHOICE:~%0%se rechaza la hipótesis nula (existe diferencia significativa)~=no se rechaza la hipótesis nula (no hay evidencia suficiente de diferencia)}&lt;/li&gt;
+&lt;/ol&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>PH_DosMuestrasT_Deflexion_v13_df22</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Se investigan las temperaturas de deflexión bajo carga (en °C) para dos tipos de tubería de plástico (Solución 1 y Solución 2). Para ello se toman dos muestras aleatorias independientes, anotando las temperaturas observadas:&lt;/p&gt;
+
+&lt;style type="text/css"&gt;
+.tg-datos {border-collapse:collapse; border-color:#9ABAD9; border-spacing:0; margin: 12px 0;}
+.tg-datos th {background-color:#2e7d32; border:1px solid #9ABAD9; color:#fff; font-family:Arial, sans-serif; font-size:14px; padding:8px 15px; text-align:center;}
+.tg-datos .tg-celda {background-color:#e8f5e9; border:1px solid #9ABAD9; color:#333; font-family:monospace; font-size:14px; padding:6px 15px; text-align:center;}
+&lt;/style&gt;
+&lt;table class="tg-datos"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Espécimen&lt;/th&gt;
+    &lt;th&gt;Solución 1 (°C)&lt;/th&gt;
+    &lt;th&gt;Solución 2 (°C)&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;1&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;192.7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;190.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;197.3&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;192.7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;3&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.1&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;189.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;4&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;194.7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;188.3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;6&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;192.7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;194.4&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;189.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;8&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;191.8&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;190.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;9&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.9&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;192.8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;10&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;192.7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;191.8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;11&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;194.5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;189.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;12&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;191.5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;189.8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;pre style="background-color:#f4f6f9; border-left:4px solid #2e7d32; padding:10px; font-family:monospace; font-size:13px; color:#222;"&gt;&lt;code&gt;solucion1 &amp;lt;- c(192.7, 197.3, 193.1, 194.7, 195.5, 192.7, 194.4, 191.8, 193.9, 192.7, 194.5, 191.5)
+solucion2 &amp;lt;- c(190.2, 192.7, 189.5, 188.3, 193.8, 193.3, 189.0, 190.5, 192.8, 191.8, 189.4, 189.8)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Asuma que las poblaciones se distribuyen de manera normal y que las varianzas son desconocidas pero iguales \((\sigma_1^2 = \sigma_2^2)\). Se desea contrastar la hipótesis nula \(H_0: \mu_1 - \mu_2 = 0\) frente a la alternativa \(H_1: \mu_1 - \mu_2 \neq 0\) usando un nivel de significancia \(\alpha = 0.05\).&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;b&gt;Estimador de la varianza común:&lt;/b&gt; Usando las muestras, calcule un estimador insesgado de la varianza común \(s_p^2\): {2:NM:=3.1104:0.0500} (a 4 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Estadístico de prueba:&lt;/b&gt; El valor del estadístico \(t_0\) para esta prueba es: {2:NM:=3.900:0.050} (a 3 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Valor Crítico:&lt;/b&gt; El valor crítico de la distribución \(t\) de Student con \(df = 22\) grados de libertad (para una prueba bilateral al nivel \(\alpha = 0.05\)) es: {1:NM:=2.074:0.050} (a 3 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Decisión estadística:&lt;/b&gt; Comparando el valor absoluto del estadístico con el valor crítico, se concluye que: {1:MULTICHOICE:~=se rechaza la hipótesis nula (existe diferencia significativa)~%0%no se rechaza la hipótesis nula (no hay evidencia suficiente de diferencia)}&lt;/li&gt;
+&lt;/ol&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>PH_DosMuestrasT_Deflexion_v14_df19</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Se investigan las temperaturas de deflexión bajo carga (en °C) para dos tipos de tubería de plástico (Solución 1 y Solución 2). Para ello se toman dos muestras aleatorias independientes, anotando las temperaturas observadas:&lt;/p&gt;
+
+&lt;style type="text/css"&gt;
+.tg-datos {border-collapse:collapse; border-color:#9ABAD9; border-spacing:0; margin: 12px 0;}
+.tg-datos th {background-color:#2e7d32; border:1px solid #9ABAD9; color:#fff; font-family:Arial, sans-serif; font-size:14px; padding:8px 15px; text-align:center;}
+.tg-datos .tg-celda {background-color:#e8f5e9; border:1px solid #9ABAD9; color:#333; font-family:monospace; font-size:14px; padding:6px 15px; text-align:center;}
+&lt;/style&gt;
+&lt;table class="tg-datos"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Espécimen&lt;/th&gt;
+    &lt;th&gt;Solución 1 (°C)&lt;/th&gt;
+    &lt;th&gt;Solución 2 (°C)&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;1&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;191.4&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;192.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;190.7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;190.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;3&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;190.0&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;187.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;4&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;190.1&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;188.3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;190.4&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;189.7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;6&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;192.5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;190.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;190.0&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;190.7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;8&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;190.6&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;190.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;9&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;190.1&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;191.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;10&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;192.6&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;189.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;11&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;189.5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;pre style="background-color:#f4f6f9; border-left:4px solid #2e7d32; padding:10px; font-family:monospace; font-size:13px; color:#222;"&gt;&lt;code&gt;solucion1 &amp;lt;- c(191.4, 190.7, 190.0, 190.1, 190.4, 192.5, 190.0, 190.6, 190.1, 192.6, 189.5)
+solucion2 &amp;lt;- c(192.0, 190.0, 187.5, 188.3, 189.7, 190.5, 190.7, 190.2, 191.2, 189.5)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Asuma que las poblaciones se distribuyen de manera normal y que las varianzas son desconocidas pero iguales \((\sigma_1^2 = \sigma_2^2)\). Se desea contrastar la hipótesis nula \(H_0: \mu_1 - \mu_2 = 0\) frente a la alternativa \(H_1: \mu_1 - \mu_2 \neq 0\) usando un nivel de significancia \(\alpha = 0.05\).&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;b&gt;Estimador de la varianza común:&lt;/b&gt; Usando las muestras, calcule un estimador insesgado de la varianza común \(s_p^2\): {2:NM:=1.3821:0.0500} (a 4 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Estadístico de prueba:&lt;/b&gt; El valor del estadístico \(t_0\) para esta prueba es: {2:NM:=1.476:0.050} (a 3 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Valor Crítico:&lt;/b&gt; El valor crítico de la distribución \(t\) de Student con \(df = 19\) grados de libertad (para una prueba bilateral al nivel \(\alpha = 0.05\)) es: {1:NM:=2.093:0.050} (a 3 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Decisión estadística:&lt;/b&gt; Comparando el valor absoluto del estadístico con el valor crítico, se concluye que: {1:MULTICHOICE:~%0%se rechaza la hipótesis nula (existe diferencia significativa)~=no se rechaza la hipótesis nula (no hay evidencia suficiente de diferencia)}&lt;/li&gt;
+&lt;/ol&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+  <question type="cloze">
+    <name>
+      <text>PH_DosMuestrasT_Deflexion_v15_df15</text>
+    </name>
+    <questiontext format="html">
+      <text>&lt;p&gt;Se investigan las temperaturas de deflexión bajo carga (en °C) para dos tipos de tubería de plástico (Solución 1 y Solución 2). Para ello se toman dos muestras aleatorias independientes, anotando las temperaturas observadas:&lt;/p&gt;
+
+&lt;style type="text/css"&gt;
+.tg-datos {border-collapse:collapse; border-color:#9ABAD9; border-spacing:0; margin: 12px 0;}
+.tg-datos th {background-color:#2e7d32; border:1px solid #9ABAD9; color:#fff; font-family:Arial, sans-serif; font-size:14px; padding:8px 15px; text-align:center;}
+.tg-datos .tg-celda {background-color:#e8f5e9; border:1px solid #9ABAD9; color:#333; font-family:monospace; font-size:14px; padding:6px 15px; text-align:center;}
+&lt;/style&gt;
+&lt;table class="tg-datos"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Espécimen&lt;/th&gt;
+    &lt;th&gt;Solución 1 (°C)&lt;/th&gt;
+    &lt;th&gt;Solución 2 (°C)&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;1&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;192.9&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;194.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;195.2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;192.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;3&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;202.1&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;190.9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;4&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;198.2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;5&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;197.2&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;191.3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;6&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;197.1&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;194.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;7&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;198.1&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;188.9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;8&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;193.1&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;192.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td class='tg-celda' style='background-color:#f4f6f9; font-weight:bold;'&gt;9&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;197.6&lt;/td&gt;
+  &lt;td class='tg-celda'&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;pre style="background-color:#f4f6f9; border-left:4px solid #2e7d32; padding:10px; font-family:monospace; font-size:13px; color:#222;"&gt;&lt;code&gt;solucion1 &amp;lt;- c(192.9, 195.2, 202.1, 198.2, 197.2, 197.1, 198.1, 193.1, 197.6)
+solucion2 &amp;lt;- c(194.5, 192.4, 190.9, 193.4, 191.3, 194.0, 188.9, 192.2)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Asuma que las poblaciones se distribuyen de manera normal y que las varianzas son desconocidas pero iguales \((\sigma_1^2 = \sigma_2^2)\). Se desea contrastar la hipótesis nula \(H_0: \mu_1 - \mu_2 = 0\) frente a la alternativa \(H_1: \mu_1 - \mu_2 \neq 0\) usando un nivel de significancia \(\alpha = 0.05\).&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;b&gt;Estimador de la varianza común:&lt;/b&gt; Usando las muestras, calcule un estimador insesgado de la varianza común \(s_p^2\): {2:NM:=5.8320:0.0500} (a 4 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Estadístico de prueba:&lt;/b&gt; El valor del estadístico \(t_0\) para esta prueba es: {2:NM:=3.948:0.050} (a 3 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Valor Crítico:&lt;/b&gt; El valor crítico de la distribución \(t\) de Student con \(df = 15\) grados de libertad (para una prueba bilateral al nivel \(\alpha = 0.05\)) es: {1:NM:=2.131:0.050} (a 3 decimales).&lt;/li&gt;
+
+  &lt;li&gt;&lt;b&gt;Decisión estadística:&lt;/b&gt; Comparando el valor absoluto del estadístico con el valor crítico, se concluye que: {1:MULTICHOICE:~=se rechaza la hipótesis nula (existe diferencia significativa)~%0%no se rechaza la hipótesis nula (no hay evidencia suficiente de diferencia)}&lt;/li&gt;
+&lt;/ol&gt;</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+  </question>
+</quiz>

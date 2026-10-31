@@ -1,0 +1,235 @@
+---
+title: "Guía para el Informe de Laboratorio de Estadística: Análisis Experimental del Péndulo Simple"
+subtitle: "Diseño Experimental, ANOVA y Modelos de Regresión con R"
+author: "Mario Alfonso Morales / Departamento de Matemáticas y Estadística"
+date: today
+format: pdf
+---
+
+## Introducción y Contexto Físico-Estadístico
+
+En la física clásica, el **péndulo simple** se define como una partícula de masa $m$ suspendida de un punto fijo mediante un hilo inextensible de longitud $L$ y masa despreciable. Cuando el péndulo se desplaza de su posición de equilibrio y se suelta, oscila bajo la acción de la gravedad $g$. Para oscilaciones de pequeña amplitud ($\theta < 15^\circ$), el movimiento se aproxima a un Movimiento Armónico Simple (MAS), cuyo período de oscilación $T$ (en segundos) está gobernado por la ecuación teórica:
+
+$$T = 2\pi\sqrt{\frac{L}{g}}$$
+
+Desde una perspectiva estadística, la ecuación teórica anterior es un **modelo determinista**. Sin embargo, en el laboratorio nos enfrentamos a la **variabilidad experimental** (errores de reacción humana al accionar el cronómetro, fricción del aire, elasticidad del sedal, imprecisiones al medir la longitud). Por lo tanto, el período observado $T_{ij}$ se modela como una variable aleatoria compuesta por una señal sistemática y un ruido aleatorio ($\varepsilon_{ij}$).
+
+### Objetivos del informe estadístico
+
+El objetivo de este informe no es únicamente presentar los resultados físicos, sino demostrar rigurosidad en el **análisis estadístico de datos experimentales** empleando el lenguaje de programación **R**. Específicamente, ustedes deberán:
+
+1. Estructurar, limpiar y resumir datos experimentales reduciendo la varianza del error de medición mediante el promedio de submuestras.
+2. Contrastar estadísticamente mediante un **Análisis de Varianza (ANOVA)** la hipótesis física de que el período de oscilación es independiente de la masa ($m$).
+3. Contrastar mediante **ANOVA** y pruebas de comparaciones múltiples el efecto del cambio de longitud ($L$) sobre el período medio de oscilación.
+4. Ajustar **modelos de regresión lineal** (mediante transformaciones de linealización y modelos log-log) para descubrir empíricamente la relación funcional entre $T$ y $L$, y estimar puntualmente y por intervalo la aceleración de la gravedad ($g$) en el laboratorio.
+
+---
+
+## Diseño experimental y preprocesamiento de datos
+
+Durante la sesión de laboratorio se llevaron a cabo dos experimentos independientes:
+
+* **Experimento 1 (efecto de la masa):** Se fijó una longitud constante ($L_0$, por ejemplo $0.60\text{ m}$) y se evaluaron $k = 4$ niveles de masa ($m_1, m_2, m_3, m_4$). Para cada masa se registraron 18 observaciones del período. 
+* **Experimento 2 (efecto de la longitud):** Se fijó una masa constante ($m_0$, por ejemplo $0.05\text{ kg}$) y se evaluaron $k = 4$ niveles de longitud ($L_1, L_2, L_3, L_4$). De igual manera, se tomaron 18 observaciones del período para cada longitud.
+
+### Reducción de varianza por submuestreo (Promedios de 3 en 3)
+
+Dado que la medición con cronómetro manual introduce un error aleatorio considerable, las 18 observaciones crudas por tratamiento se agruparán en bloques de 3 mediciones consecutivas. Al promediar cada triada de datos, obtendremos $n = 6$ réplicas (unidades experimentales consolidadas) para cada uno de los 4 niveles de tratamiento, logrando un total de $N = 24$ observaciones por experimento.
+
+::: {.callout-note}
+## Pregunta teórica para discutir en el informe
+Si las mediciones individuales tienen una varianza $\sigma^2$, ¿cuál es la varianza teórica de los nuevos datos promediados de 3 en 3 ($\bar{T}$)?
+:::
+
+### Lectura y estructuración de datos en R
+
+Realice la lectura de los datos usando R y promedie las tres replicas para obtener de esa forma  las $n=6$ réplicas por nivel de tratamiento, tanto para masa variable, como para longitud variable. 
+
+
+---
+
+## Fase 1: Análisis Exploratorio de Datos (EDA)
+
+Antes de realizar cualquier inferencia, el informe debe incluir una sección descriptiva exhaustiva para ambos experimentos:
+
+1. **Tablas Resumen:** Para cada nivel de masa y cada nivel de longitud, calcule la media muestral ($\bar{T}$), desviación estándar ($s$), coeficiente de variación ($CV = \frac{s}{\bar{T}}\times 100\%$), mediana y rango intercuartílico ($RIC$).
+2. **Visualización Gráfica:** Construya diagramas de cajas y bigotes (*boxplots*) superpuestos con los puntos observados (*jitter plots*)  comparar visualmente la dispersión y tendencia central del período entre las 4 masas y entre las 4 longitudes.
+
+```{r}
+#| label: eda-plantilla
+#| eval: false
+#| echo: true
+
+# Resumen estadístico por nivel (ejemplo para Masa)
+tabla_masa <- datos_masa |>
+  group_by(Masa_factor) |>
+  summarise(
+    n = n(),
+    Media = mean(Periodo),
+    DE = sd(Periodo),
+    CV_porc = (DE / Media) * 100,
+    Mediana = median(Periodo),
+    RIC = IQR(Periodo)
+  )
+knitr::kable(tabla_masa, digits = 4, caption = "Descriptivas de T según la masa.")
+
+# Gráfico de cajas con puntos para el Experimento 1
+ggplot(datos_masa, aes(x = Masa_factor, y = Periodo, fill = Masa_factor)) +
+  geom_boxplot(alpha = 0.5, outlier.shape = NA) +
+  geom_jitter(width = 0.15, size = 2, alpha = 0.8) +
+  labs(
+    title = "Distribución del Período de Oscilación según la Masa",
+    subtitle = "Longitud constante L = 0.60 m (6 réplicas promediadas por nivel)",
+    x = "Masa (g)",
+    y = "Período T (s)"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+---
+
+## Fase 2: pruebas de hipótesis mediante ANOVA
+
+### Experimento 1: independencia de la masa
+
+Según la teoría física, la masa se cancela en la ecuación diferencial del movimiento del péndulo. Para verificar esto estadísticamente, planteamos un modelo de **Diseño Completamente al Azar (DCA)** de un factor:
+
+$$T_{ij} = \mu + \tau_i + \varepsilon_{ij}, \quad i = 1, 2, 3, 4; \quad j = 1, \dots, 6$$
+
+Donde $\tau_i$ representa el efecto de la $i$-ésima masa y $\varepsilon_{ij} \sim \mathcal{N}(0, \sigma^2)$.
+
+* **Hipótesis a contrastar:**
+  $$H_0: \mu_{m_1} = \mu_{m_2} = \mu_{m_3} = \mu_{m_4} \quad \text{(El período medio no depende de la masa)}$$
+  $$H_1: \text{Al menos una masa tiene un período medio diferente}$$
+
+#### Actividades requeridas en el informe:
+1. Ajustar el modelo ANOVA en R usando `aov(Periodo ~ Masa_factor, data = datos_masa)`.
+2. Reportar la tabla ANOVA e interpretar el estadístico $F$ y su valor-$p$ asociado a un nivel de significancia $\alpha = 0.05$. *(Nota: Se espera no rechazar $H_0$. Si llegan a rechazar $H_0$, deberán discutir en el informe qué factores físicos como el cambio en el centro de masa de las pesas o la resistencia aerodinámica alteraron el experimento).*
+3. **Verificación de supuestos:** Validar obligatoriamente los supuestos sobre los residuales del modelo:
+   * **Normalidad:** Gráfico Q-Q normal y prueba de Shapiro-Wilk (`shapiro.test()`).
+   * **Homocedasticidad (igualdad de varianzas):** Gráfico de residuales vs. valores ajustados y prueba de Bartlett (`bartlett.test()`) o Levene (`car::leveneTest()`).
+   * **Independencia:** Gráfico de residuales en función del orden de recolección.
+4. **Verificación adicional de exactitud física:** Dado que la masa no afecta el período, agrupen los 24 datos del Experimento 1 y realicen una **prueba $t$ de una muestra** (`t.test()`) para contrastar si el promedio general coincide con el valor teórico esperado $T_{\text{teórico}} = 2\pi\sqrt{L_0 / 9.78}$ (considerando la gravedad local aproximada de Montería, $g \approx 9.78\text{ m/s}^2$).
+
+---
+
+### Experimento 2: efecto de la longitud del péndulo
+
+Ahora tratamos las 4 longitudes como niveles de un factor categórico para probar si los cambios en $L$ producen diferencias estadísticamente significativas en el período promedio.
+
+* **Hipótesis a contrastar:**
+  $$H_0: \mu_{L_1} = \mu_{L_2} = \mu_{L_3} = \mu_{L_4}$$
+  $$H_1: \text{Al menos una longitud produce un período medio diferente}$$
+
+#### Actividades requeridas en el informe:
+1. Ajustar el modelo ANOVA (`aov(Periodo ~ Longitud_factor, data = datos_longitud)`).
+2. Evaluar los supuestos de normalidad y homocedasticidad de los residuales.
+3. Dado que en este caso **se debe rechazar $H_0$**, realicen una prueba de comparaciones múltiples **Tukey HSD** (`TukeyHSD()`) para determinar si todas las longitudes difieren significativamente entre sí par a par, y grafiquen los intervalos de confianza de las diferencias.
+
+---
+
+## Fase 3: Modelación por regresión y descubrimiento de la ley física
+
+El ANOVA del Experimento 2 nos permite concluir que el período cambia con la longitud, pero **no nos dice cómo es la relación matemática**. Ahora utilizaremos la longitud como una variable continua cuantitativa ($L$ en metros) para descubrir la fórmula física y estimar la aceleración de la gravedad $g$.
+
+### 1. Descubrimiento empírico del exponente (Modelo Log-Log)
+
+Supongamos que desconocemos la fórmula del péndulo, pero intuimos que el período sigue una ley de potencia de la forma:
+
+$$T = \alpha L^\beta$$
+
+Aplicando logaritmo natural a ambos lados, linealizamos el modelo:
+
+$$\ln(T) = \ln(\alpha) + \beta \ln(L) + \varepsilon$$
+
+* **Actividad:** Ajusten en R la regresión lineal `modelo_log <- lm(log(Periodo) ~ log(Longitud_num), data = datos_longitud)`.
+* **Prueba de hipótesis sobre la Ley física:** Según la teoría física ($T = \frac{2\pi}{\sqrt{g}} L^{1/2}$), la pendiente $\beta$ debe ser exactamente $0.5$ (proporcional a la raíz cuadrada) y el intercepto debe ser $\ln(2\pi/\sqrt{g})$. 
+  * Construyan un intervalo de confianza del $95\%$ para la pendiente $\beta$ (`confint(modelo_log)`). ¿Contiene este intervalo el valor teórico $0.5$? Realicen la prueba de hipótesis formal $H_0: \beta = 0.5$ vs. $H_1: \beta \neq 0.5$.
+
+### 2. Estimación de la gravedad (linealización de la raíz cuadrada)
+
+Una vez comprobado que $T \propto \sqrt{L}$, definimos la variable transformada $X = \sqrt{L}$ y ajustamos el modelo de regresión lineal simple:
+
+$$T_i = \beta_0 + \beta_1 \sqrt{L_i} + \varepsilon_i$$
+
+* **Significado físico de los parámetros:**
+  1. **El intercepto ($\beta_0$):** Teóricamente, si $L = 0$, el período es $0$. Por tanto, contrasten la hipótesis $H_0: \beta_0 = 0$. Si $\beta_0$ resulta significativamente distinto de cero, discutan su significado físico (por ejemplo, un error sistemático al no medir la longitud hasta el centro de masa real de la pesa).
+  2. **La pendiente ($\beta_1$):** Teóricamente $\beta_1 = \frac{2\pi}{\sqrt{g}}$. A partir del estimador de mínimos cuadrados $\hat{\beta}_1$, despejen el valor estimado de la gravedad en el laboratorio:
+     $$\hat{g} = \left(\frac{2\pi}{\hat{\beta}_1}\right)^2$$
+
+### 3. Regresión cuadrática ($T^2$ en función de $L$)
+
+Tal como sugiere la guía original del laboratorio de física, otra forma de linealizar la ecuación es elevar al cuadrado:
+
+$$T_i^2 = \gamma_0 + \gamma_1 L_i + \varepsilon_i$$
+
+Donde la pendiente teórica es $\gamma_1 = \frac{4\pi^2}{g}$.
+
+* **Actividad:** Ajusten este modelo (`lm(I(Periodo^2) ~ Longitud_num, data = datos_longitud)`), estimen la gravedad como $\hat{g} = \frac{4\pi^2}{\hat{\gamma}_1}$ y obtengan un intervalo de confianza del $95\%$ para $g$ transformando los límites del intervalo de confianza de la pendiente $\gamma_1$.
+* **Discusión Estadística Avanzada:** Comparen los gráficos de diagnóstico de residuales del Modelo 2 ($T$ vs $\sqrt{L}$) y del Modelo 3 ($T^2$ vs $L$). ¿Al elevar la variable respuesta al cuadrado ($T^2$) se altera la homocedasticidad de los errores?
+
+```{r}
+#| label: regresion-plantilla
+#| eval: false
+#| echo: true
+
+# Ejemplo de código para los 3 modelos de regresión
+mod_log <- lm(log(Periodo) ~ log(Longitud_num), data = datos_longitud)
+mod_raiz <- lm(Periodo ~ sqrt(Longitud_num), data = datos_longitud)
+mod_cuad <- lm(I(Periodo^2) ~ Longitud_num, data = datos_longitud)
+
+summary(mod_log)
+confint(mod_log)
+
+# Estimación de g con el modelo de raíz cuadrada y su IC al 95%
+b1_est <- coef(mod_raiz)[2]
+ic_b1 <- confint(mod_raiz)[2, ]
+
+g_estimada <- (2 * pi / b1_est)^2
+ic_g <- (2 * pi / rev(ic_b1))^2 # Se invierte el orden por la relación inversa
+
+cat("Gravedad estimada (m/s^2):", round(g_estimada, 4), "\n")
+cat("IC 95% para g:", round(ic_g, 4), "\n")
+
+# Gráfico del ajuste lineal con banda de confianza
+ggplot(datos_longitud, aes(x = sqrt(Longitud_num), y = Periodo)) +
+  geom_point(size = 2.5, alpha = 0.7, color = "darkblue") +
+  geom_smooth(method = "lm", formula = y ~ x, se = TRUE, color = "firebrick") +
+  labs(
+    title = "Ajuste de Regresión Lineal: Período vs. Raíz de la Longitud",
+    x = expression(sqrt(L) ~ "(m^{1/2})"),
+    y = "Período T (s)"
+  ) +
+  theme_minimal()
+```
+
+---
+
+## Estructura requerida para el documento final
+
+El informe debe ser redactado en un documento **Quarto (`.qmd`)** y entregado tanto el archivo fuente como el documento compilado en formato **PDF**. Debe contener estrictamente las siguientes secciones:
+
+1. **Resumen ejecutivo:** Síntesis de máximo 250 palabras detallando el objetivo, la metodología estadística empleada y los principales hallazgos numéricos ($p$-valores de los ANOVA, $R^2$ de las regresiones y valor estimado de $g$).
+2. **Introducción y marco teórico:** Breve conexión entre la formulación física del péndulo simple y la necesidad del modelado estadístico para tratar el error experimental.
+3. **Metodología y procesamiento de datos:** Explicación del diseño experimental ($4 \times 6$), justificación matemática del promedio de las 18 observaciones en bloques de 3, y descripción de las variables.
+4. **Resultados del experimento 1 (variación de masa):** Análisis descriptivo, tabla ANOVA, verificación de supuestos (con sus respectivos gráficos y pruebas formales) y prueba $t$ frente al período teórico.
+5. **Resultados del experimento 2 (variación de longitud):** Análisis descriptivo, tabla ANOVA, validación de supuestos y prueba post-hoc de Tukey.
+6. **Modelación por regresión y estimación de $g$:** Resultados de los tres enfoques de regresión (Log-Log, $T$ vs $\sqrt{L}$ y $T^2$ vs $L$), pruebas de hipótesis sobre los parámetros ($\beta = 0.5$, $\beta_0 = 0$), cálculo de la gravedad con su intervalo de confianza del $95\%$ y análisis del coeficiente de determinación ($R^2$).
+7. **Discusión de errores y conclusiones:** Respuesta razonada a las preguntas del cuestionario físico desde la óptica estadística (fuentes de variación, limitaciones de la aproximación de ángulo pequeño $\sin\theta \approx \theta$, efecto de la masa distribuida frente a la masa puntual).
+
+---
+
+## Rúbrica de evaluación
+
+Se usarán los siguientes criterios al momento de asignar la nota al informe. 
+
+
+
+| Criterio | Excelente (4.5 - 5.0) | Bueno (3.5 - 4.4) | Por Mejorar (< 3.5) | Peso |
+| :--- | :--- | :--- | :--- | :---: |
+| **Manejo de Datos y EDA en R** | Código limpio y reproducible; preprocesa correctamente los bloques de 3 datos; tablas y gráficos con formato profesional. | Procesa los datos pero presenta gráficos o tablas con etiquetas por defecto sin pulir. | Errores en el cálculo de los promedios por bloque o ausencia de análisis descriptivo. | **20%** |
+| **Análisis de Varianza (ANOVA)** | Plantea modelos e hipótesis correctamente; interpreta $p$-valores en contexto; verifica rigurosamente normalidad y homocedasticidad; aplica Tukey en Exp. 2. | Ejecuta el ANOVA pero omite la validación de supuestos o no interpreta físicamente el no rechazo en Exp. 1. | Confunde los factores, no realiza ANOVA o interpreta erróneamente los $p$-valores. | **30%** |
+| **Modelos de Regresión y Cálculo de $g$** | Ajusta los modelos linealizados; prueba $H_0: \beta = 0.5$ en el modelo log-log; estima $g$ con su respectivo intervalo de confianza al $95\%$. | Ajusta la regresión simple y calcula $g$ puntualmente, pero omite el intervalo de confianza o el modelo log-log. | Ajusta una regresión lineal directa ($T$ vs $L$) sin transformar o calcula mal el valor de $g$. | **30%** |
+| **Comunicación y Formato Quarto** | Documento bien estructurado, ecuaciones en \LaTeX{} impecables, discusión crítica de errores físicos y estadísticos. | Formato adecuado pero redacción meramente mecánica sin conectar la estadística con la física. | Documento desordenado, código con errores de compilación o sin conclusiones claras. | **20%** |
+`
